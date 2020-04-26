@@ -3,10 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300857F5D2236048230D2D4D /* Pods_playersMeetupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */; };
+		AC322766F959DA60317FF6E7 /* Pods_playersMeetup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519AA36604EF483634BEAFBA /* Pods_playersMeetup.framework */; };
+		DF1BEEFB1CAEEA583ED0F2A6 /* Pods_playersMeetup_playersMeetupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84583BFA9267C542027E12EA /* Pods_playersMeetup_playersMeetupUITests.framework */; };
 		FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F72E245445FD00E681F9 /* AppDelegate.swift */; };
 		FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F730245445FD00E681F9 /* SceneDelegate.swift */; };
 		FA75F733245445FD00E681F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F732245445FD00E681F9 /* ViewController.swift */; };
@@ -15,6 +18,9 @@
 		FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA75F7392454460000E681F9 /* LaunchScreen.storyboard */; };
 		FA75F7462454460000E681F9 /* playersMeetupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7452454460000E681F9 /* playersMeetupTests.swift */; };
 		FA75F7512454460000E681F9 /* playersMeetupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7502454460000E681F9 /* playersMeetupUITests.swift */; };
+		FA75F761245450F100E681F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA75F760245450F000E681F9 /* GoogleService-Info.plist */; };
+		FA75F7692454654300E681F9 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7682454654300E681F9 /* LocationCell.swift */; };
+		FA75F76B245465A500E681F9 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F76A245465A500E681F9 /* FeedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +41,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01B77250B17D31733BFDD087 /* Pods-playersMeetup.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetup.release.xcconfig"; path = "Target Support Files/Pods-playersMeetup/Pods-playersMeetup.release.xcconfig"; sourceTree = "<group>"; };
+		0F1B12EF4AA44AC75206F22A /* Pods-playersMeetupTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetupTests.release.xcconfig"; path = "Target Support Files/Pods-playersMeetupTests/Pods-playersMeetupTests.release.xcconfig"; sourceTree = "<group>"; };
+		519AA36604EF483634BEAFBA /* Pods_playersMeetup.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playersMeetup.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83BED775AA7D7D7E13E3B05A /* Pods-playersMeetup-playersMeetupUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetup-playersMeetupUITests.debug.xcconfig"; path = "Target Support Files/Pods-playersMeetup-playersMeetupUITests/Pods-playersMeetup-playersMeetupUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		84583BFA9267C542027E12EA /* Pods_playersMeetup_playersMeetupUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playersMeetup_playersMeetupUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DCEFA334AE8DBFC5C6A0E1D /* Pods-playersMeetup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetup.debug.xcconfig"; path = "Target Support Files/Pods-playersMeetup/Pods-playersMeetup.debug.xcconfig"; sourceTree = "<group>"; };
+		A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playersMeetupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7948BD21A4ECC0B394960F4 /* Pods-playersMeetupTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetupTests.debug.xcconfig"; path = "Target Support Files/Pods-playersMeetupTests/Pods-playersMeetupTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F70BA2239F897178EA53A9AB /* Pods-playersMeetup-playersMeetupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetup-playersMeetupUITests.release.xcconfig"; path = "Target Support Files/Pods-playersMeetup-playersMeetupUITests/Pods-playersMeetup-playersMeetupUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FA75F72B245445FC00E681F9 /* playersMeetup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playersMeetup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA75F72E245445FD00E681F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA75F730245445FD00E681F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +64,9 @@
 		FA75F74C2454460000E681F9 /* playersMeetupUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = playersMeetupUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA75F7502454460000E681F9 /* playersMeetupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playersMeetupUITests.swift; sourceTree = "<group>"; };
 		FA75F7522454460000E681F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA75F760245450F000E681F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FA75F7682454654300E681F9 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		FA75F76A245465A500E681F9 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC322766F959DA60317FF6E7 /* Pods_playersMeetup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300857F5D2236048230D2D4D /* Pods_playersMeetupTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +90,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF1BEEFB1CAEEA583ED0F2A6 /* Pods_playersMeetup_playersMeetupUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43C439AC45C2A609DC47B2BC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8DCEFA334AE8DBFC5C6A0E1D /* Pods-playersMeetup.debug.xcconfig */,
+				01B77250B17D31733BFDD087 /* Pods-playersMeetup.release.xcconfig */,
+				83BED775AA7D7D7E13E3B05A /* Pods-playersMeetup-playersMeetupUITests.debug.xcconfig */,
+				F70BA2239F897178EA53A9AB /* Pods-playersMeetup-playersMeetupUITests.release.xcconfig */,
+				D7948BD21A4ECC0B394960F4 /* Pods-playersMeetupTests.debug.xcconfig */,
+				0F1B12EF4AA44AC75206F22A /* Pods-playersMeetupTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		4916EA1490E595B78A30CDD3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				519AA36604EF483634BEAFBA /* Pods_playersMeetup.framework */,
+				84583BFA9267C542027E12EA /* Pods_playersMeetup_playersMeetupUITests.framework */,
+				A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FA75F722245445FC00E681F9 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +127,8 @@
 				FA75F7442454460000E681F9 /* playersMeetupTests */,
 				FA75F74F2454460000E681F9 /* playersMeetupUITests */,
 				FA75F72C245445FC00E681F9 /* Products */,
+				43C439AC45C2A609DC47B2BC /* Pods */,
+				4916EA1490E595B78A30CDD3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +145,7 @@
 		FA75F72D245445FC00E681F9 /* playersMeetup */ = {
 			isa = PBXGroup;
 			children = (
+				FA75F760245450F000E681F9 /* GoogleService-Info.plist */,
 				FA75F72E245445FD00E681F9 /* AppDelegate.swift */,
 				FA75F730245445FD00E681F9 /* SceneDelegate.swift */,
 				FA75F732245445FD00E681F9 /* ViewController.swift */,
@@ -106,6 +153,8 @@
 				FA75F7372454460000E681F9 /* Assets.xcassets */,
 				FA75F7392454460000E681F9 /* LaunchScreen.storyboard */,
 				FA75F73C2454460000E681F9 /* Info.plist */,
+				FA75F7682454654300E681F9 /* LocationCell.swift */,
+				FA75F76A245465A500E681F9 /* FeedViewController.swift */,
 			);
 			path = playersMeetup;
 			sourceTree = "<group>";
@@ -135,9 +184,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA75F7552454460000E681F9 /* Build configuration list for PBXNativeTarget "playersMeetup" */;
 			buildPhases = (
+				31848291C9F55737238C840E /* [CP] Check Pods Manifest.lock */,
 				FA75F727245445FC00E681F9 /* Sources */,
 				FA75F728245445FC00E681F9 /* Frameworks */,
 				FA75F729245445FC00E681F9 /* Resources */,
+				4EFBD2A1EC7FD61ECD40691B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +203,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA75F7582454460000E681F9 /* Build configuration list for PBXNativeTarget "playersMeetupTests" */;
 			buildPhases = (
+				362C2DA759997E876A228012 /* [CP] Check Pods Manifest.lock */,
 				FA75F73D2454460000E681F9 /* Sources */,
 				FA75F73E2454460000E681F9 /* Frameworks */,
 				FA75F73F2454460000E681F9 /* Resources */,
@@ -170,9 +222,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA75F75B2454460000E681F9 /* Build configuration list for PBXNativeTarget "playersMeetupUITests" */;
 			buildPhases = (
+				0C505ADEECC1560EAD22536B /* [CP] Check Pods Manifest.lock */,
 				FA75F7482454460000E681F9 /* Sources */,
 				FA75F7492454460000E681F9 /* Frameworks */,
 				FA75F74A2454460000E681F9 /* Resources */,
+				51CC10ABC33545827BB4592F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */,
+				FA75F761245450F100E681F9 /* GoogleService-Info.plist in Resources */,
 				FA75F7382454460000E681F9 /* Assets.xcassets in Resources */,
 				FA75F736245445FD00E681F9 /* Main.storyboard in Resources */,
 			);
@@ -254,14 +309,119 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0C505ADEECC1560EAD22536B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-playersMeetup-playersMeetupUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		31848291C9F55737238C840E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-playersMeetup-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		362C2DA759997E876A228012 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-playersMeetupTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4EFBD2A1EC7FD61ECD40691B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-playersMeetup/Pods-playersMeetup-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-playersMeetup/Pods-playersMeetup-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-playersMeetup/Pods-playersMeetup-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		51CC10ABC33545827BB4592F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-playersMeetup-playersMeetupUITests/Pods-playersMeetup-playersMeetupUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-playersMeetup-playersMeetupUITests/Pods-playersMeetup-playersMeetupUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-playersMeetup-playersMeetupUITests/Pods-playersMeetup-playersMeetupUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FA75F727245445FC00E681F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FA75F733245445FD00E681F9 /* ViewController.swift in Sources */,
+				FA75F7692454654300E681F9 /* LocationCell.swift in Sources */,
 				FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */,
 				FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */,
+				FA75F76B245465A500E681F9 /* FeedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,11 +592,13 @@
 		};
 		FA75F7562454460000E681F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8DCEFA334AE8DBFC5C6A0E1D /* Pods-playersMeetup.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8YJ5XVX3PL;
 				INFOPLIST_FILE = playersMeetup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -450,11 +612,13 @@
 		};
 		FA75F7572454460000E681F9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01B77250B17D31733BFDD087 /* Pods-playersMeetup.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8YJ5XVX3PL;
 				INFOPLIST_FILE = playersMeetup/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -468,6 +632,7 @@
 		};
 		FA75F7592454460000E681F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D7948BD21A4ECC0B394960F4 /* Pods-playersMeetupTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +655,7 @@
 		};
 		FA75F75A2454460000E681F9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F1B12EF4AA44AC75206F22A /* Pods-playersMeetupTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +678,7 @@
 		};
 		FA75F75C2454460000E681F9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83BED775AA7D7D7E13E3B05A /* Pods-playersMeetup-playersMeetupUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +699,7 @@
 		};
 		FA75F75D2454460000E681F9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F70BA2239F897178EA53A9AB /* Pods-playersMeetup-playersMeetupUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
