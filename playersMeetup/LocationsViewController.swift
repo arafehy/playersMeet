@@ -9,14 +9,16 @@
 import UIKit
 import Moya
 import AlamofireImage
+import Firebase
+var locations = [[String:Any]]()
 class LocationsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate {
-    var locations = [[String:Any]]()
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count   }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
-        let loc = self.locations[indexPath.row]
+        let loc = locations[indexPath.row]
         cell.locationLabel.text = loc["name"] as? String
         let strURL = loc["image_url"] as! String
         if let url = URL(string: strURL){
@@ -31,6 +33,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
      let service = MoyaProvider<YelpService.BusinessesProvider>()
     let jsonDecoder = JSONDecoder()
+    let ref = Database.database().reference().ref.child("businesses")
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
@@ -39,12 +42,14 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
                 service.request(.search(lat: 37.251543524369715 , long: -121.94168787103503)) { (result) in switch result {
                 case .success(let response):
                     let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
-                    self.locations = dataDictionary["businesses"] as! [[String:Any]]
+                    locations = dataDictionary["businesses"] as! [[String:Any]]
+                    self.ref.setValue(locations)
                     self.tableView.reloadData()
-                    print(self.locations[1]["distance"] as! Double)
+//                    print(locations[1]["distance"] as! Double)
                 case .failure(let error):
                     print("Error: \(error)")
                     }
                 }
-            }
+        
     }
+}
