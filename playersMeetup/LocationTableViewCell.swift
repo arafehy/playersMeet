@@ -1,17 +1,18 @@
 //
-//  LocationCell.swift
+//  LocationTableViewCell.swift
 //  playersMeetup
 //
-//  Created by Nada Zeini on 4/25/20.
+//  Created by Nada Zeini on 4/26/20.
 //  Copyright © 2020 Nada Zeini. All rights reserved.
 //
 
 import UIKit
 
-class LocationCell: UITableViewCell {
+class LocationTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var photoView: UIImageView!
-    @IBOutlet weak var locationName: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var locationImageView: UIImageView!
+    @IBOutlet weak var locationLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -19,8 +19,10 @@
 		FA75F7462454460000E681F9 /* playersMeetupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7452454460000E681F9 /* playersMeetupTests.swift */; };
 		FA75F7512454460000E681F9 /* playersMeetupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7502454460000E681F9 /* playersMeetupUITests.swift */; };
 		FA75F761245450F100E681F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA75F760245450F000E681F9 /* GoogleService-Info.plist */; };
-		FA75F7692454654300E681F9 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7682454654300E681F9 /* LocationCell.swift */; };
-		FA75F76B245465A500E681F9 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F76A245465A500E681F9 /* FeedViewController.swift */; };
+		FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBA32455899F00C25C92 /* NetworkService.swift */; };
+		FAB9CBA62455931E00C25C92 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBA52455931E00C25C92 /* Models.swift */; };
+		FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */; };
+		FAB9CBB22455C27600C25C92 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,8 +67,10 @@
 		FA75F7502454460000E681F9 /* playersMeetupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playersMeetupUITests.swift; sourceTree = "<group>"; };
 		FA75F7522454460000E681F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA75F760245450F000E681F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		FA75F7682454654300E681F9 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
-		FA75F76A245465A500E681F9 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		FAB9CBA32455899F00C25C92 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		FAB9CBA52455931E00C25C92 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
+		FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,8 +157,10 @@
 				FA75F7372454460000E681F9 /* Assets.xcassets */,
 				FA75F7392454460000E681F9 /* LaunchScreen.storyboard */,
 				FA75F73C2454460000E681F9 /* Info.plist */,
-				FA75F7682454654300E681F9 /* LocationCell.swift */,
-				FA75F76A245465A500E681F9 /* FeedViewController.swift */,
+				FAB9CBA32455899F00C25C92 /* NetworkService.swift */,
+				FAB9CBA52455931E00C25C92 /* Models.swift */,
+				FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */,
+				FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */,
 			);
 			path = playersMeetup;
 			sourceTree = "<group>";
@@ -418,10 +424,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA75F733245445FD00E681F9 /* ViewController.swift in Sources */,
-				FA75F7692454654300E681F9 /* LocationCell.swift in Sources */,
+				FAB9CBB22455C27600C25C92 /* LocationTableViewCell.swift in Sources */,
 				FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */,
 				FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */,
-				FA75F76B245465A500E681F9 /* FeedViewController.swift in Sources */,
+				FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */,
+				FAB9CBA62455931E00C25C92 /* Models.swift in Sources */,
+				FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
