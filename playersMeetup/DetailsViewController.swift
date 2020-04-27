@@ -14,10 +14,11 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var leaveTeamOutlet: UIButton!
     @IBOutlet weak var joinTeamOutlet: UIButton!
     @IBAction func leaveTeamAction(_ sender: Any) {
-        LocationsViewController.shared.count = LocationsViewController.shared.count-1
-        usersCounterLabel.text = String(format: "%d",LocationsViewController.shared.count)
         leaveTeamOutlet?.isEnabled = false
         joinTeamOutlet?.isEnabled = true
+        LocationsViewController.shared.count = LocationsViewController.shared.count-1
+        usersCounterLabel.text = String(format: "%d",LocationsViewController.shared.count)
+        
         let reference = LocationsViewController.ref.child(LocationsViewController.selectedId)
         reference.setValue(LocationsViewController.shared.count)
     }
@@ -27,18 +28,11 @@ class DetailsViewController: UIViewController {
         
         joinTeamOutlet?.isEnabled = false
         leaveTeamOutlet?.isEnabled = true
-        if(joinedTeam == false){
             
             LocationsViewController.shared.count = LocationsViewController.shared.count+1
             usersCounterLabel.text = String(format: "%d",LocationsViewController.shared.count )
             let reference = LocationsViewController.ref.child(LocationsViewController.selectedId)
             reference.setValue(LocationsViewController.shared.count)
-            print("joined team is \(joinedTeam)")
-            joinedTeam = true
-        }
-        else if(joinedTeam == true){
-            print("you are already in a team")
-        }
     }
     
     override func viewDidLoad() {
