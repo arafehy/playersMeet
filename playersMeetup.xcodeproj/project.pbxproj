@@ -23,6 +23,7 @@
 		FAB9CBA62455931E00C25C92 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBA52455931E00C25C92 /* Models.swift */; };
 		FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */; };
 		FAB9CBB22455C27600C25C92 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */; };
+		FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBB32456468800C25C92 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		FAB9CBA52455931E00C25C92 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		FAB9CBB32456468800C25C92 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				FAB9CBA52455931E00C25C92 /* Models.swift */,
 				FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */,
 				FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */,
+				FAB9CBB32456468800C25C92 /* DetailsViewController.swift */,
 			);
 			path = playersMeetup;
 			sourceTree = "<group>";
@@ -426,6 +429,7 @@
 				FA75F733245445FD00E681F9 /* ViewController.swift in Sources */,
 				FAB9CBB22455C27600C25C92 /* LocationTableViewCell.swift in Sources */,
 				FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */,
+				FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */,
 				FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */,
 				FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */,
 				FAB9CBA62455931E00C25C92 /* Models.swift in Sources */,
