@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		300857F5D2236048230D2D4D /* Pods_playersMeetupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */; };
 		AC322766F959DA60317FF6E7 /* Pods_playersMeetup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519AA36604EF483634BEAFBA /* Pods_playersMeetup.framework */; };
+		DB064FBC2459F57200D246BD /* Assests.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB064FBB2459F57200D246BD /* Assests.xcassets */; };
 		DB80848E245687B800177175 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848D245687B800177175 /* SignUpViewController.swift */; };
 		DB8084902456A06100177175 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848F2456A06100177175 /* HomeViewController.swift */; };
 		DB8084942456AA7A00177175 /* playermeetuplogo.png in Resources */ = {isa = PBXBuildFile; fileRef = DB8084932456AA7A00177175 /* playermeetuplogo.png */; };
@@ -54,6 +55,7 @@
 		8DCEFA334AE8DBFC5C6A0E1D /* Pods-playersMeetup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetup.debug.xcconfig"; path = "Target Support Files/Pods-playersMeetup/Pods-playersMeetup.debug.xcconfig"; sourceTree = "<group>"; };
 		A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playersMeetupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7948BD21A4ECC0B394960F4 /* Pods-playersMeetupTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetupTests.debug.xcconfig"; path = "Target Support Files/Pods-playersMeetupTests/Pods-playersMeetupTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DB064FBB2459F57200D246BD /* Assests.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assests.xcassets; sourceTree = "<group>"; };
 		DB80848D245687B800177175 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DB80848F2456A06100177175 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DB8084932456AA7A00177175 /* playermeetuplogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playermeetuplogo.png; path = ../../../../Desktop/playermeetuplogo.png; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				DB80848F2456A06100177175 /* HomeViewController.swift */,
 				DB8084932456AA7A00177175 /* playermeetuplogo.png */,
 				DB8084952456AABA00177175 /* grouplogo.png */,
+				DB064FBB2459F57200D246BD /* Assests.xcassets */,
 			);
 			path = playersMeetup;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			files = (
 				FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */,
 				DB8084962456AABA00177175 /* grouplogo.png in Resources */,
+				DB064FBC2459F57200D246BD /* Assests.xcassets in Resources */,
 				DB8084942456AA7A00177175 /* playermeetuplogo.png in Resources */,
 				FA75F761245450F100E681F9 /* GoogleService-Info.plist in Resources */,
 				FA75F736245445FD00E681F9 /* Main.storyboard in Resources */,
