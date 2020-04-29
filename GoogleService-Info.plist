@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>417634473384-oclkb2thq0tl6i3qc70nqprb1ooq9vji.apps.googleusercontent.com</string>
+	<string>417634473384-m3u99egej90p2hmfebrdtkhq9h36d4p6.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.417634473384-oclkb2thq0tl6i3qc70nqprb1ooq9vji</string>
+	<string>com.googleusercontent.apps.417634473384-m3u99egej90p2hmfebrdtkhq9h36d4p6</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBbmwiWRryQ3EvGK0Y-PL0LtX7VlfiNcAk</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.nadazeini.playersMeetup</string>
+	<string>com.NadaZeini.playersMeetup</string>
 	<key>PROJECT_ID</key>
 	<string>sportsmeet-74528</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:417634473384:ios:6901f14ca112d2e628f99d</string>
+	<string>1:417634473384:ios:5e0a9fd80358641928f99d</string>
 	<key>DATABASE_URL</key>
 	<string>https://sportsmeet-74528.firebaseio.com</string>
 </dict>
