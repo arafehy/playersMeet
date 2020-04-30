@@ -24,13 +24,14 @@ This app lets you have fun with sports you enjoy, while also meeting new people.
 
 **Required Must-have Stories**
 
-* User can sign up.
-* User can login.
-* User can choose sport.
-* User can choose location.
-* User can form/join a team.
-* Profile pages for each user
-* Settings (Accesibility, Notification, General, etc.)
+- [x] User can sign up.
+- [x] User can login.
+- [x] User can logout. 
+- [ ] User can choose sport.
+- [x] User can choose location.
+- [x] User can form/join a team.
+- [ ]  Profile pages for each user
+- [ ] Settings (Accesibility, Notification, General, etc.)
 
 **Optional Nice-to-have Stories**
 
