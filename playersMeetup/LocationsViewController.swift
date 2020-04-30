@@ -43,7 +43,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
 ///        print(cell.locationLabel.text)
         LocationsViewController.selectedId = selectedLocation["id"] as! String
 ///        print(selectedLocation["name"])
-      ///  print("done selected")
+      ///  print("done selected")kti
     }
     
     @IBOutlet weak var tableView: UITableView!
