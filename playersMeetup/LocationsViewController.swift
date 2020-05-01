@@ -14,15 +14,17 @@ import CoreLocation
 
 var locations = [[String:Any]]()
 class LocationsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+    
     let locationManager = CLLocationManager()
-      var long: Double = 0.0
-      var lat: Double = 0.0
-      
+    var long: Double = 0.0
+    var lat: Double = 0.0
     static let shared = LocationsViewController()
-     static let ref = Database.database().reference().ref.child("businesses")
+    static let ref = Database.database().reference().ref.child("businesses")
     static var selectedId: String = ""
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count   }
+        return locations.count
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
