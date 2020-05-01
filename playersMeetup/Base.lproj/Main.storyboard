@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ySA-7L-eq0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+=======
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d9F-PR-gYe">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+>>>>>>> origin/user-profile
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -72,6 +80,82 @@
             </objects>
             <point key="canvasLocation" x="1606" y="483"/>
         </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="M24-FU-6LS">
+            <objects>
+                <viewController id="sTv-4i-jSU" customClass="ProfileViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BKj-xe-mcY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dZk-XR-9gU">
+                                <rect key="frame" x="107" y="75" width="200" height="197.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="DwM-QS-C1S"/>
+                                    <constraint firstAttribute="width" constant="200" id="tms-Oc-UAv"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teq-h4-lH2" userLabel="Name Stack">
+                                <rect key="frame" x="153" y="282" width="108.5" height="75"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-Qe-Ejw">
+                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ly5-4v-KYo">
+                                        <rect key="frame" x="9.5" y="51" width="89.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hGO-iq-PGK" userLabel="Bio Stack">
+                                <rect key="frame" x="15" y="387" width="384" height="467"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-hm-bXq" userLabel="Bio Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
+                                        <rect key="frame" x="0.0" y="24" width="374" height="443"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dZk-XR-9gU" firstAttribute="top" secondItem="wRl-hr-91e" secondAttribute="top" constant="30" id="Cbi-fA-xuk"/>
+                            <constraint firstItem="wRl-hr-91e" firstAttribute="trailing" secondItem="hGO-iq-PGK" secondAttribute="trailing" constant="15" id="GXw-nw-0Dj"/>
+                            <constraint firstItem="dZk-XR-9gU" firstAttribute="centerX" secondItem="BKj-xe-mcY" secondAttribute="centerX" id="Rgz-15-QLu"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="centerX" secondItem="teq-h4-lH2" secondAttribute="centerX" id="T2a-ny-WD2"/>
+                            <constraint firstItem="wRl-hr-91e" firstAttribute="bottom" secondItem="hGO-iq-PGK" secondAttribute="bottom" constant="8" id="TUm-cz-09u"/>
+                            <constraint firstItem="teq-h4-lH2" firstAttribute="centerX" secondItem="dZk-XR-9gU" secondAttribute="centerX" id="V86-pj-qhA"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="top" secondItem="teq-h4-lH2" secondAttribute="bottom" constant="30" id="VPt-PJ-DCq"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="leading" secondItem="wRl-hr-91e" secondAttribute="leading" constant="15" id="WRc-d7-dAC"/>
+                            <constraint firstItem="teq-h4-lH2" firstAttribute="top" secondItem="dZk-XR-9gU" secondAttribute="bottom" constant="8" symbolic="YES" id="hiG-LS-Adn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wRl-hr-91e"/>
+                    </view>
+                    <connections>
+                        <outlet property="bioTextView" destination="pdC-ni-nmY" id="3Pb-wd-QOO"/>
+                        <outlet property="nameLabel" destination="WZl-Qe-Ejw" id="iV0-Bw-wVI"/>
+                        <outlet property="profilePicture" destination="dZk-XR-9gU" id="Bdf-2a-fWn"/>
+                        <outlet property="usernameLabel" destination="ly5-4v-KYo" id="8bE-JZ-XNs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="llL-Tc-tCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2547.826086956522" y="482.8125"/>
+        </scene>
         <!--Locations-->
         <scene sceneID="HVO-CB-0w0">
             <objects>
@@ -132,6 +216,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3s2-wO-2lq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="3513" y="-1407"/>
         </scene>
         <!--Sign Up View Controller-->
@@ -238,6 +323,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTy-b1-Jmj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1789.8550724637682" y="-211.60714285714286"/>
+=======
+            <point key="canvasLocation" x="2547.826086956522" y="-207.58928571428569"/>
+>>>>>>> origin/user-profile
         </scene>
         <!--Details View Controller-->
         <scene sceneID="VEu-tn-Tyx">
@@ -322,6 +410,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e62-t4-Jad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+<<<<<<< HEAD
             <point key="canvasLocation" x="2547.826086956522" y="-207.58928571428569"/>
         </scene>
         <!--Navigation Controller-->
@@ -347,5 +436,12 @@
     <resources>
         <image name="grouplogo" width="173.5" height="101.5"/>
         <image name="playermeetuplogo" width="156" height="103.5"/>
+=======
+            <point key="canvasLocation" x="1637.68115942029" y="-207.58928571428569"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="person.crop.square" catalog="system" width="128" height="114"/>
+>>>>>>> origin/user-profile
     </resources>
 </document>
