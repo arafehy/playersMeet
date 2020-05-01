@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ySA-7L-eq0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
 =======
+=======
+>>>>>>> db2a33a71b0ff71fe53c2df9e72c4e98def1c6e2
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="d9F-PR-gYe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+<<<<<<< HEAD
 >>>>>>> origin/user-profile
+=======
+>>>>>>> db2a33a71b0ff71fe53c2df9e72c4e98def1c6e2
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -217,6 +223,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3s2-wO-2lq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> db2a33a71b0ff71fe53c2df9e72c4e98def1c6e2
             <point key="canvasLocation" x="3513" y="-1407"/>
         </scene>
         <!--Sign Up View Controller-->
@@ -323,9 +332,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTy-b1-Jmj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1789.8550724637682" y="-211.60714285714286"/>
+<<<<<<< HEAD
 =======
             <point key="canvasLocation" x="2547.826086956522" y="-207.58928571428569"/>
 >>>>>>> origin/user-profile
+=======
+>>>>>>> db2a33a71b0ff71fe53c2df9e72c4e98def1c6e2
         </scene>
         <!--Details View Controller-->
         <scene sceneID="VEu-tn-Tyx">
@@ -411,6 +423,9 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e62-t4-Jad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> db2a33a71b0ff71fe53c2df9e72c4e98def1c6e2
             <point key="canvasLocation" x="2547.826086956522" y="-207.58928571428569"/>
         </scene>
         <!--Navigation Controller-->
@@ -436,6 +451,7 @@
     <resources>
         <image name="grouplogo" width="173.5" height="101.5"/>
         <image name="playermeetuplogo" width="156" height="103.5"/>
+<<<<<<< HEAD
 =======
             <point key="canvasLocation" x="1637.68115942029" y="-207.58928571428569"/>
         </scene>
@@ -443,5 +459,7 @@
     <resources>
         <image name="person.crop.square" catalog="system" width="128" height="114"/>
 >>>>>>> origin/user-profile
+=======
+>>>>>>> db2a33a71b0ff71fe53c2df9e72c4e98def1c6e2
     </resources>
 </document>

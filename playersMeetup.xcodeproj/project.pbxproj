@@ -313,11 +313,7 @@
 				E0116CA6245A580900AF7F39 /* .gitignore in Resources */,
 				FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */,
 				FA1116E524598D3C00800C33 /* GoogleService-Info.plist in Resources */,
-<<<<<<< HEAD
 				FA1116E7245BA02800800C33 /* Assests.xcassets in Resources */,
-=======
-				FA75F7382454460000E681F9 /* Assets.xcassets in Resources */,
->>>>>>> origin/user-profile
 				FA75F736245445FD00E681F9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
