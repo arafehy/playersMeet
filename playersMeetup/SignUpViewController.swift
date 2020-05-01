@@ -11,64 +11,60 @@ import Firebase
 import FirebaseAuth
 
 class SignUpViewController: UIViewController {
-
     @IBOutlet weak var emailField: UITextField!
-    
-    
     @IBOutlet weak var passwordField: UITextField!
-    
+//    static let signUpController = SignUpViewController()
+    static let ref = Database.database().reference().ref.child("userInfo")
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         overrideUserInterfaceStyle = .light
     }
-    
-    
     @IBAction func onSignUp(_ sender: Any) {
         Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!){ (user, error) in
         if error == nil {
           self.performSegue(withIdentifier: "loginToHome", sender: self)
-                       }
-        else{
-          let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-          let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                           
-           alertController.addAction(defaultAction)
-           self.present(alertController, animated: true, completion: nil)
-              }
-                   }
-             }
-    
-
+        }
+        else {
+            let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            self.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    var userID: String = ""
+    var usersInfo: [String:String] = [:]
     @IBAction func onSignIn(_ sender: Any) {
         
         Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
                if error == nil{
-                 self.performSegue(withIdentifier: "loginToHome", sender: self)
-                              }
+                    self.performSegue(withIdentifier: "loginToHome", sender: self)
+                    //get user id
+                    self.userID = Auth.auth().currentUser!.uid
+                    print(self.userID)
+                    //add current user to dictionary as not joined
+                    self.usersInfo[self.userID] = "not joined"
+                    for (uid,hasJoined) in self.usersInfo{
+                        SignUpViewController.self.ref.observeSingleEvent(of: .value) { (snapshot) in
+                            if snapshot.hasChild(uid){
+                                print("user is in database")
+                            }
+                            else{
+                                print("adding user to database")
+                                let newUser = SignUpViewController.self.ref.child(uid)
+                                newUser.setValue(hasJoined)
+                            }
+                        }
+                    }
+                }
                 else{
-                 let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                 let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                                 
-                  alertController.addAction(defaultAction)
-                  self.present(alertController, animated: true, completion: nil)
-                     }
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
             }
-            
         }
-    }
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+}
 
