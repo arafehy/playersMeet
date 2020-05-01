@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		300857F5D2236048230D2D4D /* Pods_playersMeetupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */; };
 		AC322766F959DA60317FF6E7 /* Pods_playersMeetup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519AA36604EF483634BEAFBA /* Pods_playersMeetup.framework */; };
-		DB064FBC2459F57200D246BD /* Assests.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB064FBB2459F57200D246BD /* Assests.xcassets */; };
 		DB80848E245687B800177175 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848D245687B800177175 /* SignUpViewController.swift */; };
 		DB8084902456A06100177175 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848F2456A06100177175 /* HomeViewController.swift */; };
 		DF1BEEFB1CAEEA583ED0F2A6 /* Pods_playersMeetup_playersMeetupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84583BFA9267C542027E12EA /* Pods_playersMeetup_playersMeetupUITests.framework */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
 		E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4887B245A708F00ED074A /* ProfileViewController.swift */; };
 		FA1116E524598D3C00800C33 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA1116E424598D3C00800C33 /* GoogleService-Info.plist */; };
+		FA1116E7245BA02800800C33 /* Assests.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB064FBB2459F57200D246BD /* Assests.xcassets */; };
 		FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F72E245445FD00E681F9 /* AppDelegate.swift */; };
 		FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F730245445FD00E681F9 /* SceneDelegate.swift */; };
 		FA75F733245445FD00E681F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F732245445FD00E681F9 /* ViewController.swift */; };
@@ -314,6 +314,7 @@
 				FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */,
 				FA1116E524598D3C00800C33 /* GoogleService-Info.plist in Resources */,
 				FA75F7382454460000E681F9 /* Assets.xcassets in Resources */,
+				FA1116E7245BA02800800C33 /* Assests.xcassets in Resources */,
 				FA75F736245445FD00E681F9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

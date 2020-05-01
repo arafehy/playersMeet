@@ -54,6 +54,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
