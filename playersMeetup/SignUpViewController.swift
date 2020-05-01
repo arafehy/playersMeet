@@ -13,8 +13,8 @@ import FirebaseAuth
 class SignUpViewController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-//    static let signUpController = SignUpViewController()
-    static let ref = Database.database().reference().ref.child("userInfo")
+    static let signUpController = SignUpViewController()
+    static let ref = Database.database().reference().ref.child("userInfo") //doesnt need to be static fix
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
@@ -32,18 +32,21 @@ class SignUpViewController: UIViewController {
             }
         }
     }
-    var userID: String = ""
-    var usersInfo: [String:String] = [:]
+    static var userID: String = ""
+    var usersInfo: [String:[String]] = [:]
     @IBAction func onSignIn(_ sender: Any) {
         
         Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
                if error == nil{
                     self.performSegue(withIdentifier: "loginToHome", sender: self)
                     //get user id
-                    self.userID = Auth.auth().currentUser!.uid
-                    print(self.userID)
+                SignUpViewController.userID = Auth.auth().currentUser!.uid
+                print(SignUpViewController.userID)
                     //add current user to dictionary as not joined
-                    self.usersInfo[self.userID] = "not joined"
+                var array: [String] = [] //array with join info and team number
+                array.append("not joined")
+                array.append("team location")
+                self.usersInfo[SignUpViewController.self.userID] = array
                     for (uid,hasJoined) in self.usersInfo{
                         SignUpViewController.self.ref.observeSingleEvent(of: .value) { (snapshot) in
                             if snapshot.hasChild(uid){
@@ -52,6 +55,7 @@ class SignUpViewController: UIViewController {
                             else{
                                 print("adding user to database")
                                 let newUser = SignUpViewController.self.ref.child(uid)
+                                
                                 newUser.setValue(hasJoined)
                             }
                         }
