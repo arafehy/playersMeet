@@ -71,9 +71,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2474" y="550"/>
+            <point key="canvasLocation" x="3271" y="550"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="M24-FU-6LS">
             <objects>
                 <viewController id="sTv-4i-jSU" customClass="ProfileViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
@@ -82,14 +82,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dZk-XR-9gU">
-                                <rect key="frame" x="107" y="75" width="200" height="197.5"/>
+                                <rect key="frame" x="107" y="119" width="200" height="197.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="DwM-QS-C1S"/>
                                     <constraint firstAttribute="width" constant="200" id="tms-Oc-UAv"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teq-h4-lH2" userLabel="Name Stack">
-                                <rect key="frame" x="153" y="282" width="108.5" height="75"/>
+                                <rect key="frame" x="153" y="326" width="108.5" height="75"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-Qe-Ejw">
                                         <rect key="frame" x="0.0" y="0.0" width="108.5" height="48"/>
@@ -106,7 +106,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hGO-iq-PGK" userLabel="Bio Stack">
-                                <rect key="frame" x="15" y="387" width="384" height="418"/>
+                                <rect key="frame" x="15" y="431" width="384" height="374"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-hm-bXq" userLabel="Bio Label">
                                         <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
@@ -115,7 +115,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
-                                        <rect key="frame" x="0.0" y="24" width="374" height="394"/>
+                                        <rect key="frame" x="0.0" y="24" width="374" height="350"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -138,7 +138,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wRl-hr-91e"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="jl5-j8-fG7"/>
+                    <navigationItem key="navigationItem" id="0Di-07-kM9">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="mdl-ah-Gjo">
+                            <connections>
+                                <action selector="signOut:" destination="sTv-4i-jSU" id="HvR-b8-dnm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Va0-fm-I2D"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="bioTextView" destination="pdC-ni-nmY" id="3Pb-wd-QOO"/>
                         <outlet property="nameLabel" destination="WZl-Qe-Ejw" id="iV0-Bw-wVI"/>
@@ -148,7 +155,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="llL-Tc-tCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="877" y="550"/>
+            <point key="canvasLocation" x="1661" y="550"/>
         </scene>
         <!--Locations-->
         <scene sceneID="HVO-CB-0w0">
@@ -405,17 +412,37 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="XR3-Dk-Ogo"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gmy-sI-Kar">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="sTv-4i-jSU" kind="relationship" relationship="viewControllers" id="Zdj-7f-H26"/>
+                        <segue destination="3Do-jJ-u7C" kind="relationship" relationship="viewControllers" id="Zdj-7f-H26"/>
                         <segue destination="sS4-t1-1ED" kind="relationship" relationship="viewControllers" id="p67-8M-8qU"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TIr-1J-CC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="80" y="-179"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="6QY-LW-rQq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Do-jJ-u7C" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="jl5-j8-fG7"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7Di-dp-Hqb">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sTv-4i-jSU" kind="relationship" relationship="rootViewController" id="DfM-Ey-bjG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zwa-cX-Trz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="876.81159420289862" y="549.77678571428567"/>
         </scene>
     </scenes>
     <resources>

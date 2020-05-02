@@ -18,18 +18,24 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var bioTextView: UITextView!
     
+    var handle: AuthStateDidChangeListenerHandle?
+    
     let user: User? = Auth.auth().currentUser
-    var userRef = Database.database().reference().ref.child("users")
+    var userRef = Database.database().reference().ref.child("userInfo")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard (user != nil) else {
-            // TODO: Navigate to login screen
-            print("Not signed in")
-            return
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            guard user != nil else {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let loginVC = storyboard.instantiateInitialViewController()
+                UIApplication.shared.keyWindow?.rootViewController = loginVC
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
         }
-
+        
         let displayName: String = user?.displayName ?? "Name"
         guard let photoURL = user?.photoURL else {
             return
@@ -37,5 +43,14 @@ class ProfileViewController: UIViewController {
         
         self.usernameLabel.text = displayName
         self.profilePicture.af.setImage(withURL: photoURL)
+    }
+    
+    @IBAction func signOut(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+        }
+        catch {
+            print(error.localizedDescription)
+        }
     }
 }
