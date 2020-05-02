@@ -8,7 +8,6 @@
 
 import UIKit
 import Firebase
-import FirebaseAuth
 import AlamofireImage
 
 class ProfileViewController: UIViewController {
@@ -26,23 +25,29 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let userID = user?.uid else {
+            return
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            guard user != nil else {
+            guard self.user == user else {
+                print("Not logged in")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginVC = storyboard.instantiateInitialViewController()
                 UIApplication.shared.keyWindow?.rootViewController = loginVC
-                self.dismiss(animated: true, completion: nil)
                 return
             }
         }
-        
-        let displayName: String = user?.displayName ?? "Name"
-        guard let photoURL = user?.photoURL else {
-            return
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if handle != nil {
+            Auth.auth().removeStateDidChangeListener(handle!)
         }
-        
-        self.usernameLabel.text = displayName
-        self.profilePicture.af.setImage(withURL: photoURL)
     }
     
     @IBAction func signOut(_ sender: UIBarButtonItem) {
