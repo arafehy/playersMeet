@@ -17,8 +17,16 @@ class DetailsViewController: UIViewController {
     @IBAction func leaveTeamAction(_ sender: Any) {
         leaveTeamOutlet?.isEnabled = false
         joinTeamOutlet?.isEnabled = true
-        LocationsViewController.shared.count = LocationsViewController.shared.count-1
-        var countStr = String(format: "%d",LocationsViewController.shared.count)
+        
+        
+        let referenceTeamCount = LocationsViewController.ref.child(LocationsViewController.selectedId)
+        LocationsViewController.ref.child(LocationsViewController.selectedId).observeSingleEvent(of: .value) { (snapshot) in
+            let countBeforeLeaving = snapshot.value
+            LocationsViewController.shared.count = countBeforeLeaving as! Int - 1
+        }
+        print("leaving this id: \(LocationsViewController.selectedId)")
+//        LocationsViewController.shared.count = LocationsViewController.shared.count-1
+        referenceTeamCount.setValue(LocationsViewController.shared.count)
         if LocationsViewController.shared.count == 0 {
             usersCounterLabel.text = "No players are available at the moment"
         }
@@ -26,13 +34,11 @@ class DetailsViewController: UIViewController {
             usersCounterLabel.text = "There is 1 player available"
         }
         else{
-            usersCounterLabel.text = "There are \(countStr) players here"
+            usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
         }
         
 //        String(format: "%d",LocationsViewController.shared.count)
-        
-        let reference = LocationsViewController.ref.child(LocationsViewController.selectedId)
-        reference.setValue(LocationsViewController.shared.count)
+    
         let array: [String] = ["not joined","0"]
         self.ref.child(SignUpViewController.userID).setValue(array)
         self.youInTeamLabel.text = ""
@@ -93,9 +99,10 @@ class DetailsViewController: UIViewController {
         //ref here is for userInfo
         self.youInTeamLabel.text = "You are now in this team"
         ref.child(SignUpViewController.userID).observeSingleEvent(of: .value) { (snapshot) in
-            //get location id previously joined
-          let  locationAlreadyJoinedId = (snapshot.value as? [String])?[1]
-            self.executeLeavingTeam(locationAlreadyJoinedId: locationAlreadyJoinedId!)
+            //get location id previously joined //getting this from user info
+        let  locationAlreadyJoinedId = (snapshot.value as? [String])?[1]
+            print("Location already joined \(locationAlreadyJoinedId)")
+         self.executeLeavingTeam(locationAlreadyJoinedId: locationAlreadyJoinedId!)
         }
     }
     func executeLeavingTeam(locationAlreadyJoinedId: String){
@@ -103,6 +110,7 @@ class DetailsViewController: UIViewController {
         
         print("id of location previous")
         print(locationAlreadyJoinedId)
+        
         LocationsViewController.self.ref.child(locationAlreadyJoinedId).observeSingleEvent(of: .value) { (snapshot) in
            var currentCount = snapshot.value as! Int
         
