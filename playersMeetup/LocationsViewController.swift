@@ -14,15 +14,17 @@ import CoreLocation
 
 var locations = [[String:Any]]()
 class LocationsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+    
     let locationManager = CLLocationManager()
-      var long: Double = 0.0
-      var lat: Double = 0.0
-      
+    var long: Double = 0.0
+    var lat: Double = 0.0
     static let shared = LocationsViewController()
-     static let ref = Database.database().reference().ref.child("businesses")
+    static let ref = Database.database().reference().ref.child("businesses")
     static var selectedId: String = ""
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count   }
+        return locations.count
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
@@ -54,6 +56,8 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+print("view did load \(LocationsViewController.shared.count)")
+        
         overrideUserInterfaceStyle = .light
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
@@ -68,7 +72,13 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
                         let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
                         locations = dataDictionary["businesses"] as! [[String:Any]]
                         for loc in locations{
-                            self.names[loc["id"] as! String] = self.count
+                            if let val = self.names[loc["id"] as! String] {
+                                print("dont do anything")
+                            }
+                            else{
+                                print("assign 0")
+                                self.names[loc["id"] as! String] = 0
+                            }
                         }
                         for (name,count) in self.names{
                             LocationsViewController.self.ref.observeSingleEvent(of: .value) { (snapshot) in
@@ -83,7 +93,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
                                 }
                             }
                         }
-                        self.tableView.reloadData()
+//                        self.tableView.reloadData()
                     case .failure(let error):
                         print("Error: \(error)")
                     }
@@ -98,7 +108,13 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
                     let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
                     locations = dataDictionary["businesses"] as! [[String:Any]]
                     for loc in locations{
-                        self.names[loc["id"] as! String] = self.count
+                        if self.names[loc["id"] as! String] != nil {
+                            print("dont do anything")
+                        }
+                        else{
+                            print("assign 0")
+                            self.names[loc["id"] as! String] = 0
+                        }
                     }
 //                    make counter var - update counter on click and set ref
 //                   self.ref.setValue(self.names)

@@ -10,31 +10,126 @@ import UIKit
 import Firebase
 
 class DetailsViewController: UIViewController {
-    var joinedTeam: Bool = false
     @IBOutlet weak var leaveTeamOutlet: UIButton!
     @IBOutlet weak var joinTeamOutlet: UIButton!
+    @IBOutlet weak var youInTeamLabel: UILabel!
+    var ref = Database.database().reference().ref.child("userInfo")
     @IBAction func leaveTeamAction(_ sender: Any) {
         leaveTeamOutlet?.isEnabled = false
         joinTeamOutlet?.isEnabled = true
-        LocationsViewController.shared.count = LocationsViewController.shared.count-1
-        usersCounterLabel.text = String(format: "%d",LocationsViewController.shared.count)
         
-        let reference = LocationsViewController.ref.child(LocationsViewController.selectedId)
-        reference.setValue(LocationsViewController.shared.count)
+        
+        let referenceTeamCount = LocationsViewController.ref.child(LocationsViewController.selectedId)
+        LocationsViewController.ref.child(LocationsViewController.selectedId).observeSingleEvent(of: .value) { (snapshot) in
+            let countBeforeLeaving = snapshot.value
+            LocationsViewController.shared.count = countBeforeLeaving as! Int - 1
+        }
+        print("leaving this id: \(LocationsViewController.selectedId)")
+//        LocationsViewController.shared.count = LocationsViewController.shared.count-1
+        referenceTeamCount.setValue(LocationsViewController.shared.count)
+        if LocationsViewController.shared.count == 0 {
+            usersCounterLabel.text = "No players are available at the moment"
+        }
+        else if LocationsViewController.shared.count == 1 {
+            usersCounterLabel.text = "There is 1 player available"
+        }
+        else{
+            usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
+        }
+        
+//        String(format: "%d",LocationsViewController.shared.count)
+    
+        let array: [String] = ["not joined","0"]
+        self.ref.child(SignUpViewController.userID).setValue(array)
+        self.youInTeamLabel.text = ""
     }
     @IBOutlet weak var usersCounterLabel: UILabel!
     
     @IBAction func joinTeamAction(_ sender: Any) {
-        
-        joinTeamOutlet?.isEnabled = false
-        leaveTeamOutlet?.isEnabled = true
-            
-            LocationsViewController.shared.count = LocationsViewController.shared.count+1
-            usersCounterLabel.text = String(format: "%d",LocationsViewController.shared.count )
-            let reference = LocationsViewController.ref.child(LocationsViewController.selectedId)
-            reference.setValue(LocationsViewController.shared.count)
+//        if ref.child( SignUpViewController.signUpController.userID) as! String == "not joined"
+        ref.child(SignUpViewController.userID).observeSingleEvent(of: .value) { (snapshot) in
+            print((snapshot.value as? [String])![0])
+            if (snapshot.value as? [String])?[0] == "not joined"
+            {
+                self.joinTeamOutlet?.isEnabled = false
+                self.leaveTeamOutlet?.isEnabled = true
+                LocationsViewController.shared.count = LocationsViewController.shared.count+1
+//                    self.usersCounterLabel.text = String(format: "%d",LocationsViewController.shared.count )
+                if LocationsViewController.shared.count == 0 {
+                    self.usersCounterLabel.text = "No players are available at the moment"
+                       }
+                       else if LocationsViewController.shared.count == 1 {
+                    self.usersCounterLabel.text = "There is 1 player available"
+                       }
+                       else{
+                    self.usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
+                       }
+                //businesses count modification
+                let referenceTeamCount = LocationsViewController.ref.child(LocationsViewController.selectedId)
+                referenceTeamCount.setValue(LocationsViewController.shared.count)
+                //userInfo modification
+                let array: [String] = ["joined",DetailsViewController.selectedLocationId]
+                self.ref.child(SignUpViewController.userID).setValue(array)
+                self.youInTeamLabel.text = "You are in this team"
+                
+            }
+//            //check if user is already in team selected
+//            else if (snapshot.value as? [String])?[0] == "joined" && DetailsViewController.selectedLocationId == (snapshot.value as? [String])?[1] {
+//                print("Already in that team")
+//                //dont allow to join
+//                self.joinTeamOutlet?.isEnabled = false
+//                self.leaveTeamOutlet?.isEnabled = true
+//            }
+            else{
+           
+                self.joinTeamOutlet?.isEnabled = true
+                self.leaveTeamOutlet?.isEnabled = false
+                let alert = UIAlertController(title: "Are you sure you want to join?", message: "You can only join one team at a time. This will remove you from another team.", preferredStyle: .alert) //show what other team - later
+
+                alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:self.changeLocation))
+                alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+
+                self.present(alert, animated: true)
+        }
     }
-    
+}
+    func changeLocation(alert: UIAlertAction!){
+        
+        //get id of loctaion of the user now then find it in businesses and decrement count
+        //ref here is for userInfo
+        self.youInTeamLabel.text = "You are now in this team"
+        ref.child(SignUpViewController.userID).observeSingleEvent(of: .value) { (snapshot) in
+            //get location id previously joined //getting this from user info
+        let  locationAlreadyJoinedId = (snapshot.value as? [String])?[1]
+            print("Location already joined \(locationAlreadyJoinedId)")
+         self.executeLeavingTeam(locationAlreadyJoinedId: locationAlreadyJoinedId!)
+        }
+    }
+    func executeLeavingTeam(locationAlreadyJoinedId: String){
+        //set new count (remove from team) decrement
+        
+        print("id of location previous")
+        print(locationAlreadyJoinedId)
+        
+        LocationsViewController.self.ref.child(locationAlreadyJoinedId).observeSingleEvent(of: .value) { (snapshot) in
+           var currentCount = snapshot.value as! Int
+        
+        //joining team
+        print("count of prev location is  \(currentCount)")
+        currentCount = currentCount - 1
+        //leaving previous team -1 count in businesses
+        LocationsViewController.self.ref.child(locationAlreadyJoinedId).setValue(currentCount)
+        }
+        //modifiying current team of user
+        let arrJoined: [String] = ["joined",DetailsViewController.selectedLocationId]
+        self.ref.child(SignUpViewController.userID).setValue(arrJoined)
+        self.joinTeamOutlet?.isEnabled = false //cannot join since already joined
+        self.leaveTeamOutlet?.isEnabled = true
+        let referenceTeamCount = LocationsViewController.ref.child(LocationsViewController.selectedId)
+        LocationsViewController.shared.count = LocationsViewController.shared.count+1
+        referenceTeamCount.setValue(LocationsViewController.shared.count)
+    }
+    static var selectedLocationId: String = ""
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -42,18 +137,44 @@ class DetailsViewController: UIViewController {
         leaveTeamOutlet.isEnabled = false
         //get value from database
         let reference = LocationsViewController.ref.child(LocationsViewController.selectedId)
-       print("selected id \(reference)")
+        print("selected id")
+        reference.observeSingleEvent(of: .value){
+            (snapshot) in print(snapshot.key)
+            DetailsViewController.selectedLocationId = snapshot.key
+        }
         //get selected location id from selected row
-        
+        //synchronizing datatase count with label text from the location selected
         reference.observe(DataEventType.value, with: { (snapshot) in
         ///listen in realtime to whenever it updates
-            self.usersCounterLabel.text =  (snapshot.value as AnyObject).description
+//            var snapCount = (snapshot.value as AnyObject).description //this was used when just showing count of players
             LocationsViewController.shared.count = snapshot.value as! Int
+             if LocationsViewController.shared.count == 0 {
+                               self.usersCounterLabel.text = "No players are available"
+                                  }
+                                  else if LocationsViewController.shared.count == 1 {
+                               self.usersCounterLabel.text = "There is 1 player available"
+                                  }
+                                  else{
+                               self.usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
+                                  }
+                
+            
         })
-
-        // increment value in database
         
-        //make first value stay the same until end game
+        //check if user is already in team selected
+       ref.child(SignUpViewController.userID).observeSingleEvent(of: .value) { (snapshot) in if (snapshot.value as? [String])?[0] == "joined" && DetailsViewController.selectedLocationId == (snapshot.value as? [String])?[1] {
+            print("Already in that team")
+            //dont allow to join
+            self.joinTeamOutlet?.isEnabled = false
+            self.leaveTeamOutlet?.isEnabled = true
+            self.youInTeamLabel.text = "You are in this team"
+            }
+       else{
+        self.youInTeamLabel.text = ""
+        }
     }
-
+        /// increment value in database
+        
+        ///make first value stay the same until end game
+    }
 }
