@@ -23,18 +23,19 @@ class DetailsViewController: UIViewController {
         LocationsViewController.ref.child(LocationsViewController.selectedId).observeSingleEvent(of: .value) { (snapshot) in
             let countBeforeLeaving = snapshot.value
             LocationsViewController.shared.count = countBeforeLeaving as! Int - 1
-        }
+        
         print("leaving this id: \(LocationsViewController.selectedId)")
+        print("after leaving count is \(LocationsViewController.shared.count)")
 //        LocationsViewController.shared.count = LocationsViewController.shared.count-1
         referenceTeamCount.setValue(LocationsViewController.shared.count)
         if LocationsViewController.shared.count == 0 {
-            usersCounterLabel.text = "No players are available at the moment"
+            self.usersCounterLabel.text = "No players are available at the moment"
         }
         else if LocationsViewController.shared.count == 1 {
-            usersCounterLabel.text = "There is 1 player available"
+            self.usersCounterLabel.text = "There is 1 player available"
         }
         else{
-            usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
+            self.usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
         }
         
 //        String(format: "%d",LocationsViewController.shared.count)
@@ -42,6 +43,7 @@ class DetailsViewController: UIViewController {
         let array: [String] = ["not joined","0"]
         self.ref.child(SignUpViewController.userID).setValue(array)
         self.youInTeamLabel.text = ""
+        }
     }
     @IBOutlet weak var usersCounterLabel: UILabel!
     
