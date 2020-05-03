@@ -20,13 +20,14 @@ class ProfileViewController: UIViewController {
     var handle: AuthStateDidChangeListenerHandle?
     
     let user: User? = Auth.auth().currentUser
-    var userRef = Database.database().reference().ref.child("userInfo")
+    var usersRef = Database.database().reference().ref.child("userInfo")
+    let imagesRef = Storage.storage().reference(withPath: "images")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let userID = user?.uid else {
-            return
+        if let userID = user?.uid {
+            loadUserProfile(userID: userID)
         }
     }
     
@@ -57,5 +58,26 @@ class ProfileViewController: UIViewController {
         catch {
             print(error.localizedDescription)
         }
+    }
+    
+    func loadUserProfile(userID: String) {
+        usersRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            
+            let name = value?["name"] as? String ?? "No name"
+            let username = value?["username"] as? String ?? "No username"
+            let bio = value?["bio"] as? String ?? "No bio"
+            if let photoURLString = value?["photoURL"] as? String, let photoURL = URL(string: photoURLString) {
+                    self.profilePicture.af.setImage(withURL: photoURL)
+            }
+            
+            self.nameLabel.text = name
+            self.usernameLabel.text = username
+            self.bioTextView.text = bio
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+        print("Loaded user profile")
     }
 }
