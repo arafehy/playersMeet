@@ -75,7 +75,7 @@ This app lets you have fun with sports you enjoy, while also meeting new people.
 
 **Sign Up/Sign In/Logout & Show Locations & Join/Leave Team**
 
-<img src="http://g.recordit.co/QUksJCqG6m.gif" width=250><br>
+<img src="http://g.recordit.co/8UAe3HouHL.gif" width=250><br>
 
 ## Schema 
 ### Models
