@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		300857F5D2236048230D2D4D /* Pods_playersMeetupTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */; };
 		AC322766F959DA60317FF6E7 /* Pods_playersMeetup.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 519AA36604EF483634BEAFBA /* Pods_playersMeetup.framework */; };
-		DB064FBC2459F57200D246BD /* Assests.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB064FBB2459F57200D246BD /* Assests.xcassets */; };
 		DB80848E245687B800177175 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848D245687B800177175 /* SignUpViewController.swift */; };
 		DB8084902456A06100177175 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848F2456A06100177175 /* HomeViewController.swift */; };
 		DF1BEEFB1CAEEA583ED0F2A6 /* Pods_playersMeetup_playersMeetupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84583BFA9267C542027E12EA /* Pods_playersMeetup_playersMeetupUITests.framework */; };
+		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
+		E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4887B245A708F00ED074A /* ProfileViewController.swift */; };
+		FA1116E524598D3C00800C33 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA1116E424598D3C00800C33 /* GoogleService-Info.plist */; };
+		FA18FCB2245BBC940087C1CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA18FCB1245BBC930087C1CC /* Assets.xcassets */; };
 		FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F72E245445FD00E681F9 /* AppDelegate.swift */; };
 		FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F730245445FD00E681F9 /* SceneDelegate.swift */; };
 		FA75F733245445FD00E681F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F732245445FD00E681F9 /* ViewController.swift */; };
@@ -20,11 +23,11 @@
 		FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA75F7392454460000E681F9 /* LaunchScreen.storyboard */; };
 		FA75F7462454460000E681F9 /* playersMeetupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7452454460000E681F9 /* playersMeetupTests.swift */; };
 		FA75F7512454460000E681F9 /* playersMeetupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7502454460000E681F9 /* playersMeetupUITests.swift */; };
-		FA75F761245450F100E681F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA75F760245450F000E681F9 /* GoogleService-Info.plist */; };
 		FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBA32455899F00C25C92 /* NetworkService.swift */; };
 		FAB9CBA62455931E00C25C92 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBA52455931E00C25C92 /* Models.swift */; };
 		FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */; };
 		FAB9CBB22455C27600C25C92 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */; };
+		FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBB32456468800C25C92 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,10 +56,13 @@
 		8DCEFA334AE8DBFC5C6A0E1D /* Pods-playersMeetup.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetup.debug.xcconfig"; path = "Target Support Files/Pods-playersMeetup/Pods-playersMeetup.debug.xcconfig"; sourceTree = "<group>"; };
 		A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playersMeetupTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D7948BD21A4ECC0B394960F4 /* Pods-playersMeetupTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetupTests.debug.xcconfig"; path = "Target Support Files/Pods-playersMeetupTests/Pods-playersMeetupTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DB064FBB2459F57200D246BD /* Assests.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assests.xcassets; sourceTree = "<group>"; };
 		DB80848D245687B800177175 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DB80848F2456A06100177175 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E0D4887B245A708F00ED074A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F70BA2239F897178EA53A9AB /* Pods-playersMeetup-playersMeetupUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetup-playersMeetupUITests.release.xcconfig"; path = "Target Support Files/Pods-playersMeetup-playersMeetupUITests/Pods-playersMeetup-playersMeetupUITests.release.xcconfig"; sourceTree = "<group>"; };
+		FA1116E424598D3C00800C33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		FA18FCB1245BBC930087C1CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA75F72B245445FC00E681F9 /* playersMeetup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playersMeetup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA75F72E245445FD00E681F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA75F730245445FD00E681F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -70,11 +76,11 @@
 		FA75F74C2454460000E681F9 /* playersMeetupUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = playersMeetupUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA75F7502454460000E681F9 /* playersMeetupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playersMeetupUITests.swift; sourceTree = "<group>"; };
 		FA75F7522454460000E681F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA75F760245450F000E681F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		FAB9CBA32455899F00C25C92 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FAB9CBA52455931E00C25C92 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		FAB9CBB32456468800C25C92 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,7 @@
 		FA75F722245445FC00E681F9 = {
 			isa = PBXGroup;
 			children = (
+				E0116CA5245A580900AF7F39 /* .gitignore */,
 				FA75F72D245445FC00E681F9 /* playersMeetup */,
 				FA75F7442454460000E681F9 /* playersMeetupTests */,
 				FA75F74F2454460000E681F9 /* playersMeetupUITests */,
@@ -153,7 +160,8 @@
 		FA75F72D245445FC00E681F9 /* playersMeetup */ = {
 			isa = PBXGroup;
 			children = (
-				FA75F760245450F000E681F9 /* GoogleService-Info.plist */,
+				FA18FCB1245BBC930087C1CC /* Assets.xcassets */,
+				FA1116E424598D3C00800C33 /* GoogleService-Info.plist */,
 				FA75F72E245445FD00E681F9 /* AppDelegate.swift */,
 				FA75F730245445FD00E681F9 /* SceneDelegate.swift */,
 				FA75F732245445FD00E681F9 /* ViewController.swift */,
@@ -164,9 +172,10 @@
 				FAB9CBA52455931E00C25C92 /* Models.swift */,
 				FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */,
 				FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */,
+				FAB9CBB32456468800C25C92 /* DetailsViewController.swift */,
 				DB80848D245687B800177175 /* SignUpViewController.swift */,
 				DB80848F2456A06100177175 /* HomeViewController.swift */,
-				DB064FBB2459F57200D246BD /* Assests.xcassets */,
+				E0D4887B245A708F00ED074A /* ProfileViewController.swift */,
 			);
 			path = playersMeetup;
 			sourceTree = "<group>";
@@ -298,9 +307,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0116CA6245A580900AF7F39 /* .gitignore in Resources */,
 				FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */,
-				DB064FBC2459F57200D246BD /* Assests.xcassets in Resources */,
-				FA75F761245450F100E681F9 /* GoogleService-Info.plist in Resources */,
+				FA18FCB2245BBC940087C1CC /* Assets.xcassets in Resources */,
+				FA1116E524598D3C00800C33 /* GoogleService-Info.plist in Resources */,
 				FA75F736245445FD00E681F9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,9 +443,11 @@
 				FAB9CBB22455C27600C25C92 /* LocationTableViewCell.swift in Sources */,
 				DB80848E245687B800177175 /* SignUpViewController.swift in Sources */,
 				FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */,
+				FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */,
 				FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */,
 				DB8084902456A06100177175 /* HomeViewController.swift in Sources */,
 				FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */,
+				E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */,
 				FAB9CBA62455931E00C25C92 /* Models.swift in Sources */,
 				FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */,
 			);

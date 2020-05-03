@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ySA-7L-eq0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ySA-7L-eq0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -70,7 +71,84 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1606" y="483"/>
+            <point key="canvasLocation" x="2474" y="550"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="M24-FU-6LS">
+            <objects>
+                <viewController id="sTv-4i-jSU" customClass="ProfileViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BKj-xe-mcY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dZk-XR-9gU">
+                                <rect key="frame" x="107" y="75" width="200" height="197.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="DwM-QS-C1S"/>
+                                    <constraint firstAttribute="width" constant="200" id="tms-Oc-UAv"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teq-h4-lH2" userLabel="Name Stack">
+                                <rect key="frame" x="153" y="282" width="108.5" height="75"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-Qe-Ejw">
+                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="48"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ly5-4v-KYo">
+                                        <rect key="frame" x="9.5" y="51" width="89.5" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hGO-iq-PGK" userLabel="Bio Stack">
+                                <rect key="frame" x="15" y="387" width="384" height="418"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-hm-bXq" userLabel="Bio Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
+                                        <rect key="frame" x="0.0" y="24" width="374" height="394"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dZk-XR-9gU" firstAttribute="top" secondItem="wRl-hr-91e" secondAttribute="top" constant="30" id="Cbi-fA-xuk"/>
+                            <constraint firstItem="wRl-hr-91e" firstAttribute="trailing" secondItem="hGO-iq-PGK" secondAttribute="trailing" constant="15" id="GXw-nw-0Dj"/>
+                            <constraint firstItem="dZk-XR-9gU" firstAttribute="centerX" secondItem="BKj-xe-mcY" secondAttribute="centerX" id="Rgz-15-QLu"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="centerX" secondItem="teq-h4-lH2" secondAttribute="centerX" id="T2a-ny-WD2"/>
+                            <constraint firstItem="wRl-hr-91e" firstAttribute="bottom" secondItem="hGO-iq-PGK" secondAttribute="bottom" constant="8" id="TUm-cz-09u"/>
+                            <constraint firstItem="teq-h4-lH2" firstAttribute="centerX" secondItem="dZk-XR-9gU" secondAttribute="centerX" id="V86-pj-qhA"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="top" secondItem="teq-h4-lH2" secondAttribute="bottom" constant="30" id="VPt-PJ-DCq"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="leading" secondItem="wRl-hr-91e" secondAttribute="leading" constant="15" id="WRc-d7-dAC"/>
+                            <constraint firstItem="teq-h4-lH2" firstAttribute="top" secondItem="dZk-XR-9gU" secondAttribute="bottom" constant="8" symbolic="YES" id="hiG-LS-Adn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="wRl-hr-91e"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" id="jl5-j8-fG7"/>
+                    <connections>
+                        <outlet property="bioTextView" destination="pdC-ni-nmY" id="3Pb-wd-QOO"/>
+                        <outlet property="nameLabel" destination="WZl-Qe-Ejw" id="iV0-Bw-wVI"/>
+                        <outlet property="profilePicture" destination="dZk-XR-9gU" id="Bdf-2a-fWn"/>
+                        <outlet property="usernameLabel" destination="ly5-4v-KYo" id="8bE-JZ-XNs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="llL-Tc-tCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="877" y="550"/>
         </scene>
         <!--Locations-->
         <scene sceneID="HVO-CB-0w0">
@@ -116,6 +194,7 @@
                                             <outlet property="distanceLabel" destination="TFd-Hw-fkw" id="Ydg-jS-jWk"/>
                                             <outlet property="locationImageView" destination="qqb-Mj-zOj" id="uXp-Jy-rG6"/>
                                             <outlet property="locationLabel" destination="EJf-FI-72q" id="4Fi-tE-EaK"/>
+                                            <segue destination="Y7D-ph-ihh" kind="show" id="wcN-Kq-NZu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -131,7 +210,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3s2-wO-2lq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3457.971014492754" y="-207.58928571428569"/>
+            <point key="canvasLocation" x="2475" y="-179"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="dkS-qE-uw2">
@@ -167,7 +246,7 @@
                                     <constraint firstAttribute="height" constant="34" id="02z-Vk-vnf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1y-7T-VH0">
                                 <rect key="frame" x="301" y="507" width="54" height="30"/>
@@ -176,14 +255,13 @@
                                     <action selector="onSignUp:" destination="ySA-7L-eq0" eventType="touchUpInside" id="XYX-Lw-FBG"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="playermeetuplogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ppg-pl-3sg">
-                                <rect key="frame" x="55" y="69" width="312" height="216"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="playermeetuplogo" translatesAutoresizingMaskIntoConstraints="NO" id="Ppg-pl-3sg">
+                                <rect key="frame" x="55" y="69" width="312" height="207"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="grouplogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="vgt-JA-04b">
-                                <rect key="frame" x="55" y="573" width="347" height="203"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="203" id="AgC-Hz-HFO"/>
-                                </constraints>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" fixedFrame="YES" image="grouplogo" translatesAutoresizingMaskIntoConstraints="NO" id="vgt-JA-04b">
+                                <rect key="frame" x="59" y="576" width="360" height="228"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxv-q3-7Gv">
                                 <rect key="frame" x="88" y="507" width="47" height="30"/>
@@ -223,20 +301,31 @@
                     <connections>
                         <outlet property="emailField" destination="jiO-28-e5M" id="uyE-CT-L1O"/>
                         <outlet property="passwordField" destination="dbZ-ik-Rln" id="ft4-ae-YG6"/>
-                        <segue destination="sS4-t1-1ED" kind="presentation" identifier="loginToHome" id="XOD-qV-l2T"/>
+                        <segue destination="0Sb-Om-p2r" kind="presentation" identifier="loginToHome" modalPresentationStyle="fullScreen" id="KLP-Ne-hUw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yXK-cV-RI9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="147.82608695652175" y="-208.25892857142856"/>
+            <point key="canvasLocation" x="-754" y="-179"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="XlP-gF-HHd">
             <objects>
                 <viewController id="IP1-Cm-rSx" customClass="HomeViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OGF-4i-eSz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rG-vf-Odv">
+                                <rect key="frame" x="87" y="662" width="241" height="93"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Show Locations"/>
+                                <connections>
+                                    <segue destination="WJJ-6o-3C9" kind="show" id="Lwl-Vh-kXN"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="iKj-xW-48g"/>
                     </view>
@@ -250,33 +339,78 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dTy-b1-Jmj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1789.8550724637682" y="-211.60714285714286"/>
+            <point key="canvasLocation" x="1662" y="-179"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="to9-QT-HGD">
+        <!--Details View Controller-->
+        <scene sceneID="VEu-tn-Tyx">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="d9F-PR-gYe" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MV3-2i-cJN">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
+                <viewController id="Y7D-ph-ihh" customClass="DetailsViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ECH-Zy-ve8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="There are no players here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4at-gt-s2e">
+                                <rect key="frame" x="20" y="108" width="374" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLA-Lc-gZB">
+                                <rect key="frame" x="28" y="201" width="352" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="Join this team"/>
+                                <connections>
+                                    <action selector="joinTeamAction:" destination="Y7D-ph-ihh" eventType="touchUpInside" id="buu-km-L4z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpk-fF-fV3">
+                                <rect key="frame" x="28" y="273" width="352" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="31"/>
+                                <state key="normal" title="Leave team">
+                                    <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="leaveTeamAction:" destination="Y7D-ph-ihh" eventType="touchUpInside" id="GYU-Lh-2Da"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are in this team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAd-WV-Yxf">
+                                <rect key="frame" x="20" y="358" width="374" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="pJJ-5k-gex"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1WP-YF-BvG"/>
                     <connections>
-                        <segue destination="WJJ-6o-3C9" kind="relationship" relationship="rootViewController" id="DrO-ew-K74"/>
+                        <outlet property="joinTeamOutlet" destination="hLA-Lc-gZB" id="V7s-a7-B45"/>
+                        <outlet property="leaveTeamOutlet" destination="Wpk-fF-fV3" id="III-tL-MNW"/>
+                        <outlet property="usersCounterLabel" destination="4at-gt-s2e" id="OQh-Jq-yqq"/>
+                        <outlet property="youInTeamLabel" destination="UAd-WV-Yxf" id="pwd-3g-rc3"/>
                     </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e62-t4-Jad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QNQ-pD-zBa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2547.826086956522" y="-207.58928571428569"/>
+            <point key="canvasLocation" x="3272" y="-179"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Game-->
         <scene sceneID="VW2-Q7-12N">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sS4-t1-1ED" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Game" id="VVR-TY-aIX"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="A7K-fi-TkN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pC0-mn-CMJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -286,11 +420,31 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHm-PZ-dcN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="879.71014492753625" y="-211.60714285714286"/>
+            <point key="canvasLocation" x="878" y="-179"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="kK9-yo-aq3">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="0Sb-Om-p2r" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="XR3-Dk-Ogo"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gmy-sI-Kar">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="sTv-4i-jSU" kind="relationship" relationship="viewControllers" id="Zdj-7f-H26"/>
+                        <segue destination="sS4-t1-1ED" kind="relationship" relationship="viewControllers" id="p67-8M-8qU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TIr-1J-CC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="80" y="-179"/>
         </scene>
     </scenes>
     <resources>
-        <image name="grouplogo.png" width="347" height="203"/>
-        <image name="playermeetuplogo.png" width="312" height="207"/>
+        <image name="grouplogo" width="173.5" height="101.5"/>
+        <image name="person.crop.square" catalog="system" width="128" height="114"/>
+        <image name="playermeetuplogo" width="156" height="103.5"/>
     </resources>
 </document>
