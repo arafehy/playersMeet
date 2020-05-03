@@ -50,7 +50,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    @IBAction func signOut(_ sender: UIBarButtonItem) {
+    @IBAction func logOut(_ sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()
         }

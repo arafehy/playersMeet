@@ -139,9 +139,9 @@
                         <viewLayoutGuide key="safeArea" id="wRl-hr-91e"/>
                     </view>
                     <navigationItem key="navigationItem" id="0Di-07-kM9">
-                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="mdl-ah-Gjo">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="mdl-ah-Gjo">
                             <connections>
-                                <action selector="signOut:" destination="sTv-4i-jSU" id="HvR-b8-dnm"/>
+                                <action selector="logOut:" destination="sTv-4i-jSU" id="HvR-b8-dnm"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Va0-fm-I2D"/>
