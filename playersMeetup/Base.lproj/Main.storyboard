@@ -524,6 +524,7 @@
                     <connections>
                         <outlet property="bioTextView" destination="AQ6-cj-lnn" id="EUq-fC-6hT"/>
                         <outlet property="nameTextField" destination="F6v-gQ-GBB" id="yym-4T-qSy"/>
+                        <outlet property="profilePicture" destination="RN5-dF-cjA" id="Dyo-x6-M8Q"/>
                         <outlet property="usernameTextField" destination="hgH-0R-T8c" id="XGC-q2-gQo"/>
                     </connections>
                 </viewController>
