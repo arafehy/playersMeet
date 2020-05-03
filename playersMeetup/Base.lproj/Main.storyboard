@@ -115,13 +115,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
-                                        <rect key="frame" x="0.0" y="24" width="374" height="350"/>
+                                        <rect key="frame" x="0.0" y="24" width="384" height="350"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="pdC-ni-nmY" firstAttribute="top" secondItem="t0B-hm-bXq" secondAttribute="bottom" id="PUs-3n-0Qy"/>
+                                    <constraint firstAttribute="trailing" secondItem="pdC-ni-nmY" secondAttribute="trailing" id="SIH-zw-gyu"/>
+                                    <constraint firstItem="pdC-ni-nmY" firstAttribute="leading" secondItem="hGO-iq-PGK" secondAttribute="leading" id="USb-OH-QzE"/>
+                                    <constraint firstAttribute="bottom" secondItem="pdC-ni-nmY" secondAttribute="bottom" id="yFt-4Y-XQS"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
