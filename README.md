@@ -71,11 +71,11 @@ This app lets you have fun with sports you enjoy, while also meeting new people.
 
 **Sign Up/Sign In/Logout**                       
 
-<img src="http://g.recordit.co/1mn1phDDOz.gif" width=250><br>
+<img src="http://g.recordit.co/1mn1phDDOz.gif" width=250>
 
 **Sign Up/Sign In/Logout & Show Locations & Join/Leave Team**
 
-<img src="http://g.recordit.co/vJ8CcnxF7y.gif" width=250><br>
+<img src="https://recordit.co/QUksJCqG6m" width=250><br>
 
 ## Schema 
 ### Models
