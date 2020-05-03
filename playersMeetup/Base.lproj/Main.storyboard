@@ -114,7 +114,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
                                         <rect key="frame" x="0.0" y="24" width="384" height="350"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -291,6 +291,7 @@
                         <outlet property="emailField" destination="jiO-28-e5M" id="uyE-CT-L1O"/>
                         <outlet property="passwordField" destination="dbZ-ik-Rln" id="ft4-ae-YG6"/>
                         <segue destination="0Sb-Om-p2r" kind="presentation" identifier="loginToHome" modalPresentationStyle="fullScreen" id="KLP-Ne-hUw"/>
+                        <segue destination="7iw-pW-pbj" kind="presentation" modalPresentationStyle="fullScreen" id="lBf-ml-hXy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yXK-cV-RI9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -449,6 +450,87 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zwa-cX-Trz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="876.81159420289862" y="549.77678571428567"/>
+        </scene>
+        <!--Create Profile View Controller-->
+        <scene sceneID="20c-mW-MFe">
+            <objects>
+                <viewController id="7iw-pW-pbj" customClass="CreateProfileViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dGd-UN-qJW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RN5-dF-cjA" userLabel="Profile Picture">
+                                <rect key="frame" x="107" y="75" width="200" height="197.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="UGY-Gb-Idl"/>
+                                    <constraint firstAttribute="width" constant="200" id="zjj-Lt-dpf"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="drz-VB-4zZ" userLabel="Name Stack">
+                                <rect key="frame" x="153" y="282" width="108.5" height="130"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F6v-gQ-GBB" userLabel="Name Text Field">
+                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="96.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hgH-0R-T8c" userLabel="Username Text Field">
+                                        <rect key="frame" x="0.0" y="104.5" width="108.5" height="25.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Xyc-aF-okc" userLabel="Bio Stack">
+                                <rect key="frame" x="15" y="442" width="384" height="412"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVm-ry-lql" userLabel="Bio Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AQ6-cj-lnn">
+                                        <rect key="frame" x="0.0" y="24" width="384" height="388"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="AQ6-cj-lnn" secondAttribute="trailing" id="cfD-I1-mch"/>
+                                    <constraint firstAttribute="bottom" secondItem="AQ6-cj-lnn" secondAttribute="bottom" id="unI-vA-Hnj"/>
+                                    <constraint firstItem="AQ6-cj-lnn" firstAttribute="top" secondItem="qVm-ry-lql" secondAttribute="bottom" id="vvU-rf-WiE"/>
+                                    <constraint firstItem="AQ6-cj-lnn" firstAttribute="leading" secondItem="Xyc-aF-okc" secondAttribute="leading" id="zeJ-9j-37z"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Xyc-aF-okc" firstAttribute="leading" secondItem="kwN-ut-hTW" secondAttribute="leading" constant="15" id="CB3-mk-11a"/>
+                            <constraint firstItem="RN5-dF-cjA" firstAttribute="centerX" secondItem="dGd-UN-qJW" secondAttribute="centerX" id="FQA-JQ-KKK"/>
+                            <constraint firstItem="kwN-ut-hTW" firstAttribute="bottom" secondItem="Xyc-aF-okc" secondAttribute="bottom" constant="8" id="GJz-bF-bsl"/>
+                            <constraint firstItem="drz-VB-4zZ" firstAttribute="top" secondItem="RN5-dF-cjA" secondAttribute="bottom" constant="8" id="PYn-gZ-Q2q"/>
+                            <constraint firstItem="drz-VB-4zZ" firstAttribute="centerX" secondItem="RN5-dF-cjA" secondAttribute="centerX" id="S9h-hV-PDQ"/>
+                            <constraint firstItem="RN5-dF-cjA" firstAttribute="top" secondItem="kwN-ut-hTW" secondAttribute="top" constant="30" id="h1f-3o-W1k"/>
+                            <constraint firstItem="Xyc-aF-okc" firstAttribute="top" secondItem="drz-VB-4zZ" secondAttribute="bottom" constant="30" id="lMr-QG-0cg"/>
+                            <constraint firstItem="kwN-ut-hTW" firstAttribute="trailing" secondItem="Xyc-aF-okc" secondAttribute="trailing" constant="15" id="pv4-6v-cNc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kwN-ut-hTW"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="X4h-HT-4m9">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="TSE-Kk-qPj">
+                            <connections>
+                                <action selector="logOut:" destination="7iw-pW-pbj" id="C7R-Ii-Tjz"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="yaJ-KN-mZw"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mNK-Na-lWt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-755.07246376811599" y="549.77678571428567"/>
         </scene>
     </scenes>
     <resources>
