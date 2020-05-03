@@ -69,10 +69,13 @@ This app lets you have fun with sports you enjoy, while also meeting new people.
 
 ## Progress GIF
 
-**Sign Up/Sign In/Logout**
+**Sign Up/Sign In/Logout**                       
 
 <img src="http://g.recordit.co/1mn1phDDOz.gif" width=250><br>
 
+**Show Locations**
+
+<img src="http://g.recordit.co/tH09RfWoCM.gif" width=250><br>
 
 ## Schema 
 ### Models
