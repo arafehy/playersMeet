@@ -23,6 +23,27 @@ class SignUpViewController: UIViewController {
         Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!){ (user, error) in
         if error == nil {
           self.performSegue(withIdentifier: "toCreateProfile", sender: self)
+            //get user id
+           SignUpViewController.userID = Auth.auth().currentUser!.uid
+           print(SignUpViewController.userID)
+               //add current user to dictionary as not joined
+           var array: [String] = [] //array with join info and team number
+           array.append("not joined")
+           array.append("team location")
+           self.usersInfo[SignUpViewController.self.userID] = array
+               for (uid,hasJoined) in self.usersInfo{
+                   SignUpViewController.self.ref.observeSingleEvent(of: .value) { (snapshot) in
+                       if snapshot.hasChild(uid){
+                           print("user is in database")
+                       }
+                       else{
+                           print("adding user to database")
+                           let newUser = SignUpViewController.self.ref.child(uid)
+                           
+                           newUser.setValue(hasJoined)
+                       }
+                   }
+               }
         }
         else {
             let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
