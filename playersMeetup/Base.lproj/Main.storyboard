@@ -528,11 +528,19 @@
                                         <rect key="frame" x="20" y="0.0" width="274" height="76.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="nameChanged:" destination="7iw-pW-pbj" eventType="editingChanged" id="dic-JK-Ua9"/>
+                                            <action selector="nameEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="HsO-dJ-iW3"/>
+                                        </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-Od-8aZ" userLabel="Username Text Field">
                                         <rect key="frame" x="20" y="84.5" width="274" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="usernameChanged:" destination="7iw-pW-pbj" eventType="editingChanged" id="CI7-4M-jku"/>
+                                            <action selector="usernameEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="92u-1O-rOV"/>
+                                        </connections>
                                     </textField>
                                 </subviews>
                                 <constraints>
@@ -568,6 +576,7 @@
                         <outlet property="bioTextView" destination="Vau-ad-t0F" id="OK9-MW-euB"/>
                         <outlet property="nameField" destination="vmA-Pk-41X" id="NMA-b7-h83"/>
                         <outlet property="profilePicture" destination="RN5-dF-cjA" id="ACI-H3-MP7"/>
+                        <outlet property="saveButton" destination="oLl-qJ-Zhh" id="W2S-Ks-GrF"/>
                         <outlet property="usernameField" destination="pr9-Od-8aZ" id="qAk-aQ-tX7"/>
                         <segue destination="0Sb-Om-p2r" kind="presentation" identifier="createProfileToHome" modalPresentationStyle="fullScreen" id="rk4-l0-UEK"/>
                     </connections>
@@ -709,7 +718,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vpq-Qr-tfG"/>
+        <segue reference="xf1-h4-jRh"/>
         <segue reference="rk4-l0-UEK"/>
     </inferredMetricsTieBreakers>
     <resources>

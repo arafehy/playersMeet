@@ -9,22 +9,45 @@
 import UIKit
 import Firebase
 
-class EditProfileViewController: UIViewController {
+class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+    
+    // MARK: - Properties
+    
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var bioTextView: UITextView!
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     var userInfo: UserInfo?
     let user = Auth.auth().currentUser
+    var initialUserInfo: [String] = []
+    var isNameDifferent: Bool {
+        nameField.text != initialUserInfo[0]
+    }
+    var isUsernameDifferent: Bool {
+        usernameField.text != initialUserInfo[1]
+    }
+    var isBioDifferent: Bool {
+        bioTextView.text != initialUserInfo[2]
+    }
+    var isAnythingDifferent: Bool {
+        isNameDifferent || isUsernameDifferent || isBioDifferent
+    }
     
     let usersRef = Database.database().reference(withPath: "profileInfo")
     let imagesRef = Storage.storage().reference(withPath: "images")
     
+    // MARK: - VC Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.isModalInPresentation = true
+        nameField.delegate = self
+        usernameField.delegate = self
+        bioTextView.delegate = self
+        saveButton.isEnabled = false
         
         guard let info = userInfo else {    // Creating profile after signup
             self.bioTextView.text = "Enter a bio..."
@@ -37,14 +60,24 @@ class EditProfileViewController: UIViewController {
             return
         }
         
-        self.nameField.text = self.userInfo?.name
-        self.usernameField.text = self.userInfo?.username
-        self.bioTextView.text = self.userInfo?.bio
+        initialUserInfo.append(info.name)
+        initialUserInfo.append(info.username)
+        initialUserInfo.append(info.bio)
+        
+        self.nameField.text = info.name
+        self.usernameField.text = info.username
+        self.bioTextView.text = info.bio
         
     }
     
+    // MARK: - Profile Updating
+    
     @IBAction func saveProfile(_ sender: UIBarButtonItem) {
         guard let userID = user?.uid else {
+            return
+        }
+        guard self.nameField.text! != initialUserInfo[0] || self.usernameField.text != initialUserInfo[1] || self.bioTextView.text != initialUserInfo[2] else {
+            print("Nothing changed")
             return
         }
         self.userInfo?.name = self.nameField.text!
@@ -75,6 +108,56 @@ class EditProfileViewController: UIViewController {
                 profileVC.loadUserProfile(userID: userID)
             }
         }
+    }
+    
+    // MARK: - Text Fields/View Helpers
+    
+    @IBAction func nameChanged(_ sender: UITextField) {
+        guard isAnythingDifferent else {
+            saveButton.isEnabled = false
+            return
+        }
+        saveButton.isEnabled = true
+    }
+    
+    @IBAction func usernameChanged(_ sender: UITextField) {
+        guard isAnythingDifferent else {
+            saveButton.isEnabled = false
+            return
+        }
+        saveButton.isEnabled = true
+    }        
+    
+    func textViewDidChange(_ textView: UITextView) {
+        guard isAnythingDifferent else {
+            saveButton.isEnabled = false
+            return
+        }
+        saveButton.isEnabled = true
+    }
+    
+    @IBAction func nameEndedEdit(_ sender: UITextField) {
+        guard isAnythingDifferent else {
+            saveButton.isEnabled = false
+            return
+        }
+        saveButton.isEnabled = true
+    }
+    
+    @IBAction func usernameEndedEdit(_ sender: UITextField) {
+        guard isAnythingDifferent else {
+            saveButton.isEnabled = false
+            return
+        }
+        saveButton.isEnabled = true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        guard isAnythingDifferent else {
+            saveButton.isEnabled = false
+            return
+        }
+        saveButton.isEnabled = true
     }
     
     /*
