@@ -72,7 +72,7 @@ print("view did load \(LocationsViewController.shared.count)")
                         let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
                         locations = dataDictionary["businesses"] as! [[String:Any]]
                         for loc in locations{
-                            if let val = self.names[loc["id"] as! String] {
+                            if self.names[loc["id"] as! String] != nil {
                                 print("dont do anything")
                             }
                             else{
@@ -93,7 +93,7 @@ print("view did load \(LocationsViewController.shared.count)")
                                 }
                             }
                         }
-//                        self.tableView.reloadData()
+                        self.tableView.reloadData()
                     case .failure(let error):
                         print("Error: \(error)")
                     }
