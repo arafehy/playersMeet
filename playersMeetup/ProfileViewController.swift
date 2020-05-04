@@ -95,6 +95,15 @@ class ProfileViewController: UIViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
+        
+        loadProfilePicture(userID: userID)
+    }
+    
+    func loadProfilePicture(userID: String) {
+        guard let url = URL(string: userInfo.profilePicture) else {
+            return
+        }
+        profilePicture.af.setImage(withURL: url)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
