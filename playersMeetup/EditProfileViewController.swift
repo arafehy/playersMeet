@@ -18,7 +18,7 @@ class EditProfileViewController: UIViewController {
     var userInfo: UserInfo?
     let user = Auth.auth().currentUser
     
-    let usersRef = Database.database().reference(withPath: "userInfo")
+    let usersRef = Database.database().reference(withPath: "profileInfo")
     let imagesRef = Storage.storage().reference(withPath: "images")
     
     override func viewDidLoad() {
