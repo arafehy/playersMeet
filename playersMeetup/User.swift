@@ -23,7 +23,7 @@ struct UserInfo {
     
     func asDictionary() -> Dictionary<String, String> {
         return ["username": self.username,
-                "fullname": self.name,
+                "name": self.name,
                 "bio": self.bio,
                 "profilePicture": self.profilePicture
         ]
