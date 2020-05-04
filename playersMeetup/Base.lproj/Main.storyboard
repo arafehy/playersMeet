@@ -152,7 +152,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Va0-fm-I2D">
                             <connections>
-                                <segue destination="7iw-pW-pbj" kind="presentation" id="wQg-oZ-kBl"/>
+                                <segue destination="7iw-pW-pbj" kind="presentation" identifier="toEditProfile" id="wQg-oZ-kBl"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -444,47 +444,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="drz-VB-4zZ" userLabel="Name Stack">
-                                <rect key="frame" x="153" y="189" width="108.5" height="340"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="F6v-gQ-GBB" userLabel="Name Text Field">
-                                        <rect key="frame" x="0.0" y="0.0" width="108.5" height="306.5"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hgH-0R-T8c" userLabel="Username Text Field">
-                                        <rect key="frame" x="0.0" y="314.5" width="108.5" height="25.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Xyc-aF-okc" userLabel="Bio Stack">
-                                <rect key="frame" x="15" y="559" width="384" height="241"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVm-ry-lql" userLabel="Bio Label">
-                                        <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AQ6-cj-lnn" userLabel="Bio Text View">
-                                        <rect key="frame" x="0.0" y="24" width="384" height="217"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="AQ6-cj-lnn" secondAttribute="trailing" id="cfD-I1-mch"/>
-                                    <constraint firstAttribute="bottom" secondItem="AQ6-cj-lnn" secondAttribute="bottom" id="unI-vA-Hnj"/>
-                                    <constraint firstItem="AQ6-cj-lnn" firstAttribute="top" secondItem="qVm-ry-lql" secondAttribute="bottom" id="vvU-rf-WiE"/>
-                                    <constraint firstItem="AQ6-cj-lnn" firstAttribute="leading" secondItem="Xyc-aF-okc" secondAttribute="leading" id="zeJ-9j-37z"/>
-                                </constraints>
-                            </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RN5-dF-cjA" userLabel="Profile Picture">
-                                <rect key="frame" x="107" y="31" width="200" height="197.5"/>
+                                <rect key="frame" x="107" y="87" width="200" height="197.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="UGY-Gb-Idl"/>
                                     <constraint firstAttribute="width" constant="200" id="zjj-Lt-dpf"/>
@@ -500,17 +461,62 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-DZ-z4l" userLabel="Bio Stack">
+                                <rect key="frame" x="15" y="418" width="384" height="382"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hb9-qp-2pm" userLabel="Bio Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter a bio..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Vau-ad-t0F">
+                                        <rect key="frame" x="0.0" y="32" width="384" height="350"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Vau-ad-t0F" firstAttribute="leading" secondItem="7Z2-DZ-z4l" secondAttribute="leading" id="JbI-fH-DJc"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vau-ad-t0F" secondAttribute="bottom" id="ZfH-m6-b9p"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vau-ad-t0F" secondAttribute="trailing" id="wmK-Vk-w7p"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DPE-V0-64G" userLabel="Name Stack">
+                                <rect key="frame" x="50" y="294" width="314" height="118.5"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-Pk-41X" userLabel="Name Text Field">
+                                        <rect key="frame" x="20" y="0.0" width="274" height="76.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-Od-8aZ" userLabel="Username Text Field">
+                                        <rect key="frame" x="20" y="84.5" width="274" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pr9-Od-8aZ" secondAttribute="trailing" constant="20" symbolic="YES" id="6JU-Ce-yBx"/>
+                                    <constraint firstItem="pr9-Od-8aZ" firstAttribute="leading" secondItem="DPE-V0-64G" secondAttribute="leading" constant="20" symbolic="YES" id="7Qu-00-rSf"/>
+                                    <constraint firstItem="vmA-Pk-41X" firstAttribute="leading" secondItem="DPE-V0-64G" secondAttribute="leading" constant="20" symbolic="YES" id="9Ov-m2-3iD"/>
+                                    <constraint firstAttribute="trailing" secondItem="vmA-Pk-41X" secondAttribute="trailing" constant="20" symbolic="YES" id="zQD-O1-l5r"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Xyc-aF-okc" firstAttribute="leading" secondItem="kwN-ut-hTW" secondAttribute="leading" constant="15" id="CB3-mk-11a"/>
+                            <constraint firstItem="kwN-ut-hTW" firstAttribute="trailing" secondItem="DPE-V0-64G" secondAttribute="trailing" constant="50" id="3e1-3k-jgV"/>
                             <constraint firstItem="RN5-dF-cjA" firstAttribute="centerX" secondItem="dGd-UN-qJW" secondAttribute="centerX" id="FQA-JQ-KKK"/>
-                            <constraint firstItem="kwN-ut-hTW" firstAttribute="bottom" secondItem="Xyc-aF-okc" secondAttribute="bottom" constant="8" id="GJz-bF-bsl"/>
-                            <constraint firstItem="drz-VB-4zZ" firstAttribute="top" secondItem="RN5-dF-cjA" secondAttribute="bottom" constant="-41" id="PYn-gZ-Q2q"/>
-                            <constraint firstItem="drz-VB-4zZ" firstAttribute="centerX" secondItem="RN5-dF-cjA" secondAttribute="centerX" id="S9h-hV-PDQ"/>
-                            <constraint firstItem="RN5-dF-cjA" firstAttribute="top" secondItem="kwN-ut-hTW" secondAttribute="top" constant="30" id="h1f-3o-W1k"/>
-                            <constraint firstItem="Xyc-aF-okc" firstAttribute="top" secondItem="drz-VB-4zZ" secondAttribute="bottom" constant="30" id="lMr-QG-0cg"/>
-                            <constraint firstItem="kwN-ut-hTW" firstAttribute="trailing" secondItem="Xyc-aF-okc" secondAttribute="trailing" constant="15" id="pv4-6v-cNc"/>
+                            <constraint firstItem="kwN-ut-hTW" firstAttribute="trailing" secondItem="7Z2-DZ-z4l" secondAttribute="trailing" constant="15" id="gY0-9f-eST"/>
+                            <constraint firstItem="RN5-dF-cjA" firstAttribute="top" secondItem="dGd-UN-qJW" secondAttribute="top" constant="86" id="h1f-3o-W1k"/>
+                            <constraint firstItem="kwN-ut-hTW" firstAttribute="bottom" secondItem="7Z2-DZ-z4l" secondAttribute="bottom" constant="8" id="i6E-hm-wyc"/>
+                            <constraint firstItem="7Z2-DZ-z4l" firstAttribute="leading" secondItem="kwN-ut-hTW" secondAttribute="leading" constant="15" id="lCG-bB-3HM"/>
+                            <constraint firstItem="DPE-V0-64G" firstAttribute="top" secondItem="RN5-dF-cjA" secondAttribute="bottom" constant="8" id="rLs-xP-6YP"/>
+                            <constraint firstItem="DPE-V0-64G" firstAttribute="leading" secondItem="kwN-ut-hTW" secondAttribute="leading" constant="50" id="vfh-0S-x36"/>
+                            <constraint firstItem="7Z2-DZ-z4l" firstAttribute="top" secondItem="DPE-V0-64G" secondAttribute="bottom" constant="5.5" id="xUA-OP-Jph"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kwN-ut-hTW"/>
                     </view>
@@ -522,10 +528,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="bioTextView" destination="AQ6-cj-lnn" id="EUq-fC-6hT"/>
-                        <outlet property="nameTextField" destination="F6v-gQ-GBB" id="yym-4T-qSy"/>
-                        <outlet property="profilePicture" destination="RN5-dF-cjA" id="Dyo-x6-M8Q"/>
-                        <outlet property="usernameTextField" destination="hgH-0R-T8c" id="XGC-q2-gQo"/>
+                        <outlet property="bioTextView" destination="Vau-ad-t0F" id="OK9-MW-euB"/>
+                        <outlet property="nameField" destination="vmA-Pk-41X" id="NMA-b7-h83"/>
+                        <outlet property="profilePicture" destination="RN5-dF-cjA" id="ACI-H3-MP7"/>
+                        <outlet property="usernameField" destination="pr9-Od-8aZ" id="qAk-aQ-tX7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNK-Na-lWt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

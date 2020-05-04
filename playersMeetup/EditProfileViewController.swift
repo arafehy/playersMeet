@@ -9,14 +9,25 @@
 import UIKit
 
 class EditProfileViewController: UIViewController {
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var profilePicture: UIImageView!
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var bioTextView: UITextView!
+    
+    var userInfo: UserInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        guard userInfo != nil, !(userInfo?.bio ?? "").isEmpty else {    // Creating profile after signup
+            self.bioTextView.text = "Enter a bio..."
+            return
+        }
+        
+        self.nameField.text = self.userInfo?.name
+        self.usernameField.text = self.userInfo?.username
+        self.bioTextView.text = self.userInfo?.bio
+        
     }
 
     /*
