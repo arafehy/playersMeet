@@ -8,22 +8,22 @@
 
 import Foundation
 
-struct UserProfile {
+struct UserInfo {
     var username: String
-    var fullName: String
+    var name: String
     var bio: String
     var profilePicture: String
     
-    init(username: String, fullName: String, bio: String, photoURL: String) {
-        self.username = username
-        self.fullName = fullName
-        self.bio = bio
-        self.profilePicture = photoURL
+    init(username: String?, name: String?, bio: String?, photoURL: String?) {
+        self.username = username ?? ""
+        self.name = name ?? ""
+        self.bio = bio ?? ""
+        self.profilePicture = photoURL ?? ""
     }
     
     func asDictionary() -> Dictionary<String, String> {
         return ["username": self.username,
-                "fullname": self.fullName,
+                "fullname": self.name,
                 "bio": self.bio,
                 "profilePicture": self.profilePicture
         ]

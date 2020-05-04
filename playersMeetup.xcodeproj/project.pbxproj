@@ -180,8 +180,8 @@
 				DB80848D245687B800177175 /* SignUpViewController.swift */,
 				DB80848F2456A06100177175 /* HomeViewController.swift */,
 				E0D4887B245A708F00ED074A /* ProfileViewController.swift */,
-				E0C0254A245F8CC200950223 /* User.swift */,
 				E0FCC717245E9426000BA717 /* EditProfileViewController.swift */,
+				E0C0254A245F8CC200950223 /* User.swift */,
 			);
 			path = playersMeetup;
 			sourceTree = "<group>";
