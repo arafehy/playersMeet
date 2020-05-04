@@ -152,7 +152,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Va0-fm-I2D">
                             <connections>
-                                <segue destination="7iw-pW-pbj" kind="presentation" identifier="toEditProfile" id="wQg-oZ-kBl"/>
+                                <segue destination="7iw-pW-pbj" kind="presentation" identifier="toEditProfile" id="vpq-Qr-tfG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -457,7 +457,11 @@
                                 <items>
                                     <navigationItem title="Edit Profile" id="LIa-wR-TOo">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vxB-6r-6x2"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="oLl-qJ-Zhh"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="oLl-qJ-Zhh">
+                                            <connections>
+                                                <action selector="saveProfile:" destination="7iw-pW-pbj" id="yfz-bx-abz"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -523,7 +527,7 @@
                     <navigationItem key="navigationItem" title="Create Profile" id="X4h-HT-4m9">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="yaJ-KN-mZw">
                             <connections>
-                                <segue destination="0Sb-Om-p2r" kind="presentation" modalPresentationStyle="fullScreen" id="7dQ-F0-sFI"/>
+                                <action selector="saveProfile:" destination="7iw-pW-pbj" id="Z6c-5y-wui"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -532,6 +536,7 @@
                         <outlet property="nameField" destination="vmA-Pk-41X" id="NMA-b7-h83"/>
                         <outlet property="profilePicture" destination="RN5-dF-cjA" id="ACI-H3-MP7"/>
                         <outlet property="usernameField" destination="pr9-Od-8aZ" id="qAk-aQ-tX7"/>
+                        <segue destination="0Sb-Om-p2r" kind="presentation" identifier="createProfileToHome" modalPresentationStyle="fullScreen" id="rk4-l0-UEK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNK-Na-lWt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -577,8 +582,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wQg-oZ-kBl"/>
-        <segue reference="7dQ-F0-sFI"/>
+        <segue reference="xf1-h4-jRh"/>
+        <segue reference="rk4-l0-UEK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="grouplogo" width="173.5" height="101.5"/>

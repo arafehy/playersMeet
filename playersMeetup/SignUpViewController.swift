@@ -22,7 +22,7 @@ class SignUpViewController: UIViewController {
     @IBAction func onSignUp(_ sender: Any) {
         Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!){ (user, error) in
         if error == nil {
-          self.performSegue(withIdentifier: "loginToHome", sender: self)
+          self.performSegue(withIdentifier: "toCreateProfile", sender: self)
         }
         else {
             let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)

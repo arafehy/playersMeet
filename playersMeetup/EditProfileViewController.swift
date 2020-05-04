@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class EditProfileViewController: UIViewController {
     @IBOutlet weak var profilePicture: UIImageView!
@@ -15,11 +16,23 @@ class EditProfileViewController: UIViewController {
     @IBOutlet weak var bioTextView: UITextView!
     
     var userInfo: UserInfo?
+    let user = Auth.auth().currentUser
+    
+    let usersRef = Database.database().reference(withPath: "userInfo")
+    let imagesRef = Storage.storage().reference(withPath: "images")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard userInfo != nil, !(userInfo?.bio ?? "").isEmpty else {    // Creating profile after signup
+        self.isModalInPresentation = true
+        
+        guard let info = userInfo else {    // Creating profile after signup
+            self.bioTextView.text = "Enter a bio..."
+            self.userInfo = UserInfo(username: "", name: "", bio: "", photoURL: "")
+            return
+        }
+        
+        guard !info.bio.isEmpty else {
             self.bioTextView.text = "Enter a bio..."
             return
         }
@@ -29,7 +42,41 @@ class EditProfileViewController: UIViewController {
         self.bioTextView.text = self.userInfo?.bio
         
     }
-
+    
+    @IBAction func saveProfile(_ sender: UIBarButtonItem) {
+        guard let userID = user?.uid else {
+            return
+        }
+        self.userInfo?.name = self.nameField.text!
+        self.userInfo?.username = self.usernameField.text!
+        self.userInfo?.bio = self.bioTextView.text
+        
+        updateProfile(userID: userID)
+    }
+    
+    func updateProfile(userID: String) {
+        guard let profileAsDictionary = userInfo?.asDictionary() else {
+            print("Failed to convert to dictionary")
+            return
+        }
+        usersRef.child(userID).updateChildValues(profileAsDictionary) { (error, usersRef) in
+            guard error == nil else {
+                print("Failed to save profile")
+                return
+            }
+            
+            guard let tabBarController = self.presentingViewController as? UITabBarController,
+                let navigationController = tabBarController.selectedViewController as? UINavigationController,
+                let profileVC = navigationController.viewControllers[0] as? ProfileViewController else {
+                    self.performSegue(withIdentifier: "createProfileToHome", sender: UIBarButtonItem.self)
+                    return
+            }
+            self.dismiss(animated: true) {
+                profileVC.loadUserProfile(userID: userID)
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
