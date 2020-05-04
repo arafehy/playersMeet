@@ -21,7 +21,7 @@ class ProfileViewController: UIViewController {
     
     let user: User? = Auth.auth().currentUser
     var userInfo = UserInfo(username: "", name: "", bio: "", photoURL: "")
-    var usersRef = Database.database().reference().ref.child("userInfo")
+    var usersRef = Database.database().reference().ref.child("profileInfo")
     let imagesRef = Storage.storage().reference(withPath: "images")
     
     override func viewDidLoad() {
