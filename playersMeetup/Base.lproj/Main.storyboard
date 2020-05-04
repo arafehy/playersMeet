@@ -490,7 +490,7 @@
                                 <items>
                                     <navigationItem title="Edit Profile" id="LIa-wR-TOo">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vxB-6r-6x2"/>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="oLl-qJ-Zhh">
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="oLl-qJ-Zhh">
                                             <connections>
                                                 <action selector="saveProfile:" destination="7iw-pW-pbj" id="yfz-bx-abz"/>
                                             </connections>
@@ -558,7 +558,7 @@
                         <viewLayoutGuide key="safeArea" id="kwN-ut-hTW"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Profile" id="X4h-HT-4m9">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="yaJ-KN-mZw">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="yaJ-KN-mZw">
                             <connections>
                                 <action selector="saveProfile:" destination="7iw-pW-pbj" id="Z6c-5y-wui"/>
                             </connections>
