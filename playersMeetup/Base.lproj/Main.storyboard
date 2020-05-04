@@ -71,9 +71,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2474" y="550"/>
+            <point key="canvasLocation" x="4179.7101449275369" y="549.77678571428567"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="M24-FU-6LS">
             <objects>
                 <viewController id="sTv-4i-jSU" customClass="ProfileViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
@@ -82,14 +82,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dZk-XR-9gU">
-                                <rect key="frame" x="107" y="75" width="200" height="197.5"/>
+                                <rect key="frame" x="107" y="119" width="200" height="197.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="DwM-QS-C1S"/>
                                     <constraint firstAttribute="width" constant="200" id="tms-Oc-UAv"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teq-h4-lH2" userLabel="Name Stack">
-                                <rect key="frame" x="153" y="282" width="108.5" height="75"/>
+                                <rect key="frame" x="153" y="326" width="108.5" height="75"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-Qe-Ejw">
                                         <rect key="frame" x="0.0" y="0.0" width="108.5" height="48"/>
@@ -106,7 +106,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hGO-iq-PGK" userLabel="Bio Stack">
-                                <rect key="frame" x="15" y="387" width="384" height="418"/>
+                                <rect key="frame" x="15" y="431" width="384" height="374"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-hm-bXq" userLabel="Bio Label">
                                         <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
@@ -114,14 +114,20 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
-                                        <rect key="frame" x="0.0" y="24" width="374" height="394"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
+                                        <rect key="frame" x="0.0" y="24" width="384" height="350"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="pdC-ni-nmY" firstAttribute="top" secondItem="t0B-hm-bXq" secondAttribute="bottom" id="PUs-3n-0Qy"/>
+                                    <constraint firstAttribute="trailing" secondItem="pdC-ni-nmY" secondAttribute="trailing" id="SIH-zw-gyu"/>
+                                    <constraint firstItem="pdC-ni-nmY" firstAttribute="leading" secondItem="hGO-iq-PGK" secondAttribute="leading" id="USb-OH-QzE"/>
+                                    <constraint firstAttribute="bottom" secondItem="pdC-ni-nmY" secondAttribute="bottom" id="yFt-4Y-XQS"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -138,7 +144,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wRl-hr-91e"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" id="jl5-j8-fG7"/>
+                    <navigationItem key="navigationItem" id="0Di-07-kM9">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="mdl-ah-Gjo">
+                            <connections>
+                                <action selector="logOut:" destination="sTv-4i-jSU" id="HvR-b8-dnm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Va0-fm-I2D">
+                            <connections>
+                                <segue destination="7iw-pW-pbj" kind="presentation" identifier="toEditProfile" id="vpq-Qr-tfG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="bioTextView" destination="pdC-ni-nmY" id="3Pb-wd-QOO"/>
                         <outlet property="nameLabel" destination="WZl-Qe-Ejw" id="iV0-Bw-wVI"/>
@@ -148,7 +165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="llL-Tc-tCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="877" y="550"/>
+            <point key="canvasLocation" x="989.85507246376824" y="549.77678571428567"/>
         </scene>
         <!--Locations-->
         <scene sceneID="HVO-CB-0w0">
@@ -302,6 +319,7 @@
                         <outlet property="emailField" destination="jiO-28-e5M" id="uyE-CT-L1O"/>
                         <outlet property="passwordField" destination="dbZ-ik-Rln" id="ft4-ae-YG6"/>
                         <segue destination="0Sb-Om-p2r" kind="presentation" identifier="loginToHome" modalPresentationStyle="fullScreen" id="KLP-Ne-hUw"/>
+                        <segue destination="Pp5-KI-2ag" kind="presentation" identifier="toCreateProfile" id="vU3-j8-S3s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yXK-cV-RI9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -435,7 +453,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="sTv-4i-jSU" kind="relationship" relationship="viewControllers" id="Zdj-7f-H26"/>
+                        <segue destination="frn-dA-emD" kind="relationship" relationship="viewControllers" id="8YR-JM-ehi"/>
                         <segue destination="sS4-t1-1ED" kind="relationship" relationship="viewControllers" id="p67-8M-8qU"/>
                     </connections>
                 </tabBarController>
@@ -443,7 +461,155 @@
             </objects>
             <point key="canvasLocation" x="80" y="-179"/>
         </scene>
+        <!--Create Profile-->
+        <scene sceneID="20c-mW-MFe">
+            <objects>
+                <viewController id="7iw-pW-pbj" customClass="EditProfileViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dGd-UN-qJW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RN5-dF-cjA" userLabel="Profile Picture">
+                                <rect key="frame" x="107" y="87" width="200" height="197.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="UGY-Gb-Idl"/>
+                                    <constraint firstAttribute="width" constant="200" id="zjj-Lt-dpf"/>
+                                </constraints>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkN-fG-fj0">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Edit Profile" id="LIa-wR-TOo">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vxB-6r-6x2"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="oLl-qJ-Zhh">
+                                            <connections>
+                                                <action selector="saveProfile:" destination="7iw-pW-pbj" id="yfz-bx-abz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-DZ-z4l" userLabel="Bio Stack">
+                                <rect key="frame" x="15" y="418" width="384" height="382"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hb9-qp-2pm" userLabel="Bio Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter a bio..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Vau-ad-t0F">
+                                        <rect key="frame" x="0.0" y="32" width="384" height="350"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Vau-ad-t0F" firstAttribute="leading" secondItem="7Z2-DZ-z4l" secondAttribute="leading" id="JbI-fH-DJc"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vau-ad-t0F" secondAttribute="bottom" id="ZfH-m6-b9p"/>
+                                    <constraint firstAttribute="trailing" secondItem="Vau-ad-t0F" secondAttribute="trailing" id="wmK-Vk-w7p"/>
+                                </constraints>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DPE-V0-64G" userLabel="Name Stack">
+                                <rect key="frame" x="50" y="294" width="314" height="118.5"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-Pk-41X" userLabel="Name Text Field">
+                                        <rect key="frame" x="20" y="0.0" width="274" height="76.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-Od-8aZ" userLabel="Username Text Field">
+                                        <rect key="frame" x="20" y="84.5" width="274" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="pr9-Od-8aZ" secondAttribute="trailing" constant="20" symbolic="YES" id="6JU-Ce-yBx"/>
+                                    <constraint firstItem="pr9-Od-8aZ" firstAttribute="leading" secondItem="DPE-V0-64G" secondAttribute="leading" constant="20" symbolic="YES" id="7Qu-00-rSf"/>
+                                    <constraint firstItem="vmA-Pk-41X" firstAttribute="leading" secondItem="DPE-V0-64G" secondAttribute="leading" constant="20" symbolic="YES" id="9Ov-m2-3iD"/>
+                                    <constraint firstAttribute="trailing" secondItem="vmA-Pk-41X" secondAttribute="trailing" constant="20" symbolic="YES" id="zQD-O1-l5r"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="kwN-ut-hTW" firstAttribute="trailing" secondItem="DPE-V0-64G" secondAttribute="trailing" constant="50" id="3e1-3k-jgV"/>
+                            <constraint firstItem="RN5-dF-cjA" firstAttribute="centerX" secondItem="dGd-UN-qJW" secondAttribute="centerX" id="FQA-JQ-KKK"/>
+                            <constraint firstItem="kwN-ut-hTW" firstAttribute="trailing" secondItem="7Z2-DZ-z4l" secondAttribute="trailing" constant="15" id="gY0-9f-eST"/>
+                            <constraint firstItem="RN5-dF-cjA" firstAttribute="top" secondItem="dGd-UN-qJW" secondAttribute="top" constant="86" id="h1f-3o-W1k"/>
+                            <constraint firstItem="kwN-ut-hTW" firstAttribute="bottom" secondItem="7Z2-DZ-z4l" secondAttribute="bottom" constant="8" id="i6E-hm-wyc"/>
+                            <constraint firstItem="7Z2-DZ-z4l" firstAttribute="leading" secondItem="kwN-ut-hTW" secondAttribute="leading" constant="15" id="lCG-bB-3HM"/>
+                            <constraint firstItem="DPE-V0-64G" firstAttribute="top" secondItem="RN5-dF-cjA" secondAttribute="bottom" constant="8" id="rLs-xP-6YP"/>
+                            <constraint firstItem="DPE-V0-64G" firstAttribute="leading" secondItem="kwN-ut-hTW" secondAttribute="leading" constant="50" id="vfh-0S-x36"/>
+                            <constraint firstItem="7Z2-DZ-z4l" firstAttribute="top" secondItem="DPE-V0-64G" secondAttribute="bottom" constant="5.5" id="xUA-OP-Jph"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="kwN-ut-hTW"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Profile" id="X4h-HT-4m9">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="yaJ-KN-mZw">
+                            <connections>
+                                <action selector="saveProfile:" destination="7iw-pW-pbj" id="Z6c-5y-wui"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bioTextView" destination="Vau-ad-t0F" id="OK9-MW-euB"/>
+                        <outlet property="nameField" destination="vmA-Pk-41X" id="NMA-b7-h83"/>
+                        <outlet property="profilePicture" destination="RN5-dF-cjA" id="ACI-H3-MP7"/>
+                        <outlet property="usernameField" destination="pr9-Od-8aZ" id="qAk-aQ-tX7"/>
+                        <segue destination="0Sb-Om-p2r" kind="presentation" identifier="createProfileToHome" modalPresentationStyle="fullScreen" id="rk4-l0-UEK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mNK-Na-lWt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="990" y="1282"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="Nv1-pR-Cz2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="frn-dA-emD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" id="h9g-Jy-3KA"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oGg-jm-Q9r">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sTv-4i-jSU" kind="relationship" relationship="rootViewController" id="F4F-38-OtG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o1U-n0-bxu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="79.710144927536234" y="549.77678571428567"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="hPm-1Y-3co">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pp5-KI-2ag" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QmQ-UU-hFQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7iw-pW-pbj" kind="relationship" relationship="rootViewController" id="xf1-h4-jRh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9JT-L3-lXY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-755" y="1282"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="xf1-h4-jRh"/>
+        <segue reference="rk4-l0-UEK"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="grouplogo" width="173.5" height="101.5"/>
         <image name="person.crop.square" catalog="system" width="128" height="114"/>

@@ -8,11 +8,12 @@ target 'playersMeetup' do
   # Pods for playersMeetup
   # add the Firebase pod for Google Analytics
    pod 'Firebase/Analytics'
+   pod 'Firebase/Auth'
    pod 'Firebase/Database'
+   pod 'Firebase/Storage'
    pod 'YelpAPI'
    pod 'Moya'
    pod 'AlamofireImage'
-   pod 'Firebase/Auth'
 # add pods for any other desired Firebase products
 # https://firebase.google.com/docs/ios/setup#available-pods
   target 'playersMeetupTests' do
