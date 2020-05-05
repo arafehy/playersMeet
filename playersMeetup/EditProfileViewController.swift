@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // MARK: - Properties
     
@@ -114,6 +114,53 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
                 profileVC.loadUserProfile(userID: userID)
             }
         }
+    }
+    
+    @IBAction func changeProfilePicture(_ sender: UITapGestureRecognizer) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
+                self.openCamera(imagePicker: imagePicker)
+            }))
+        }
+        alert.addAction(UIAlertAction(title: "Choose Photo from Gallery", style: .default, handler: { _ in
+            self.openPhotoGallery(imagePicker: imagePicker)
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    // MARK: - Photo Helpers
+    
+    func openCamera(imagePicker: UIImagePickerController) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            imagePicker.cameraCaptureMode = .photo
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func openPhotoGallery(imagePicker: UIImagePickerController) {
+        imagePicker.sourceType = .photoLibrary
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        
+        let size = CGSize(width: 200, height: 200)
+        let scaledImage = image.af.imageAspectScaled(toFill: size)
+        
+        profilePicture.image = scaledImage
+        
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Text Fields/View Helpers

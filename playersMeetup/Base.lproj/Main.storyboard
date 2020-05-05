@@ -488,12 +488,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RN5-dF-cjA" userLabel="Profile Picture">
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RN5-dF-cjA" userLabel="Profile Picture">
                                 <rect key="frame" x="107" y="87" width="200" height="197.5"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="UGY-Gb-Idl"/>
                                     <constraint firstAttribute="width" constant="200" id="zjj-Lt-dpf"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="oGI-dj-MkR" appends="YES" id="JAe-lj-1OI"/>
+                                </connections>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkN-fG-fj0">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -593,6 +597,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNK-Na-lWt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="oGI-dj-MkR">
+                    <connections>
+                        <action selector="changeProfilePicture:" destination="7iw-pW-pbj" id="7vL-Xo-7gX"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="990" y="1282"/>
         </scene>
