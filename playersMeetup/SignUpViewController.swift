@@ -9,16 +9,48 @@
 import UIKit
 import Firebase
 import FirebaseAuth
-
-class SignUpViewController: UIViewController {
+import Lottie
+class SignUpViewController: UIViewController, UITextFieldDelegate {
+    @IBOutlet weak var lottieView: UIView!
+    let animationView = AnimationView()
+    @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var passwordField: UITextField!
+    
+    @IBOutlet weak var playersMeetLabel: UILabel!
     static let signUpController = SignUpViewController()
     static let ref = Database.database().reference().ref.child("userInfo") //doesnt need to be static fix
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .light
+//        overrideUserInterfaceStyle = .light
+        //custom ui
+        signInButton.rounded()
+        signUpButton.rounded()
+//        
+        animationView.animation = Animation.named("18709-loading")
+        animationView.frame.size = lottieView.frame.size
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        playersMeetLabel.layer.zPosition = 1
+        lottieView.addSubview(animationView)
+        
+//        animationView.layer.zPosition = 1
+        emailField.layer.zPosition = 1
+        emailField.layer.borderWidth = 1
+        passwordField.layer.zPosition = 1
+        signUpButton.layer.zPosition = 1
+        emailField.layer.cornerRadius = 10
+        emailField.layer.borderColor = UIColor.white.cgColor
+        passwordField.layer.borderWidth = 1
+        passwordField.layer.cornerRadius = 10
+        passwordField.layer.borderColor = UIColor.white.cgColor
+        passwordField.layer.borderWidth = 1
+        emailField.delegate = self
+        passwordField.delegate = self
+        animationView.play()
     }
+    
     @IBAction func onSignUp(_ sender: Any) {
         Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!){ (user, error) in
         if error == nil {
@@ -93,5 +125,30 @@ class SignUpViewController: UIViewController {
                 }
             }
         }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+   
 }
 
+extension UITextField {
+    func rounded() {
+        
+        // set rounded and white border
+        self.layer.cornerRadius = 25
+        self.layer.borderColor = UIColor.white.cgColor
+        self.layer.borderWidth = 1
+        
+        
+    }
+}
+
+extension UIButton {
+    func rounded() {
+        
+        // set rounded and white border
+        self.layer.cornerRadius = 25
+        self.clipsToBounds = true
+    }
+}

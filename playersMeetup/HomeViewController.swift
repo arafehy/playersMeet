@@ -14,7 +14,7 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .light
+//        overrideUserInterfaceStyle = .light
     }
     @IBAction func onLogout(_ sender: Any) {
         
