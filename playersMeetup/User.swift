@@ -12,20 +12,20 @@ struct UserInfo {
     var username: String
     var name: String
     var bio: String
-    var profilePicture: String
+    var photoURL: String
     
     init(username: String?, name: String?, bio: String?, photoURL: String?) {
         self.username = username ?? ""
         self.name = name ?? ""
         self.bio = bio ?? ""
-        self.profilePicture = photoURL ?? ""
+        self.photoURL = photoURL ?? ""
     }
     
     func asDictionary() -> Dictionary<String, String> {
         return ["username": self.username,
                 "name": self.name,
                 "bio": self.bio,
-                "profilePicture": self.profilePicture
+                "photoURL": self.photoURL
         ]
     }
 }
