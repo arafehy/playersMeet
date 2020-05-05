@@ -19,10 +19,11 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var bioTextView: UITextView!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var createProfileButton: UIBarButtonItem!
     
     var userInfo: UserInfo?
     let user = Auth.auth().currentUser
-    var initialUserInfo: [String] = []
+    var initialUserInfo: [String] = Array(repeating: "", count: 3)
     var isNameDifferent: Bool {
         nameField.text != initialUserInfo[0]
     }
@@ -30,10 +31,14 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         usernameField.text != initialUserInfo[1]
     }
     var isBioDifferent: Bool {
-        bioTextView.text != initialUserInfo[2]
+        let bio = bioTextView.text
+        return bio != initialUserInfo[2] && bio != "Enter a bio..."
     }
     var isAnythingDifferent: Bool {
         isNameDifferent || isUsernameDifferent || isBioDifferent
+    }
+    var areNameOrUsernameEmpty: Bool {
+        nameField.text?.isEmpty ?? true || usernameField.text?.isEmpty ?? true
     }
     
     let usersRef = Database.database().reference(withPath: "profileInfo")
@@ -47,11 +52,9 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         nameField.delegate = self
         usernameField.delegate = self
         bioTextView.delegate = self
-        saveButton.isEnabled = false
         
         guard let info = userInfo else {    // Creating profile after signup
             self.bioTextView.text = "Enter a bio..."
-            self.initialUserInfo = Array(repeating: "", count: 3)
             self.userInfo = UserInfo(username: "", name: "", bio: "", photoURL: "")
             return
         }
@@ -61,9 +64,9 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             return
         }
         
-        initialUserInfo.append(info.name)
-        initialUserInfo.append(info.username)
-        initialUserInfo.append(info.bio)
+        initialUserInfo[0] = info.name
+        initialUserInfo[1] = info.username
+        initialUserInfo[2] = info.bio
         
         self.nameField.text = info.name
         self.usernameField.text = info.username
@@ -116,51 +119,63 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     // MARK: - Text Fields/View Helpers
     
     @IBAction func nameChanged(_ sender: UITextField) {
-        guard isAnythingDifferent else {
+        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
             saveButton.isEnabled = false
+            createProfileButton.isEnabled = false
             return
         }
         saveButton.isEnabled = true
+        createProfileButton.isEnabled = true
     }
     
     @IBAction func usernameChanged(_ sender: UITextField) {
-        guard isAnythingDifferent else {
+        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
             saveButton.isEnabled = false
+            createProfileButton.isEnabled = false
             return
         }
         saveButton.isEnabled = true
+        createProfileButton.isEnabled = true
     }        
     
     func textViewDidChange(_ textView: UITextView) {
-        guard isAnythingDifferent else {
+        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
             saveButton.isEnabled = false
+            createProfileButton.isEnabled = false
             return
         }
         saveButton.isEnabled = true
+        createProfileButton.isEnabled = true
     }
     
     @IBAction func nameEndedEdit(_ sender: UITextField) {
-        guard isAnythingDifferent else {
+        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
             saveButton.isEnabled = false
+            createProfileButton.isEnabled = false
             return
         }
         saveButton.isEnabled = true
+        createProfileButton.isEnabled = true
     }
     
     @IBAction func usernameEndedEdit(_ sender: UITextField) {
-        guard isAnythingDifferent else {
+        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
             saveButton.isEnabled = false
+            createProfileButton.isEnabled = false
             return
         }
         saveButton.isEnabled = true
+        createProfileButton.isEnabled = true
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        guard isAnythingDifferent else {
+        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
             saveButton.isEnabled = false
+            createProfileButton.isEnabled = false
             return
         }
         saveButton.isEnabled = true
+        createProfileButton.isEnabled = true
     }
     
     /*

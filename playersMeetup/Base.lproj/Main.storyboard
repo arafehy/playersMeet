@@ -501,7 +501,7 @@
                                 <items>
                                     <navigationItem title="Edit Profile" id="LIa-wR-TOo">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vxB-6r-6x2"/>
-                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="oLl-qJ-Zhh">
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="save" id="oLl-qJ-Zhh">
                                             <connections>
                                                 <action selector="saveProfile:" destination="7iw-pW-pbj" id="yfz-bx-abz"/>
                                             </connections>
@@ -577,7 +577,7 @@
                         <viewLayoutGuide key="safeArea" id="kwN-ut-hTW"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Profile" id="X4h-HT-4m9">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="yaJ-KN-mZw">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="save" id="yaJ-KN-mZw">
                             <connections>
                                 <action selector="saveProfile:" destination="7iw-pW-pbj" id="Z6c-5y-wui"/>
                             </connections>
@@ -585,9 +585,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bioTextView" destination="Vau-ad-t0F" id="OK9-MW-euB"/>
+                        <outlet property="createProfileButton" destination="yaJ-KN-mZw" id="3x9-0R-UNB"/>
                         <outlet property="nameField" destination="vmA-Pk-41X" id="NMA-b7-h83"/>
                         <outlet property="profilePicture" destination="RN5-dF-cjA" id="ACI-H3-MP7"/>
-                        <outlet property="saveButton" destination="oLl-qJ-Zhh" id="W2S-Ks-GrF"/>
+                        <outlet property="saveButton" destination="oLl-qJ-Zhh" id="gjX-ke-q93"/>
                         <outlet property="usernameField" destination="pr9-Od-8aZ" id="qAk-aQ-tX7"/>
                     </connections>
                 </viewController>
@@ -728,7 +729,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vpq-Qr-tfG"/>
+        <segue reference="xf1-h4-jRh"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="grouplogo" width="173.5" height="101.5"/>
