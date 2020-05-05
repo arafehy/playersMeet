@@ -32,6 +32,8 @@
 		FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */; };
 		FAB9CBB22455C27600C25C92 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */; };
 		FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBB32456468800C25C92 /* DetailsViewController.swift */; };
+		FAFECE3424619DDD005CD8F7 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAFECE3324619DDD005CD8F7 /* Lottie.framework */; };
+		FAFECE3B24619F9A005CD8F7 /* 18709-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = FAFECE3A24619F9A005CD8F7 /* 18709-loading.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		FAB9CBB32456468800C25C92 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		FAFECE3324619DDD005CD8F7 /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Lottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAFECE3A24619F9A005CD8F7 /* 18709-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "18709-loading.json"; path = "../../../../Downloads/18709-loading.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAFECE3424619DDD005CD8F7 /* Lottie.framework in Frameworks */,
 				AC322766F959DA60317FF6E7 /* Pods_playersMeetup.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +140,7 @@
 		4916EA1490E595B78A30CDD3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAFECE3324619DDD005CD8F7 /* Lottie.framework */,
 				519AA36604EF483634BEAFBA /* Pods_playersMeetup.framework */,
 				84583BFA9267C542027E12EA /* Pods_playersMeetup_playersMeetupUITests.framework */,
 				A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */,
@@ -168,6 +174,7 @@
 		FA75F72D245445FC00E681F9 /* playersMeetup */ = {
 			isa = PBXGroup;
 			children = (
+				FAFECE3A24619F9A005CD8F7 /* 18709-loading.json */,
 				FA18FCB1245BBC930087C1CC /* Assets.xcassets */,
 				FA1116E424598D3C00800C33 /* GoogleService-Info.plist */,
 				FA75F72E245445FD00E681F9 /* AppDelegate.swift */,
@@ -228,6 +235,8 @@
 			dependencies = (
 			);
 			name = playersMeetup;
+			packageProductDependencies = (
+			);
 			productName = playersMeetup;
 			productReference = FA75F72B245445FC00E681F9 /* playersMeetup.app */;
 			productType = "com.apple.product-type.application";
@@ -303,6 +312,8 @@
 				Base,
 			);
 			mainGroup = FA75F722245445FC00E681F9;
+			packageReferences = (
+			);
 			productRefGroup = FA75F72C245445FC00E681F9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,6 +332,7 @@
 			files = (
 				E0116CA6245A580900AF7F39 /* .gitignore in Resources */,
 				FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */,
+				FAFECE3B24619F9A005CD8F7 /* 18709-loading.json in Resources */,
 				FA18FCB2245BBC940087C1CC /* Assets.xcassets in Resources */,
 				FA1116E524598D3C00800C33 /* GoogleService-Info.plist in Resources */,
 				FA75F736245445FD00E681F9 /* Main.storyboard in Resources */,

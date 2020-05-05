@@ -135,7 +135,7 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        overrideUserInterfaceStyle = .light
+//        overrideUserInterfaceStyle = .light
         leaveTeamOutlet.isEnabled = false
         //get value from database
         let reference = LocationsViewController.ref.child(LocationsViewController.selectedId)
