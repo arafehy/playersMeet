@@ -46,8 +46,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         passwordField.layer.cornerRadius = 10
         passwordField.layer.borderColor = UIColor.white.cgColor
         passwordField.layer.borderWidth = 1
-        
-
+        emailField.delegate = self
+        passwordField.delegate = self
         animationView.play()
     }
     
@@ -123,6 +123,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 }
             }
         }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
    
 }
 
