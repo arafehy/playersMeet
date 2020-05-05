@@ -16,13 +16,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var bioTextView: UITextView!
+    @IBOutlet weak var editButton: UIBarButtonItem!
     
     var handle: AuthStateDidChangeListenerHandle?
     
     let user: User? = Auth.auth().currentUser
     var userInfo = UserInfo(username: "", name: "", bio: "", photoURL: "")
-    var usersRef = Database.database().reference().ref.child("profileInfo")
-    let imagesRef = Storage.storage().reference(withPath: "images")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,15 +61,19 @@ class ProfileViewController: UIViewController {
     }
     
     func loadUserProfile(userID: String) {
-        usersRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+        FirebaseReferences.usersRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             
             let name = value?["name"] as? String
             let username = value?["username"] as? String
             let bio = value?["bio"] as? String
             let photoURLString = value?["photoURL"] as? String
-            if let photoURL = URL(string: photoURLString ?? "") {
-                self.profilePicture.af.setImage(withURL: photoURL)
+            
+            if let _ = URL(string: photoURLString ?? "") {
+                self.loadProfilePicture(userID: userID)
+            }
+            else {
+                self.editButton.isEnabled = true
             }
             self.userInfo = UserInfo(username: username, name: name, bio: bio, photoURL: photoURLString)
             
@@ -95,24 +98,26 @@ class ProfileViewController: UIViewController {
         }) { (error) in
             print(error.localizedDescription)
         }
-        
-        loadProfilePicture(userID: userID)
     }
     
     func loadProfilePicture(userID: String) {
-        guard let url = URL(string: userInfo.profilePicture) else {
-            return
+        FirebaseReferences.imagesRef.child(userID).getData(maxSize: 5 * 1024 * 1024) { (data, error) in
+            guard error == nil else {
+                return
+            }
+            guard let data = data else {
+                return
+            }
+            self.profilePicture.image = UIImage(data: data)
+            self.editButton.isEnabled = true
         }
-        profilePicture.af.setImage(withURL: url)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditProfile" {
             let editProfileVC = segue.destination as! EditProfileViewController
             editProfileVC.userInfo = self.userInfo
-            if userInfo.profilePicture != "" {
-                editProfileVC.profilePicture.image = self.profilePicture.image
-            }
+            editProfileVC.initialPhoto = self.profilePicture.image
         }
     }
 }

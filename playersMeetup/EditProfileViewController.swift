@@ -21,6 +21,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var createProfileButton: UIBarButtonItem!
     
+    var initialPhoto: UIImage!
+    
     var userInfo: UserInfo?
     let user = Auth.auth().currentUser
     var initialUserInfo: [String] = Array(repeating: "", count: 3)
@@ -35,14 +37,13 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         return bio != initialUserInfo[2] && bio != "Enter a bio..."
     }
     var isAnythingDifferent: Bool {
-        isNameDifferent || isUsernameDifferent || isBioDifferent
+        (isNameDifferent || isUsernameDifferent || isBioDifferent) || profilePictureChanged
     }
     var areNameOrUsernameEmpty: Bool {
         nameField.text?.isEmpty ?? true || usernameField.text?.isEmpty ?? true
     }
     
-    let usersRef = Database.database().reference(withPath: "profileInfo")
-    let imagesRef = Storage.storage().reference(withPath: "images")
+    var profilePictureChanged: Bool = false
     
     // MARK: - VC Life Cycle
     
@@ -71,7 +72,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         self.nameField.text = info.name
         self.usernameField.text = info.username
         self.bioTextView.text = info.bio
-        
+        self.profilePicture.image = initialPhoto
     }
     
     // MARK: - Profile Updating
@@ -80,13 +81,18 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         guard let userID = user?.uid else {
             return
         }
-        guard self.nameField.text! != initialUserInfo[0] || self.usernameField.text != initialUserInfo[1] || self.bioTextView.text != initialUserInfo[2] else {
+        guard isAnythingDifferent else {
             print("Nothing changed")
             return
         }
         self.userInfo?.name = self.nameField.text!
         self.userInfo?.username = self.usernameField.text!
         self.userInfo?.bio = self.bioTextView.text
+        
+        guard !profilePictureChanged else {
+            uploadProfilePicture(userID: userID)
+            return
+        }
         
         updateProfile(userID: userID)
     }
@@ -96,7 +102,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             print("Failed to convert to dictionary")
             return
         }
-        usersRef.child(userID).updateChildValues(profileAsDictionary) { (error, usersRef) in
+        FirebaseReferences.usersRef.child(userID).updateChildValues(profileAsDictionary) { (error, usersRef) in
             guard error == nil else {
                 print("Failed to save profile")
                 return
@@ -112,6 +118,40 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             }
             self.dismiss(animated: true) {
                 profileVC.loadUserProfile(userID: userID)
+            }
+        }
+    }
+    
+    // MARK: - Profile Picture
+    
+    func uploadProfilePicture(userID: String) {
+        guard let newProfilePicture = profilePicture.image?.pngData() else {
+            // TODO: Show error alert
+            return
+        }
+        
+        let profileRef = FirebaseReferences.imagesRef.child(userID)
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/png"
+        
+        profileRef.putData(newProfilePicture, metadata: metadata) { (metadata, error) in
+            guard metadata != nil else {
+                return
+            }
+            profileRef.downloadURL { (url, error) in
+                guard let downloadURL = url else {
+                    return
+                }
+                let photoURLString = downloadURL.absoluteString
+                FirebaseReferences.usersRef.child("\(userID)/photoURL").setValue(photoURLString) { (error, userRef) in
+                    guard error == nil else {
+                        print("Failed to save photo url")
+                        return
+                    }
+                    self.userInfo?.photoURL = photoURLString
+                    self.updateProfile(userID: userID)
+                }
             }
         }
     }
@@ -135,10 +175,6 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         self.present(alert, animated: true, completion: nil)
     }
     
-    
-    
-    // MARK: - Photo Helpers
-    
     func openCamera(imagePicker: UIImagePickerController) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             imagePicker.sourceType = .camera
@@ -159,7 +195,9 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         let scaledImage = image.af.imageAspectScaled(toFill: size)
         
         profilePicture.image = scaledImage
-        
+        profilePictureChanged = true
+        saveButton.isEnabled = true
+        createProfileButton.isEnabled = true
         dismiss(animated: true, completion: nil)
     }
     
