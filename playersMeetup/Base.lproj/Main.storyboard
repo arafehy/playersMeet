@@ -158,7 +158,7 @@
                                 <action selector="logOut:" destination="sTv-4i-jSU" id="HvR-b8-dnm"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="Va0-fm-I2D">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="edit" id="Va0-fm-I2D">
                             <connections>
                                 <segue destination="7iw-pW-pbj" kind="presentation" identifier="toEditProfile" id="vpq-Qr-tfG"/>
                             </connections>
@@ -166,6 +166,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bioTextView" destination="pdC-ni-nmY" id="3Pb-wd-QOO"/>
+                        <outlet property="editButton" destination="Va0-fm-I2D" id="IFK-kq-jpD"/>
                         <outlet property="nameLabel" destination="WZl-Qe-Ejw" id="iV0-Bw-wVI"/>
                         <outlet property="profilePicture" destination="dZk-XR-9gU" id="Bdf-2a-fWn"/>
                         <outlet property="usernameLabel" destination="ly5-4v-KYo" id="8bE-JZ-XNs"/>
@@ -738,7 +739,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xf1-h4-jRh"/>
+        <segue reference="vpq-Qr-tfG"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="grouplogo" width="173.5" height="101.5"/>
