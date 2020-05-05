@@ -77,6 +77,21 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     // MARK: - Profile Updating
     
+    @IBAction func cancelProfileUpdate(_ sender: UIBarButtonItem) {
+        guard isAnythingDifferent else {
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        let alert = UIAlertController(title: "Are you sure you want to cancel?", message: "There are unsaved changes that will be deleted.", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Discard Changes", style: .destructive, handler: { _ in
+                self.dismiss(animated: true, completion: nil)
+            }))
+        alert.addAction(UIAlertAction(title: "Continue Updating Profile", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     @IBAction func saveProfile(_ sender: UIBarButtonItem) {
         guard let userID = user?.uid else {
             return

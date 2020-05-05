@@ -489,7 +489,11 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Edit Profile" id="LIa-wR-TOo">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vxB-6r-6x2"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vxB-6r-6x2">
+                                            <connections>
+                                                <action selector="cancelProfileUpdate:" destination="7iw-pW-pbj" id="G8G-rE-XU5"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="save" id="oLl-qJ-Zhh">
                                             <connections>
                                                 <action selector="saveProfile:" destination="7iw-pW-pbj" id="yfz-bx-abz"/>
