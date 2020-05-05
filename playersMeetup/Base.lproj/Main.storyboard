@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ySA-7L-eq0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ySA-7L-eq0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -235,7 +235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3s2-wO-2lq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2475" y="-179"/>
+            <point key="canvasLocation" x="1826" y="-234"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="dkS-qE-uw2">
@@ -342,43 +342,6 @@
             </objects>
             <point key="canvasLocation" x="-755.07246376811599" y="-179.46428571428569"/>
         </scene>
-        <!--Home View Controller-->
-        <scene sceneID="XlP-gF-HHd">
-            <objects>
-                <viewController id="IP1-Cm-rSx" customClass="HomeViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="OGF-4i-eSz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8rG-vf-Odv">
-                                <rect key="frame" x="87" y="662" width="241" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.01001240674" green="0.68385686530000001" blue="0.42704076050000001" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="34"/>
-                                <state key="normal" title="Show Locations">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="WJJ-6o-3C9" kind="show" id="Lwl-Vh-kXN"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="iKj-xW-48g"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="amT-nN-C3p">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Hic-76-Tp4">
-                            <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="onLogout:" destination="IP1-Cm-rSx" id="Hzd-xQ-1lb"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dTy-b1-Jmj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1662" y="-179"/>
-        </scene>
         <!--Details View Controller-->
         <scene sceneID="VEu-tn-Tyx">
             <objects>
@@ -439,7 +402,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNQ-pD-zBa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3272" y="-179"/>
+            <point key="canvasLocation" x="2638" y="-234"/>
         </scene>
         <!--Game-->
         <scene sceneID="VW2-Q7-12N">
@@ -454,7 +417,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="IP1-Cm-rSx" kind="relationship" relationship="rootViewController" id="tJv-uA-Wuv"/>
+                        <segue destination="WJJ-6o-3C9" kind="relationship" relationship="rootViewController" id="EHp-Dr-uik"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHm-PZ-dcN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -699,7 +662,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVR-u9-Xwm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5086.9565217391309" y="-179.46428571428569"/>
+            <point key="canvasLocation" x="2694" y="550"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cdw-ef-lc1">
@@ -717,12 +680,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FGM-NX-8Ev" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4176.811594202899" y="-179.46428571428569"/>
+            <point key="canvasLocation" x="1891" y="550"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vpq-Qr-tfG"/>
-        <segue reference="KLP-Ne-hUw"/>
+        <segue reference="rk4-l0-UEK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="grouplogo" width="173.5" height="101.5"/>
