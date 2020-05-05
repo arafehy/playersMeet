@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ySA-7L-eq0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -240,7 +240,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="dkS-qE-uw2">
             <objects>
-                <viewController id="ySA-7L-eq0" customClass="SignUpViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="ySA-7L-eq0" customClass="SignUpViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3UT-xE-X8N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -334,7 +334,6 @@
                     <connections>
                         <outlet property="emailField" destination="jiO-28-e5M" id="uyE-CT-L1O"/>
                         <outlet property="passwordField" destination="dbZ-ik-Rln" id="ft4-ae-YG6"/>
-                        <segue destination="0Sb-Om-p2r" kind="presentation" identifier="loginToHome" modalPresentationStyle="fullScreen" id="KLP-Ne-hUw"/>
                         <segue destination="Pp5-KI-2ag" kind="presentation" identifier="toCreateProfile" id="vU3-j8-S3s"/>
                     </connections>
                 </viewController>
@@ -590,7 +589,6 @@
                         <outlet property="profilePicture" destination="RN5-dF-cjA" id="ACI-H3-MP7"/>
                         <outlet property="saveButton" destination="oLl-qJ-Zhh" id="W2S-Ks-GrF"/>
                         <outlet property="usernameField" destination="pr9-Od-8aZ" id="qAk-aQ-tX7"/>
-                        <segue destination="0Sb-Om-p2r" kind="presentation" identifier="createProfileToHome" modalPresentationStyle="fullScreen" id="rk4-l0-UEK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mNK-Na-lWt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -730,8 +728,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="xf1-h4-jRh"/>
-        <segue reference="rk4-l0-UEK"/>
+        <segue reference="vpq-Qr-tfG"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="grouplogo" width="173.5" height="101.5"/>

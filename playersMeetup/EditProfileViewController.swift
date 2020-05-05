@@ -101,7 +101,9 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             guard let tabBarController = self.presentingViewController as? UITabBarController,
                 let navigationController = tabBarController.selectedViewController as? UINavigationController,
                 let profileVC = navigationController.viewControllers[0] as? ProfileViewController else {
-                    self.performSegue(withIdentifier: "createProfileToHome", sender: UIBarButtonItem.self)
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let profileVC = storyboard.instantiateInitialViewController()
+                    UIApplication.shared.keyWindow?.rootViewController = profileVC
                     return
             }
             self.dismiss(animated: true) {

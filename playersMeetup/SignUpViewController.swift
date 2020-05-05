@@ -59,7 +59,9 @@ class SignUpViewController: UIViewController {
         
         Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
                if error == nil{
-                    self.performSegue(withIdentifier: "loginToHome", sender: self)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let profileVC = storyboard.instantiateInitialViewController()
+                UIApplication.shared.keyWindow?.rootViewController = profileVC
                     //get user id
                 SignUpViewController.userID = Auth.auth().currentUser!.uid
                 print(SignUpViewController.userID)
