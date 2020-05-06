@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import CoreLocation
 import Moya
-
+import GoogleMaps
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
 //    CURRENT LOCATION >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -44,14 +44,30 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var counter = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        conditionRef.observe(DataEventType.value, with: { (snapshot) in
-        ///listen in realtime to whenever it updates
-            self.conditionLabel.text = (snapshot.value as AnyObject).description
-        })
-       conditionRef.observe(DataEventType.value, with: { (snapshot) in
-        self.counter = snapshot.value as! Int
-        })
-    }
+//        conditionRef.observe(DataEventType.value, with: { (snapshot) in
+//        ///listen in realtime to whenever it updates
+//            self.conditionLabel.text = (snapshot.value as AnyObject).description
+//        })
+//       conditionRef.observe(DataEventType.value, with: { (snapshot) in
+//        self.counter = snapshot.value as! Int
+//        })
+//        
+//        
+        
+        // Do any additional setup after loading the view.
+                // Create a GMSCameraPosition that tells the map to display the
+                // coordinate -33.86,151.20 at zoom level 6.
+                let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 6.0)
+                let mapView = GMSMapView.map(withFrame: self.view.frame, camera: camera)
+                self.view.addSubview(mapView)
+
+                // Creates a marker in the center of the map.
+                let marker = GMSMarker()
+                marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+                marker.title = "Sydney"
+                marker.snippet = "Australia"
+                marker.map = mapView
+          }
     @IBAction func sunnyDidTouch(_ sender: Any) {
         
         counter = counter + 1

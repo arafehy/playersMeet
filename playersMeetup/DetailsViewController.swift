@@ -8,12 +8,15 @@
 
 import UIKit
 import Firebase
-
+import GooglePlaces
+import GoogleMaps
 class DetailsViewController: UIViewController {
     @IBOutlet weak var leaveTeamOutlet: UIButton!
     @IBOutlet weak var joinTeamOutlet: UIButton!
     @IBOutlet weak var youInTeamLabel: UILabel!
-    
+    @IBOutlet weak var googleMapView: GMSMapView!
+    var latSelected: String = ""
+    var longSelected: String = ""
     let user: User? = Auth.auth().currentUser
 //    var ref = Database.database().reference().ref.child("userInfo")
     @IBAction func leaveTeamAction(_ sender: Any) {
@@ -76,17 +79,7 @@ class DetailsViewController: UIViewController {
                 let array: [String] = ["joined",DetailsViewController.selectedLocationId]
                 FirebaseReferences.userInfoRef.child(self.user!.uid).setValue(array)
                 self.youInTeamLabel.text = "You are in this team"
-                
-                
-                
             }
-                //            //check if user is already in team selected
-                //            else if (snapshot.value as? [String])?[0] == "joined" && DetailsViewController.selectedLocationId == (snapshot.value as? [String])?[1] {
-                //                print("Already in that team")
-                //                //dont allow to join
-                //                self.joinTeamOutlet?.isEnabled = false
-                //                self.leaveTeamOutlet?.isEnabled = true
-                //            }
             else{
                 
                 self.joinTeamOutlet?.isEnabled = true
@@ -137,11 +130,12 @@ class DetailsViewController: UIViewController {
         LocationsViewController.shared.count = LocationsViewController.shared.count+1
         referenceTeamCount.setValue(LocationsViewController.shared.count)
     }
+    @IBOutlet weak var getDirectionsButton: UIButton!
     static var selectedLocationId: String = ""
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+//        getDirectionsButton.layer.zPosition = -1
         //        overrideUserInterfaceStyle = .light
         leaveTeamOutlet.isEnabled = false
         //get value from database
@@ -188,5 +182,63 @@ class DetailsViewController: UIViewController {
         /// increment value in database
         
         ///make first value stay the same until end game
+        
+        
+      
+          for loc in locations{
+            if loc["id"] as! String == LocationsViewController.selectedId{
+                let coord = loc["coordinates"] as! NSDictionary
+                print(coord)
+                let lat = coord.value(forKey: "latitude")!
+                let long = coord.value(forKey: "longitude")!
+                latSelected = "\(lat)"
+                longSelected = "\(long)"
+                
+                
+            }
+        }
+        var latDouble: Double = (latSelected as NSString).doubleValue
+        var longDouble: Double = (longSelected as NSString).doubleValue
+        let camera = GMSCameraPosition.camera(withLatitude: latDouble, longitude: longDouble, zoom: 14)
+        googleMapView.camera = camera
+        googleMapView.animate(to: camera)
+
+//        let gesture = UITapGestureRecognizer(target: self, action: Selector(("MapsPressed")))
+//        googleMapView.addGestureRecognizer(gesture)
+        
+    }
+    
+    
+    @IBAction func getDirections(_ sender: Any) {
+            if let UrlNavigation = URL.init(string: "comgooglemaps://") {
+                if UIApplication.shared.canOpenURL(UrlNavigation){
+                    if !longSelected.isEmpty && !latSelected.isEmpty {
+                        let lat = latSelected
+                        let longi = longSelected
+                        if let urlDestination = URL.init(string: "comgooglemaps://?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
+                            UIApplication.shared.openURL(urlDestination)
+                        }
+                    }
+                }
+                else {
+                    NSLog("Can't use comgooglemaps://");
+                    self.openTrackerInBrowser()
+
+                }
+            }
+            else
+            {
+                NSLog("Can't use comgooglemaps://");
+               self.openTrackerInBrowser()
+            }
+        }
+    func openTrackerInBrowser(){
+        if !longSelected.isEmpty && !latSelected.isEmpty {
+            let lat = latSelected
+            let longi = longSelected
+            if let urlDestination = URL.init(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
+                UIApplication.shared.openURL(urlDestination)
+            }
+        }
     }
 }

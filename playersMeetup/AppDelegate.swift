@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import Moya
+import GoogleMaps
+import GooglePlaces
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
         FirebaseApp.configure()
-        
+        GMSServices.provideAPIKey("AIzaSyBbmwiWRryQ3EvGK0Y-PL0LtX7VlfiNcAk")
+        GMSPlacesClient.provideAPIKey("AIzaSyBbmwiWRryQ3EvGK0Y-PL0LtX7VlfiNcAk")
         UITabBar.appearance().tintColor = .orange
         //bar button color
         UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.orange], for: .normal)

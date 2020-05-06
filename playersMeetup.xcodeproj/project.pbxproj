@@ -232,14 +232,13 @@
 				FA75F728245445FC00E681F9 /* Frameworks */,
 				FA75F729245445FC00E681F9 /* Resources */,
 				4EFBD2A1EC7FD61ECD40691B /* [CP] Embed Pods Frameworks */,
+				024713B5A0155186A2574449 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = playersMeetup;
-			packageProductDependencies = (
-			);
 			productName = playersMeetup;
 			productReference = FA75F72B245445FC00E681F9 /* playersMeetup.app */;
 			productType = "com.apple.product-type.application";
@@ -272,6 +271,7 @@
 				FA75F7492454460000E681F9 /* Frameworks */,
 				FA75F74A2454460000E681F9 /* Resources */,
 				51CC10ABC33545827BB4592F /* [CP] Embed Pods Frameworks */,
+				1F54478780A1BBFCF43C188F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -315,8 +315,6 @@
 				Base,
 			);
 			mainGroup = FA75F722245445FC00E681F9;
-			packageReferences = (
-			);
 			productRefGroup = FA75F72C245445FC00E681F9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -359,6 +357,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		024713B5A0155186A2574449 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-playersMeetup/Pods-playersMeetup-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-playersMeetup/Pods-playersMeetup-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-playersMeetup/Pods-playersMeetup-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		0C505ADEECC1560EAD22536B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -379,6 +394,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1F54478780A1BBFCF43C188F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-playersMeetup-playersMeetupUITests/Pods-playersMeetup-playersMeetupUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-playersMeetup-playersMeetupUITests/Pods-playersMeetup-playersMeetupUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-playersMeetup-playersMeetupUITests/Pods-playersMeetup-playersMeetupUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		31848291C9F55737238C840E /* [CP] Check Pods Manifest.lock */ = {

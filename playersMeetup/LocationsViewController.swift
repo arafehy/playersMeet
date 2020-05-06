@@ -54,7 +54,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         else{
             cell.isHereIndicator.isHidden = true
             
-            print("not here indicator")
+            
             }
         }
         
@@ -90,7 +90,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         tableView.reloadData()
         
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
