@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
         FirebaseApp.configure()
+        UITabBar.appearance().tintColor = .orange
 //        loadLocations()
       return true
     }

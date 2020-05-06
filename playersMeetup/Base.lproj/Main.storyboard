@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -429,7 +429,13 @@
         <scene sceneID="VW2-Q7-12N">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sS4-t1-1ED" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Game" id="VVR-TY-aIX"/>
+                    <tabBarItem key="tabBarItem" title="Game" image="location" catalog="system" selectedImage="location.fill" id="VVR-TY-aIX">
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="A7K-fi-TkN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pC0-mn-CMJ">
@@ -598,7 +604,9 @@
         <scene sceneID="Nv1-pR-Cz2">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="frn-dA-emD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" id="h9g-Jy-3KA"/>
+                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="h9g-Jy-3KA">
+                        <color key="badgeColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oGg-jm-Q9r">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -730,6 +738,10 @@
         <segue reference="vpq-Qr-tfG"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="location" catalog="system" width="128" height="115"/>
+        <image name="location.fill" catalog="system" width="128" height="115"/>
+        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.crop.square" catalog="system" width="128" height="114"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
     </resources>
 </document>
