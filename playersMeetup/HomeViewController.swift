@@ -28,6 +28,6 @@ class HomeViewController: UIViewController {
                  
                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
                  let initial = storyboard.instantiateInitialViewController()
-                 UIApplication.shared.keyWindow?.rootViewController = initial
+        self.view.window?.rootViewController = initial
     }
 }

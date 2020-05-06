@@ -93,7 +93,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                if error == nil{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let profileVC = storyboard.instantiateInitialViewController()
-                UIApplication.shared.keyWindow?.rootViewController = profileVC
+                self.view.window?.rootViewController = profileVC
                     //get user id
                 SignUpViewController.userID = Auth.auth().currentUser!.uid
                 print(SignUpViewController.userID)

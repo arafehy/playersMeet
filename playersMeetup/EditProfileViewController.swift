@@ -128,7 +128,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
                 let profileVC = navigationController.viewControllers[0] as? ProfileViewController else {
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let profileVC = storyboard.instantiateInitialViewController()
-                    UIApplication.shared.keyWindow?.rootViewController = profileVC
+                    self.view.window?.rootViewController = profileVC
                     return
             }
             self.dismiss(animated: true) {

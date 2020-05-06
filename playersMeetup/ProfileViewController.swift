@@ -38,7 +38,7 @@ class ProfileViewController: UIViewController {
                 print("Not logged in")
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginVC = storyboard.instantiateViewController(identifier: "SignUpViewController")
-                UIApplication.shared.keyWindow?.rootViewController = loginVC
+                self.view.window?.rootViewController = loginVC
                 return
             }
         }
