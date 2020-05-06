@@ -22,13 +22,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         FirebaseApp.configure()
         
-        UITabBar.appearance().tintColor = .orange
+        UITabBar.appearance().tintColor = .systemOrange
         //bar button color
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.orange], for: .normal)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemOrange], for: .normal)
         
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.orange], for: .highlighted)
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemOrange], for: .highlighted)
         
-        UINavigationBar.appearance().tintColor = .orange
+        UINavigationBar.appearance().tintColor = .systemOrange
         
         
         

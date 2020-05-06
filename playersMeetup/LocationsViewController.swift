@@ -95,7 +95,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         super.viewDidLoad()
         
             //change color of bar title
-       let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.orange]
+        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         print("view did load \(LocationsViewController.shared.count)")
         
