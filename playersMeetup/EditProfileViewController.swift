@@ -21,23 +21,32 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var createProfileButton: UIBarButtonItem!
     
+    
+    @IBOutlet weak var ageField: UITextField!
+    
+    
+    
+    
     var initialPhoto: UIImage!
     
     var userInfo: UserInfo?
     let user = Auth.auth().currentUser
-    var initialUserInfo: [String] = Array(repeating: "", count: 3)
+    var initialUserInfo: [String] = Array(repeating: "", count: 4)
     var isNameDifferent: Bool {
         nameField.text != initialUserInfo[0]
     }
     var isUsernameDifferent: Bool {
         usernameField.text != initialUserInfo[1]
     }
+    var isAgeDifferent: Bool {
+        ageField.text != initialUserInfo[3]
+    }
     var isBioDifferent: Bool {
         let bio = bioTextView.text
         return bio != initialUserInfo[2] && bio != "Enter a bio..."
     }
     var isAnythingDifferent: Bool {
-        (isNameDifferent || isUsernameDifferent || isBioDifferent) || profilePictureChanged
+        (isNameDifferent || isUsernameDifferent || isBioDifferent || isAgeDifferent) || profilePictureChanged
     }
     var areNameOrUsernameEmpty: Bool {
         nameField.text?.isEmpty ?? true || usernameField.text?.isEmpty ?? true
@@ -56,7 +65,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         guard let info = userInfo else {    // Creating profile after signup
             self.bioTextView.text = "Enter a bio..."
-            self.userInfo = UserInfo(username: "", name: "", bio: "", photoURL: "")
+            self.userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "")
             return
         }
         
@@ -68,10 +77,12 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         initialUserInfo[0] = info.name
         initialUserInfo[1] = info.username
         initialUserInfo[2] = info.bio
+        initialUserInfo[3] = info.age
         
         self.nameField.text = info.name
         self.usernameField.text = info.username
         self.bioTextView.text = info.bio
+        self.ageField.text = info.age
         self.profilePicture.image = initialPhoto
     }
     
@@ -103,6 +114,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         self.userInfo?.name = self.nameField.text!
         self.userInfo?.username = self.usernameField.text!
         self.userInfo?.bio = self.bioTextView.text
+        self.userInfo?.age = self.ageField.text!
         
         guard !profilePictureChanged else {
             uploadProfilePicture(userID: userID)
@@ -248,6 +260,19 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         createProfileButton.isEnabled = true
     }
     
+   
+    @IBAction func ageChanged(_ sender: UITextField) {
+        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
+                   saveButton.isEnabled = false
+                   createProfileButton.isEnabled = false
+                   return
+               }
+               saveButton.isEnabled = true
+               createProfileButton.isEnabled = true
+        
+    }
+    
+    
     @IBAction func nameEndedEdit(_ sender: UITextField) {
         guard isAnythingDifferent, !areNameOrUsernameEmpty else {
             saveButton.isEnabled = false
@@ -267,6 +292,19 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         saveButton.isEnabled = true
         createProfileButton.isEnabled = true
     }
+    
+    
+    @IBAction func ageEndedEdit(_ sender: UITextField) {
+        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
+            saveButton.isEnabled = false
+            createProfileButton.isEnabled = false
+            return
+        }
+        saveButton.isEnabled = true
+        createProfileButton.isEnabled = true
+        
+    }
+    
     
     func textViewDidEndEditing(_ textView: UITextView) {
         guard isAnythingDifferent, !areNameOrUsernameEmpty else {

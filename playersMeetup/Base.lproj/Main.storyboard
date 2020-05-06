@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -137,6 +137,13 @@
                                     <segue destination="EL2-qc-OGF" kind="presentation" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="EkA-xX-jKa"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKT-XF-U65">
+                                <rect key="frame" x="288" y="310" width="87" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -165,6 +172,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageLabel" destination="YKT-XF-U65" id="UY1-oR-zD8"/>
                         <outlet property="bioTextView" destination="pdC-ni-nmY" id="3Pb-wd-QOO"/>
                         <outlet property="editButton" destination="Va0-fm-I2D" id="IFK-kq-jpD"/>
                         <outlet property="nameLabel" destination="WZl-Qe-Ejw" id="iV0-Bw-wVI"/>
@@ -174,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="llL-Tc-tCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="877" y="550"/>
+            <point key="canvasLocation" x="876.81159420289862" y="549.77678571428567"/>
         </scene>
         <!--Locations-->
         <scene sceneID="HVO-CB-0w0">
@@ -615,6 +623,16 @@
                                     <constraint firstAttribute="trailing" secondItem="vmA-Pk-41X" secondAttribute="trailing" constant="20" symbolic="YES" id="zQD-O1-l5r"/>
                                 </constraints>
                             </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qH4-7N-6DP">
+                                <rect key="frame" x="302" y="252" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="ageChanged:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="DHs-pV-bUd"/>
+                                    <action selector="ageEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="w43-Rp-d0W"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -638,6 +656,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageField" destination="qH4-7N-6DP" id="VB3-6T-131"/>
                         <outlet property="bioTextView" destination="Vau-ad-t0F" id="OK9-MW-euB"/>
                         <outlet property="createProfileButton" destination="yaJ-KN-mZw" id="3x9-0R-UNB"/>
                         <outlet property="nameField" destination="vmA-Pk-41X" id="NMA-b7-h83"/>
