@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import GooglePlaces
 import GoogleMaps
-class DetailsViewController: UIViewController {
+class DetailsViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var leaveTeamOutlet: UIButton!
     @IBOutlet weak var joinTeamOutlet: UIButton!
     @IBOutlet weak var youInTeamLabel: UILabel!
@@ -130,11 +130,53 @@ class DetailsViewController: UIViewController {
         LocationsViewController.shared.count = LocationsViewController.shared.count+1
         referenceTeamCount.setValue(LocationsViewController.shared.count)
     }
-    @IBOutlet weak var getDirectionsButton: UIButton!
+    
+           func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+               print("!map tapped!")
+            if let UrlNavigation = URL.init(string: "comgooglemaps://") {
+                if UIApplication.shared.canOpenURL(UrlNavigation){
+                    if !longSelected.isEmpty && !latSelected.isEmpty {
+                        let lat = latSelected
+                        let longi = longSelected
+                        if let urlDestination = URL.init(string: "comgooglemaps://?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
+                            UIApplication.shared.openURL(urlDestination)
+                        }
+                    }
+                }
+                    else {
+                        NSLog("Can't use comgooglemaps://");
+                        self.openTrackerInBrowser()
+
+                    }
+                }
+                else
+                {
+                    NSLog("Can't use comgooglemaps://");
+                   self.openTrackerInBrowser()
+                }
+            }
+        func openTrackerInBrowser(){
+            if !longSelected.isEmpty && !latSelected.isEmpty {
+                let lat = latSelected
+                let longi = longSelected
+                if let urlDestination = URL.init(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
+                    UIApplication.shared.openURL(urlDestination)
+                }
+            }
+        }
     static var selectedLocationId: String = ""
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
+       
+        
+        
+        
+        
+        
+        
 //        getDirectionsButton.layer.zPosition = -1
         //        overrideUserInterfaceStyle = .light
         leaveTeamOutlet.isEnabled = false
@@ -202,43 +244,13 @@ class DetailsViewController: UIViewController {
         let camera = GMSCameraPosition.camera(withLatitude: latDouble, longitude: longDouble, zoom: 14)
         googleMapView.camera = camera
         googleMapView.animate(to: camera)
-
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: latDouble, longitude: longDouble)
+        marker.map = googleMapView
 //        let gesture = UITapGestureRecognizer(target: self, action: Selector(("MapsPressed")))
 //        googleMapView.addGestureRecognizer(gesture)
         
-    }
-    
-    
-    @IBAction func getDirections(_ sender: Any) {
-            if let UrlNavigation = URL.init(string: "comgooglemaps://") {
-                if UIApplication.shared.canOpenURL(UrlNavigation){
-                    if !longSelected.isEmpty && !latSelected.isEmpty {
-                        let lat = latSelected
-                        let longi = longSelected
-                        if let urlDestination = URL.init(string: "comgooglemaps://?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
-                            UIApplication.shared.openURL(urlDestination)
-                        }
-                    }
-                }
-                else {
-                    NSLog("Can't use comgooglemaps://");
-                    self.openTrackerInBrowser()
-
-                }
-            }
-            else
-            {
-                NSLog("Can't use comgooglemaps://");
-               self.openTrackerInBrowser()
-            }
-        }
-    func openTrackerInBrowser(){
-        if !longSelected.isEmpty && !latSelected.isEmpty {
-            let lat = latSelected
-            let longi = longSelected
-            if let urlDestination = URL.init(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
-                UIApplication.shared.openURL(urlDestination)
-            }
-        }
+        googleMapView.delegate = self
+        
     }
 }
