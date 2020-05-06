@@ -24,12 +24,12 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string></string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NSCameraUsageDescription</key>
 	<string>PlayersMeet uses the camera to take a photo for your profile.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>PlayersMeet uses your location to find nearby locations to play.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>PlayersMeet uses your location to find nearby locations to play.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
