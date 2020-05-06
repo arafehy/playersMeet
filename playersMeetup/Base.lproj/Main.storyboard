@@ -179,7 +179,7 @@
         <!--Locations-->
         <scene sceneID="HVO-CB-0w0">
             <objects>
-                <viewController id="WJJ-6o-3C9" customClass="LocationsViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="WJJ-6o-3C9" customClass="LocationsViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PlA-gZ-X2v">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
