@@ -32,7 +32,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         cell.locationLabel.text = loc["name"] as? String
         let strURL = loc["image_url"] as! String
         if let url = URL(string: strURL){
-            cell.locationImageView.af_setImage(withURL: url)
+            cell.locationImageView.af.setImage(withURL: url)
         }
         cell.distanceLabel.text = String(format: "%f", loc["distance"] as! Double)
         return cell

@@ -15,6 +15,7 @@
 		DB8084902456A06100177175 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848F2456A06100177175 /* HomeViewController.swift */; };
 		DF1BEEFB1CAEEA583ED0F2A6 /* Pods_playersMeetup_playersMeetupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84583BFA9267C542027E12EA /* Pods_playersMeetup_playersMeetupUITests.framework */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
+		E01AC8A024614D7C00E8C32E /* FirebaseReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01AC89F24614D7C00E8C32E /* FirebaseReferences.swift */; };
 		E0C0254B245F8CC200950223 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C0254A245F8CC200950223 /* User.swift */; };
 		E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4887B245A708F00ED074A /* ProfileViewController.swift */; };
 		E0FCC718245E9426000BA717 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FCC717245E9426000BA717 /* EditProfileViewController.swift */; };
@@ -67,6 +68,7 @@
 		DB80848D245687B800177175 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DB80848F2456A06100177175 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E01AC89F24614D7C00E8C32E /* FirebaseReferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReferences.swift; sourceTree = "<group>"; };
 		E0C0254A245F8CC200950223 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0D4887B245A708F00ED074A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E0FCC717245E9426000BA717 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -92,7 +94,7 @@
 		FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		FAB9CBB32456468800C25C92 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		FAFECE3324619DDD005CD8F7 /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Lottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FAFECE3A24619F9A005CD8F7 /* 18709-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "18709-loading.json"; path = "../../../../Downloads/18709-loading.json"; sourceTree = "<group>"; };
+		FAFECE3A24619F9A005CD8F7 /* 18709-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "18709-loading.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				E0D4887B245A708F00ED074A /* ProfileViewController.swift */,
 				E0FCC717245E9426000BA717 /* EditProfileViewController.swift */,
 				E0C0254A245F8CC200950223 /* User.swift */,
+				E01AC89F24614D7C00E8C32E /* FirebaseReferences.swift */,
 				6A4B0F442460871D002F0882 /* TeamChatViewController.swift */,
 				6A4B0F462460872F002F0882 /* MessageCell.swift */,
 			);
@@ -469,6 +472,7 @@
 				DB80848E245687B800177175 /* SignUpViewController.swift in Sources */,
 				FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */,
 				E0FCC718245E9426000BA717 /* EditProfileViewController.swift in Sources */,
+				E01AC8A024614D7C00E8C32E /* FirebaseReferences.swift in Sources */,
 				FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */,
 				FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */,
 				DB8084902456A06100177175 /* HomeViewController.swift in Sources */,
