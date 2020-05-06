@@ -14,12 +14,15 @@ import CoreLocation
 
 var locations = [[String:Any]]()
 class LocationsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+
     
     let locationManager = CLLocationManager()
     var long: Double = 0.0
     var lat: Double = 0.0
+    
     static let shared = LocationsViewController()
     //    static let ref = Database.database().reference().ref.child("businesses")
+    
     static var selectedId: String = ""
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -27,24 +30,37 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
         let loc = locations[indexPath.row]
+        let user: User? = Auth.auth().currentUser
         cell.locationLabel.text = loc["name"] as? String
         let strURL = loc["image_url"] as! String
         if let url = URL(string: strURL){
             cell.locationImageView.af.setImage(withURL: url)
         }
-        cell.distanceLabel.text = String(format: "%f", loc["distance"] as! Double)
+        let dist = String(format: "%.3f", (loc["distance"] as! Double)/1609.344)
+        cell.distanceLabel.text = "\(dist) mi"
+        //is here indication on - off
+        let selectedLocation = locations[indexPath.row]
+               ///     print("selected:")
+               ///        print(cell.locationLabel.text)
+        let sel = selectedLocation["id"] as! String
+        FirebaseReferences.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
+            if (snapshot.value as? [String])?[0] == "joined" && (snapshot.value as? [String])?[1] == sel {
+                cell.isHereIndicator.isHidden = false
+                
+            }
+        else{
+            cell.isHereIndicator.isHidden = true
+            
+            print("not here indicator")
+            }
+        }
+        
         return cell
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, -500, 10 ,0 )
-//        cell.layer.transform = rotationTransform
-//        cell.alpha = 0.5
-//        UIView.animate(withDuration: 1.0) {
-//            cell.layer.transform = CATransform3DIdentity
-//            cell.alpha = 1.0
-//        }
         let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50 ,0 )
         cell.layer.transform = rotationTransform
         cell.alpha = 0
@@ -61,6 +77,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         LocationsViewController.selectedId = selectedLocation["id"] as! String
         ///        print(selectedLocation["name"])
         ///  print("done selected")kti
+    
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -68,9 +85,15 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
     let jsonDecoder = JSONDecoder()
     var names: [String: Int] = [:]
     var count = 0
+    // reload table view to update indicator of joined location
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
             //change color of bar title
        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.orange]
         navigationController?.navigationBar.titleTextAttributes = textAttributes

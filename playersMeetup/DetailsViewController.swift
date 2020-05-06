@@ -46,6 +46,7 @@ class DetailsViewController: UIViewController {
             FirebaseReferences.userInfoRef.child(self.user!.uid).setValue(array)
             self.youInTeamLabel.text = ""
         }
+        
     }
     @IBOutlet weak var usersCounterLabel: UILabel!
     
@@ -76,6 +77,8 @@ class DetailsViewController: UIViewController {
                 FirebaseReferences.userInfoRef.child(self.user!.uid).setValue(array)
                 self.youInTeamLabel.text = "You are in this team"
                 
+                
+                
             }
                 //            //check if user is already in team selected
                 //            else if (snapshot.value as? [String])?[0] == "joined" && DetailsViewController.selectedLocationId == (snapshot.value as? [String])?[1] {
@@ -102,6 +105,7 @@ class DetailsViewController: UIViewController {
         //get id of loctaion of the user now then find it in businesses and decrement count
         //ref here is for userInfo
         self.youInTeamLabel.text = "You are now in this team"
+        
         FirebaseReferences.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             //get location id previously joined //getting this from user info
             let  locationAlreadyJoinedId = (snapshot.value as? [String])?[1]
@@ -137,6 +141,7 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
         //        overrideUserInterfaceStyle = .light
         leaveTeamOutlet.isEnabled = false
         //get value from database
@@ -173,9 +178,11 @@ class DetailsViewController: UIViewController {
                 self.joinTeamOutlet?.isEnabled = false
                 self.leaveTeamOutlet?.isEnabled = true
                 self.youInTeamLabel.text = "You are in this team"
+                
             }
             else{
                 self.youInTeamLabel.text = ""
+
             }
         }
         /// increment value in database

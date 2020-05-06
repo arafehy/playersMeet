@@ -214,10 +214,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9J0-zi-Asd">
+                                                    <rect key="frame" x="172" y="100.5" width="39" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="distanceLabel" destination="TFd-Hw-fkw" id="Ydg-jS-jWk"/>
+                                            <outlet property="isHereIndicator" destination="9J0-zi-Asd" id="HOL-rO-aPm"/>
                                             <outlet property="locationImageView" destination="qqb-Mj-zOj" id="uXp-Jy-rG6"/>
                                             <outlet property="locationLabel" destination="EJf-FI-72q" id="4Fi-tE-EaK"/>
                                             <segue destination="Y7D-ph-ihh" kind="show" id="wcN-Kq-NZu"/>
@@ -429,7 +435,7 @@
         <scene sceneID="VW2-Q7-12N">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sS4-t1-1ED" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Game" image="location" selectedImage="location.fill" catalog="system" id="VVR-TY-aIX">
+                    <tabBarItem key="tabBarItem" title="Game" image="location" catalog="system" selectedImage="location.fill" id="VVR-TY-aIX">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -738,10 +744,11 @@
         <segue reference="vpq-Qr-tfG"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="location" width="128" height="115"/>
+        <image name="location" catalog="system" width="128" height="115"/>
+        <image name="location.circle.fill" catalog="system" width="128" height="121"/>
         <image name="location.fill" catalog="system" width="128" height="115"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.crop.square" catalog="system" width="128" height="114"/>
-        <image name="person.fill" width="128" height="120"/>
+        <image name="person.fill" catalog="system" width="128" height="120"/>
     </resources>
 </document>
