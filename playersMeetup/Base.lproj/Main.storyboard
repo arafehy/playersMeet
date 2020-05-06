@@ -756,8 +756,8 @@
                         <constraints>
                             <constraint firstItem="Qz8-jh-VXg" firstAttribute="trailing" secondItem="qM0-r9-OwS" secondAttribute="trailing" id="0Gt-6B-7VJ"/>
                             <constraint firstItem="Qz8-jh-VXg" firstAttribute="leading" secondItem="qM0-r9-OwS" secondAttribute="leading" id="b5N-yP-Bc0"/>
-                            <constraint firstAttribute="bottom" secondItem="Qz8-jh-VXg" secondAttribute="bottom" constant="80" id="qUK-Ao-jVY"/>
-                            <constraint firstItem="Qz8-jh-VXg" firstAttribute="top" secondItem="qM0-r9-OwS" secondAttribute="top" id="sj3-B4-SUM"/>
+                            <constraint firstAttribute="bottom" secondItem="Qz8-jh-VXg" secondAttribute="bottom" id="qUK-Ao-jVY"/>
+                            <constraint firstItem="Qz8-jh-VXg" firstAttribute="top" secondItem="E6o-oy-zSo" secondAttribute="top" id="sj3-B4-SUM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qM0-r9-OwS"/>
                     </view>
