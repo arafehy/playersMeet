@@ -31,7 +31,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         commentBar.delegate = self
         
         commentBar.inputTextView.becomeFirstResponder()
-
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -74,7 +74,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         formatter.locale = Locale(identifier: "en_US_POSIX")
         formatter.timeZone = TimeZone(abbreviation: "PST")
         formatter.dateFormat = "h:mma, MM/dd/yyyy"
-
+        
         cell.createdAtLabel.text = formatter.string(from: date)
         return cell
     }
@@ -83,16 +83,16 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         let msgsRef = Database.database().reference().child("teamChat/\(teamId)")
         
         msgsRef.queryOrdered(byChild: "createdAt")
-               .observe(.childAdded)
+            .observe(.childAdded)
             { (snapshot) in
-            let msg = snapshot.value as? NSDictionary
-            
-            if let acutualMsg = msg {
-                self.msgData.append(acutualMsg)
+                let msg = snapshot.value as? NSDictionary
                 
-                self.tableView.reloadData()
-                self.scrollToBottom()
-            }
+                if let acutualMsg = msg {
+                    self.msgData.append(acutualMsg)
+                    
+                    self.tableView.reloadData()
+                    self.scrollToBottom()
+                }
         }
     }
     
@@ -103,7 +103,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
             "user": Auth.auth().currentUser?.uid,
             "text": text,
             "createdAt": NSDate().timeIntervalSince1970
-        ] as [String: Any]
+            ] as [String: Any]
         
         msgsRef.setValue(msgObject) { (error, ref) in
             if error != nil {
@@ -123,15 +123,15 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

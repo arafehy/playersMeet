@@ -20,14 +20,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var playersMeetLabel: UILabel!
     static let signUpController = SignUpViewController()
-    static let ref = Database.database().reference().ref.child("userInfo") //doesnt need to be static fix
     override func viewDidLoad() {
         super.viewDidLoad()
-//        overrideUserInterfaceStyle = .light
+        //        overrideUserInterfaceStyle = .light
         //custom ui
         signInButton.rounded()
         signUpButton.rounded()
-//        
+        //        
         animationView.animation = Animation.named("18709-loading")
         animationView.frame.size = lottieView.frame.size
         animationView.contentMode = .scaleAspectFill
@@ -35,7 +34,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         playersMeetLabel.layer.zPosition = 1
         lottieView.addSubview(animationView)
         
-//        animationView.layer.zPosition = 1
+        //        animationView.layer.zPosition = 1
         emailField.layer.zPosition = 1
         emailField.layer.borderWidth = 1
         passwordField.layer.zPosition = 1
@@ -53,35 +52,35 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onSignUp(_ sender: Any) {
         Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!){ (user, error) in
-        if error == nil {
-          self.performSegue(withIdentifier: "toCreateProfile", sender: self)
-            //get user id
-           SignUpViewController.userID = Auth.auth().currentUser!.uid
-           print(SignUpViewController.userID)
-               //add current user to dictionary as not joined
-           var array: [String] = [] //array with join info and team number
-           array.append("not joined")
-           array.append("team location")
-           self.usersInfo[SignUpViewController.self.userID] = array
-               for (uid,hasJoined) in self.usersInfo{
-                   SignUpViewController.self.ref.observeSingleEvent(of: .value) { (snapshot) in
-                       if snapshot.hasChild(uid){
-                           print("user is in database")
-                       }
-                       else{
-                           print("adding user to database")
-                           let newUser = SignUpViewController.self.ref.child(uid)
-                           
-                           newUser.setValue(hasJoined)
-                       }
-                   }
-               }
-        }
-        else {
-            let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alertController.addAction(defaultAction)
-            self.present(alertController, animated: true, completion: nil)
+            if error == nil {
+                self.performSegue(withIdentifier: "toCreateProfile", sender: self)
+                //get user id
+                SignUpViewController.userID = Auth.auth().currentUser!.uid
+                print(SignUpViewController.userID)
+                //add current user to dictionary as not joined
+                var array: [String] = [] //array with join info and team number
+                array.append("not joined")
+                array.append("team location")
+                self.usersInfo[SignUpViewController.self.userID] = array
+                for (uid,hasJoined) in self.usersInfo{
+                    FirebaseReferences.userInfoRef.observeSingleEvent(of: .value) { (snapshot) in
+                        if snapshot.hasChild(uid){
+                            print("user is in database")
+                        }
+                        else{
+                            print("adding user to database")
+                            let newUser = FirebaseReferences.userInfoRef.child(uid)
+                            
+                            newUser.setValue(hasJoined)
+                        }
+                    }
+                }
+            }
+            else {
+                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
             }
         }
     }
@@ -90,46 +89,46 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func onSignIn(_ sender: Any) {
         
         Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
-               if error == nil{
+            if error == nil{
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let profileVC = storyboard.instantiateInitialViewController()
                 self.view.window?.rootViewController = profileVC
-                    //get user id
+                //get user id
                 SignUpViewController.userID = Auth.auth().currentUser!.uid
                 print(SignUpViewController.userID)
-                    //add current user to dictionary as not joined
+                //add current user to dictionary as not joined
                 var array: [String] = [] //array with join info and team number
                 array.append("not joined")
                 array.append("team location")
                 self.usersInfo[SignUpViewController.self.userID] = array
-                    for (uid,hasJoined) in self.usersInfo{
-                        SignUpViewController.self.ref.observeSingleEvent(of: .value) { (snapshot) in
-                            if snapshot.hasChild(uid){
-                                print("user is in database")
-                            }
-                            else{
-                                print("adding user to database")
-                                let newUser = SignUpViewController.self.ref.child(uid)
-                                
-                                newUser.setValue(hasJoined)
-                            }
+                for (uid,hasJoined) in self.usersInfo{
+                    FirebaseReferences.userInfoRef.observeSingleEvent(of: .value) { (snapshot) in
+                        if snapshot.hasChild(uid){
+                            print("user is in database")
+                        }
+                        else{
+                            print("adding user to database")
+                            let newUser = FirebaseReferences.userInfoRef.child(uid)
+                            
+                            newUser.setValue(hasJoined)
                         }
                     }
                 }
-                else{
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                                
-                    alertController.addAction(defaultAction)
-                    self.present(alertController, animated: true, completion: nil)
-                }
+            }
+            else{
+                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
             }
         }
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
-   
+    
 }
 
 extension UITextField {
