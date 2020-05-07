@@ -214,7 +214,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[.editedImage] as! UIImage
         
-        let size = CGSize(width: 200, height: 200)
+        let size = CGSize(width: 800, height: 800)
         let scaledImage = image.af.imageAspectScaled(toFill: size)
         
         profilePicture.image = scaledImage
