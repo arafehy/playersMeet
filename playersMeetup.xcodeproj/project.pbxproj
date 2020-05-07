@@ -14,6 +14,7 @@
 		DB80848E245687B800177175 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848D245687B800177175 /* SignUpViewController.swift */; };
 		DB8084902456A06100177175 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848F2456A06100177175 /* HomeViewController.swift */; };
 		DF1BEEFB1CAEEA583ED0F2A6 /* Pods_playersMeetup_playersMeetupUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84583BFA9267C542027E12EA /* Pods_playersMeetup_playersMeetupUITests.framework */; };
+		E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
 		E01AC8A024614D7C00E8C32E /* FirebaseReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01AC89F24614D7C00E8C32E /* FirebaseReferences.swift */; };
 		E0C0254B245F8CC200950223 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C0254A245F8CC200950223 /* User.swift */; };
@@ -28,7 +29,6 @@
 		FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA75F7392454460000E681F9 /* LaunchScreen.storyboard */; };
 		FA75F7462454460000E681F9 /* playersMeetupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7452454460000E681F9 /* playersMeetupTests.swift */; };
 		FA75F7512454460000E681F9 /* playersMeetupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7502454460000E681F9 /* playersMeetupUITests.swift */; };
-		FAA027582464210D00C8157A /* 4414-bouncy-basketball.json in Resources */ = {isa = PBXBuildFile; fileRef = FAA027572464210C00C8157A /* 4414-bouncy-basketball.json */; };
 		FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBA32455899F00C25C92 /* NetworkService.swift */; };
 		FAB9CBA62455931E00C25C92 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBA52455931E00C25C92 /* Models.swift */; };
 		FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */; };
@@ -68,6 +68,7 @@
 		D7948BD21A4ECC0B394960F4 /* Pods-playersMeetupTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetupTests.debug.xcconfig"; path = "Target Support Files/Pods-playersMeetupTests/Pods-playersMeetupTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB80848D245687B800177175 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		DB80848F2456A06100177175 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4414-bouncy-basketball.json"; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E01AC89F24614D7C00E8C32E /* FirebaseReferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReferences.swift; sourceTree = "<group>"; };
 		E0C0254A245F8CC200950223 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -89,7 +90,6 @@
 		FA75F74C2454460000E681F9 /* playersMeetupUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = playersMeetupUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA75F7502454460000E681F9 /* playersMeetupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playersMeetupUITests.swift; sourceTree = "<group>"; };
 		FA75F7522454460000E681F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FAA027572464210C00C8157A /* 4414-bouncy-basketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = "4414-bouncy-basketball.json"; path = "../../../../Downloads/4414-bouncy-basketball.json"; sourceTree = "<group>"; };
 		FAB9CBA32455899F00C25C92 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FAB9CBA52455931E00C25C92 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 		FA75F72D245445FC00E681F9 /* playersMeetup */ = {
 			isa = PBXGroup;
 			children = (
-				FAA027572464210C00C8157A /* 4414-bouncy-basketball.json */,
+				E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */,
 				FAFECE3A24619F9A005CD8F7 /* 18709-loading.json */,
 				FA18FCB1245BBC930087C1CC /* Assets.xcassets */,
 				FA1116E424598D3C00800C33 /* GoogleService-Info.plist */,
@@ -338,7 +338,7 @@
 				FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */,
 				FAFECE3B24619F9A005CD8F7 /* 18709-loading.json in Resources */,
 				FA18FCB2245BBC940087C1CC /* Assets.xcassets in Resources */,
-				FAA027582464210D00C8157A /* 4414-bouncy-basketball.json in Resources */,
+				E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */,
 				FA1116E524598D3C00800C33 /* GoogleService-Info.plist in Resources */,
 				FA75F736245445FD00E681F9 /* Main.storyboard in Resources */,
 			);
