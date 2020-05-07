@@ -67,8 +67,15 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         } else {
             cell.nameLabel.text = msg["username"] as? String
             let col: String = msg["color"] as! String
-            let uiColor: UIColor = UIColor(hexString: col)
-            cell.nameLabel.textColor = uiColor
+            if col == "#000000"{
+                let uiColor: UIColor = UIColor(hexString: "#808080")
+                cell.nameLabel.textColor = uiColor
+            }
+            else{
+                let uiColor: UIColor = UIColor(hexString: col)
+                cell.nameLabel.textColor = uiColor
+            }
+            
             }
         
         cell.msgLabel.text = msg["text"] as? String
