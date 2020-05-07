@@ -282,7 +282,7 @@
                                     <constraint firstAttribute="height" constant="72" id="tRA-f6-zVZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="19"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -295,7 +295,7 @@
                                     <constraint firstAttribute="height" constant="70" id="bQ5-dy-6bZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="19"/>
-                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -601,7 +601,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-Pk-41X" userLabel="Name Text Field">
                                         <rect key="frame" x="20" y="0.0" width="274" height="57.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
                                         <connections>
                                             <action selector="nameChanged:" destination="7iw-pW-pbj" eventType="editingChanged" id="dic-JK-Ua9"/>
                                             <action selector="nameEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="HsO-dJ-iW3"/>
@@ -610,7 +610,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-Od-8aZ" userLabel="Username Text Field">
                                         <rect key="frame" x="20" y="65.5" width="274" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="username"/>
                                         <connections>
                                             <action selector="usernameChanged:" destination="7iw-pW-pbj" eventType="editingChanged" id="CI7-4M-jku"/>
                                             <action selector="usernameEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="92u-1O-rOV"/>
