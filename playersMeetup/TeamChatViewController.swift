@@ -82,6 +82,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.createdAtLabel.text = formatter.string(from: date)
         cell.tapRecognizer.addTarget(self, action: #selector(showProfile))
+        cell.tapRecognizer.userID = msg["user"] as? String
         cell.nameLabel.gestureRecognizers = []
         cell.nameLabel.gestureRecognizers!.append(cell.tapRecognizer)
         return cell
@@ -140,7 +141,16 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         }
     }
     
-    @objc func showProfile() {
-        self.performSegue(withIdentifier: "toProfile", sender: UITapGestureRecognizer.self)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toProfile" {
+            let profileVC = segue.destination as! ProfileViewController
+            let tapRecognizer = sender as! customTapGestureRecognizer
+            let userID = tapRecognizer.userID
+            profileVC.otherUserID = userID ?? ""
+        }
+    }
+    
+    @objc func showProfile(sender: customTapGestureRecognizer) {
+        self.performSegue(withIdentifier: "toProfile", sender: sender)
     }
 }

@@ -27,10 +27,12 @@ class ProfileViewController: UIViewController {
     let animationView = AnimationView()
     let user: User? = Auth.auth().currentUser
     var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "",color: "")
+    var otherUserID: String = ""
+    
     override func viewDidAppear(_ animated: Bool) {
-       
         animationView.play()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         animationView.animation = Animation.named("4414-bouncy-basketball")
@@ -40,7 +42,11 @@ class ProfileViewController: UIViewController {
         animationView.loopMode = .loop
         lottieView.addSubview(animationView)
         animationView.play()
-        if let userID = user?.uid {
+        
+        if !otherUserID.isEmpty {
+            loadUserProfile(userID: otherUserID)
+        }
+        else if let userID = user?.uid {
             loadUserProfile(userID: userID)
         }
         print(assignedStringColor)
