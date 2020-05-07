@@ -80,6 +80,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         self.bioTextView.text = info.bio
         self.ageField.text = info.age
         self.profilePicture.image = initialPhoto
+        profilePicture.layer.cornerRadius = 10
     }
     
     // MARK: - Profile Updating

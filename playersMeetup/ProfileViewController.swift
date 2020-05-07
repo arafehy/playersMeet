@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController {
         
         if let userID = user?.uid {
             loadUserProfile(userID: userID)
+            profilePicture.layer.cornerRadius = 10
         }
     }
     
