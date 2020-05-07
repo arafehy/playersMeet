@@ -22,7 +22,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var ageLabel: UILabel!
     
     @IBOutlet weak var lottieView: UIView!
-    var assignedStringColor: String = UIColor.toHexString(UIColor.random)()
+    static var assignedStringColor: String = UIColor.toHexString(UIColor.random)()
     var handle: AuthStateDidChangeListenerHandle?
     let animationView = AnimationView()
     let user: User? = Auth.auth().currentUser
@@ -43,7 +43,7 @@ class ProfileViewController: UIViewController {
         if let userID = user?.uid {
             loadUserProfile(userID: userID)
         }
-        print(assignedStringColor)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +83,6 @@ class ProfileViewController: UIViewController {
             let username = value?["username"] as? String
             let bio = value?["bio"] as? String
             let photoURLString = value?["photoURL"] as? String
-            
             let age = value?["age"] as? String
             
             if let _ = URL(string: photoURLString ?? "") {
@@ -92,7 +91,7 @@ class ProfileViewController: UIViewController {
             else {
                 self.editButton.isEnabled = true
             }
-            self.userInfo = UserInfo(username: username, name: name, bio: bio, age:age, photoURL: photoURLString, color: self.assignedStringColor) // here
+            self.userInfo = UserInfo(username: username, name: name, bio: bio, age:age, photoURL: photoURLString, color: ProfileViewController.self.assignedStringColor) // here
             
             if self.userInfo.name.isEmpty {
                 self.nameLabel.text = "No name"
