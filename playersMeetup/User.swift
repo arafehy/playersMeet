@@ -12,12 +12,14 @@ struct UserInfo {
     var username: String
     var name: String
     var bio: String
+    var age: String
     var photoURL: String
     
-    init(username: String?, name: String?, bio: String?, photoURL: String?) {
+    init(username: String?, name: String?, bio: String?, age: String?, photoURL: String?) {
         self.username = username ?? ""
         self.name = name ?? ""
         self.bio = bio ?? ""
+        self.age = age ?? ""
         self.photoURL = photoURL ?? ""
     }
     
@@ -25,6 +27,7 @@ struct UserInfo {
         return ["username": self.username,
                 "name": self.name,
                 "bio": self.bio,
+                "age": self.age,
                 "photoURL": self.photoURL
         ]
     }

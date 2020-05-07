@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -89,7 +89,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teq-h4-lH2" userLabel="Name Stack">
-                                <rect key="frame" x="153" y="326" width="108.5" height="75"/>
+                                <rect key="frame" x="153" y="326" width="108.5" height="99"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-Qe-Ejw">
                                         <rect key="frame" x="0.0" y="0.0" width="108.5" height="48"/>
@@ -103,10 +103,16 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKT-XF-U65">
+                                        <rect key="frame" x="36.5" y="75" width="35" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hGO-iq-PGK" userLabel="Bio Stack">
-                                <rect key="frame" x="15" y="431" width="384" height="374"/>
+                                <rect key="frame" x="15" y="455" width="384" height="350"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-hm-bXq" userLabel="Bio Label">
                                         <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
@@ -115,7 +121,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
-                                        <rect key="frame" x="0.0" y="24" width="384" height="350"/>
+                                        <rect key="frame" x="0.0" y="24" width="384" height="326"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -157,6 +163,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageLabel" destination="YKT-XF-U65" id="UY1-oR-zD8"/>
                         <outlet property="bioTextView" destination="pdC-ni-nmY" id="3Pb-wd-QOO"/>
                         <outlet property="editButton" destination="Va0-fm-I2D" id="IFK-kq-jpD"/>
                         <outlet property="nameLabel" destination="WZl-Qe-Ejw" id="iV0-Bw-wVI"/>
@@ -559,7 +566,7 @@
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-DZ-z4l" userLabel="Bio Stack">
-                                <rect key="frame" x="15" y="418" width="384" height="382"/>
+                                <rect key="frame" x="15" y="443.5" width="384" height="356.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hb9-qp-2pm" userLabel="Bio Label">
                                         <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
@@ -568,7 +575,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter a bio..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Vau-ad-t0F">
-                                        <rect key="frame" x="0.0" y="32" width="384" height="350"/>
+                                        <rect key="frame" x="0.0" y="32" width="384" height="324.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -578,14 +585,15 @@
                                 <constraints>
                                     <constraint firstItem="Vau-ad-t0F" firstAttribute="leading" secondItem="7Z2-DZ-z4l" secondAttribute="leading" id="JbI-fH-DJc"/>
                                     <constraint firstAttribute="bottom" secondItem="Vau-ad-t0F" secondAttribute="bottom" id="ZfH-m6-b9p"/>
+                                    <constraint firstItem="Vau-ad-t0F" firstAttribute="top" secondItem="Hb9-qp-2pm" secondAttribute="bottom" constant="8" symbolic="YES" id="fGe-AI-GDM"/>
                                     <constraint firstAttribute="trailing" secondItem="Vau-ad-t0F" secondAttribute="trailing" id="wmK-Vk-w7p"/>
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DPE-V0-64G" userLabel="Name Stack">
-                                <rect key="frame" x="50" y="294" width="314" height="118.5"/>
+                                <rect key="frame" x="50" y="294" width="314" height="141.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-Pk-41X" userLabel="Name Text Field">
-                                        <rect key="frame" x="20" y="0.0" width="274" height="76.5"/>
+                                        <rect key="frame" x="20" y="0.0" width="274" height="57.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -594,12 +602,21 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-Od-8aZ" userLabel="Username Text Field">
-                                        <rect key="frame" x="20" y="84.5" width="274" height="34"/>
+                                        <rect key="frame" x="20" y="65.5" width="274" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <action selector="usernameChanged:" destination="7iw-pW-pbj" eventType="editingChanged" id="CI7-4M-jku"/>
                                             <action selector="usernameEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="92u-1O-rOV"/>
+                                        </connections>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qH4-7N-6DP">
+                                        <rect key="frame" x="130.5" y="107.5" width="53.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <connections>
+                                            <action selector="ageChanged:" destination="7iw-pW-pbj" eventType="editingChanged" id="J9g-Mb-cBe"/>
+                                            <action selector="ageEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="w43-Rp-d0W"/>
                                         </connections>
                                     </textField>
                                 </subviews>
@@ -621,7 +638,7 @@
                             <constraint firstItem="7Z2-DZ-z4l" firstAttribute="leading" secondItem="kwN-ut-hTW" secondAttribute="leading" constant="15" id="lCG-bB-3HM"/>
                             <constraint firstItem="DPE-V0-64G" firstAttribute="top" secondItem="RN5-dF-cjA" secondAttribute="bottom" constant="8" id="rLs-xP-6YP"/>
                             <constraint firstItem="DPE-V0-64G" firstAttribute="leading" secondItem="kwN-ut-hTW" secondAttribute="leading" constant="50" id="vfh-0S-x36"/>
-                            <constraint firstItem="7Z2-DZ-z4l" firstAttribute="top" secondItem="DPE-V0-64G" secondAttribute="bottom" constant="5.5" id="xUA-OP-Jph"/>
+                            <constraint firstItem="7Z2-DZ-z4l" firstAttribute="top" secondItem="DPE-V0-64G" secondAttribute="bottom" constant="8" symbolic="YES" id="xUA-OP-Jph"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kwN-ut-hTW"/>
                     </view>
@@ -633,6 +650,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ageField" destination="qH4-7N-6DP" id="VB3-6T-131"/>
                         <outlet property="bioTextView" destination="Vau-ad-t0F" id="OK9-MW-euB"/>
                         <outlet property="createProfileButton" destination="yaJ-KN-mZw" id="3x9-0R-UNB"/>
                         <outlet property="nameField" destination="vmA-Pk-41X" id="NMA-b7-h83"/>

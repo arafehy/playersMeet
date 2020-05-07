@@ -18,10 +18,12 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var editButton: UIBarButtonItem!
     
+    @IBOutlet weak var ageLabel: UILabel!
+    
     var handle: AuthStateDidChangeListenerHandle?
     
     let user: User? = Auth.auth().currentUser
-    var userInfo = UserInfo(username: "", name: "", bio: "", photoURL: "")
+    var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,13 +71,15 @@ class ProfileViewController: UIViewController {
             let bio = value?["bio"] as? String
             let photoURLString = value?["photoURL"] as? String
             
+            let age = value?["age"] as? String
+            
             if let _ = URL(string: photoURLString ?? "") {
                 self.loadProfilePicture(userID: userID)
             }
             else {
                 self.editButton.isEnabled = true
             }
-            self.userInfo = UserInfo(username: username, name: name, bio: bio, photoURL: photoURLString)
+            self.userInfo = UserInfo(username: username, name: name, bio: bio, age:age, photoURL: photoURLString)
             
             if self.userInfo.name.isEmpty {
                 self.nameLabel.text = "No name"
@@ -95,6 +99,13 @@ class ProfileViewController: UIViewController {
             else {
                 self.bioTextView.text = self.userInfo.bio
             }
+            if self.userInfo.age.isEmpty {
+                self.ageLabel.text = "No Age"
+            }
+            else {
+                self.ageLabel.text = "Age: \(self.userInfo.age)"
+            }
+            
         }) { (error) in
             print(error.localizedDescription)
         }
