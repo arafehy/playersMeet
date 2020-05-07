@@ -103,7 +103,7 @@ class ProfileViewController: UIViewController {
                 self.ageLabel.text = "No Age"
             }
             else {
-                self.ageLabel.text = self.userInfo.age
+                self.ageLabel.text = "Age: \(self.userInfo.age)"
             }
             
         }) { (error) in
