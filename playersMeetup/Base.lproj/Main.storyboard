@@ -629,7 +629,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="ageChanged:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="DHs-pV-bUd"/>
+                                    <action selector="ageChanged:" destination="7iw-pW-pbj" eventType="editingChanged" id="J9g-Mb-cBe"/>
                                     <action selector="ageEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="w43-Rp-d0W"/>
                                 </connections>
                             </textField>
