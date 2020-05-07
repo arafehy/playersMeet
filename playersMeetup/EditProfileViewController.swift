@@ -79,8 +79,10 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         self.usernameField.text = info.username
         self.bioTextView.text = info.bio
         self.ageField.text = info.age
-        self.profilePicture.image = initialPhoto
+        profilePicture.image = initialPhoto
         profilePicture.layer.cornerRadius = 10
+        profilePicture.layer.borderWidth = 4
+        profilePicture.layer.borderColor = UIColor.systemGray.cgColor
     }
     
     // MARK: - Profile Updating
@@ -219,7 +221,13 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         let scaledImage = image.af.imageAspectScaled(toFill: size)
         
         profilePicture.image = scaledImage
+        if let _ = userInfo?.photoURL.isEmpty {
+            profilePicture.layer.cornerRadius = 10
+            profilePicture.layer.borderWidth = 4
+            profilePicture.layer.borderColor = UIColor.systemGray.cgColor
+        }
         profilePictureChanged = true
+        
         saveButton.isEnabled = true
         createProfileButton.isEnabled = true
         dismiss(animated: true, completion: nil)

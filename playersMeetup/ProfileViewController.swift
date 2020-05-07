@@ -30,7 +30,6 @@ class ProfileViewController: UIViewController {
         
         if let userID = user?.uid {
             loadUserProfile(userID: userID)
-            profilePicture.layer.cornerRadius = 10
         }
     }
     
@@ -121,6 +120,9 @@ class ProfileViewController: UIViewController {
                 return
             }
             self.profilePicture.image = UIImage(data: data)
+            self.profilePicture.layer.cornerRadius = 10
+            self.profilePicture.layer.borderWidth = 4
+            self.profilePicture.layer.borderColor = UIColor.systemGray.cgColor
             self.editButton.isEnabled = true
         }
     }
