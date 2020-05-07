@@ -129,14 +129,6 @@
                                     <constraint firstAttribute="bottom" secondItem="pdC-ni-nmY" secondAttribute="bottom" id="yFt-4Y-XQS"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mx8-tH-m7e">
-                                <rect key="frame" x="15" y="147" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="g7v-Ld-9AI" kind="show" id="evY-UP-4IB"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -448,6 +440,9 @@
                                 <state key="normal" title="Chat with the team">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <segue destination="g7v-Ld-9AI" kind="show" id="vOv-Iy-bhq"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q7x-5U-mmW" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="88" width="414" height="228"/>
