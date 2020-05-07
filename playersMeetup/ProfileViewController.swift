@@ -27,7 +27,10 @@ class ProfileViewController: UIViewController {
     let animationView = AnimationView()
     let user: User? = Auth.auth().currentUser
     var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "",color: "")
-    
+    override func viewDidAppear(_ animated: Bool) {
+       
+        animationView.play()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         animationView.animation = Animation.named("4414-bouncy-basketball")
