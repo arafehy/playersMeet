@@ -90,10 +90,13 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         tableView.reloadData()
         
     }
+//    override func viewDidAppear(_ animated: Bool) {
+//        tableView.reloadData()
+//    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.tableView.reloadData()
             //change color of bar title
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
@@ -103,7 +106,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() ==  .authorizedAlways{
+        CLLocationManager.authorizationStatus() ==  .authorizedAlways{
             guard let locValue: CLLocationCoordinate2D = self.locationManager.location?.coordinate else { print("here")
                 tableView.dataSource = self
                 tableView.delegate = self

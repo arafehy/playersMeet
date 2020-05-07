@@ -15,15 +15,21 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    var teamId: String = "8eqZnk53yNXIR86aIaYBVg"
+    var teamId: String = LocationsViewController.selectedId //teamId is the selected location
     let commentBar = MessageInputBar()
     var showsCommentBar = true
     let ref = Database.database().reference()
     var msgData = [NSDictionary]()
+    let currentUser: User? = Auth.auth().currentUser
+//    var myUsername: String = ""
     
     override func viewDidLoad() {
+//
+//        FirebaseReferences.usersRef.child(currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
+//            var profileInfo = snapshot.value as! NSDictionary
+//            self.myUsername = profileInfo["username"] as! String //get username of current user
+//        }
         super.viewDidLoad()
-        
         loadMsgs()
         
         commentBar.inputTextView.placeholder = "Type message..."
@@ -61,12 +67,13 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
         let msg = msgData[indexPath.row]
         if (Auth.auth().currentUser!.uid == (msg["user"] as! String)) {
-            cell.nameLabel.text = "Tom1996(You):"
+            cell.nameLabel.text = "\(msg["username"] as! String) (Me)"
             cell.nameLabel.textColor = UIColor.systemRed
         } else {
-            cell.nameLabel.text = "Tom1996:"
-            cell.nameLabel.textColor = UIColor.systemGreen
-        }
+                cell.nameLabel.text = msg["username"] as? String
+                cell.nameLabel.textColor = UIColor.systemGreen
+            }
+        
         cell.msgLabel.text = msg["text"] as? String
         
         let date = Date(timeIntervalSince1970: msg["createdAt"] as! TimeInterval)
@@ -91,19 +98,23 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
                 if let acutualMsg = msg {
                     self.msgData.append(acutualMsg)
                     
-                    self.tableView.reloadData()
+                    
                     self.scrollToBottom()
+                    self.tableView.reloadData()
                 }
         }
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         let msgsRef = Database.database().reference().child("teamChat/\(teamId)").childByAutoId()
-        
+        FirebaseReferences.usersRef.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
+        let userInfo = snapshot.value as? NSDictionary
+        let username = userInfo?["username"]
         let msgObject = [
-            "user": Auth.auth().currentUser?.uid,
+            "user": Auth.auth().currentUser?.uid as Any,
             "text": text,
-            "createdAt": NSDate().timeIntervalSince1970
+            "createdAt": NSDate().timeIntervalSince1970,
+            "username" : username!
             ] as [String: Any]
         
         msgsRef.setValue(msgObject) { (error, ref) in
@@ -111,10 +122,11 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Error: \(error)")
             }
         }
-        
+        }
         commentBar.inputTextView.text = nil
         becomeFirstResponder()
         commentBar.inputTextView.resignFirstResponder()
+//        self.tableView.reloadData()
     }
     
     func scrollToBottom(){
@@ -122,6 +134,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
             let indexPath = IndexPath(row: self.msgData.count-1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
+        
     }
     
     
