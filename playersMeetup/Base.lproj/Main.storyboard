@@ -19,8 +19,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dZk-XR-9gU">
                                 <rect key="frame" x="107" y="119" width="200" height="197.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="DwM-QS-C1S"/>
-                                    <constraint firstAttribute="width" constant="200" id="tms-Oc-UAv"/>
+                                    <constraint firstAttribute="height" constant="200" id="SQe-bL-z3i"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teq-h4-lH2" userLabel="Name Stack">
@@ -47,7 +46,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hGO-iq-PGK" userLabel="Bio Stack">
-                                <rect key="frame" x="15" y="455" width="384" height="350"/>
+                                <rect key="frame" x="15" y="455" width="384" height="109"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-hm-bXq" userLabel="Bio Label">
                                         <rect key="frame" x="0.0" y="0.0" width="29" height="24"/>
@@ -56,7 +55,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
-                                        <rect key="frame" x="0.0" y="24" width="384" height="326"/>
+                                        <rect key="frame" x="0.0" y="24" width="384" height="85"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -64,24 +63,29 @@
                                     </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="pdC-ni-nmY" firstAttribute="top" secondItem="t0B-hm-bXq" secondAttribute="bottom" id="PUs-3n-0Qy"/>
-                                    <constraint firstAttribute="trailing" secondItem="pdC-ni-nmY" secondAttribute="trailing" id="SIH-zw-gyu"/>
-                                    <constraint firstItem="pdC-ni-nmY" firstAttribute="leading" secondItem="hGO-iq-PGK" secondAttribute="leading" id="USb-OH-QzE"/>
-                                    <constraint firstAttribute="bottom" secondItem="pdC-ni-nmY" secondAttribute="bottom" id="yFt-4Y-XQS"/>
+                                    <constraint firstItem="pdC-ni-nmY" firstAttribute="trailing" secondItem="hGO-iq-PGK" secondAttribute="trailingMargin" id="hIZ-d9-Y2A"/>
                                 </constraints>
                             </stackView>
+                            <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ucm-ne-q6c">
+                                <rect key="frame" x="224" y="572" width="175" height="241"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="dZk-XR-9gU" firstAttribute="top" secondItem="wRl-hr-91e" secondAttribute="top" constant="30" id="Cbi-fA-xuk"/>
-                            <constraint firstItem="wRl-hr-91e" firstAttribute="trailing" secondItem="hGO-iq-PGK" secondAttribute="trailing" constant="15" id="GXw-nw-0Dj"/>
-                            <constraint firstItem="dZk-XR-9gU" firstAttribute="centerX" secondItem="BKj-xe-mcY" secondAttribute="centerX" id="Rgz-15-QLu"/>
-                            <constraint firstItem="hGO-iq-PGK" firstAttribute="centerX" secondItem="teq-h4-lH2" secondAttribute="centerX" id="T2a-ny-WD2"/>
-                            <constraint firstItem="wRl-hr-91e" firstAttribute="bottom" secondItem="hGO-iq-PGK" secondAttribute="bottom" constant="8" id="TUm-cz-09u"/>
-                            <constraint firstItem="teq-h4-lH2" firstAttribute="centerX" secondItem="dZk-XR-9gU" secondAttribute="centerX" id="V86-pj-qhA"/>
-                            <constraint firstItem="hGO-iq-PGK" firstAttribute="top" secondItem="teq-h4-lH2" secondAttribute="bottom" constant="30" id="VPt-PJ-DCq"/>
-                            <constraint firstItem="hGO-iq-PGK" firstAttribute="leading" secondItem="wRl-hr-91e" secondAttribute="leading" constant="15" id="WRc-d7-dAC"/>
-                            <constraint firstItem="teq-h4-lH2" firstAttribute="top" secondItem="dZk-XR-9gU" secondAttribute="bottom" constant="8" symbolic="YES" id="hiG-LS-Adn"/>
+                            <constraint firstItem="Ucm-ne-q6c" firstAttribute="leading" secondItem="wRl-hr-91e" secondAttribute="leading" constant="224" id="1q7-Ie-dSo"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="centerX" secondItem="dZk-XR-9gU" secondAttribute="centerX" id="MuP-ol-X9X"/>
+                            <constraint firstItem="dZk-XR-9gU" firstAttribute="leading" secondItem="wRl-hr-91e" secondAttribute="leading" constant="107" id="Th9-G6-mUy"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="top" secondItem="BKj-xe-mcY" secondAttribute="top" constant="455" id="V6E-by-3cg"/>
+                            <constraint firstItem="Ucm-ne-q6c" firstAttribute="top" secondItem="hGO-iq-PGK" secondAttribute="bottom" constant="8" id="Yh4-nS-290"/>
+                            <constraint firstItem="Ucm-ne-q6c" firstAttribute="bottom" secondItem="wRl-hr-91e" secondAttribute="bottom" id="edE-H7-Xll"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="centerX" secondItem="teq-h4-lH2" secondAttribute="centerX" id="evd-Dh-VSx"/>
+                            <constraint firstItem="dZk-XR-9gU" firstAttribute="top" secondItem="wRl-hr-91e" secondAttribute="top" constant="30" id="rm3-gM-kdA"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="trailing" secondItem="Ucm-ne-q6c" secondAttribute="trailing" id="uOp-z2-IaZ"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="centerX" secondItem="BKj-xe-mcY" secondAttribute="centerX" id="uqJ-zA-f6X"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="leading" secondItem="wRl-hr-91e" secondAttribute="leading" constant="15" id="vO8-Yv-EAw"/>
+                            <constraint firstItem="hGO-iq-PGK" firstAttribute="top" secondItem="teq-h4-lH2" secondAttribute="bottom" constant="30" id="wo6-UD-1XW"/>
+                            <constraint firstItem="Ucm-ne-q6c" firstAttribute="top" secondItem="BKj-xe-mcY" secondAttribute="top" constant="572" id="z3b-VN-10y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wRl-hr-91e"/>
                     </view>
@@ -101,6 +105,7 @@
                         <outlet property="ageLabel" destination="YKT-XF-U65" id="UY1-oR-zD8"/>
                         <outlet property="bioTextView" destination="pdC-ni-nmY" id="3Pb-wd-QOO"/>
                         <outlet property="editButton" destination="Va0-fm-I2D" id="IFK-kq-jpD"/>
+                        <outlet property="lottieView" destination="Ucm-ne-q6c" id="AYs-el-cKC"/>
                         <outlet property="nameLabel" destination="WZl-Qe-Ejw" id="iV0-Bw-wVI"/>
                         <outlet property="profilePicture" destination="dZk-XR-9gU" id="Bdf-2a-fWn"/>
                         <outlet property="usernameLabel" destination="ly5-4v-KYo" id="8bE-JZ-XNs"/>

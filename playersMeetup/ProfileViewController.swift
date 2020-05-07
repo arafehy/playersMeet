@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import AlamofireImage
 import Foundation
+import Lottie
 class ProfileViewController: UIViewController {
     
     @IBOutlet weak var profilePicture: UIImageView!
@@ -20,15 +21,22 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var ageLabel: UILabel!
     
+    @IBOutlet weak var lottieView: UIView!
     var assignedStringColor: String = UIColor.toHexString(UIColor.random)()
     var handle: AuthStateDidChangeListenerHandle?
-    
+    let animationView = AnimationView()
     let user: User? = Auth.auth().currentUser
     var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "",color: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        animationView.animation = Animation.named("4414-bouncy-basketball")
         
+        animationView.frame.size = lottieView.frame.size
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        lottieView.addSubview(animationView)
+        animationView.play()
         if let userID = user?.uid {
             loadUserProfile(userID: userID)
         }
