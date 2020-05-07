@@ -282,7 +282,7 @@
                                     <constraint firstAttribute="height" constant="72" id="tRA-f6-zVZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="19"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -295,7 +295,7 @@
                                     <constraint firstAttribute="height" constant="70" id="bQ5-dy-6bZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="19"/>
-                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
                                         <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -488,6 +488,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sS4-t1-1ED" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Game" image="location" catalog="system" selectedImage="location.fill" id="VVR-TY-aIX">
+                        <color key="badgeColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -495,10 +496,12 @@
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="A7K-fi-TkN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pC0-mn-CMJ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -518,7 +521,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gmy-sI-Kar">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="frn-dA-emD" kind="relationship" relationship="viewControllers" id="8YR-JM-ehi"/>
@@ -551,6 +554,9 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkN-fG-fj0">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Edit Profile" id="LIa-wR-TOo">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vxB-6r-6x2">
@@ -596,7 +602,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-Pk-41X" userLabel="Name Text Field">
                                         <rect key="frame" x="20" y="0.0" width="274" height="57.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="name"/>
                                         <connections>
                                             <action selector="nameChanged:" destination="7iw-pW-pbj" eventType="editingChanged" id="dic-JK-Ua9"/>
                                             <action selector="nameEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="HsO-dJ-iW3"/>
@@ -605,7 +611,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-Od-8aZ" userLabel="Username Text Field">
                                         <rect key="frame" x="20" y="65.5" width="274" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="username"/>
                                         <connections>
                                             <action selector="usernameChanged:" destination="7iw-pW-pbj" eventType="editingChanged" id="CI7-4M-jku"/>
                                             <action selector="usernameEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="92u-1O-rOV"/>
@@ -680,6 +686,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oGg-jm-Q9r">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -716,45 +725,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Qz8-jh-VXg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qz8-jh-VXg">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" rowHeight="75" id="P00-74-ggT" customClass="MessageCell" customModule="playersMeetup" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="75"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MessageCell" id="P00-74-ggT" customClass="MessageCell" customModule="playersMeetup" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="P00-74-ggT" id="hoO-n5-Akg">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="75"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48Z-li-sVc">
-                                                    <rect key="frame" x="5" y="28" width="399" height="14.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FZu-iA-MTD">
-                                                    <rect key="frame" x="381" y="58" width="23" height="12"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="10"/>
+                                                    <rect key="frame" x="382" y="58.5" width="27" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Om7-mQ-dxk">
-                                                    <rect key="frame" x="5" y="5" width="79.5" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="black" pointSize="15"/>
-                                                    <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wki-EK-n9C" userLabel="Message Stack">
+                                                    <rect key="frame" x="10" y="10" width="104" height="47.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Om7-mQ-dxk">
+                                                            <rect key="frame" x="0.0" y="0.0" width="104" height="24"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                                            <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48Z-li-sVc">
+                                                            <rect key="frame" x="0.0" y="27" width="91.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="48Z-li-sVc" firstAttribute="top" secondItem="Om7-mQ-dxk" secondAttribute="bottom" constant="5" id="1FY-2O-cPH"/>
-                                                <constraint firstAttribute="trailing" secondItem="FZu-iA-MTD" secondAttribute="trailing" constant="10" id="9Xg-x8-V4V"/>
-                                                <constraint firstAttribute="trailing" secondItem="48Z-li-sVc" secondAttribute="trailing" constant="10" id="OHX-6J-ws9" userLabel="trailing = Msg Label.trailing + 5"/>
-                                                <constraint firstItem="Om7-mQ-dxk" firstAttribute="top" secondItem="hoO-n5-Akg" secondAttribute="top" constant="5" id="bLe-Sh-viV"/>
-                                                <constraint firstAttribute="bottom" secondItem="FZu-iA-MTD" secondAttribute="bottom" constant="5" id="nqC-ym-cpP"/>
-                                                <constraint firstItem="Om7-mQ-dxk" firstAttribute="leading" secondItem="hoO-n5-Akg" secondAttribute="leading" constant="5" id="pG1-F9-AK9"/>
-                                                <constraint firstItem="48Z-li-sVc" firstAttribute="leading" secondItem="hoO-n5-Akg" secondAttribute="leading" constant="5" id="qru-dw-k2f"/>
-                                                <constraint firstItem="FZu-iA-MTD" firstAttribute="top" secondItem="48Z-li-sVc" secondAttribute="bottom" constant="15.5" id="vRN-vW-UGZ"/>
+                                                <constraint firstAttribute="bottom" secondItem="FZu-iA-MTD" secondAttribute="bottom" constant="5" id="86Y-yb-iBd"/>
+                                                <constraint firstAttribute="trailing" secondItem="FZu-iA-MTD" secondAttribute="trailing" constant="5" id="9lH-rr-2Se"/>
+                                                <constraint firstItem="Wki-EK-n9C" firstAttribute="top" secondItem="hoO-n5-Akg" secondAttribute="top" constant="10" id="Vpt-GM-4AN"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Wki-EK-n9C" secondAttribute="bottom" constant="20" symbolic="YES" id="jsZ-td-d1I"/>
+                                                <constraint firstItem="FZu-iA-MTD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hoO-n5-Akg" secondAttribute="leading" constant="20" symbolic="YES" id="peu-mX-7Lv"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Wki-EK-n9C" secondAttribute="trailing" constant="20" symbolic="YES" id="rHd-oc-ftn"/>
+                                                <constraint firstItem="Wki-EK-n9C" firstAttribute="leading" secondItem="hoO-n5-Akg" secondAttribute="leading" constant="10" id="wzC-mP-Kak"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
