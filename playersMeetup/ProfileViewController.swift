@@ -75,6 +75,10 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    @IBAction func doneButton(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func loadUserProfile(userID: String) {
         FirebaseReferences.usersRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary

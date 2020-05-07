@@ -21,7 +21,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     let ref = Database.database().reference()
     var msgData = [NSDictionary]()
     let currentUser: User? = Auth.auth().currentUser
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +69,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
             let col: String = msg["color"] as! String
             let uiColor: UIColor = UIColor(hexString: col)
             cell.nameLabel.textColor = uiColor
-            }
+        }
         
         cell.msgLabel.text = msg["text"] as? String
         
@@ -81,6 +81,9 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         formatter.dateFormat = "h:mma, MM/dd/yyyy"
         
         cell.createdAtLabel.text = formatter.string(from: date)
+        cell.tapRecognizer.addTarget(self, action: #selector(showProfile))
+        cell.nameLabel.gestureRecognizers = []
+        cell.nameLabel.gestureRecognizers!.append(cell.tapRecognizer)
         return cell
     }
     
@@ -105,26 +108,26 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         let msgsRef = Database.database().reference().child("teamChat/\(teamId)").childByAutoId()
         FirebaseReferences.usersRef.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
-        let userInfo = snapshot.value as? NSDictionary
-        let username = userInfo?["username"]
-        let color = userInfo?["color"]
+            let userInfo = snapshot.value as? NSDictionary
+            let username = userInfo?["username"]
+            let color = userInfo?["color"]
             
-
-//        let color:String = myColor.description
-//        print(color)
-        let msgObject = [
-            "user": Auth.auth().currentUser?.uid as Any,
-            "text": text,
-            "createdAt": NSDate().timeIntervalSince1970,
-            "username" : username!,
-            "color": color as Any
-            ] as [String: Any]
-        
-        msgsRef.setValue(msgObject) { (error, ref) in
-            if error != nil {
-                print("Error: \(String(describing: error))")
+            
+            //        let color:String = myColor.description
+            //        print(color)
+            let msgObject = [
+                "user": Auth.auth().currentUser?.uid as Any,
+                "text": text,
+                "createdAt": NSDate().timeIntervalSince1970,
+                "username" : username!,
+                "color": color as Any
+                ] as [String: Any]
+            
+            msgsRef.setValue(msgObject) { (error, ref) in
+                if error != nil {
+                    print("Error: \(String(describing: error))")
+                }
             }
-        }
         }
         commentBar.inputTextView.text = nil
         becomeFirstResponder()
@@ -135,5 +138,9 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
             let indexPath = IndexPath(row: self.msgData.count-1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
+    }
+    
+    @objc func showProfile() {
+        self.performSegue(withIdentifier: "toProfile", sender: UITapGestureRecognizer.self)
     }
 }

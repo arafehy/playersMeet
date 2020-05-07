@@ -14,6 +14,8 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var msgLabel: UILabel!
     @IBOutlet weak var createdAtLabel: UILabel!
     
+    let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
