@@ -61,7 +61,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         guard let info = userInfo else {    // Creating profile after signup
             self.bioTextView.text = "Enter a bio..."
-            self.userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color:"")
+            
+            self.userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: ProfileViewController.self.assignedStringColor)
             return
         }
         
