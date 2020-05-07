@@ -14,13 +14,15 @@ struct UserInfo {
     var bio: String
     var age: String
     var photoURL: String
+    var color: String
     
-    init(username: String?, name: String?, bio: String?, age: String?, photoURL: String?) {
+    init(username: String?, name: String?, bio: String?, age: String?, photoURL: String?, color: String?) {
         self.username = username ?? ""
         self.name = name ?? ""
         self.bio = bio ?? ""
         self.age = age ?? ""
         self.photoURL = photoURL ?? ""
+        self.color = color ?? ""
     }
     
     func asDictionary() -> Dictionary<String, String> {
@@ -28,7 +30,8 @@ struct UserInfo {
                 "name": self.name,
                 "bio": self.bio,
                 "age": self.age,
-                "photoURL": self.photoURL
+                "photoURL": self.photoURL,
+                "color": self.color
         ]
     }
 }

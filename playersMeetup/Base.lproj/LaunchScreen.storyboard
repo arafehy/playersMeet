@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,12 +15,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person.3" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xeD-cW-U8f">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.3" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="xeD-cW-U8f">
                                 <rect key="frame" x="87" y="330.5" width="240" height="235"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="xeD-cW-U8f" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="1xb-ok-dpF"/>
+                            <constraint firstItem="xeD-cW-U8f" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="ewZ-Vj-gkJ"/>
+                            <constraint firstItem="xeD-cW-U8f" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="jOP-ET-DBb"/>
+                            <constraint firstItem="xeD-cW-U8f" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="285" id="k2Q-dq-7nx"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

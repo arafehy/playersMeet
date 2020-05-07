@@ -15,15 +15,16 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    var teamId: String = "8eqZnk53yNXIR86aIaYBVg"
+    var teamId: String = LocationsViewController.selectedId //teamId is the selected location
     let commentBar = MessageInputBar()
     var showsCommentBar = true
     let ref = Database.database().reference()
     var msgData = [NSDictionary]()
+    let currentUser: User? = Auth.auth().currentUser
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         loadMsgs()
         
         commentBar.inputTextView.placeholder = "Type message..."
@@ -61,12 +62,15 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
         let msg = msgData[indexPath.row]
         if (Auth.auth().currentUser!.uid == (msg["user"] as! String)) {
-            cell.nameLabel.text = "Tom1996(You):"
-            cell.nameLabel.textColor = UIColor.systemRed
+            cell.nameLabel.text = "\(msg["username"] as! String) (Me)"
+            cell.nameLabel.textColor = UIColor.orange
         } else {
-            cell.nameLabel.text = "Tom1996:"
-            cell.nameLabel.textColor = UIColor.systemGreen
-        }
+            cell.nameLabel.text = msg["username"] as? String
+            let col: String = msg["color"] as! String
+            let uiColor: UIColor = UIColor(hexString: col)
+            cell.nameLabel.textColor = uiColor
+            }
+        
         cell.msgLabel.text = msg["text"] as? String
         
         let date = Date(timeIntervalSince1970: msg["createdAt"] as! TimeInterval)
@@ -91,48 +95,45 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
                 if let acutualMsg = msg {
                     self.msgData.append(acutualMsg)
                     
-                    self.tableView.reloadData()
+                    
                     self.scrollToBottom()
+                    self.tableView.reloadData()
                 }
         }
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         let msgsRef = Database.database().reference().child("teamChat/\(teamId)").childByAutoId()
-        
+        FirebaseReferences.usersRef.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
+        let userInfo = snapshot.value as? NSDictionary
+        let username = userInfo?["username"]
+        let color = userInfo?["color"]
+            
+
+//        let color:String = myColor.description
+//        print(color)
         let msgObject = [
-            "user": Auth.auth().currentUser?.uid,
+            "user": Auth.auth().currentUser?.uid as Any,
             "text": text,
-            "createdAt": NSDate().timeIntervalSince1970
+            "createdAt": NSDate().timeIntervalSince1970,
+            "username" : username!,
+            "color": color as Any
             ] as [String: Any]
         
         msgsRef.setValue(msgObject) { (error, ref) in
             if error != nil {
-                print("Error: \(error)")
+                print("Error: \(String(describing: error))")
             }
         }
-        
+        }
         commentBar.inputTextView.text = nil
         becomeFirstResponder()
         commentBar.inputTextView.resignFirstResponder()
     }
-    
     func scrollToBottom(){
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: self.msgData.count-1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
