@@ -23,7 +23,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     @IBAction func leaveTeamAction(_ sender: Any) {
         leaveTeamOutlet?.isEnabled = false
         joinTeamOutlet?.isEnabled = true
-        
+        self.chatButton.isEnabled = false //not in team
         
         let referenceTeamCount = FirebaseReferences.businessesRef.child(LocationsViewController.selectedId)
         FirebaseReferences.businessesRef.child(LocationsViewController.selectedId).observeSingleEvent(of: .value) { (snapshot) in
@@ -80,11 +80,13 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                 let array: [String] = ["joined",DetailsViewController.selectedLocationId]
                 FirebaseReferences.userInfoRef.child(self.user!.uid).setValue(array)
                 self.youInTeamLabel.text = "You are in this team"
+                self.chatButton.isEnabled = true
             }
             else{
                 
                 self.joinTeamOutlet?.isEnabled = true
                 self.leaveTeamOutlet?.isEnabled = false
+                self.chatButton.isEnabled = false //not in team
                 let alert = UIAlertController(title: "Are you sure you want to join?", message: "You can only join one team at a time. This will remove you from another team.", preferredStyle: .alert) //show what other team - later
                 
                 alert.addAction(UIAlertAction(title: "Yes", style: .default, handler:self.changeLocation))
@@ -99,7 +101,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         //get id of loctaion of the user now then find it in businesses and decrement count
         //ref here is for userInfo
         self.youInTeamLabel.text = "You are now in this team"
-        
+        self.chatButton.isEnabled = true
         FirebaseReferences.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             //get location id previously joined //getting this from user info
             let  locationAlreadyJoinedId = (snapshot.value as? [String])?[1]
@@ -127,6 +129,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         FirebaseReferences.userInfoRef.child(user!.uid).setValue(arrJoined)
         self.joinTeamOutlet?.isEnabled = false //cannot join since already joined
         self.leaveTeamOutlet?.isEnabled = true
+        self.chatButton.isEnabled = true // in team
         let referenceTeamCount = FirebaseReferences.businessesRef.child(LocationsViewController.selectedId)
         LocationsViewController.shared.count = LocationsViewController.shared.count+1
         referenceTeamCount.setValue(LocationsViewController.shared.count)
@@ -183,6 +186,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
 //        getDirectionsButton.layer.zPosition = -1
         //        overrideUserInterfaceStyle = .light
         leaveTeamOutlet.isEnabled = false
+        self.chatButton.isEnabled = false
         //get value from database
         let reference = FirebaseReferences.businessesRef.child(LocationsViewController.selectedId)
         print("selected id")
@@ -217,7 +221,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                 self.joinTeamOutlet?.isEnabled = false
                 self.leaveTeamOutlet?.isEnabled = true
                 self.youInTeamLabel.text = "You are in this team"
-                
+                self.chatButton.isEnabled = true
             }
             else{
                 self.youInTeamLabel.text = ""
