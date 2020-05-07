@@ -27,18 +27,17 @@ This app lets you have fun with sports you enjoy, while also meeting new people.
 - [x] User can sign up.
 - [x] User can login.
 - [x] User can logout. 
-- [ ] User can choose sport.
 - [x] User can choose location.
 - [x] User can form/join a team.
-- [ ]  Profile pages for each user
-- [ ] Settings (Accesibility, Notification, General, etc.)
+- [x]  Profile pages for each user
 
 **Optional Nice-to-have Stories**
 
-* User can choose location from map.
+- [x] User can choose location from map.
 * User can add friends.
 * User can rate location.
 * User can use app as a guest.
+- [x] Users can message with each other in team.
 
 ### 2. Screen Archetypes
 
@@ -76,6 +75,14 @@ This app lets you have fun with sports you enjoy, while also meeting new people.
 **Sign Up/Sign In/Logout & Show Locations & Join/Leave Team**
 
 <img src="http://g.recordit.co/8UAe3HouHL.gif" width=250><br>
+
+**Editing Profile**
+
+<img src="http://g.recordit.co/Y87QZSEB0H.gif" width=250><br>
+
+**Joining Team & Messaging & Viewing Profiles**
+
+<img src="http://g.recordit.co/oFT52YXD3G.gif" width=250><br>
 
 ## Schema 
 ### Models
