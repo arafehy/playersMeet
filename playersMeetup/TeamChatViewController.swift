@@ -29,6 +29,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         
         commentBar.inputTextView.placeholder = "Type message..."
         commentBar.sendButton.title = "Send"
+        commentBar.sendButton.setTitleColor(.systemOrange, for: .normal)
         commentBar.backgroundView.backgroundColor = .systemBackground
         commentBar.delegate = self
         
