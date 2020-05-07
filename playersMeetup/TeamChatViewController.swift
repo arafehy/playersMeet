@@ -160,6 +160,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     @objc func showProfile(sender: customTapGestureRecognizer) {
+        commentBar.inputTextView.resignFirstResponder()
         self.performSegue(withIdentifier: "toProfile", sender: sender)
     }
 }
