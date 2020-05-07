@@ -627,9 +627,9 @@
                                 <rect key="frame" x="302" y="252" width="97" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                 <connections>
-                                    <action selector="ageChanged:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="DHs-pV-bUd"/>
+                                    <action selector="ageChanged:" destination="7iw-pW-pbj" eventType="editingChanged" id="J9g-Mb-cBe"/>
                                     <action selector="ageEndedEdit:" destination="7iw-pW-pbj" eventType="editingDidEnd" id="w43-Rp-d0W"/>
                                 </connections>
                             </textField>

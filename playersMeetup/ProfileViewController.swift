@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var editButton: UIBarButtonItem!
-   
+    
     @IBOutlet weak var ageLabel: UILabel!
     
     var handle: AuthStateDidChangeListenerHandle?
@@ -97,15 +97,15 @@ class ProfileViewController: UIViewController {
                 self.bioTextView.text = "No bio"
             }
             else {
-                self.ageLabel.text = self.userInfo.age
-            }
-            if self.userInfo.age.isEmpty {
-                    self.ageLabel.text = "No Age"
-            }
-                
-            else {
                 self.bioTextView.text = self.userInfo.bio
             }
+            if self.userInfo.age.isEmpty {
+                self.ageLabel.text = "No Age"
+            }
+            else {
+                self.ageLabel.text = self.userInfo.age
+            }
+            
         }) { (error) in
             print(error.localizedDescription)
         }

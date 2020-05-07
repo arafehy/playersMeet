@@ -24,26 +24,23 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     @IBOutlet weak var ageField: UITextField!
     
-    
-    
-    
-    var initialPhoto: UIImage!
-    
     var userInfo: UserInfo?
     let user = Auth.auth().currentUser
     var initialUserInfo: [String] = Array(repeating: "", count: 4)
+    var initialPhoto: UIImage!
+    
     var isNameDifferent: Bool {
         nameField.text != initialUserInfo[0]
     }
     var isUsernameDifferent: Bool {
         usernameField.text != initialUserInfo[1]
     }
-    var isAgeDifferent: Bool {
-        ageField.text != initialUserInfo[3]
-    }
     var isBioDifferent: Bool {
         let bio = bioTextView.text
         return bio != initialUserInfo[2] && bio != "Enter a bio..."
+    }
+    var isAgeDifferent: Bool {
+        ageField.text != initialUserInfo[3]
     }
     var isAnythingDifferent: Bool {
         (isNameDifferent || isUsernameDifferent || isBioDifferent || isAgeDifferent) || profilePictureChanged
@@ -51,7 +48,6 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     var areNameOrUsernameEmpty: Bool {
         nameField.text?.isEmpty ?? true || usernameField.text?.isEmpty ?? true
     }
-    
     var profilePictureChanged: Bool = false
     
     // MARK: - VC Life Cycle
@@ -96,8 +92,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         let alert = UIAlertController(title: "Are you sure you want to cancel?", message: "There are unsaved changes that will be deleted.", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Discard Changes", style: .destructive, handler: { _ in
-                self.dismiss(animated: true, completion: nil)
-            }))
+            self.dismiss(animated: true, completion: nil)
+        }))
         alert.addAction(UIAlertAction(title: "Continue Updating Profile", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
@@ -260,16 +256,14 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         createProfileButton.isEnabled = true
     }
     
-   
     @IBAction func ageChanged(_ sender: UITextField) {
         guard isAnythingDifferent, !areNameOrUsernameEmpty else {
-                   saveButton.isEnabled = false
-                   createProfileButton.isEnabled = false
-                   return
-               }
-               saveButton.isEnabled = true
-               createProfileButton.isEnabled = true
-        
+            saveButton.isEnabled = false
+            createProfileButton.isEnabled = false
+            return
+        }
+        saveButton.isEnabled = true
+        createProfileButton.isEnabled = true
     }
     
     
@@ -302,7 +296,6 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         }
         saveButton.isEnabled = true
         createProfileButton.isEnabled = true
-        
     }
     
     
