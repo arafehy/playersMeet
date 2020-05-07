@@ -25,17 +25,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         GMSServices.provideAPIKey("AIzaSyBbmwiWRryQ3EvGK0Y-PL0LtX7VlfiNcAk")
         GMSPlacesClient.provideAPIKey("AIzaSyBbmwiWRryQ3EvGK0Y-PL0LtX7VlfiNcAk")
-        UITabBar.appearance().tintColor = .systemOrange
-        //bar button color
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemOrange], for: .normal)
-        
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.systemOrange], for: .highlighted)
-        
-        UINavigationBar.appearance().tintColor = .systemOrange
-        
-        
-        
-        
       return true
     }
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
