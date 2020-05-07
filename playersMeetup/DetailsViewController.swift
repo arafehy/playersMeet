@@ -105,7 +105,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         FirebaseReferences.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             //get location id previously joined //getting this from user info
             let  locationAlreadyJoinedId = (snapshot.value as? [String])?[1]
-            print("Location already joined \(locationAlreadyJoinedId)")
+//            print("Location already joined \(locationAlreadyJoinedId)")
             self.executeLeavingTeam(locationAlreadyJoinedId: locationAlreadyJoinedId!)
         }
     }
@@ -246,8 +246,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                 
             }
         }
-        var latDouble: Double = (latSelected as NSString).doubleValue
-        var longDouble: Double = (longSelected as NSString).doubleValue
+        let latDouble: Double = (latSelected as NSString).doubleValue
+        let longDouble: Double = (longSelected as NSString).doubleValue
         let camera = GMSCameraPosition.camera(withLatitude: latDouble, longitude: longDouble, zoom: 14)
         googleMapView.camera = camera
         googleMapView.animate(to: camera)

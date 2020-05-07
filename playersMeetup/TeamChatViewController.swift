@@ -21,14 +21,9 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     let ref = Database.database().reference()
     var msgData = [NSDictionary]()
     let currentUser: User? = Auth.auth().currentUser
-//    var myUsername: String = ""
+
     
     override func viewDidLoad() {
-//
-//        FirebaseReferences.usersRef.child(currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
-//            var profileInfo = snapshot.value as! NSDictionary
-//            self.myUsername = profileInfo["username"] as! String //get username of current user
-//        }
         super.viewDidLoad()
         loadMsgs()
         
@@ -68,10 +63,12 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         let msg = msgData[indexPath.row]
         if (Auth.auth().currentUser!.uid == (msg["user"] as! String)) {
             cell.nameLabel.text = "\(msg["username"] as! String) (Me)"
-            cell.nameLabel.textColor = UIColor.systemRed
+            cell.nameLabel.textColor = UIColor.orange
         } else {
-                cell.nameLabel.text = msg["username"] as? String
-                cell.nameLabel.textColor = UIColor.systemGreen
+            cell.nameLabel.text = msg["username"] as? String
+            let col: String = msg["color"] as! String
+            let uiColor: UIColor = UIColor(hexString: col)
+            cell.nameLabel.textColor = uiColor
             }
         
         cell.msgLabel.text = msg["text"] as? String
@@ -110,42 +107,33 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         FirebaseReferences.usersRef.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
         let userInfo = snapshot.value as? NSDictionary
         let username = userInfo?["username"]
+        let color = userInfo?["color"]
+            
+
+//        let color:String = myColor.description
+//        print(color)
         let msgObject = [
             "user": Auth.auth().currentUser?.uid as Any,
             "text": text,
             "createdAt": NSDate().timeIntervalSince1970,
-            "username" : username!
+            "username" : username!,
+            "color": color as Any
             ] as [String: Any]
         
         msgsRef.setValue(msgObject) { (error, ref) in
             if error != nil {
-                print("Error: \(error)")
+                print("Error: \(String(describing: error))")
             }
         }
         }
         commentBar.inputTextView.text = nil
         becomeFirstResponder()
         commentBar.inputTextView.resignFirstResponder()
-//        self.tableView.reloadData()
     }
-    
     func scrollToBottom(){
         DispatchQueue.main.async {
             let indexPath = IndexPath(row: self.msgData.count-1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
-        
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }

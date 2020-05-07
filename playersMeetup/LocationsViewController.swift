@@ -70,7 +70,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = self.tableView.cellForRow(at: indexPath) as! LocationTableViewCell
+        _ = self.tableView.cellForRow(at: indexPath) as! LocationTableViewCell
         let selectedLocation = locations[indexPath.row]
         ///     print("selected:")
         ///        print(cell.locationLabel.text)
