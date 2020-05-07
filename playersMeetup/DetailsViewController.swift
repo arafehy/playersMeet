@@ -15,6 +15,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var joinTeamOutlet: UIButton!
     @IBOutlet weak var youInTeamLabel: UILabel!
     @IBOutlet weak var googleMapView: GMSMapView!
+    @IBOutlet weak var chatButton: UIButton!
     var latSelected: String = ""
     var longSelected: String = ""
     let user: User? = Auth.auth().currentUser
@@ -169,7 +170,9 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         
         super.viewDidLoad()
         
-        
+        joinTeamOutlet.rounded()
+        leaveTeamOutlet.rounded()
+        chatButton.rounded()
        
         
         

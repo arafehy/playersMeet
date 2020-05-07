@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -466,6 +466,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="1WP-YF-BvG"/>
                     <connections>
+                        <outlet property="chatButton" destination="3hR-tW-Dfh" id="QuU-YW-AqY"/>
                         <outlet property="googleMapView" destination="Q7x-5U-mmW" id="Qvo-ud-e3I"/>
                         <outlet property="joinTeamOutlet" destination="hLA-Lc-gZB" id="V7s-a7-B45"/>
                         <outlet property="leaveTeamOutlet" destination="Wpk-fF-fV3" id="III-tL-MNW"/>
