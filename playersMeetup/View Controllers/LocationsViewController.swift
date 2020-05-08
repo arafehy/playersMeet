@@ -95,9 +95,6 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.reloadData()
-        //change color of bar title
-        let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
-        navigationController?.navigationBar.titleTextAttributes = textAttributes
         print("view did load \(LocationsViewController.shared.count)")
         
         //        overrideUserInterfaceStyle = .light
