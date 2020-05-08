@@ -263,42 +263,42 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-
+        
         // Combine the textView text and the replacement text to
         // create the updated text string
         let currentText:String = textView.text
         let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
-
+        
         // If updated text view will be empty, add the placeholder
         // and set the cursor to the beginning of the text view
         if updatedText.isEmpty {
-
+            
             textView.text = "Enter a bio..."
             textView.textColor = .placeholderText
-
+            
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
         }
-
-        // Else if the text view's placeholder is showing and the
-        // length of the replacement string is greater than 0, set
-        // the text color to black then set its text to the
-        // replacement string
+            
+            // Else if the text view's placeholder is showing and the
+            // length of the replacement string is greater than 0, set
+            // the text color to black then set its text to the
+            // replacement string
         else if textView.textColor == .placeholderText && !text.isEmpty {
             textView.textColor = .label
             textView.text = text
         }
-
-        // For every other case, the text should change with the usual
-        // behavior...
+            
+            // For every other case, the text should change with the usual
+            // behavior...
         else {
             return true
         }
-
+        
         // ...otherwise return false since the updates have already
         // been made
         return false
     }
-
+    
     func textViewDidChangeSelection(_ textView: UITextView) {
         if self.view.window != nil {
             if textView.textColor == .placeholderText {
@@ -344,10 +344,26 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         createProfileButton.isEnabled = buttonsEnabled
     }
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        moveTextView(textView, moveDistance: -100, up: true)
+    }
+    
     func textViewDidEndEditing(_ textView: UITextView) {
         isModalInPresentation = isAnythingDifferent
         saveButton.isEnabled = buttonsEnabled
         createProfileButton.isEnabled = buttonsEnabled
+        moveTextView(textView, moveDistance: -100, up: false)
+    }
+    
+    
+    
+    func moveTextView(_ textView: UITextView, moveDistance: Int, up: Bool) {
+        let moveDuration = 0.3
+        let movement: CGFloat = CGFloat(up ? moveDistance : -moveDistance)
+        
+        UIView.animate(withDuration: moveDuration) {
+            self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        }
     }
     
     /*
