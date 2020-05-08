@@ -18,6 +18,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var chatButton: UIButton!
     var latSelected: String = ""
     var longSelected: String = ""
+    var location: [String: Any]!
     let user: User? = Auth.auth().currentUser
 //    var ref = Database.database().reference().ref.child("userInfo")
     @IBAction func leaveTeamAction(_ sender: Any) {
@@ -178,7 +179,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         chatButton.rounded()
        
         
-        
+        self.navigationItem.title = location["name"] as? String
         
         
         

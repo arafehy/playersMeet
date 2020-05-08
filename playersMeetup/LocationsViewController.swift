@@ -183,4 +183,13 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! LocationTableViewCell
+        let indexPath = tableView.indexPath(for: cell)
+        let location = locations[indexPath!.row]
+        
+        let detailsVC = segue.destination as! DetailsViewController
+        detailsVC.location = location
+    }
 }
