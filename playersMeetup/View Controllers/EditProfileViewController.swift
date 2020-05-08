@@ -87,8 +87,13 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         nameField.text = info.name
         usernameField.text = info.username
         ageField.text = info.age
+        
+        bioTextView.layer.borderWidth = 1
+        bioTextView.layer.borderColor = UIColor.separator.cgColor
+        bioTextView.layer.cornerRadius = 4
+        
         profilePicture.image = initialPhoto
-        profilePicture.layer.cornerRadius = 10
+        profilePicture.layer.cornerRadius = 15
         profilePicture.layer.borderWidth = 4
         profilePicture.layer.borderColor = UIColor.systemGray.cgColor
     }
