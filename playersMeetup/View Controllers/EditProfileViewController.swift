@@ -34,8 +34,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         usernameField.text != initialUserInfo[1]
     }
     var isBioDifferent: Bool {
-        let bio = bioTextView.text
-        return bio != initialUserInfo[2] && bio != "Enter a bio..."
+        return bioTextView.text != initialUserInfo[2]
     }
     var isAgeDifferent: Bool {
         ageField.text != initialUserInfo[3]
@@ -63,24 +62,30 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         guard let info = userInfo else {    // Creating profile after signup
             bioTextView.text = "Enter a bio..."
+            bioTextView.textColor = .placeholderText
+            bioTextView.selectedTextRange = bioTextView.textRange(from: bioTextView.beginningOfDocument, to: bioTextView.beginningOfDocument)
             
             userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: ProfileViewController.self.assignedStringColor)
             return
         }
         
-        guard !info.bio.isEmpty else {
+        if info.bio.isEmpty {
+            initialUserInfo[2] = "Enter a bio..."
             bioTextView.text = "Enter a bio..."
-            return
+            bioTextView.textColor = .placeholderText
+            bioTextView.selectedTextRange = bioTextView.textRange(from: bioTextView.beginningOfDocument, to: bioTextView.beginningOfDocument)
+        }
+        else {
+            initialUserInfo[2] = info.bio
+            bioTextView.text = info.bio
         }
         
         initialUserInfo[0] = info.name
         initialUserInfo[1] = info.username
-        initialUserInfo[2] = info.bio
         initialUserInfo[3] = info.age
         
         nameField.text = info.name
         usernameField.text = info.username
-        bioTextView.text = info.bio
         ageField.text = info.age
         profilePicture.image = initialPhoto
         profilePicture.layer.cornerRadius = 10
@@ -119,7 +124,13 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         }
         userInfo?.name = nameField.text!
         userInfo?.username = usernameField.text!
-        userInfo?.bio = bioTextView.text
+        let bio = bioTextView.text ?? ""
+        if bio != "Enter a bio..." {
+            userInfo?.bio = bio
+        }
+        else {
+            userInfo?.bio = ""
+        }
         userInfo?.age = ageField.text!
         
         guard !profilePictureChanged else {
@@ -241,6 +252,51 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     // MARK: - Text Fields/View Helpers
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+
+        // Combine the textView text and the replacement text to
+        // create the updated text string
+        let currentText:String = textView.text
+        let updatedText = (currentText as NSString).replacingCharacters(in: range, with: text)
+
+        // If updated text view will be empty, add the placeholder
+        // and set the cursor to the beginning of the text view
+        if updatedText.isEmpty {
+
+            textView.text = "Enter a bio..."
+            textView.textColor = .placeholderText
+
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+        }
+
+        // Else if the text view's placeholder is showing and the
+        // length of the replacement string is greater than 0, set
+        // the text color to black then set its text to the
+        // replacement string
+        else if textView.textColor == .placeholderText && !text.isEmpty {
+            textView.textColor = .label
+            textView.text = text
+        }
+
+        // For every other case, the text should change with the usual
+        // behavior...
+        else {
+            return true
+        }
+
+        // ...otherwise return false since the updates have already
+        // been made
+        return false
+    }
+
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if self.view.window != nil {
+            if textView.textColor == .placeholderText {
+                textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+            }
+        }
+    }
     
     @IBAction func nameChanged(_ sender: UITextField) {
         saveButton.isEnabled = buttonsEnabled
