@@ -62,14 +62,14 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         bioTextView.delegate = self
         
         guard let info = userInfo else {    // Creating profile after signup
-            self.bioTextView.text = "Enter a bio..."
+            bioTextView.text = "Enter a bio..."
             
-            self.userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: ProfileViewController.self.assignedStringColor)
+            userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: ProfileViewController.self.assignedStringColor)
             return
         }
         
         guard !info.bio.isEmpty else {
-            self.bioTextView.text = "Enter a bio..."
+            bioTextView.text = "Enter a bio..."
             return
         }
         
@@ -78,10 +78,10 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         initialUserInfo[2] = info.bio
         initialUserInfo[3] = info.age
         
-        self.nameField.text = info.name
-        self.usernameField.text = info.username
-        self.bioTextView.text = info.bio
-        self.ageField.text = info.age
+        nameField.text = info.name
+        usernameField.text = info.username
+        bioTextView.text = info.bio
+        ageField.text = info.age
         profilePicture.image = initialPhoto
         profilePicture.layer.cornerRadius = 10
         profilePicture.layer.borderWidth = 4
@@ -89,7 +89,6 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     override func viewWillLayoutSubviews() {
-        let isAnythingDifferent = self.isAnythingDifferent
         isModalInPresentation = isAnythingDifferent
     }
     
@@ -118,10 +117,10 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             print("Nothing changed")
             return
         }
-        self.userInfo?.name = self.nameField.text!
-        self.userInfo?.username = self.usernameField.text!
-        self.userInfo?.bio = self.bioTextView.text
-        self.userInfo?.age = self.ageField.text!
+        userInfo?.name = nameField.text!
+        userInfo?.username = usernameField.text!
+        userInfo?.bio = bioTextView.text
+        userInfo?.age = ageField.text!
         
         guard !profilePictureChanged else {
             uploadProfilePicture(userID: userID)
