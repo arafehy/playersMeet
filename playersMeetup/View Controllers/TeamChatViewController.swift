@@ -22,7 +22,6 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     var msgData = [NSDictionary]()
     let currentUser: User? = Auth.auth().currentUser
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMsgs()
@@ -77,8 +76,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
                 let uiColor: UIColor = UIColor(hexString: col)
                 cell.nameLabel.textColor = uiColor
             }
-            
-            }
+        }
         
         cell.msgLabel.text = msg["text"] as? String
         

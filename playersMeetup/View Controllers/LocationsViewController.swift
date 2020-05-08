@@ -14,14 +14,12 @@ import CoreLocation
 
 var locations = [[String:Any]]()
 class LocationsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
-
     
     let locationManager = CLLocationManager()
     var long: Double = 0.0
     var lat: Double = 0.0
     
     static let shared = LocationsViewController()
-    //    static let ref = Database.database().reference().ref.child("businesses")
     
     static var selectedId: String = ""
     
@@ -43,18 +41,18 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         cell.distanceLabel.text = "\(dist) mi"
         //is here indication on - off
         let selectedLocation = locations[indexPath.row]
-               ///     print("selected:")
-               ///        print(cell.locationLabel.text)
+        ///     print("selected:")
+        ///        print(cell.locationLabel.text)
         let sel = selectedLocation["id"] as! String
         FirebaseReferences.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             if (snapshot.value as? [String])?[0] == "joined" && (snapshot.value as? [String])?[1] == sel {
                 cell.isHereIndicator.isHidden = false
                 
             }
-        else{
-            cell.isHereIndicator.isHidden = true
-            
-            
+            else{
+                cell.isHereIndicator.isHidden = true
+                
+                
             }
         }
         
@@ -77,7 +75,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         LocationsViewController.selectedId = selectedLocation["id"] as! String
         ///        print(selectedLocation["name"])
         ///  print("done selected")kti
-    
+        
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -90,14 +88,14 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         tableView.reloadData()
         
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        tableView.reloadData()
-//    }
-
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        tableView.reloadData()
+    //    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.reloadData()
-            //change color of bar title
+        //change color of bar title
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemOrange]
         navigationController?.navigationBar.titleTextAttributes = textAttributes
         print("view did load \(LocationsViewController.shared.count)")
@@ -106,7 +104,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-        CLLocationManager.authorizationStatus() ==  .authorizedAlways{
+            CLLocationManager.authorizationStatus() ==  .authorizedAlways{
             guard let locValue: CLLocationCoordinate2D = self.locationManager.location?.coordinate else { print("here")
                 tableView.dataSource = self
                 tableView.delegate = self
@@ -138,7 +136,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
                         }
                     }
                     self.tableView.reloadData()
-                 
+                    
                 case .failure(let error):
                     print("Error: \(error)")
                     }

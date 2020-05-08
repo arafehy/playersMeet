@@ -20,10 +20,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var playersMeetLabel: UILabel!
     static let signUpController = SignUpViewController()
+    
     override func viewDidAppear(_ animated: Bool) {
-       
+        super.viewDidAppear(true)
         animationView.play()
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //        overrideUserInterfaceStyle = .light
@@ -88,6 +90,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
     static var userID: String = ""
     var usersInfo: [String:[String]] = [:]
     @IBAction func onSignIn(_ sender: Any) {

@@ -20,7 +20,6 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     var longSelected: String = ""
     var location: [String: Any]!
     let user: User? = Auth.auth().currentUser
-//    var ref = Database.database().reference().ref.child("userInfo")
     @IBAction func leaveTeamAction(_ sender: Any) {
         leaveTeamOutlet?.isEnabled = false
         joinTeamOutlet?.isEnabled = true
@@ -106,7 +105,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         FirebaseReferences.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             //get location id previously joined //getting this from user info
             let  locationAlreadyJoinedId = (snapshot.value as? [String])?[1]
-//            print("Location already joined \(locationAlreadyJoinedId)")
+            //            print("Location already joined \(locationAlreadyJoinedId)")
             self.executeLeavingTeam(locationAlreadyJoinedId: locationAlreadyJoinedId!)
         }
     }
@@ -136,39 +135,39 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         referenceTeamCount.setValue(LocationsViewController.shared.count)
     }
     
-           func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-               print("!map tapped!")
-            if let UrlNavigation = URL.init(string: "comgooglemaps://") {
-                if UIApplication.shared.canOpenURL(UrlNavigation){
-                    if !longSelected.isEmpty && !latSelected.isEmpty {
-                        let lat = latSelected
-                        let longi = longSelected
-                        if let urlDestination = URL.init(string: "comgooglemaps://?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
-                            UIApplication.shared.open(urlDestination, options: [:], completionHandler: nil)
-                        }
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print("!map tapped!")
+        if let UrlNavigation = URL.init(string: "comgooglemaps://") {
+            if UIApplication.shared.canOpenURL(UrlNavigation){
+                if !longSelected.isEmpty && !latSelected.isEmpty {
+                    let lat = latSelected
+                    let longi = longSelected
+                    if let urlDestination = URL.init(string: "comgooglemaps://?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
+                        UIApplication.shared.open(urlDestination, options: [:], completionHandler: nil)
                     }
-                }
-                    else {
-                        NSLog("Can't use comgooglemaps://");
-                        self.openTrackerInBrowser()
-
-                    }
-                }
-                else
-                {
-                    NSLog("Can't use comgooglemaps://");
-                   self.openTrackerInBrowser()
                 }
             }
-        func openTrackerInBrowser(){
-            if !longSelected.isEmpty && !latSelected.isEmpty {
-                let lat = latSelected
-                let longi = longSelected
-                if let urlDestination = URL.init(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
-                    UIApplication.shared.open(urlDestination, options: [:], completionHandler: nil)
-                }
+            else {
+                NSLog("Can't use comgooglemaps://");
+                self.openTrackerInBrowser()
+                
             }
         }
+        else
+        {
+            NSLog("Can't use comgooglemaps://");
+            self.openTrackerInBrowser()
+        }
+    }
+    func openTrackerInBrowser(){
+        if !longSelected.isEmpty && !latSelected.isEmpty {
+            let lat = latSelected
+            let longi = longSelected
+            if let urlDestination = URL.init(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
+                UIApplication.shared.open(urlDestination, options: [:], completionHandler: nil)
+            }
+        }
+    }
     static var selectedLocationId: String = ""
     override func viewDidLoad() {
         
@@ -177,14 +176,14 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         joinTeamOutlet.rounded()
         leaveTeamOutlet.rounded()
         chatButton.rounded()
-       
+        
         
         self.navigationItem.title = location["name"] as? String
         
         
         
         
-//        getDirectionsButton.layer.zPosition = -1
+        //        getDirectionsButton.layer.zPosition = -1
         //        overrideUserInterfaceStyle = .light
         leaveTeamOutlet.isEnabled = false
         self.chatButton.isEnabled = false
@@ -226,7 +225,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
             }
             else{
                 self.youInTeamLabel.text = ""
-
+                
             }
         }
         /// increment value in database
@@ -234,8 +233,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         ///make first value stay the same until end game
         
         
-      
-          for loc in locations{
+        
+        for loc in locations{
             if loc["id"] as! String == LocationsViewController.selectedId{
                 let coord = loc["coordinates"] as! NSDictionary
                 print(coord)
@@ -255,8 +254,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: latDouble, longitude: longDouble)
         marker.map = googleMapView
-//        let gesture = UITapGestureRecognizer(target: self, action: Selector(("MapsPressed")))
-//        googleMapView.addGestureRecognizer(gesture)
+        //        let gesture = UITapGestureRecognizer(target: self, action: Selector(("MapsPressed")))
+        //        googleMapView.addGestureRecognizer(gesture)
         
         googleMapView.delegate = self
         

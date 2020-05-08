@@ -11,23 +11,22 @@ import Firebase
 import FirebaseAuth
 
 class HomeViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        overrideUserInterfaceStyle = .light
+        //        overrideUserInterfaceStyle = .light
     }
+    
     @IBAction func onLogout(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+        }
+        catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
         
-        
-             do {
-                     try Auth.auth().signOut()
-                 }
-              catch let signOutError as NSError {
-                     print ("Error signing out: %@", signOutError)
-                 }
-                 
-                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                 let initial = storyboard.instantiateInitialViewController()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let initial = storyboard.instantiateInitialViewController()
         self.view.window?.rootViewController = initial
     }
 }

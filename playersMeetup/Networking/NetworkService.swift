@@ -27,7 +27,7 @@ enum YelpService {
         var sampleData: Data{
             return Data()
         }
-    
+        
         var task: Task{
             switch self{
             case let .search(lat,long):
