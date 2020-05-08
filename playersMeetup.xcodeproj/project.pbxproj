@@ -154,6 +154,67 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E0AB2F4924652E0300F4CE49 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA75F732245445FD00E681F9 /* ViewController.swift */,
+				FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */,
+				FAB9CBB32456468800C25C92 /* DetailsViewController.swift */,
+				DB80848D245687B800177175 /* SignUpViewController.swift */,
+				DB80848F2456A06100177175 /* HomeViewController.swift */,
+				E0D4887B245A708F00ED074A /* ProfileViewController.swift */,
+				E0FCC717245E9426000BA717 /* EditProfileViewController.swift */,
+				6A4B0F442460871D002F0882 /* TeamChatViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E0AB2F4A24652E2500F4CE49 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FAB9CBA52455931E00C25C92 /* Models.swift */,
+				E0C0254A245F8CC200950223 /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E0AB2F4B24652E9300F4CE49 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */,
+				6A4B0F462460872F002F0882 /* MessageCell.swift */,
+				E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E0AB2F4C24652EBB00F4CE49 /* Lottie Animations */ = {
+			isa = PBXGroup;
+			children = (
+				E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */,
+				FAFECE3A24619F9A005CD8F7 /* 18709-loading.json */,
+			);
+			path = "Lottie Animations";
+			sourceTree = "<group>";
+		};
+		E0AB2F4D24652F0900F4CE49 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				FAB9CBA32455899F00C25C92 /* NetworkService.swift */,
+				E01AC89F24614D7C00E8C32E /* FirebaseReferences.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		E0AB2F4E24652F2600F4CE49 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FA75F734245445FD00E681F9 /* Main.storyboard */,
+				FA75F7392454460000E681F9 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		FA75F722245445FC00E681F9 = {
 			isa = PBXGroup;
 			children = (
@@ -180,30 +241,17 @@
 		FA75F72D245445FC00E681F9 /* playersMeetup */ = {
 			isa = PBXGroup;
 			children = (
-				E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */,
-				FAFECE3A24619F9A005CD8F7 /* 18709-loading.json */,
-				FA18FCB1245BBC930087C1CC /* Assets.xcassets */,
-				FA1116E424598D3C00800C33 /* GoogleService-Info.plist */,
 				FA75F72E245445FD00E681F9 /* AppDelegate.swift */,
 				FA75F730245445FD00E681F9 /* SceneDelegate.swift */,
-				FA75F732245445FD00E681F9 /* ViewController.swift */,
-				FA75F734245445FD00E681F9 /* Main.storyboard */,
-				FA75F7392454460000E681F9 /* LaunchScreen.storyboard */,
+				E0AB2F4924652E0300F4CE49 /* View Controllers */,
+				E0AB2F4E24652F2600F4CE49 /* Storyboards */,
+				E0AB2F4A24652E2500F4CE49 /* Models */,
+				E0AB2F4B24652E9300F4CE49 /* Views */,
+				E0AB2F4D24652F0900F4CE49 /* Networking */,
 				FA75F73C2454460000E681F9 /* Info.plist */,
-				FAB9CBA32455899F00C25C92 /* NetworkService.swift */,
-				FAB9CBA52455931E00C25C92 /* Models.swift */,
-				FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */,
-				FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */,
-				FAB9CBB32456468800C25C92 /* DetailsViewController.swift */,
-				DB80848D245687B800177175 /* SignUpViewController.swift */,
-				DB80848F2456A06100177175 /* HomeViewController.swift */,
-				E0D4887B245A708F00ED074A /* ProfileViewController.swift */,
-				E0FCC717245E9426000BA717 /* EditProfileViewController.swift */,
-				E0C0254A245F8CC200950223 /* User.swift */,
-				E01AC89F24614D7C00E8C32E /* FirebaseReferences.swift */,
-				6A4B0F442460871D002F0882 /* TeamChatViewController.swift */,
-				E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */,
-				6A4B0F462460872F002F0882 /* MessageCell.swift */,
+				FA1116E424598D3C00800C33 /* GoogleService-Info.plist */,
+				FA18FCB1245BBC930087C1CC /* Assets.xcassets */,
+				E0AB2F4C24652EBB00F4CE49 /* Lottie Animations */,
 			);
 			path = playersMeetup;
 			sourceTree = "<group>";
