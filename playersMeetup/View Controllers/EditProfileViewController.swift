@@ -16,13 +16,11 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var bioTextView: UITextView!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var createProfileButton: UIBarButtonItem!
-    
-    
-    @IBOutlet weak var ageField: UITextField!
     
     var userInfo: UserInfo?
     let user = Auth.auth().currentUser
@@ -49,6 +47,10 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         nameField.text?.isEmpty ?? true || usernameField.text?.isEmpty ?? true
     }
     var profilePictureChanged: Bool = false
+    
+    var buttonsEnabled: Bool {
+        isAnythingDifferent && !areNameOrUsernameEmpty
+    }
     
     // MARK: - VC Life Cycle
     
@@ -242,86 +244,44 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     // MARK: - Text Fields/View Helpers
     
     @IBAction func nameChanged(_ sender: UITextField) {
-        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
-            saveButton.isEnabled = false
-            createProfileButton.isEnabled = false
-            return
-        }
-        saveButton.isEnabled = true
-        createProfileButton.isEnabled = true
+        saveButton.isEnabled = buttonsEnabled
+        createProfileButton.isEnabled = buttonsEnabled
     }
     
     @IBAction func usernameChanged(_ sender: UITextField) {
-        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
-            saveButton.isEnabled = false
-            createProfileButton.isEnabled = false
-            return
-        }
-        saveButton.isEnabled = true
-        createProfileButton.isEnabled = true
+        saveButton.isEnabled = buttonsEnabled
+        createProfileButton.isEnabled = buttonsEnabled
     }        
     
     func textViewDidChange(_ textView: UITextView) {
-        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
-            saveButton.isEnabled = false
-            createProfileButton.isEnabled = false
-            return
-        }
-        saveButton.isEnabled = true
-        createProfileButton.isEnabled = true
+        saveButton.isEnabled = buttonsEnabled
+        createProfileButton.isEnabled = buttonsEnabled
     }
     
     @IBAction func ageChanged(_ sender: UITextField) {
-        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
-            saveButton.isEnabled = false
-            createProfileButton.isEnabled = false
-            return
-        }
-        saveButton.isEnabled = true
-        createProfileButton.isEnabled = true
+        saveButton.isEnabled = buttonsEnabled
+        createProfileButton.isEnabled = buttonsEnabled
     }
     
     
     @IBAction func nameEndedEdit(_ sender: UITextField) {
-        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
-            saveButton.isEnabled = false
-            createProfileButton.isEnabled = false
-            return
-        }
-        saveButton.isEnabled = true
-        createProfileButton.isEnabled = true
+        saveButton.isEnabled = buttonsEnabled
+        createProfileButton.isEnabled = buttonsEnabled
     }
     
     @IBAction func usernameEndedEdit(_ sender: UITextField) {
-        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
-            saveButton.isEnabled = false
-            createProfileButton.isEnabled = false
-            return
-        }
-        saveButton.isEnabled = true
-        createProfileButton.isEnabled = true
+        saveButton.isEnabled = buttonsEnabled
+        createProfileButton.isEnabled = buttonsEnabled
     }
-    
     
     @IBAction func ageEndedEdit(_ sender: UITextField) {
-        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
-            saveButton.isEnabled = false
-            createProfileButton.isEnabled = false
-            return
-        }
-        saveButton.isEnabled = true
-        createProfileButton.isEnabled = true
+        saveButton.isEnabled = buttonsEnabled
+        createProfileButton.isEnabled = buttonsEnabled
     }
     
-    
     func textViewDidEndEditing(_ textView: UITextView) {
-        guard isAnythingDifferent, !areNameOrUsernameEmpty else {
-            saveButton.isEnabled = false
-            createProfileButton.isEnabled = false
-            return
-        }
-        saveButton.isEnabled = true
-        createProfileButton.isEnabled = true
+        saveButton.isEnabled = buttonsEnabled
+        createProfileButton.isEnabled = buttonsEnabled
     }
     
     /*
