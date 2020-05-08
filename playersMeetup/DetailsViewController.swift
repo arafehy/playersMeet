@@ -144,7 +144,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                         let lat = latSelected
                         let longi = longSelected
                         if let urlDestination = URL.init(string: "comgooglemaps://?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
-                            UIApplication.shared.openURL(urlDestination)
+                            UIApplication.shared.open(urlDestination, options: [:], completionHandler: nil)
                         }
                     }
                 }
@@ -165,7 +165,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                 let lat = latSelected
                 let longi = longSelected
                 if let urlDestination = URL.init(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
-                    UIApplication.shared.openURL(urlDestination)
+                    UIApplication.shared.open(urlDestination, options: [:], completionHandler: nil)
                 }
             }
         }
