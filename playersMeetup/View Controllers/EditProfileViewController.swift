@@ -254,6 +254,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     }        
     
     func textViewDidChange(_ textView: UITextView) {
+        isModalInPresentation = isAnythingDifferent
         saveButton.isEnabled = buttonsEnabled
         createProfileButton.isEnabled = buttonsEnabled
     }
@@ -280,6 +281,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
+        isModalInPresentation = isAnythingDifferent
         saveButton.isEnabled = buttonsEnabled
         createProfileButton.isEnabled = buttonsEnabled
     }
