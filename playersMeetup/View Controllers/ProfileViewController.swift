@@ -13,6 +13,8 @@ import Foundation
 import Lottie
 class ProfileViewController: UIViewController {
     
+    // MARK: - Properties
+    
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -28,6 +30,8 @@ class ProfileViewController: UIViewController {
     let user: User? = Auth.auth().currentUser
     var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "",color: "")
     var otherUserID: String = ""
+    
+    // MARK: - VC Life Cycle
     
     override func viewDidAppear(_ animated: Bool) {
         animationView.play()
@@ -72,6 +76,8 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    // MARK: - Button Actions
+    
     @IBAction func logOut(_ sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()
@@ -84,6 +90,8 @@ class ProfileViewController: UIViewController {
     @IBAction func doneButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    // MARK: - Profile Loading
     
     func loadUserProfile(userID: String) {
         FirebaseReferences.usersRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -149,6 +157,8 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    // MARK: - Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toEditProfile" {
             let editProfileVC = segue.destination as! EditProfileViewController
@@ -158,6 +168,7 @@ class ProfileViewController: UIViewController {
     }
     
 }
+
 extension CGFloat {
     static var random: CGFloat {
         return CGFloat(arc4random()) / CGFloat(UInt32.max)
