@@ -86,6 +86,11 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         profilePicture.layer.borderColor = UIColor.systemGray.cgColor
     }
     
+    override func viewWillLayoutSubviews() {
+        let isAnythingDifferent = self.isAnythingDifferent
+        isModalInPresentation = isAnythingDifferent
+    }
+    
     // MARK: - Profile Updating
     
     @IBAction func cancelProfileUpdate(_ sender: UIBarButtonItem) {
