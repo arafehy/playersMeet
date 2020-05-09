@@ -106,7 +106,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
                 tableView.dataSource = self
                 tableView.delegate = self
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase ///letting it know camel case
-                service.request(.search(lat: 37.4419, long: -122.1430)) { (result) in switch result {
+                service.request(.search(lat: 37.3382, long: -121.8863)) { (result) in switch result {
                 case .success(let response):
                     let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
                     locations = dataDictionary["businesses"] as! [[String:Any]]
