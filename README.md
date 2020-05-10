@@ -5,6 +5,7 @@
 1. [Product Spec](#Product-Spec)
 1. [Wireframes](#Wireframes)
 2. [Schema](#Schema)
+5. [Final](#Final)
 
 ## Overview
 ### Description
@@ -34,10 +35,10 @@ This app lets you have fun with sports you enjoy, while also meeting new people.
 **Optional Nice-to-have Stories**
 
 - [x] User can choose location from map.
-* User can add friends.
-* User can rate location.
-* User can use app as a guest.
 - [x] Users can message with each other in team.
+- [ ] User can add friends.
+- [ ] User can rate location.
+- [ ] User can use app as a guest.
 
 ### 2. Screen Archetypes
 
@@ -212,3 +213,7 @@ This app lets you have fun with sports you enjoy, while also meeting new people.
 | `GET` | /businesses/search?latitude=latitude&longitude=longitude | search businesses by latitude & longitude coordinates (i.e. current location) |
 | `GET` | /businesses/search?location=location&categories=categories | search businesses by location (i.e. city) and categories (i.e. basketballcourts) |
 | `GET` | /businesses/{id} | return specific business by id |
+
+## Final
+Final Demo of our project can be viewed [here.](https://docs.google.com/presentation/d/1MTFMgFUsbD6Y3QEHKtm2EHnzARFdSOcnAwL_ApcVroo/edit?usp=sharing)
+
