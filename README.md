@@ -1,5 +1,7 @@
 # playersMeet
 
+<img src="/images/mockup.png" width="650">
+
 ## Table of Contents
 1. [Overview](#Overview)
 1. [Product Spec](#Product-Spec)
