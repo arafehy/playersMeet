@@ -30,7 +30,7 @@ struct FirebaseDBClient {
     
     /// Adds the user to the list of players
     /// - Parameter user: dictionary of user ID to array of join status and location
-    func addUserToDBAsNotJoined(user: [String: [String]]) {
+    func addUserToDB(user: [String: [String]]) {
         guard let (uid, hasJoined) = user.first else {
             print("Could not add user to database: Invalid user info")
             return
