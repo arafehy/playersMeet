@@ -60,7 +60,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 
                 SignUpViewController.userID = user!.uid
                 print(SignUpViewController.userID)
-                self.addUserToUnjoinedPlayerDB()
+                self.addUserToDBAsNotJoined()
             case .failure(let error):
                 self.showErrorAlert(with: error)
             }
@@ -77,7 +77,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 
                 SignUpViewController.userID = user!.uid
                 print(SignUpViewController.userID)
-                self.addUserToUnjoinedPlayerDB()
+                self.addUserToDBAsNotJoined()
             case .failure(let error):
                 self.showErrorAlert(with: error)
             }
@@ -92,7 +92,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         lottieView.addSubview(animationView)
     }
     
-    func addUserToUnjoinedPlayerDB() {
+    func addUserToDBAsNotJoined() {
         // add current user to dictionary as not joined
         let array: [String] = ["not joined", "team location"] // array with join info and team number
         self.usersInfo[SignUpViewController.self.userID] = array
