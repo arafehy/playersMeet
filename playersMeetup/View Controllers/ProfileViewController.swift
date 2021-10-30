@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController {
     static var assignedStringColor: String = UIColor.toHexString(UIColor.random)()
     var handle: AuthStateDidChangeListenerHandle?
     let animationView = AnimationView()
-    let user: User? = Auth.auth().currentUser
+    let user: User? =  FirebaseAuthClient.getUser()
     var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "",color: "")
     var otherUserID: String = ""
     
@@ -79,12 +79,7 @@ class ProfileViewController: UIViewController {
     // MARK: - Button Actions
     
     @IBAction func logOut(_ sender: UIBarButtonItem) {
-        do {
-            try Auth.auth().signOut()
-        }
-        catch {
-            print(error.localizedDescription)
-        }
+        FirebaseAuthClient.signOut()
     }
     
     @IBAction func doneButton(_ sender: UIBarButtonItem) {
