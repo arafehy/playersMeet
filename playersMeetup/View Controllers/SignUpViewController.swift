@@ -64,7 +64,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onSignIn(_ sender: Any) {
-        FirebaseAuthClient.signInUser(email: emailField.text!, password: passwordField.text!) { result in
+        FirebaseAuthClient.signIn(email: emailField.text!, password: passwordField.text!) { result in
             switch result {
             case .success(let user):
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
