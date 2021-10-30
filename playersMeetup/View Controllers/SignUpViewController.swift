@@ -25,7 +25,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     static let signUpController = SignUpViewController()
     
     static var userID: String = ""
-    var usersInfo: [String:[String]] = [:]
     
     // MARK: - VC Life Cycle
     
@@ -57,10 +56,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             switch result {
             case .success(let user):
                 self.performSegue(withIdentifier: "toCreateProfile", sender: self)
-                
-                SignUpViewController.userID = user!.uid
-                print(SignUpViewController.userID)
-                self.addUserToDBAsNotJoined()
+                self.addUserToDBAsNotJoined(userID: user!.uid)
             case .failure(let error):
                 self.showErrorAlert(with: error)
             }
@@ -75,9 +71,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 let profileVC = storyboard.instantiateInitialViewController()
                 self.view.window?.rootViewController = profileVC
                 
-                SignUpViewController.userID = user!.uid
-                print(SignUpViewController.userID)
-                self.addUserToDBAsNotJoined()
+                self.addUserToDBAsNotJoined(userID: user!.uid)
             case .failure(let error):
                 self.showErrorAlert(with: error)
             }
@@ -94,11 +88,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         lottieView.addSubview(animationView)
     }
     
-    func addUserToDBAsNotJoined() {
+    func addUserToDBAsNotJoined(userID: String) {
         // add current user to dictionary as not joined
-        let array: [String] = ["not joined", "team location"] // array with join info and team number
-        self.usersInfo[SignUpViewController.self.userID] = array
-        FirebaseManager.dbClient.addUserToDB(user: usersInfo)
+        let userInfo: [String: [String]] = [userID: ["not joined", "team location"]]
+        FirebaseManager.dbClient.addUserToDB(user: userInfo)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
