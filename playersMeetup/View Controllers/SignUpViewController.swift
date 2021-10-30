@@ -84,6 +84,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK: Helpers
+    
     func configureBackgroundLoadingAnimation() {
         animationView.animation = Animation.named("18709-loading")
         animationView.frame.size = lottieView.frame.size
