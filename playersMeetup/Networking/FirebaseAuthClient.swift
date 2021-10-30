@@ -10,9 +10,10 @@ import Foundation
 import FirebaseAuth
 
 struct FirebaseAuthClient {
+    private static let authObject = Auth.auth()
     
     static func createUser(email: String, password: String, completion: @escaping (Result<User?, Error>) -> Void) {
-        Auth.auth().createUser(withEmail: email, password: password){ (result, error) in
+        authObject.createUser(withEmail: email, password: password){ (result, error) in
             guard error == nil else {
                 completion(.failure(error!))
                 return
@@ -21,8 +22,8 @@ struct FirebaseAuthClient {
         }
     }
     
-    static func signInUser(email: String, password: String, completion: @escaping (Result<User?, Error>) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+    static func signIn(email: String, password: String, completion: @escaping (Result<User?, Error>) -> Void) {
+        authObject.signIn(withEmail: email, password: password) { result, error in
             guard error == nil else {
                 completion(.failure(error!))
                 return
@@ -31,16 +32,20 @@ struct FirebaseAuthClient {
         }
     }
     
-    static func signOutUser() -> Void {
+    static func signOut() -> Void {
         do {
-            try Auth.auth().signOut()
+            try authObject.signOut()
         }
         catch {
             print(error.localizedDescription)
         }
     }
     
+    static func getUser() -> User? {
+        return authObject.currentUser
+    }
+    
     static func getUserID() -> String {
-        return Auth.auth().currentUser!.uid
+        return authObject.currentUser!.uid
     }
 }
