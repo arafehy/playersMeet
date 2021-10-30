@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Alamofire
 
 class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -151,7 +152,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             print("Failed to convert to dictionary")
             return
         }
-        FirebaseReferences.usersRef.child(userID).updateChildValues(profileAsDictionary) { (error, usersRef) in
+        FirebaseManager.dbClient.getDBReference(pathName: .profileInfo).child(userID).updateChildValues(profileAsDictionary) { error, profileInfo in
             guard error == nil else {
                 print("Failed to save profile")
                 return
@@ -179,7 +180,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             return
         }
         
-        let profileRef = FirebaseReferences.imagesRef.child(userID)
+        let profileRef = FirebaseManager.dbClient.getStorageRefence(pathName: .images)
         
         let metadata = StorageMetadata()
         metadata.contentType = "image/png"
@@ -193,7 +194,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
                     return
                 }
                 let photoURLString = downloadURL.absoluteString
-                FirebaseReferences.usersRef.child("\(userID)/photoURL").setValue(photoURLString) { (error, userRef) in
+                FirebaseManager.dbClient.getDBReference(pathName: .profileInfo).child("\(userID)/photoURL").setValue(photoURLString) { (error, userRef) in
                     guard error == nil else {
                         print("Failed to save photo url")
                         return
@@ -333,7 +334,6 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         createProfileButton.isEnabled = buttonsEnabled
     }
     
-    
     @IBAction func nameEndedEdit(_ sender: UITextField) {
         saveButton.isEnabled = buttonsEnabled
         createProfileButton.isEnabled = buttonsEnabled
@@ -360,8 +360,6 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         moveTextView(textView, moveDistance: -100, up: false)
     }
     
-    
-    
     func moveTextView(_ textView: UITextView, moveDistance: Int, up: Bool) {
         let moveDuration = 0.3
         let movement: CGFloat = CGFloat(up ? moveDistance : -moveDistance)
@@ -370,15 +368,4 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
         }
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
