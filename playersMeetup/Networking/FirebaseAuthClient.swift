@@ -31,6 +31,15 @@ struct FirebaseAuthClient {
         }
     }
     
+    static func signOutUser() -> Void {
+        do {
+            try Auth.auth().signOut()
+        }
+        catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     static func getUserID() -> String {
         return Auth.auth().currentUser!.uid
     }
