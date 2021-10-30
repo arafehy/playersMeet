@@ -55,8 +55,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         FirebaseAuthClient.createUser(email: emailField.text!, password: passwordField.text!) { result in
             switch result {
             case .success(let user):
+                guard let user = user else {
+                    print("User does not exist")
+                    return
+                }
                 self.performSegue(withIdentifier: "toCreateProfile", sender: self)
-                self.addUserToDBAsNotJoined(userID: user!.uid)
+                self.addUserToDBAsNotJoined(userID: user.uid)
             case .failure(let error):
                 self.showErrorAlert(with: error)
             }
@@ -67,11 +71,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         FirebaseAuthClient.signIn(email: emailField.text!, password: passwordField.text!) { result in
             switch result {
             case .success(let user):
+                guard let user = user else {
+                    print("User does not exist")
+                    return
+                }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let profileVC = storyboard.instantiateInitialViewController()
                 self.view.window?.rootViewController = profileVC
                 
-                self.addUserToDBAsNotJoined(userID: user!.uid)
+                self.addUserToDBAsNotJoined(userID: user.uid)
             case .failure(let error):
                 self.showErrorAlert(with: error)
             }
