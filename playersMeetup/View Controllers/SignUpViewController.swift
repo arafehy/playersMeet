@@ -53,75 +53,33 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     // MARK: Button Actions
     
     @IBAction func onSignUp(_ sender: Any) {
-        Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!){ (user, error) in
-            if error == nil {
+        FirebaseAuthClient.createUser(email: emailField.text!, password: passwordField.text!) { result in
+            switch result {
+            case .success(let user):
                 self.performSegue(withIdentifier: "toCreateProfile", sender: self)
-                //get user id
-                SignUpViewController.userID = Auth.auth().currentUser!.uid
+                
+                SignUpViewController.userID = user!.uid
                 print(SignUpViewController.userID)
-                //add current user to dictionary as not joined
-                var array: [String] = [] //array with join info and team number
-                array.append("not joined")
-                array.append("team location")
-                self.usersInfo[SignUpViewController.self.userID] = array
-                for (uid,hasJoined) in self.usersInfo{
-                    FirebaseReferences.userInfoRef.observeSingleEvent(of: .value) { (snapshot) in
-                        if snapshot.hasChild(uid){
-                            print("user is in database")
-                        }
-                        else{
-                            print("adding user to database")
-                            let newUser = FirebaseReferences.userInfoRef.child(uid)
-                            
-                            newUser.setValue(hasJoined)
-                        }
-                    }
-                }
-            }
-            else {
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
+                self.addUserToUnjoinedPlayerDB()
+            case .failure(let error):
+                self.showErrorAlert(with: error)
             }
         }
     }
     
     @IBAction func onSignIn(_ sender: Any) {
-        
-        Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
-            if error == nil{
+        FirebaseAuthClient.signInUser(email: emailField.text!, password: passwordField.text!) { result in
+            switch result {
+            case .success(let user):
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let profileVC = storyboard.instantiateInitialViewController()
                 self.view.window?.rootViewController = profileVC
-                //get user id
-                SignUpViewController.userID = Auth.auth().currentUser!.uid
-                print(SignUpViewController.userID)
-                //add current user to dictionary as not joined
-                var array: [String] = [] //array with join info and team number
-                array.append("not joined")
-                array.append("team location")
-                self.usersInfo[SignUpViewController.self.userID] = array
-                for (uid,hasJoined) in self.usersInfo{
-                    FirebaseReferences.userInfoRef.observeSingleEvent(of: .value) { (snapshot) in
-                        if snapshot.hasChild(uid){
-                            print("user is in database")
-                        }
-                        else{
-                            print("adding user to database")
-                            let newUser = FirebaseReferences.userInfoRef.child(uid)
-                            
-                            newUser.setValue(hasJoined)
-                        }
-                    }
-                }
-            }
-            else{
-                let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
                 
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
+                SignUpViewController.userID = user!.uid
+                print(SignUpViewController.userID)
+                self.addUserToUnjoinedPlayerDB()
+            case .failure(let error):
+                self.showErrorAlert(with: error)
             }
         }
     }
