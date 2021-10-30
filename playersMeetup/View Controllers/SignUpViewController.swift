@@ -96,7 +96,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         // add current user to dictionary as not joined
         let array: [String] = ["not joined", "team location"] // array with join info and team number
         self.usersInfo[SignUpViewController.self.userID] = array
-        FirebaseDBClient.shared.addUserToDBAsNotJoined(user: usersInfo)
+        FirebaseManager.dbClient.addUserToDB(user: usersInfo)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
