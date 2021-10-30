@@ -11,7 +11,6 @@ import Firebase
 
 
 struct FirebaseDBClient {
-    static let shared = FirebaseDBClient()
     enum DBPathNames: String {
         case userInfo, profileInfo, teamChat, businessesRef
     }

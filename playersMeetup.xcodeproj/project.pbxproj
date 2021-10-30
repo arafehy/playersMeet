@@ -22,6 +22,7 @@
 		E07996FD272CF44B0000D162 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FC272CF44B0000D162 /* UIButtonExtensions.swift */; };
 		E07996FE272CF44B0000D162 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FB272CF44A0000D162 /* UIViewControllerExtensions.swift */; };
 		E07996FF272CF44B0000D162 /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */; };
+		E0799702272D02320000D162 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0799701272D02320000D162 /* FirebaseManager.swift */; };
 		E0C0254B245F8CC200950223 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C0254A245F8CC200950223 /* User.swift */; };
 		E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4887B245A708F00ED074A /* ProfileViewController.swift */; };
 		E0FCC718245E9426000BA717 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FCC717245E9426000BA717 /* EditProfileViewController.swift */; };
@@ -81,6 +82,7 @@
 		E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
 		E07996FB272CF44A0000D162 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		E07996FC272CF44B0000D162 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
+		E0799701272D02320000D162 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		E0C0254A245F8CC200950223 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0D4887B245A708F00ED074A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E0FCC717245E9426000BA717 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */,
 				E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */,
+				E0799701272D02320000D162 /* FirebaseManager.swift */,
 				FAB9CBA32455899F00C25C92 /* NetworkService.swift */,
 			);
 			path = Networking;
@@ -577,6 +580,7 @@
 				FA75F733245445FD00E681F9 /* ViewController.swift in Sources */,
 				FAB9CBB22455C27600C25C92 /* LocationTableViewCell.swift in Sources */,
 				DB80848E245687B800177175 /* SignUpViewController.swift in Sources */,
+				E0799702272D02320000D162 /* FirebaseManager.swift in Sources */,
 				FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */,
 				E0FCC718245E9426000BA717 /* EditProfileViewController.swift in Sources */,
 				FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */,
