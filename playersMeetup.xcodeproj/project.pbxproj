@@ -17,7 +17,11 @@
 		E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */; };
 		E005B3522464A6810034DD7C /* customTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
-		E01AC8A024614D7C00E8C32E /* FirebaseReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01AC89F24614D7C00E8C32E /* FirebaseReferences.swift */; };
+		E07996F6272CF34D0000D162 /* FirebaseAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996F4272CF34D0000D162 /* FirebaseAuthManager.swift */; };
+		E07996F7272CF34D0000D162 /* FirebaseDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996F5272CF34D0000D162 /* FirebaseDBManager.swift */; };
+		E07996FD272CF44B0000D162 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FC272CF44B0000D162 /* UIButtonExtensions.swift */; };
+		E07996FE272CF44B0000D162 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FB272CF44A0000D162 /* UIViewControllerExtensions.swift */; };
+		E07996FF272CF44B0000D162 /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */; };
 		E0C0254B245F8CC200950223 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C0254A245F8CC200950223 /* User.swift */; };
 		E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4887B245A708F00ED074A /* ProfileViewController.swift */; };
 		E0FCC718245E9426000BA717 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FCC717245E9426000BA717 /* EditProfileViewController.swift */; };
@@ -72,7 +76,11 @@
 		E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4414-bouncy-basketball.json"; sourceTree = "<group>"; };
 		E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		E01AC89F24614D7C00E8C32E /* FirebaseReferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseReferences.swift; sourceTree = "<group>"; };
+		E07996F4272CF34D0000D162 /* FirebaseAuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthManager.swift; sourceTree = "<group>"; };
+		E07996F5272CF34D0000D162 /* FirebaseDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDBManager.swift; sourceTree = "<group>"; };
+		E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
+		E07996FB272CF44A0000D162 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		E07996FC272CF44B0000D162 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		E0C0254A245F8CC200950223 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0D4887B245A708F00ED074A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E0FCC717245E9426000BA717 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +160,16 @@
 				A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E0799700272CF45D0000D162 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				E07996FC272CF44B0000D162 /* UIButtonExtensions.swift */,
+				E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */,
+				E07996FB272CF44A0000D162 /* UIViewControllerExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E0AB2F4924652E0300F4CE49 /* View Controllers */ = {
@@ -243,6 +261,7 @@
 			children = (
 				FA75F72E245445FD00E681F9 /* AppDelegate.swift */,
 				FA75F730245445FD00E681F9 /* SceneDelegate.swift */,
+				E0799700272CF45D0000D162 /* Extensions */,
 				E0AB2F4924652E0300F4CE49 /* View Controllers */,
 				E0AB2F4E24652F2600F4CE49 /* Storyboards */,
 				E0AB2F4A24652E2500F4CE49 /* Models */,
@@ -565,7 +584,11 @@
 				DB8084902456A06100177175 /* HomeViewController.swift in Sources */,
 				FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */,
 				E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */,
+				E07996FF272CF44B0000D162 /* UITextFieldExtensions.swift in Sources */,
+				E07996FE272CF44B0000D162 /* UIViewControllerExtensions.swift in Sources */,
+				E07996F6272CF34D0000D162 /* FirebaseAuthManager.swift in Sources */,
 				6A4B0F472460872F002F0882 /* MessageCell.swift in Sources */,
+				E07996FD272CF44B0000D162 /* UIButtonExtensions.swift in Sources */,
 				FAB9CBA62455931E00C25C92 /* Models.swift in Sources */,
 				FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */,
 				6A4B0F452460871D002F0882 /* TeamChatViewController.swift in Sources */,
