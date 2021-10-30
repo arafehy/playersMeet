@@ -19,11 +19,11 @@ struct FirebaseDBClient {
         case images
     }
     
-    private func getDBReference(pathName: DBPathNames) -> DatabaseReference {
+    func getDBReference(pathName: DBPathNames) -> DatabaseReference {
         return Database.database().reference().ref.child(pathName.rawValue)
     }
     
-    private func getStorageRefence(pathName: StoragePathNames) -> StorageReference {
+    func getStorageRefence(pathName: StoragePathNames) -> StorageReference {
         return Storage.storage().reference(withPath: pathName.rawValue)
     }
     
