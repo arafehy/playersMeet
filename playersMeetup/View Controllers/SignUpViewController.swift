@@ -11,6 +11,9 @@ import Firebase
 import FirebaseAuth
 import Lottie
 class SignUpViewController: UIViewController, UITextFieldDelegate {
+    
+    // MARK: - Properties
+    
     @IBOutlet weak var lottieView: UIView!
     let animationView = AnimationView()
     @IBOutlet weak var signInButton: UIButton!
@@ -21,6 +24,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var playersMeetLabel: UILabel!
     static let signUpController = SignUpViewController()
     
+    static var userID: String = ""
+    var usersInfo: [String:[String]] = [:]
+    
+    // MARK: - VC Life Cycle
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         animationView.play()
@@ -28,33 +36,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        overrideUserInterfaceStyle = .light
-        //custom ui
         signInButton.rounded()
         signUpButton.rounded()
-        //        
-        animationView.animation = Animation.named("18709-loading")
-        animationView.frame.size = lottieView.frame.size
-        animationView.contentMode = .scaleAspectFill
-        animationView.loopMode = .loop
-        playersMeetLabel.layer.zPosition = 1
-        lottieView.addSubview(animationView)
-        
-        //        animationView.layer.zPosition = 1
-        emailField.layer.zPosition = 1
-        emailField.layer.borderWidth = 1
-        passwordField.layer.zPosition = 1
         signUpButton.layer.zPosition = 1
-        emailField.layer.cornerRadius = 10
-        emailField.layer.borderColor = UIColor.white.cgColor
-        passwordField.layer.borderWidth = 1
-        passwordField.layer.cornerRadius = 10
-        passwordField.layer.borderColor = UIColor.white.cgColor
-        passwordField.layer.borderWidth = 1
+        
+        playersMeetLabel.layer.zPosition = 1
+        
+        emailField.configure()
+        passwordField.configure()
+        
         emailField.delegate = self
         passwordField.delegate = self
-        animationView.play()
+        configureBackgroundLoadingAnimation()
     }
+    
+    // MARK: Button Actions
     
     @IBAction func onSignUp(_ sender: Any) {
         Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!){ (user, error) in
@@ -91,8 +87,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    static var userID: String = ""
-    var usersInfo: [String:[String]] = [:]
     @IBAction func onSignIn(_ sender: Any) {
         
         Auth.auth().signIn(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
@@ -131,30 +125,24 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    
+    func configureBackgroundLoadingAnimation() {
+        animationView.animation = Animation.named("18709-loading")
+        animationView.frame.size = lottieView.frame.size
+        animationView.contentMode = .scaleAspectFill
+        animationView.loopMode = .loop
+        lottieView.addSubview(animationView)
+    }
+    
+    func addUserToUnjoinedPlayerDB() {
+        // add current user to dictionary as not joined
+        let array: [String] = ["not joined", "team location"] // array with join info and team number
+        self.usersInfo[SignUpViewController.self.userID] = array
+        FirebaseDBClient.shared.addUserToDBAsNotJoined(user: usersInfo)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
-    }
-    
-}
-
-extension UITextField {
-    func rounded() {
-        
-        // set rounded and white border
-        self.layer.cornerRadius = 25
-        self.layer.borderColor = UIColor.white.cgColor
-        self.layer.borderWidth = 1
-        
-        
-    }
-}
-
-extension UIButton {
-    func rounded() {
-        
-        // set rounded and white border
-        self.layer.cornerRadius = 25
-        self.clipsToBounds = true
     }
 }
