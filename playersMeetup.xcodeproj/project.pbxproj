@@ -79,7 +79,8 @@
 		E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4414-bouncy-basketball.json"; sourceTree = "<group>"; };
 		E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		E0788C48272E22930089197D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageError.swift; path = playersMeetup/ImageError.swift; sourceTree = SOURCE_ROOT; };
+		E0788C48272E22930089197D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageError.swift; path = playersMeetup/Errors/ImageError.swift; sourceTree = SOURCE_ROOT; };
+		E0788C4A272E3F440089197D /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthClient.swift; sourceTree = "<group>"; };
 		E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDBClient.swift; sourceTree = "<group>"; };
 		E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
@@ -168,6 +169,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E0788C4C272E402B0089197D /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				E0788C48272E22930089197D /* ImageError.swift */,
+				E0788C4A272E3F440089197D /* AuthError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		E0799700272CF45D0000D162 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,7 +237,6 @@
 			children = (
 				E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */,
 				E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */,
-				E0788C48272E22930089197D /* ImageError.swift */,
 				E0799701272D02320000D162 /* FirebaseManager.swift */,
 				FAB9CBA32455899F00C25C92 /* NetworkService.swift */,
 			);
@@ -277,6 +286,7 @@
 				E0AB2F4A24652E2500F4CE49 /* Models */,
 				E0AB2F4B24652E9300F4CE49 /* Views */,
 				E0AB2F4D24652F0900F4CE49 /* Networking */,
+				E0788C4C272E402B0089197D /* Errors */,
 				FA75F73C2454460000E681F9 /* Info.plist */,
 				FA1116E424598D3C00800C33 /* GoogleService-Info.plist */,
 				FA18FCB1245BBC930087C1CC /* Assets.xcassets */,
