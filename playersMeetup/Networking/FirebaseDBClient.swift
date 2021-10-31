@@ -19,6 +19,10 @@ struct FirebaseDBClient {
         case images
     }
     
+    enum ImageType: String {
+        case png
+    }
+    
     func getDBReference(pathName: DBPathNames) -> DatabaseReference {
         return Database.database().reference().ref.child(pathName.rawValue)
     }
@@ -43,6 +47,41 @@ struct FirebaseDBClient {
                 let newUser = FirebaseDBClient.userInfoRef.child(uid)
                 
                 newUser.setValue(hasJoined)
+            }
+        }
+    }
+    
+    func uploadProfilePicture(userID: String, imageData: Data, imageType: ImageType, completion: @escaping (Result<String, Error>) -> Void) {
+        let profileRef = getStorageReference(pathName: .images)
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/\(imageType.rawValue)"
+        
+        profileRef.putData(imageData, metadata: metadata) { (metadata, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard metadata != nil else {
+                completion(.failure(ImageError.invalidMetadata))
+                return
+            }
+            profileRef.downloadURL { (url, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                guard let downloadURL = url?.absoluteString else {
+                    completion(.failure(ImageError.invalidDownloadURL))
+                    return
+                }
+                getDBReference(pathName: .profileInfo).child("\(userID)/photoURL").setValue(downloadURL) { (error, userRef) in
+                    if let error = error {
+                        completion(.failure(error))
+                        return
+                    }
+                    completion(.success(downloadURL))
+                }
             }
         }
     }

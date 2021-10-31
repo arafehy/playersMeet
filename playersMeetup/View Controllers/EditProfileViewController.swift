@@ -176,32 +176,17 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     func uploadProfilePicture(userID: String) {
         guard let newProfilePicture = profilePicture.image?.pngData() else {
-            // TODO: Show error alert
+            self.showErrorAlert(with: ImageError.nilImage)
             return
         }
         
-        let profileRef = FirebaseManager.dbClient.getStorageRefence(pathName: .images)
-        
-        let metadata = StorageMetadata()
-        metadata.contentType = "image/png"
-        
-        profileRef.putData(newProfilePicture, metadata: metadata) { (metadata, error) in
-            guard metadata != nil else {
-                return
-            }
-            profileRef.downloadURL { (url, error) in
-                guard let downloadURL = url else {
-                    return
-                }
-                let photoURLString = downloadURL.absoluteString
-                FirebaseManager.dbClient.getDBReference(pathName: .profileInfo).child("\(userID)/photoURL").setValue(photoURLString) { (error, userRef) in
-                    guard error == nil else {
-                        print("Failed to save photo url")
-                        return
-                    }
-                    self.userInfo?.photoURL = photoURLString
-                    self.updateProfile(userID: userID)
-                }
+        FirebaseManager.dbClient.uploadProfilePicture(userID: userID, imageData: newProfilePicture, imageType: .png) { result in
+            switch result {
+            case .success(let photoDownloadURL):
+                self.userInfo?.photoURL = photoDownloadURL
+                self.updateProfile(userID: userID)
+            case .failure(let error):
+                self.showErrorAlert(with: error)
             }
         }
     }
