@@ -25,8 +25,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         joinTeamOutlet?.isEnabled = true
         self.chatButton.isEnabled = false //not in team
         
-        let referenceTeamCount = FirebaseReferences.businessesRef.child(LocationsViewController.selectedId)
-        FirebaseReferences.businessesRef.child(LocationsViewController.selectedId).observeSingleEvent(of: .value) { (snapshot) in
+        let referenceTeamCount = FirebaseDBClient.businessesRef.child(LocationsViewController.selectedId)
+        FirebaseDBClient.businessesRef.child(LocationsViewController.selectedId).observeSingleEvent(of: .value) { (snapshot) in
             let countBeforeLeaving = snapshot.value
             LocationsViewController.shared.count = countBeforeLeaving as! Int - 1
             
@@ -47,7 +47,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
             //        String(format: "%d",LocationsViewController.shared.count)
             
             let array: [String] = ["not joined","0"]
-            FirebaseReferences.userInfoRef.child(self.user!.uid).setValue(array)
+            FirebaseDBClient.userInfoRef.child(self.user!.uid).setValue(array)
             self.youInTeamLabel.text = ""
         }
         
@@ -56,7 +56,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     
     @IBAction func joinTeamAction(_ sender: Any) {
         //        if ref.child( SignUpViewController.signUpController.userID) as! String == "not joined"
-        FirebaseReferences.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
+        FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             print((snapshot.value as? [String])![0])
             if (snapshot.value as? [String])?[0] == "not joined"
             {
@@ -74,11 +74,11 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                     self.usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
                 }
                 //businesses count modification
-                let referenceTeamCount = FirebaseReferences.businessesRef.child(LocationsViewController.selectedId)
+                let referenceTeamCount = FirebaseDBClient.businessesRef.child(LocationsViewController.selectedId)
                 referenceTeamCount.setValue(LocationsViewController.shared.count)
                 //userInfo modification
                 let array: [String] = ["joined",DetailsViewController.selectedLocationId]
-                FirebaseReferences.userInfoRef.child(self.user!.uid).setValue(array)
+                FirebaseDBClient.userInfoRef.child(self.user!.uid).setValue(array)
                 self.youInTeamLabel.text = "You are in this team"
                 self.chatButton.isEnabled = true
             }
@@ -102,7 +102,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         //ref here is for userInfo
         self.youInTeamLabel.text = "You are now in this team"
         self.chatButton.isEnabled = true
-        FirebaseReferences.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
+        FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             //get location id previously joined //getting this from user info
             let  locationAlreadyJoinedId = (snapshot.value as? [String])?[1]
             //            print("Location already joined \(locationAlreadyJoinedId)")
@@ -115,22 +115,22 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         print("id of location previous")
         print(locationAlreadyJoinedId)
         
-        FirebaseReferences.businessesRef.child(locationAlreadyJoinedId).observeSingleEvent(of: .value) { (snapshot) in
+        FirebaseDBClient.businessesRef.child(locationAlreadyJoinedId).observeSingleEvent(of: .value) { (snapshot) in
             var currentCount = snapshot.value as! Int
             
             //joining team
             print("count of prev location is  \(currentCount)")
             currentCount = currentCount - 1
             //leaving previous team -1 count in businesses
-            FirebaseReferences.businessesRef.child(locationAlreadyJoinedId).setValue(currentCount)
+            FirebaseDBClient.businessesRef.child(locationAlreadyJoinedId).setValue(currentCount)
         }
         //modifiying current team of user
         let arrJoined: [String] = ["joined",DetailsViewController.selectedLocationId]
-        FirebaseReferences.userInfoRef.child(user!.uid).setValue(arrJoined)
+        FirebaseDBClient.userInfoRef.child(user!.uid).setValue(arrJoined)
         self.joinTeamOutlet?.isEnabled = false //cannot join since already joined
         self.leaveTeamOutlet?.isEnabled = true
         self.chatButton.isEnabled = true // in team
-        let referenceTeamCount = FirebaseReferences.businessesRef.child(LocationsViewController.selectedId)
+        let referenceTeamCount = FirebaseDBClient.businessesRef.child(LocationsViewController.selectedId)
         LocationsViewController.shared.count = LocationsViewController.shared.count+1
         referenceTeamCount.setValue(LocationsViewController.shared.count)
     }
@@ -188,7 +188,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         leaveTeamOutlet.isEnabled = false
         self.chatButton.isEnabled = false
         //get value from database
-        let reference = FirebaseReferences.businessesRef.child(LocationsViewController.selectedId)
+        let reference = FirebaseDBClient.businessesRef.child(LocationsViewController.selectedId)
         print("selected id")
         reference.observeSingleEvent(of: .value){
             (snapshot) in print(snapshot.key)
@@ -214,7 +214,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         })
         
         //check if user is already in team selected
-        FirebaseReferences.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
+        FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             if (snapshot.value as? [String])?[0] == "joined" && DetailsViewController.selectedLocationId == (snapshot.value as? [String])?[1] {
                 print("Already in that team")
                 //dont allow to join
