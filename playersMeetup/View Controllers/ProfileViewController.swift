@@ -89,7 +89,7 @@ class ProfileViewController: UIViewController {
     // MARK: - Profile Loading
     
     func loadUserProfile(userID: String) {
-        FirebaseReferences.usersRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+        FirebaseDBClient.usersRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
             
             let name = value?["name"] as? String

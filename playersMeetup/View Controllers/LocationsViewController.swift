@@ -44,7 +44,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         ///     print("selected:")
         ///        print(cell.locationLabel.text)
         let sel = selectedLocation["id"] as! String
-        FirebaseReferences.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
+        FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             if (snapshot.value as? [String])?[0] == "joined" && (snapshot.value as? [String])?[1] == sel {
                 cell.isHereIndicator.isHidden = false
                 
@@ -120,14 +120,14 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
                         }
                     }
                     for (name,count) in self.names{
-                        FirebaseReferences.businessesRef.observeSingleEvent(of: .value) { (snapshot) in
+                        FirebaseDBClient.businessesRef.observeSingleEvent(of: .value) { (snapshot) in
                             if snapshot.hasChild(name){
                                 print("exists \(name)")
                             }
                             else{
                                 print("doesnt exist")
                                 //if doesnt exist add it as child to businesses
-                                let newLoc = FirebaseReferences.businessesRef.child(name)
+                                let newLoc = FirebaseDBClient.businessesRef.child(name)
                                 newLoc.setValue(count)
                             }
                         }
@@ -159,14 +159,14 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
                 //                    make counter var - update counter on click and set ref
                 //                   FirebaseReferences.businessesRef.setValue(self.names)
                 for (name,count) in self.names{
-                    FirebaseReferences.businessesRef.observeSingleEvent(of: .value) { (snapshot) in
+                    FirebaseDBClient.businessesRef.observeSingleEvent(of: .value) { (snapshot) in
                         if snapshot.hasChild(name){
                             print("exists \(name)")
                         }
                         else{
                             print("doesnt exist")
                             //if doesnt exist add it as child to businesses
-                            let newLoc = FirebaseReferences.businessesRef.child(name)
+                            let newLoc = FirebaseDBClient.businessesRef.child(name)
                             newLoc.setValue(count)
                         }
                     }

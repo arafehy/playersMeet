@@ -115,7 +115,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
         let msgsRef = Database.database().reference().child("teamChat/\(teamId)").childByAutoId()
-        FirebaseReferences.usersRef.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
+        FirebaseDBClient.usersRef.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
             let userInfo = snapshot.value as? NSDictionary
             let username = userInfo?["username"]
             let color = userInfo?["color"]
