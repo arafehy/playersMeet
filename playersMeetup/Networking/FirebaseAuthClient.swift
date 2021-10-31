@@ -14,21 +14,29 @@ struct FirebaseAuthClient {
     
     static func createUser(email: String, password: String, completion: @escaping (Result<User?, Error>) -> Void) {
         authObject.createUser(withEmail: email, password: password){ (result, error) in
-            guard error == nil else {
-                completion(.failure(error!))
+            if let error = error {
+                completion(.failure(error))
                 return
             }
-            completion(.success(result?.user))
+            guard let user = result?.user else {
+                completion(.failure(AuthError.userNotFound))
+                return
+            }
+            completion(.success(user))
         }
     }
     
     static func signIn(email: String, password: String, completion: @escaping (Result<User?, Error>) -> Void) {
-        authObject.signIn(withEmail: email, password: password) { result, error in
-            guard error == nil, let result = result else {
-                completion(.failure(error!))
+        authObject.signIn(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                completion(.failure(error))
                 return
             }
-            completion(.success(result.user))
+            guard let user = result?.user else {
+                completion(.failure(AuthError.userNotFound))
+                return
+            }
+            completion(.success(user))
         }
     }
     
