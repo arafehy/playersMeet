@@ -11,6 +11,14 @@ import Firebase
 
 
 struct FirebaseDBClient {
+    
+    // MARK: Properties
+    
+    private let dbObject = Database.database()
+    private let storageObject = Storage.storage()
+    
+    // MARK: Enums
+    
     enum DBPathNames: String {
         case userInfo, profileInfo, teamChat, businessesRef
     }
@@ -23,12 +31,14 @@ struct FirebaseDBClient {
         case png
     }
     
+    // MARK: Private Helpers
+    
     private func getDBReference(pathName: DBPathNames) -> DatabaseReference {
-        return Database.database().reference().ref.child(pathName.rawValue)
+        return dbObject.reference().ref.child(pathName.rawValue)
     }
     
     private func getStorageReference(pathName: StoragePathNames) -> StorageReference {
-        return Storage.storage().reference(withPath: pathName.rawValue)
+        return storageObject.reference(withPath: pathName.rawValue)
     }
     
     /// Adds the user to the list of players
@@ -50,6 +60,8 @@ struct FirebaseDBClient {
             }
         }
     }
+    
+    // MARK: Profile Picture
     
     func uploadProfilePicture(userID: String, imageData: Data, imageType: ImageType, completion: @escaping (Result<String, Error>) -> Void) {
         let profileRef = getStorageReference(pathName: .images)
