@@ -137,18 +137,18 @@ class ProfileViewController: UIViewController {
     }
     
     func loadProfilePicture(userID: String) {
-        FirebaseReferences.imagesRef.child(userID).getData(maxSize: 5 * 1024 * 1024) { (data, error) in
-            guard error == nil else {
-                return
+        FirebaseManager.dbClient.retrieveProfilePicture(userID: userID) { result in
+            switch result {
+            case .success(let image):
+                self.profilePicture.image = image
+                self.profilePicture.configureProfilePicture()
+                self.editButton.isEnabled = true
+            case .failure(let error):
+                // TODO: Set placeholder image
+                // self.profilePicture.image = placeholderProfilePicture
+                self.showErrorAlert(with: error)
+                print("Error retrieving image: \(error)")
             }
-            guard let data = data else {
-                return
-            }
-            self.profilePicture.image = UIImage(data: data)
-            self.profilePicture.layer.cornerRadius = 10
-            self.profilePicture.layer.borderWidth = 4
-            self.profilePicture.layer.borderColor = UIColor.systemGray.cgColor
-            self.editButton.isEnabled = true
         }
     }
     

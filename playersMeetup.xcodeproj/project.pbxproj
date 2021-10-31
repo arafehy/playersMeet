@@ -17,6 +17,7 @@
 		E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */; };
 		E005B3522464A6810034DD7C /* customTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
+		E0788C49272E22930089197D /* ImageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C48272E22930089197D /* ImageError.swift */; };
 		E07996F6272CF34D0000D162 /* FirebaseAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */; };
 		E07996F7272CF34D0000D162 /* FirebaseDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */; };
 		E07996FD272CF44B0000D162 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FC272CF44B0000D162 /* UIButtonExtensions.swift */; };
@@ -78,6 +79,7 @@
 		E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4414-bouncy-basketball.json"; sourceTree = "<group>"; };
 		E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E0788C48272E22930089197D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageError.swift; path = playersMeetup/ImageError.swift; sourceTree = SOURCE_ROOT; };
 		E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthClient.swift; sourceTree = "<group>"; };
 		E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDBClient.swift; sourceTree = "<group>"; };
 		E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */,
 				E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */,
+				E0788C48272E22930089197D /* ImageError.swift */,
 				E0799701272D02320000D162 /* FirebaseManager.swift */,
 				FAB9CBA32455899F00C25C92 /* NetworkService.swift */,
 			);
@@ -586,6 +589,8 @@
 				E0799702272D02320000D162 /* FirebaseManager.swift in Sources */,
 				FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */,
 				E0FCC718245E9426000BA717 /* EditProfileViewController.swift in Sources */,
+				E07FF7C5272DB00F00325763 /* UIImageExtensions.swift in Sources */,
+				E0788C49272E22930089197D /* ImageError.swift in Sources */,
 				FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */,
 				FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */,
 				DB8084902456A06100177175 /* HomeViewController.swift in Sources */,

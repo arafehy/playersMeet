@@ -47,6 +47,21 @@ struct FirebaseDBClient {
         }
     }
     
+    func retrieveProfilePicture(userID: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        let maxImageSize: Int64 = 5 * 1024 * 1024
+        getStorageRefence(pathName: .images).child(userID).getData(maxSize: maxImageSize) { (data, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let data = data, let image = UIImage(data: data) else {
+                completion(.failure(ImageError.invalidData))
+                return
+            }
+            completion(.success(image))
+        }
+    }
+    
     static let userInfoRef = Database.database().reference().ref.child("userInfo")
     static let usersRef = Database.database().reference().ref.child("profileInfo")
     static let imagesRef = Storage.storage().reference(withPath: "images")
