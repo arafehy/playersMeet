@@ -20,7 +20,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     var showsCommentBar = true
     let ref = Database.database().reference()
     var msgData = [NSDictionary]()
-    let currentUser: User? = Auth.auth().currentUser
+    let currentUser: User? = FirebaseAuthClient.getUser()
     
     override func viewDidLoad() {
         super.viewDidLoad()

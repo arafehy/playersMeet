@@ -18,12 +18,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func onLogout(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-        }
-        catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
+        FirebaseAuthClient.signOut()
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initial = storyboard.instantiateInitialViewController()

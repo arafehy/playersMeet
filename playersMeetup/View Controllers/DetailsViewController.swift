@@ -19,7 +19,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     var latSelected: String = ""
     var longSelected: String = ""
     var location: [String: Any]!
-    let user: User? = Auth.auth().currentUser
+    let user: User? = FirebaseAuthClient.getUser()
     @IBAction func leaveTeamAction(_ sender: Any) {
         leaveTeamOutlet?.isEnabled = false
         joinTeamOutlet?.isEnabled = true

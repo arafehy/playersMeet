@@ -24,7 +24,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var createProfileButton: UIBarButtonItem!
     
     var userInfo: UserInfo?
-    let user = Auth.auth().currentUser
+    let user = FirebaseAuthClient.getUser()
     var initialUserInfo: [String] = Array(repeating: "", count: 4)
     var initialPhoto: UIImage!
     
