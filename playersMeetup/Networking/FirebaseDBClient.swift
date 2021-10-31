@@ -38,14 +38,14 @@ struct FirebaseDBClient {
             print("Could not add user to database: Invalid user info")
             return
         }
-        getDBReference(pathName: DBPathNames.userInfo).observeSingleEvent(of: .value) { snapshot in
+        let userInfoRef = getDBReference(pathName: .userInfo)
+        userInfoRef.observeSingleEvent(of: .value) { snapshot in
             if snapshot.hasChild(uid) {
                 print("User is in database")
             }
             else {
                 print("Adding user to database")
-                let newUser = FirebaseDBClient.userInfoRef.child(uid)
-                
+                let newUser = userInfoRef.child(uid)
                 newUser.setValue(hasJoined)
             }
         }
