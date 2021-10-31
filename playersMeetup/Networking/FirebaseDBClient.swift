@@ -23,7 +23,7 @@ struct FirebaseDBClient {
         return Database.database().reference().ref.child(pathName.rawValue)
     }
     
-    func getStorageRefence(pathName: StoragePathNames) -> StorageReference {
+    func getStorageReference(pathName: StoragePathNames) -> StorageReference {
         return Storage.storage().reference(withPath: pathName.rawValue)
     }
     
@@ -49,7 +49,7 @@ struct FirebaseDBClient {
     
     func retrieveProfilePicture(userID: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
         let maxImageSize: Int64 = 5 * 1024 * 1024
-        getStorageRefence(pathName: .images).child(userID).getData(maxSize: maxImageSize) { (data, error) in
+        getStorageReference(pathName: .images).child(userID).getData(maxSize: maxImageSize) { (data, error) in
             if let error = error {
                 completion(.failure(error))
                 return
