@@ -10,4 +10,7 @@ import Foundation
 
 enum ImageError: Error {
     case invalidData
+    case invalidMetadata
+    case invalidDownloadURL
+    case nilImage
 }
