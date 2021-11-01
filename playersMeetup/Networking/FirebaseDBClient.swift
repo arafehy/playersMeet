@@ -43,9 +43,9 @@ struct FirebaseDBClient {
     
     /// Adds the user to the list of players
     /// - Parameter user: dictionary of user ID to array of join status and location
-    func addUserToDB(user: [String: [String]]) {
+    func addUser(user: [String: [String]], completion: @escaping (Result<String, Error>) -> Void) {
         guard let (uid, hasJoined) = user.first else {
-            print("Could not add user to database: Invalid user info")
+            completion(.failure(DatabaseError.invalidInput))
             return
         }
         let userInfoRef = getDBReference(pathName: .userInfo)
@@ -58,6 +58,7 @@ struct FirebaseDBClient {
                 let newUser = userInfoRef.child(uid)
                 newUser.setValue(hasJoined)
             }
+            completion(.success(uid))
         }
     }
     
