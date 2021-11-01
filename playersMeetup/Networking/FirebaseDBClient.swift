@@ -14,8 +14,8 @@ struct FirebaseDBClient {
     
     // MARK: Properties
     
-    private let dbObject = Database.database()
-    private let storageObject = Storage.storage()
+    private let dbObject: Database = Database.database()
+    private let storageObject: Storage = Storage.storage()
     
     // MARK: Enums
     
