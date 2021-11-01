@@ -99,7 +99,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func addUserToDBAsNotJoined(userID: String) {
         // add current user to dictionary as not joined
         let userInfo: [String: [String]] = [userID: ["not joined", "team location"]]
-        FirebaseManager.dbClient.addUserToDB(user: userInfo)
+        FirebaseManager.dbClient.addUser(user: userInfo) { result in
+            switch result {
+            case .success(let uid):
+                print("Added user with uid \(uid) to database")
+            case .failure(let error):
+                switch error {
+                case DatabaseError.invalidInput:
+                    self.showErrorAlert(with: error)
+                default:
+                    print("Error adding to database: \(error)")
+                }
+            }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
