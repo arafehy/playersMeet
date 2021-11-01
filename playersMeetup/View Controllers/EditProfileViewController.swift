@@ -148,26 +148,27 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func updateProfile(userID: String) {
-        guard let profileAsDictionary = userInfo?.asDictionary() else {
-            print("Failed to convert to dictionary")
+        guard let userInfo = userInfo else {
+            print("Can't update profile: User info is nil")
             return
         }
-        FirebaseManager.dbClient.getDBReference(pathName: .profileInfo).child(userID).updateChildValues(profileAsDictionary) { error, profileInfo in
-            guard error == nil else {
-                print("Failed to save profile")
-                return
-            }
-            
-            guard let tabBarController = self.presentingViewController as? UITabBarController,
-                let navigationController = tabBarController.selectedViewController as? UINavigationController,
-                let profileVC = navigationController.viewControllers[0] as? ProfileViewController else {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let profileVC = storyboard.instantiateInitialViewController()
-                    self.view.window?.rootViewController = profileVC
-                    return
-            }
-            self.dismiss(animated: true) {
-                profileVC.loadUserProfile(userID: userID)
+        FirebaseManager.dbClient.updateUserProfile(userID: userID, userInfo: userInfo) { result in
+            switch result {
+            case .success(let userInfo):
+                self.userInfo = userInfo
+                guard let tabBarController = self.presentingViewController as? UITabBarController,
+                      let navigationController = tabBarController.selectedViewController as? UINavigationController,
+                      let profileVC = navigationController.viewControllers[0] as? ProfileViewController else {
+                        // Creating profile after signup. Need to instantiate profileVC
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let profileVC = storyboard.instantiateInitialViewController()
+                        self.view.window?.rootViewController = profileVC
+                        return
+                }
+                self.dismiss(animated: true) {
+                    profileVC.loadUserProfile(userID: userID)
+                }
+            case .failure(let error): self.showErrorAlert(with: error)
             }
         }
     }

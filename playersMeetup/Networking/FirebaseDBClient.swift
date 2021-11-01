@@ -62,6 +62,18 @@ struct FirebaseDBClient {
         }
     }
     
+    func updateUserProfile(userID: String, userInfo: UserInfo, completion: @escaping (Result<UserInfo, Error>) -> Void) {
+        let profileAsDictionary = userInfo.asDictionary()
+        
+        FirebaseManager.dbClient.getDBReference(pathName: .profileInfo).child(userID).updateChildValues(profileAsDictionary) { error, dbRef in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            completion(.success(userInfo))
+        }
+    }
+    
     // MARK: Profile Picture
     
     func uploadProfilePicture(userID: String, imageData: Data, imageType: ImageType, completion: @escaping (Result<String, Error>) -> Void) {
