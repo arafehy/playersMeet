@@ -28,8 +28,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             viewController = storyboard.instantiateInitialViewController() ?? UIViewController() // Create a ProfileViewController
         } else {  // If the user is not signed in
             viewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController")  // Create a SignUpViewController
-        window?.rootViewController = viewController
-        window?.makeKeyAndVisible()
+            window?.rootViewController = viewController
+            window?.makeKeyAndVisible()
+        }
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -63,4 +64,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     
 }
-
