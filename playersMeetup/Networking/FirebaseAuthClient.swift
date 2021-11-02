@@ -56,4 +56,17 @@ struct FirebaseAuthClient {
     static func getUserID() -> String {
         return authObject.currentUser!.uid
     }
+    
+    static func addLoginStateListener(currentUser: User?, completion: @escaping (_ isSignedIn: Bool) -> Void) -> AuthStateDidChangeListenerHandle {
+        return authObject.addStateDidChangeListener { auth, user in
+            if currentUser != user {
+                completion(false)
+            }
+            completion(true)
+        }
+    }
+    
+    static func removeLoginStateListener(handle: AuthStateDidChangeListenerHandle) {
+        authObject.removeStateDidChangeListener(handle)
+    }
 }
