@@ -58,9 +58,8 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
-            guard self.user == user else {
-                print("Not logged in")
+        handle = FirebaseAuthClient.addLoginStateListener(currentUser: self.user) { isSignedIn in
+            if !isSignedIn {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let loginVC = storyboard.instantiateViewController(identifier: "SignUpViewController")
                 self.view.window?.rootViewController = loginVC
@@ -71,8 +70,8 @@ class ProfileViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if handle != nil {
-            Auth.auth().removeStateDidChangeListener(handle!)
+        if let handle = handle {
+            FirebaseAuthClient.removeLoginStateListener(handle: handle)
         }
     }
     
