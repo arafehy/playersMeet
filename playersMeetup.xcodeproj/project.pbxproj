@@ -18,6 +18,8 @@
 		E005B3522464A6810034DD7C /* customTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
 		E05F02912730C81300DDBE33 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F02902730C81300DDBE33 /* Navigation.swift */; };
+		E05F029327310FCA00DDBE33 /* UIViewController+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F029227310FCA00DDBE33 /* UIViewController+Animations.swift */; };
+		E05F0295273110D200DDBE33 /* LottieAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F0294273110D200DDBE33 /* LottieAnimations.swift */; };
 		E0788C49272E22930089197D /* ImageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C48272E22930089197D /* ImageError.swift */; };
 		E0788C4B272E3F440089197D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C4A272E3F440089197D /* AuthError.swift */; };
 		E0788C4E272E8A440089197D /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C4D272E8A440089197D /* DatabaseError.swift */; };
@@ -83,6 +85,8 @@
 		E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E05F02902730C81300DDBE33 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
+		E05F029227310FCA00DDBE33 /* UIViewController+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Animations.swift"; sourceTree = "<group>"; };
+		E05F0294273110D200DDBE33 /* LottieAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimations.swift; sourceTree = "<group>"; };
 		E0788C48272E22930089197D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageError.swift; path = playersMeetup/Errors/ImageError.swift; sourceTree = SOURCE_ROOT; };
 		E0788C4A272E3F440089197D /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		E0788C4D272E8A440089197D /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */,
 				6A4B0F462460872F002F0882 /* MessageCell.swift */,
 				E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */,
+				E05F0294273110D200DDBE33 /* LottieAnimations.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -629,12 +634,14 @@
 				FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */,
 				FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */,
 				DB8084902456A06100177175 /* HomeViewController.swift in Sources */,
+				E05F029327310FCA00DDBE33 /* UIViewController+Animations.swift in Sources */,
 				FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */,
 				E07996F7272CF34D0000D162 /* FirebaseDBClient.swift in Sources */,
 				E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */,
 				E07996FF272CF44B0000D162 /* UITextFieldExtensions.swift in Sources */,
 				E07996FE272CF44B0000D162 /* UIViewController+Alerts.swift in Sources */,
 				E07996F6272CF34D0000D162 /* FirebaseAuthClient.swift in Sources */,
+				E05F0295273110D200DDBE33 /* LottieAnimations.swift in Sources */,
 				6A4B0F472460872F002F0882 /* MessageCell.swift in Sources */,
 				E07996FD272CF44B0000D162 /* UIButtonExtensions.swift in Sources */,
 				FAB9CBA62455931E00C25C92 /* Models.swift in Sources */,

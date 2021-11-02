@@ -39,13 +39,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        animationView.animation = Animation.named("4414-bouncy-basketball")
-        
-        animationView.frame.size = lottieView.frame.size
-        animationView.contentMode = .scaleAspectFill
-        animationView.loopMode = .loop
-        lottieView.addSubview(animationView)
-        animationView.play()
+        configureBouncingBallAnimation()
         
         if !otherUserID.isEmpty {
             loadUserProfile(userID: otherUserID)

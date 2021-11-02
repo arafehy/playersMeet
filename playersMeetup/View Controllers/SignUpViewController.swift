@@ -85,14 +85,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Helpers
     
-    func configureBackgroundLoadingAnimation() {
-        animationView.animation = Animation.named("18709-loading")
-        animationView.frame.size = lottieView.frame.size
-        animationView.contentMode = .scaleAspectFill
-        animationView.loopMode = .loop
-        lottieView.addSubview(animationView)
-    }
-    
     func addUserToDBAsNotJoined(userID: String) {
         // add current user to dictionary as not joined
         let userInfo: [String: [String]] = [userID: ["not joined", "team location"]]
