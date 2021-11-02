@@ -24,7 +24,7 @@
 		E07996F6272CF34D0000D162 /* FirebaseAuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */; };
 		E07996F7272CF34D0000D162 /* FirebaseDBClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */; };
 		E07996FD272CF44B0000D162 /* UIButtonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FC272CF44B0000D162 /* UIButtonExtensions.swift */; };
-		E07996FE272CF44B0000D162 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FB272CF44A0000D162 /* UIViewControllerExtensions.swift */; };
+		E07996FE272CF44B0000D162 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FB272CF44A0000D162 /* UIViewController+Alerts.swift */; };
 		E07996FF272CF44B0000D162 /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */; };
 		E0799702272D02320000D162 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0799701272D02320000D162 /* FirebaseManager.swift */; };
 		E07FF7C5272DB00F00325763 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07FF7C4272DB00F00325763 /* UIImageExtensions.swift */; };
@@ -89,7 +89,7 @@
 		E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthClient.swift; sourceTree = "<group>"; };
 		E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseDBClient.swift; sourceTree = "<group>"; };
 		E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
-		E07996FB272CF44A0000D162 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		E07996FB272CF44A0000D162 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
 		E07996FC272CF44B0000D162 /* UIButtonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtensions.swift; sourceTree = "<group>"; };
 		E0799701272D02320000D162 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		E07FF7C4272DB00F00325763 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
@@ -182,6 +182,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		E05F02972731138500DDBE33 /* UIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E07996FB272CF44A0000D162 /* UIViewController+Alerts.swift */,
+				E05F029227310FCA00DDBE33 /* UIViewController+Animations.swift */,
+			);
+			path = UIViewController;
+			sourceTree = "<group>";
+		};
 		E0788C4C272E402B0089197D /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,7 +206,7 @@
 			children = (
 				E07996FC272CF44B0000D162 /* UIButtonExtensions.swift */,
 				E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */,
-				E07996FB272CF44A0000D162 /* UIViewControllerExtensions.swift */,
+				E05F02972731138500DDBE33 /* UIViewController */,
 				E07FF7C4272DB00F00325763 /* UIImageExtensions.swift */,
 			);
 			path = Extensions;
@@ -624,7 +633,7 @@
 				E07996F7272CF34D0000D162 /* FirebaseDBClient.swift in Sources */,
 				E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */,
 				E07996FF272CF44B0000D162 /* UITextFieldExtensions.swift in Sources */,
-				E07996FE272CF44B0000D162 /* UIViewControllerExtensions.swift in Sources */,
+				E07996FE272CF44B0000D162 /* UIViewController+Alerts.swift in Sources */,
 				E07996F6272CF34D0000D162 /* FirebaseAuthClient.swift in Sources */,
 				6A4B0F472460872F002F0882 /* MessageCell.swift in Sources */,
 				E07996FD272CF44B0000D162 /* UIButtonExtensions.swift in Sources */,
