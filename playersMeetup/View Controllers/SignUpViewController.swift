@@ -75,11 +75,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                     print("User does not exist")
                     return
                 }
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let profileVC = storyboard.instantiateInitialViewController()
-                self.view.window?.rootViewController = profileVC
-                
                 self.addUserToDBAsNotJoined(userID: user.uid)
+                Navigation.goToHome(window: self.view.window)
             case .failure(let error):
                 self.showErrorAlert(with: error)
             }
