@@ -19,9 +19,6 @@ class HomeViewController: UIViewController {
     
     @IBAction func onLogout(_ sender: Any) {
         FirebaseAuthClient.signOut()
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let initial = storyboard.instantiateInitialViewController()
-        self.view.window?.rootViewController = initial
+        Navigation.goToSignUp(window: self.view.window)
     }
 }

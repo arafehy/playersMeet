@@ -21,16 +21,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController: UIViewController
         
-        if FirebaseAuthClient.getUser() != nil { // If the user is signed in
-            viewController = storyboard.instantiateInitialViewController() ?? UIViewController() // Create a ProfileViewController
-        } else {  // If the user is not signed in
-            viewController = storyboard.instantiateViewController(withIdentifier: "SignUpViewController")  // Create a SignUpViewController
-            window?.rootViewController = viewController
-            window?.makeKeyAndVisible()
-        }
+        let isSignedIn: Bool = FirebaseAuthClient.getUser() != nil
+        isSignedIn ? Navigation.goToHome(window: window) : Navigation.goToSignUp(window: window)
+        
+        window?.makeKeyAndVisible()
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {

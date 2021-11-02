@@ -60,9 +60,7 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         handle = FirebaseAuthClient.addLoginStateListener(currentUser: self.user) { isSignedIn in
             if !isSignedIn {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let loginVC = storyboard.instantiateViewController(identifier: "SignUpViewController")
-                self.view.window?.rootViewController = loginVC
+                Navigation.goToSignUp(window: self.view.window)
                 return
             }
         }

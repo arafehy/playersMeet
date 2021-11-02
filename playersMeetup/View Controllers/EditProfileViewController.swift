@@ -152,12 +152,10 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
                 guard let tabBarController = self.presentingViewController as? UITabBarController,
                       let navigationController = tabBarController.selectedViewController as? UINavigationController,
                       let profileVC = navigationController.viewControllers[0] as? ProfileViewController else {
-                        // Creating profile after signup. Need to instantiate profileVC
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let profileVC = storyboard.instantiateInitialViewController()
-                        self.view.window?.rootViewController = profileVC
-                        return
-                }
+                          // Creating profile after signup. Need to instantiate profileVC
+                          Navigation.goToHome(window: self.view.window)
+                          return
+                      }
                 self.dismiss(animated: true) {
                     profileVC.loadUserProfile(userID: userID)
                 }

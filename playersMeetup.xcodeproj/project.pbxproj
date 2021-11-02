@@ -17,6 +17,7 @@
 		E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */; };
 		E005B3522464A6810034DD7C /* customTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
+		E05F02912730C81300DDBE33 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F02902730C81300DDBE33 /* Navigation.swift */; };
 		E0788C49272E22930089197D /* ImageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C48272E22930089197D /* ImageError.swift */; };
 		E0788C4B272E3F440089197D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C4A272E3F440089197D /* AuthError.swift */; };
 		E0788C4E272E8A440089197D /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C4D272E8A440089197D /* DatabaseError.swift */; };
@@ -81,6 +82,7 @@
 		E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4414-bouncy-basketball.json"; sourceTree = "<group>"; };
 		E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E05F02902730C81300DDBE33 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E0788C48272E22930089197D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageError.swift; path = playersMeetup/Errors/ImageError.swift; sourceTree = SOURCE_ROOT; };
 		E0788C4A272E3F440089197D /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		E0788C4D272E8A440089197D /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
@@ -170,6 +172,14 @@
 				A2F01B598886C435E774CD96 /* Pods_playersMeetupTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E05F028F2730C80300DDBE33 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E05F02902730C81300DDBE33 /* Navigation.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		E0788C4C272E402B0089197D /* Errors */ = {
@@ -282,6 +292,7 @@
 		FA75F72D245445FC00E681F9 /* playersMeetup */ = {
 			isa = PBXGroup;
 			children = (
+				E05F028F2730C80300DDBE33 /* Controllers */,
 				FA75F72E245445FD00E681F9 /* AppDelegate.swift */,
 				FA75F730245445FD00E681F9 /* SceneDelegate.swift */,
 				E0799700272CF45D0000D162 /* Extensions */,
@@ -620,6 +631,7 @@
 				FAB9CBA62455931E00C25C92 /* Models.swift in Sources */,
 				FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */,
 				6A4B0F452460871D002F0882 /* TeamChatViewController.swift in Sources */,
+				E05F02912730C81300DDBE33 /* Navigation.swift in Sources */,
 				E005B3522464A6810034DD7C /* customTapGestureRecognizer.swift in Sources */,
 				E0788C4E272E8A440089197D /* DatabaseError.swift in Sources */,
 			);
