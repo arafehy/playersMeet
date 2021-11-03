@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureBouncingBallAnimation()
+        configureLoopingAnimation(animationName: .bouncingBall, animationView: animationView, lottieView: lottieView)
         
         if !otherUserID.isEmpty {
             loadUserProfile(userID: otherUserID)
