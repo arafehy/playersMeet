@@ -18,7 +18,6 @@
 		E005B3522464A6810034DD7C /* customTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
 		E05F02912730C81300DDBE33 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F02902730C81300DDBE33 /* Navigation.swift */; };
-		E05F029327310FCA00DDBE33 /* UIViewController+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F029227310FCA00DDBE33 /* UIViewController+Animations.swift */; };
 		E05F0295273110D200DDBE33 /* LottieAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F0294273110D200DDBE33 /* LottieAnimations.swift */; };
 		E0788C49272E22930089197D /* ImageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C48272E22930089197D /* ImageError.swift */; };
 		E0788C4B272E3F440089197D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C4A272E3F440089197D /* AuthError.swift */; };
@@ -85,7 +84,6 @@
 		E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E05F02902730C81300DDBE33 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
-		E05F029227310FCA00DDBE33 /* UIViewController+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Animations.swift"; sourceTree = "<group>"; };
 		E05F0294273110D200DDBE33 /* LottieAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimations.swift; sourceTree = "<group>"; };
 		E0788C48272E22930089197D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageError.swift; path = playersMeetup/Errors/ImageError.swift; sourceTree = SOURCE_ROOT; };
 		E0788C4A272E3F440089197D /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
@@ -186,15 +184,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		E05F02972731138500DDBE33 /* UIViewController */ = {
-			isa = PBXGroup;
-			children = (
-				E07996FB272CF44A0000D162 /* UIViewController+Alerts.swift */,
-				E05F029227310FCA00DDBE33 /* UIViewController+Animations.swift */,
-			);
-			path = UIViewController;
-			sourceTree = "<group>";
-		};
 		E0788C4C272E402B0089197D /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -210,7 +199,7 @@
 			children = (
 				E07996FC272CF44B0000D162 /* UIButtonExtensions.swift */,
 				E07996FA272CF44A0000D162 /* UITextFieldExtensions.swift */,
-				E05F02972731138500DDBE33 /* UIViewController */,
+				E07996FB272CF44A0000D162 /* UIViewController+Alerts.swift */,
 				E07FF7C4272DB00F00325763 /* UIImageExtensions.swift */,
 			);
 			path = Extensions;
@@ -634,7 +623,6 @@
 				FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */,
 				FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */,
 				DB8084902456A06100177175 /* HomeViewController.swift in Sources */,
-				E05F029327310FCA00DDBE33 /* UIViewController+Animations.swift in Sources */,
 				FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */,
 				E07996F7272CF34D0000D162 /* FirebaseDBClient.swift in Sources */,
 				E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */,

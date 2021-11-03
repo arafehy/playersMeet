@@ -10,12 +10,26 @@ import Foundation
 import Lottie
 import UIKit
 
-struct LottieAnimations {
-    static func configureLoopingAnimation(animationName: String, animationView: AnimationView, lottieView: UIView) {
-        animationView.animation = Animation.named(animationName)
+protocol Animations {
+    func configureLoopingAnimation(animationName: LottieAnimations.AnimationNames, animationView: AnimationView, lottieView: UIView)
+}
+
+extension Animations {
+    func configureLoopingAnimation(animationName: LottieAnimations.AnimationNames, animationView: AnimationView, lottieView: UIView) {
+        animationView.animation = Animation.named(animationName.rawValue)
         animationView.frame.size = lottieView.frame.size
         animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .loop
         lottieView.addSubview(animationView)
     }
 }
+
+struct LottieAnimations {
+    enum AnimationNames: String {
+        case loading = "18709-loading"
+        case bouncingBall = "4414-bouncy-basketball"
+    }
+}
+
+extension SignUpViewController: Animations {}
+extension ProfileViewController: Animations {}

@@ -46,7 +46,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         emailField.delegate = self
         passwordField.delegate = self
-        configureBackgroundLoadingAnimation()
+        configureLoopingAnimation(animationName: .loading, animationView: animationView, lottieView: lottieView)
     }
     
     // MARK: Button Actions
