@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.1.0)
   - AlamofireImage (4.1.0):
     - Alamofire (~> 5.1)
+  - CodableFirebase (0.2.1)
   - Firebase/Analytics (6.23.0):
     - Firebase/Core
   - Firebase/Auth (6.23.0):
@@ -115,6 +116,7 @@ PODS:
 
 DEPENDENCIES:
   - AlamofireImage
+  - CodableFirebase
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Database
@@ -130,6 +132,7 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireImage
+    - CodableFirebase
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -158,6 +161,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   AlamofireImage: c4a2ba349885fb3064feb74d2e547bd42ce9be10
+  CodableFirebase: 0bf201991eeec35eb9fcd987d271ea463cf34a80
   Firebase: 585ae467b3edda6a5444e788fda6888f024d8d6f
   FirebaseAnalytics: 558f7a03d19de451093032c806f39d5f9dff096e
   FirebaseAuth: e50319ecc114acf93c2b9581e15d6604ddd7eeb2
@@ -183,6 +187,6 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   YelpAPI: 9ae0ee45b998d306c1aff9b2d966dc23121f191e
 
-PODFILE CHECKSUM: 0b9c49fea41b68d9057ba554284f8780c7f9fa0f
+PODFILE CHECKSUM: 8e90bdab0734fbc6696dcda8f0c5eb9af1a6c755
 
 COCOAPODS: 1.11.2
