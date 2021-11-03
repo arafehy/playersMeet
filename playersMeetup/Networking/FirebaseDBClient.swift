@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import CodableFirebase
 
 
 struct FirebaseDBClient {
@@ -59,6 +60,18 @@ struct FirebaseDBClient {
                 newUser.setValue(hasJoined)
             }
             completion(.success(uid))
+        }
+    }
+    
+    func retrieveUserProfile(userID: String, completion: @escaping (Result<UserInfo, Error>) -> Void) {
+        FirebaseDBClient.usersRef.child(userID).observeSingleEvent(of: .value) { snapshot in
+            guard let value = snapshot.value else { return }
+            do {
+                let userInfo = try FirebaseDecoder().decode(UserInfo.self, from: value)
+                completion(.success(userInfo))
+            } catch {
+                completion(.failure(error))
+            }
         }
     }
     
