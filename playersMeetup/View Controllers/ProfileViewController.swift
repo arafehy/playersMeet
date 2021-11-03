@@ -80,50 +80,21 @@ class ProfileViewController: UIViewController {
     // MARK: - Profile Loading
     
     func loadUserProfile(userID: String) {
-        FirebaseDBClient.usersRef.child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            
-            let name = value?["name"] as? String
-            let username = value?["username"] as? String
-            let bio = value?["bio"] as? String
-            let photoURLString = value?["photoURL"] as? String
-            let age = value?["age"] as? String
-            
-            if let _ = URL(string: photoURLString ?? "") {
-                self.loadProfilePicture(userID: userID)
+        FirebaseManager.dbClient.retrieveUserProfile(userID: userID) { result in
+            switch result {
+            case .success(let userInfo):
+                self.userInfo = userInfo
+                self.userInfo.color = ProfileViewController.self.assignedStringColor
+                if let _ = URL(string: self.userInfo.photoURL) {
+                    self.loadProfilePicture(userID: userID)
+                }
+                else {
+                    self.editButton.isEnabled = true
+                }
+                self.setLabelTexts()
+            case .failure(let error):
+                print("Could not load profile: \(error)")
             }
-            else {
-                self.editButton.isEnabled = true
-            }
-            self.userInfo = UserInfo(username: username, name: name, bio: bio, age:age, photoURL: photoURLString, color: ProfileViewController.self.assignedStringColor) // here
-            
-            if self.userInfo.name.isEmpty {
-                self.nameLabel.text = "No name"
-            }
-            else {
-                self.nameLabel.text = self.userInfo.name
-            }
-            if self.userInfo.username.isEmpty {
-                self.usernameLabel.text = "No username"
-            }
-            else {
-                self.usernameLabel.text = self.userInfo.username
-            }
-            if self.userInfo.bio.isEmpty {
-                self.bioTextView.text = "No bio"
-            }
-            else {
-                self.bioTextView.text = self.userInfo.bio
-            }
-            if self.userInfo.age.isEmpty {
-                self.ageLabel.text = "No Age"
-            }
-            else {
-                self.ageLabel.text = "Age: \(self.userInfo.age)"
-            }
-            
-        }) { (error) in
-            print(error.localizedDescription)
         }
     }
     
@@ -141,6 +112,13 @@ class ProfileViewController: UIViewController {
                 print("Error retrieving image: \(error)")
             }
         }
+    }
+    
+    func setLabelTexts() {
+        self.nameLabel.text = self.userInfo.name.isEmpty ? "No name" : self.userInfo.name
+        self.usernameLabel.text = self.userInfo.username.isEmpty ? "No username" : self.userInfo.username
+        self.bioTextView.text = self.userInfo.bio.isEmpty ? "No bio" : self.userInfo.bio
+        self.ageLabel.text = self.userInfo.age.isEmpty ? "No Age" : "Age: \(self.userInfo.age)"
     }
     
     // MARK: - Navigation
