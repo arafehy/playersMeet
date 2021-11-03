@@ -11,6 +11,7 @@ target 'playersMeetup' do
    pod 'Firebase/Auth'
    pod 'Firebase/Database'
    pod 'Firebase/Storage'
+   pod 'CodableFirebase'
    pod 'YelpAPI'
    pod 'Moya'
    pod 'AlamofireImage'
