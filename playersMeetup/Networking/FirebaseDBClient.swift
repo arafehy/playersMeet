@@ -64,7 +64,7 @@ struct FirebaseDBClient {
     }
     
     func retrieveUserProfile(userID: String, completion: @escaping (Result<UserInfo, Error>) -> Void) {
-        FirebaseDBClient.usersRef.child(userID).observeSingleEvent(of: .value) { snapshot in
+        getDBReference(pathName: .profileInfo).child(userID).observeSingleEvent(of: .value) { snapshot in
             guard let value = snapshot.value else { return }
             do {
                 let userInfo = try FirebaseDecoder().decode(UserInfo.self, from: value)
@@ -77,8 +77,7 @@ struct FirebaseDBClient {
     
     func updateUserProfile(userID: String, userInfo: UserInfo, completion: @escaping (Result<UserInfo, Error>) -> Void) {
         let profileAsDictionary = userInfo.asDictionary()
-        
-        FirebaseManager.dbClient.getDBReference(pathName: .profileInfo).child(userID).updateChildValues(profileAsDictionary) { error, dbRef in
+        getDBReference(pathName: .profileInfo).child(userID).updateChildValues(profileAsDictionary) { error, dbRef in
             if let error = error {
                 completion(.failure(error))
                 return
