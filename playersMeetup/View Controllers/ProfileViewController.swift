@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        handle = FirebaseAuthClient.addLoginStateListener(currentUser: self.user) { isSignedIn in
+        handle = FirebaseAuthClient.addLoginStateListener(currentUser: self.user) { [unowned self] isSignedIn in
             if !isSignedIn {
                 Navigation.goToSignUp(window: self.view.window)
                 return
@@ -80,7 +80,7 @@ class ProfileViewController: UIViewController {
     // MARK: - Profile Loading
     
     func loadUserProfile(userID: String) {
-        FirebaseManager.dbClient.retrieveUserProfile(userID: userID) { result in
+        FirebaseManager.dbClient.retrieveUserProfile(userID: userID) { [unowned self] (result) in
             switch result {
             case .success(let userInfo):
                 self.userInfo = userInfo
@@ -99,7 +99,7 @@ class ProfileViewController: UIViewController {
     }
     
     func loadProfilePicture(userID: String) {
-        FirebaseManager.dbClient.retrieveProfilePicture(userID: userID) { result in
+        FirebaseManager.dbClient.retrieveProfilePicture(userID: userID) { [unowned self] result in
             switch result {
             case .success(let image):
                 self.profilePicture.image = image
