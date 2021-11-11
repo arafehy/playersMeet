@@ -25,20 +25,20 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     var userInfo: UserInfo?
     let user = FirebaseAuthClient.getUser()
-    var initialUserInfo: [String] = Array(repeating: "", count: 4)
+    var initialUserInfo: UserInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: "")
     var initialPhoto: UIImage!
     
     var isNameDifferent: Bool {
-        nameField.text != initialUserInfo[0]
+        nameField.text != initialUserInfo.name
     }
     var isUsernameDifferent: Bool {
-        usernameField.text != initialUserInfo[1]
+        usernameField.text != initialUserInfo.username
     }
     var isBioDifferent: Bool {
-        return bioTextView.text != initialUserInfo[2]
+        return bioTextView.text != initialUserInfo.bio
     }
     var isAgeDifferent: Bool {
-        ageField.text != initialUserInfo[3]
+        ageField.text != initialUserInfo.age
     }
     var isAnythingDifferent: Bool {
         (isNameDifferent || isUsernameDifferent || isBioDifferent || isAgeDifferent) || profilePictureChanged
@@ -71,19 +71,19 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         }
         
         if info.bio.isEmpty {
-            initialUserInfo[2] = "Enter a bio..."
+            initialUserInfo.bio = "Enter a bio..."
             bioTextView.text = "Enter a bio..."
             bioTextView.textColor = .placeholderText
             bioTextView.selectedTextRange = bioTextView.textRange(from: bioTextView.beginningOfDocument, to: bioTextView.beginningOfDocument)
         }
         else {
-            initialUserInfo[2] = info.bio
+            initialUserInfo.bio = info.bio
             bioTextView.text = info.bio
         }
         
-        initialUserInfo[0] = info.name
-        initialUserInfo[1] = info.username
-        initialUserInfo[3] = info.age
+        initialUserInfo.name = info.name
+        initialUserInfo.username = info.username
+        initialUserInfo.age = info.age
         
         nameField.text = info.name
         usernameField.text = info.username
