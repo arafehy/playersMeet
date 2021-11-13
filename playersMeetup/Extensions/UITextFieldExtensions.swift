@@ -20,5 +20,20 @@ extension UITextField {
         self.layer.cornerRadius = 10
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.white.cgColor
+        self.layer.zPosition = 1
+    }
+}
+
+extension UITextView {
+    func configure() {
+        self.layer.cornerRadius = 4
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.separator.cgColor
+    }
+    
+    func reset(with placeholderText: String) {
+        self.text = placeholderText
+        self.textColor = .placeholderText
+        self.selectedTextRange = self.textRange(from: self.beginningOfDocument, to: self.beginningOfDocument)
     }
 }

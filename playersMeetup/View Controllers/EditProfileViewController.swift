@@ -24,21 +24,25 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var createProfileButton: UIBarButtonItem!
     
     var userInfo: UserInfo?
-    let user = FirebaseAuthClient.getUser()
-    var initialUserInfo: UserInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: "")
-    var initialPhoto: UIImage!
+    let user: User? = FirebaseAuthClient.getUser()
+    var originalUserInfo: UserInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: "")
+    var originalPhoto: UIImage!
+    
+    let bioPlaceholder: String = "Enter a bio..."
+    
+    // MARK: - Validation
     
     var isNameDifferent: Bool {
-        nameField.text != initialUserInfo.name
+        nameField.text != originalUserInfo.name
     }
     var isUsernameDifferent: Bool {
-        usernameField.text != initialUserInfo.username
+        usernameField.text != originalUserInfo.username
     }
     var isBioDifferent: Bool {
-        return bioTextView.text != initialUserInfo.bio
+        return bioTextView.text != originalUserInfo.bio
     }
     var isAgeDifferent: Bool {
-        ageField.text != initialUserInfo.age
+        ageField.text != originalUserInfo.age
     }
     var isAnythingDifferent: Bool {
         (isNameDifferent || isUsernameDifferent || isBioDifferent || isAgeDifferent) || profilePictureChanged
@@ -56,51 +60,30 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        nameField.delegate = self
-        usernameField.delegate = self
-        bioTextView.delegate = self
+        setDelegates()
+        bioTextView.configure()
+        profilePicture.configureProfilePicture()
         
         guard let info = userInfo else {    // Creating profile after signup
-            bioTextView.text = "Enter a bio..."
-            bioTextView.textColor = .placeholderText
-            bioTextView.selectedTextRange = bioTextView.textRange(from: bioTextView.beginningOfDocument, to: bioTextView.beginningOfDocument)
-            
+            bioTextView.reset(with: bioPlaceholder)
             userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: ProfileViewController.self.assignedStringColor)
             return
         }
-        
-        if info.bio.isEmpty {
-            initialUserInfo.bio = "Enter a bio..."
-            bioTextView.text = "Enter a bio..."
-            bioTextView.textColor = .placeholderText
-            bioTextView.selectedTextRange = bioTextView.textRange(from: bioTextView.beginningOfDocument, to: bioTextView.beginningOfDocument)
-        }
-        else {
-            initialUserInfo.bio = info.bio
-            bioTextView.text = info.bio
-        }
-        
-        initialUserInfo.name = info.name
-        initialUserInfo.username = info.username
-        initialUserInfo.age = info.age
-        
-        nameField.text = info.name
-        usernameField.text = info.username
-        ageField.text = info.age
-        
-        bioTextView.layer.borderWidth = 1
-        bioTextView.layer.borderColor = UIColor.separator.cgColor
-        bioTextView.layer.cornerRadius = 4
-        
-        profilePicture.image = initialPhoto
-        profilePicture.layer.cornerRadius = 15
-        profilePicture.layer.borderWidth = 4
-        profilePicture.layer.borderColor = UIColor.systemGray.cgColor
+        originalUserInfo = info
+        setProfileFields()
+        profilePicture.image = originalPhoto
     }
     
     override func viewWillLayoutSubviews() {
         isModalInPresentation = isAnythingDifferent
+    }
+    
+    // MARK: - Delegates
+    
+    private func setDelegates() {
+        nameField.delegate = self
+        usernameField.delegate = self
+        bioTextView.delegate = self
     }
     
     // MARK: - Profile Updating
@@ -114,23 +97,10 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     @IBAction func saveProfile(_ sender: UIBarButtonItem) {
-        guard let userID = user?.uid else {
+        guard let userID = user?.uid, isAnythingDifferent else {
             return
         }
-        guard isAnythingDifferent else {
-            print("Nothing changed")
-            return
-        }
-        userInfo?.name = nameField.text!
-        userInfo?.username = usernameField.text!
-        let bio = bioTextView.text ?? ""
-        if bio != "Enter a bio..." {
-            userInfo?.bio = bio
-        }
-        else {
-            userInfo?.bio = ""
-        }
-        userInfo?.age = ageField.text!
+        saveFormFields()
         
         guard !profilePictureChanged else {
             uploadProfilePicture(userID: userID)
@@ -162,6 +132,24 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             case .failure(let error): self.showErrorAlert(with: error)
             }
         }
+    }
+    
+    func saveFormFields() {
+        userInfo?.name = nameField.text!
+        userInfo?.username = usernameField.text!
+        userInfo?.age = ageField.text!
+        
+        let bio = bioTextView.text ?? ""
+        userInfo?.bio = bio != bioPlaceholder ? bio : ""
+    }
+    
+    func setProfileFields() {
+        nameField.text = originalUserInfo.name
+        usernameField.text = originalUserInfo.username
+        ageField.text = originalUserInfo.age
+        
+        if originalUserInfo.bio.isEmpty { bioTextView.reset(with: bioPlaceholder) }
+        else { bioTextView.text = originalUserInfo.bio }
     }
     
     // MARK: - Profile Picture
@@ -223,9 +211,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         profilePicture.image = scaledImage
         if let _ = userInfo?.photoURL.isEmpty {
-            profilePicture.layer.cornerRadius = 10
-            profilePicture.layer.borderWidth = 4
-            profilePicture.layer.borderColor = UIColor.systemGray.cgColor
+            profilePicture.configureProfilePicture()
         }
         profilePictureChanged = true
         

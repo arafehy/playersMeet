@@ -127,7 +127,7 @@ class ProfileViewController: UIViewController {
         if segue.identifier == "toEditProfile" {
             let editProfileVC = segue.destination as! EditProfileViewController
             editProfileVC.userInfo = self.userInfo
-            editProfileVC.initialPhoto = self.profilePicture.image
+            editProfileVC.originalPhoto = self.profilePicture.image
         }
     }
     
