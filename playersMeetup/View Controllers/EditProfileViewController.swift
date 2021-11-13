@@ -231,6 +231,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         return false
     }
     
+    // Found here: https://stackoverflow.com/a/27652289/13194066
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         // Combine the textView text and the replacement text to
