@@ -255,24 +255,20 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         // If updated text view will be empty, add the placeholder
         // and set the cursor to the beginning of the text view
         if updatedText.isEmpty {
-            
-            textView.text = "Enter a bio..."
-            textView.textColor = .placeholderText
-            
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+            textView.reset(with: bioPlaceholder)
         }
-            
-            // Else if the text view's placeholder is showing and the
-            // length of the replacement string is greater than 0, set
-            // the text color to black then set its text to the
-            // replacement string
+        
+        // Else if the text view's placeholder is showing and the
+        // length of the replacement string is greater than 0, set
+        // the text color to black then set its text to the
+        // replacement string
         else if textView.textColor == .placeholderText && !text.isEmpty {
             textView.textColor = .label
             textView.text = text
         }
-            
-            // For every other case, the text should change with the usual
-            // behavior...
+        
+        // For every other case, the text should change with the usual
+        // behavior...
         else {
             return true
         }
@@ -298,7 +294,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBAction func usernameChanged(_ sender: UITextField) {
         saveButton.isEnabled = buttonsEnabled
         createProfileButton.isEnabled = buttonsEnabled
-    }        
+    }
     
     func textViewDidChange(_ textView: UITextView) {
         isModalInPresentation = isAnythingDifferent
