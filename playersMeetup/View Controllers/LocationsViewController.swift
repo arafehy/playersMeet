@@ -13,7 +13,7 @@ import Firebase
 import CoreLocation
 
 var locations = [[String:Any]]()
-class LocationsViewController: UIViewController,UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class LocationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
     var long: Double = 0.0
@@ -28,13 +28,12 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
         let loc = locations[indexPath.row]
         let user: User? = Auth.auth().currentUser
         cell.locationLabel.text = loc["name"] as? String
         let strURL = loc["image_url"] as! String
-        if let url = URL(string: strURL){
+        if let url = URL(string: strURL) {
             cell.locationImageView.af.setImage(withURL: url)
         }
         let dist = String(format: "%.3f", (loc["distance"] as! Double)/1609.344)
@@ -47,19 +46,16 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             if (snapshot.value as? [String])?[0] == "joined" && (snapshot.value as? [String])?[1] == sel {
                 cell.isHereIndicator.isHidden = false
-                
             }
-            else{
+            else {
                 cell.isHereIndicator.isHidden = true
-                
-                
             }
         }
-        
         return cell
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50 ,0 )
+        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
         cell.layer.transform = rotationTransform
         cell.alpha = 0
         UIView.animate(withDuration: 1.0) {
@@ -67,6 +63,7 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
             cell.alpha = 1.5
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         _ = self.tableView.cellForRow(at: indexPath) as! LocationTableViewCell
         let selectedLocation = locations[indexPath.row]
@@ -101,16 +98,56 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() ==  .authorizedAlways{
-            guard let locValue: CLLocationCoordinate2D = self.locationManager.location?.coordinate else { print("here")
+            CLLocationManager.authorizationStatus() ==  .authorizedAlways {
+            guard let locValue: CLLocationCoordinate2D = self.locationManager.location?.coordinate else {
+                print("here")
                 tableView.dataSource = self
                 tableView.delegate = self
                 jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase ///letting it know camel case
-                service.request(.search(lat: 37.3382, long: -121.8863)) { (result) in switch result {
+                service.request(.search(lat: 37.3382, long: -121.8863)) { (result) in
+                    switch result {
+                    case .success(let response):
+                        let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
+                        locations = dataDictionary["businesses"] as! [[String:Any]]
+                        for loc in locations {
+                            if self.names[loc["id"] as! String] != nil {
+                                print("dont do anything")
+                            }
+                            else {
+                                print("assign 0")
+                                self.names[loc["id"] as! String] = 0
+                            }
+                        }
+                        for (name, count) in self.names {
+                            FirebaseDBClient.businessesRef.observeSingleEvent(of: .value) { (snapshot) in
+                                if snapshot.hasChild(name) {
+                                    print("exists \(name)")
+                                }
+                                else {
+                                    print("doesnt exist")
+                                    //if doesnt exist add it as child to businesses
+                                    let newLoc = FirebaseDBClient.businessesRef.child(name)
+                                    newLoc.setValue(count)
+                                }
+                            }
+                        }
+                        self.tableView.reloadData()
+                        
+                    case .failure(let error):
+                        print("Error: \(error)")
+                    }
+                }
+                return
+            }
+            tableView.dataSource = self
+            tableView.delegate = self
+            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase ///letting it know camel case
+            service.request(.search(lat: locValue.latitude, long: locValue.longitude)) { (result) in
+                switch result {
                 case .success(let response):
                     let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
                     locations = dataDictionary["businesses"] as! [[String:Any]]
-                    for loc in locations{
+                    for loc in locations {
                         if self.names[loc["id"] as! String] != nil {
                             print("dont do anything")
                         }
@@ -119,12 +156,14 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
                             self.names[loc["id"] as! String] = 0
                         }
                     }
-                    for (name,count) in self.names{
+                    //                    make counter var - update counter on click and set ref
+                    //                   FirebaseReferences.businessesRef.setValue(self.names)
+                    for (name, count) in self.names {
                         FirebaseDBClient.businessesRef.observeSingleEvent(of: .value) { (snapshot) in
-                            if snapshot.hasChild(name){
+                            if snapshot.hasChild(name) {
                                 print("exists \(name)")
                             }
-                            else{
+                            else {
                                 print("doesnt exist")
                                 //if doesnt exist add it as child to businesses
                                 let newLoc = FirebaseDBClient.businessesRef.child(name)
@@ -133,47 +172,8 @@ class LocationsViewController: UIViewController,UITableViewDataSource, UITableVi
                         }
                     }
                     self.tableView.reloadData()
-                    
                 case .failure(let error):
                     print("Error: \(error)")
-                    }
-                }
-                return
-            }
-            tableView.dataSource = self
-            tableView.delegate = self
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase ///letting it know camel case
-            service.request(.search(lat: locValue.latitude, long: locValue.longitude)) { (result) in switch result {
-            case .success(let response):
-                let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
-                locations = dataDictionary["businesses"] as! [[String:Any]]
-                for loc in locations{
-                    if self.names[loc["id"] as! String] != nil {
-                        print("dont do anything")
-                    }
-                    else{
-                        print("assign 0")
-                        self.names[loc["id"] as! String] = 0
-                    }
-                }
-                //                    make counter var - update counter on click and set ref
-                //                   FirebaseReferences.businessesRef.setValue(self.names)
-                for (name,count) in self.names{
-                    FirebaseDBClient.businessesRef.observeSingleEvent(of: .value) { (snapshot) in
-                        if snapshot.hasChild(name){
-                            print("exists \(name)")
-                        }
-                        else{
-                            print("doesnt exist")
-                            //if doesnt exist add it as child to businesses
-                            let newLoc = FirebaseDBClient.businessesRef.child(name)
-                            newLoc.setValue(count)
-                        }
-                    }
-                }
-                self.tableView.reloadData()
-            case .failure(let error):
-                print("Error: \(error)")
                 }
             }
         }
