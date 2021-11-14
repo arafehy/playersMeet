@@ -118,7 +118,7 @@ class ProfileViewController: UIViewController {
         self.nameLabel.text = self.userInfo.name.isEmpty ? "No name" : self.userInfo.name
         self.usernameLabel.text = self.userInfo.username.isEmpty ? "No username" : self.userInfo.username
         self.bioTextView.text = self.userInfo.bio.isEmpty ? "No bio" : self.userInfo.bio
-        self.ageLabel.text = self.userInfo.age.isEmpty ? "No Age" : "Age: \(self.userInfo.age)"
+        self.ageLabel.text = self.userInfo.age.isEmpty ? "No age" : "Age: \(self.userInfo.age)"
     }
     
     // MARK: - Navigation
