@@ -152,8 +152,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         if segue.identifier == "toProfile" {
             let profileVC = segue.destination as! ProfileViewController
             let tapRecognizer = sender as! customTapGestureRecognizer
-            let userID = tapRecognizer.userID
-            profileVC.teammateID = userID ?? ""
+            profileVC.teammateID = tapRecognizer.userID
         }
     }
     

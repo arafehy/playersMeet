@@ -29,7 +29,7 @@ class ProfileViewController: UIViewController {
     let animationView = AnimationView()
     let user: User? =  FirebaseAuthClient.getUser()
     var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "",color: "")
-    var teammateID: String = ""
+    var teammateID: String?
     
     // MARK: - VC Life Cycle
     
@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         configureLoopingAnimation(animationName: .bouncingBall, animationView: animationView, lottieView: lottieView)
         
-        if !teammateID.isEmpty {
+        if let teammateID = teammateID {
             loadUserProfile(userID: teammateID)
         }
         else if let userID = user?.uid {
