@@ -12,7 +12,7 @@ import AlamofireImage
 import Firebase
 import CoreLocation
 
-var locations = [[String:Any]]()
+var locations = [[String: Any]]()
 class LocationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
@@ -38,7 +38,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         }
         let dist = String(format: "%.3f", (loc["distance"] as! Double)/1609.344)
         cell.distanceLabel.text = "\(dist) mi"
-        //is here indication on - off
+        // is here indication on - off
         let selectedLocation = locations[indexPath.row]
         ///     print("selected:")
         ///        print(cell.locationLabel.text)
@@ -46,8 +46,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             if (snapshot.value as? [String])?[0] == "joined" && (snapshot.value as? [String])?[1] == sel {
                 cell.isHereIndicator.isHidden = false
-            }
-            else {
+            } else {
                 cell.isHereIndicator.isHidden = true
             }
         }
@@ -146,26 +145,24 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
                 switch result {
                 case .success(let response):
                     let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
-                    locations = dataDictionary["businesses"] as! [[String:Any]]
+                    locations = dataDictionary["businesses"] as! [[String: Any]]
                     for loc in locations {
                         if self.names[loc["id"] as! String] != nil {
                             print("dont do anything")
-                        }
-                        else{
+                        } else {
                             print("assign 0")
                             self.names[loc["id"] as! String] = 0
                         }
                     }
-                    //                    make counter var - update counter on click and set ref
-                    //                   FirebaseReferences.businessesRef.setValue(self.names)
+                    // make counter var - update counter on click and set ref
+                    // FirebaseReferences.businessesRef.setValue(self.names)
                     for (name, count) in self.names {
                         FirebaseDBClient.businessesRef.observeSingleEvent(of: .value) { (snapshot) in
                             if snapshot.hasChild(name) {
                                 print("exists \(name)")
-                            }
-                            else {
+                            } else {
                                 print("doesnt exist")
-                                //if doesnt exist add it as child to businesses
+                                // if doesnt exist add it as child to businesses
                                 let newLoc = FirebaseDBClient.businessesRef.child(name)
                                 newLoc.setValue(count)
                             }
