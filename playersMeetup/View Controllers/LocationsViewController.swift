@@ -96,52 +96,16 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         //        overrideUserInterfaceStyle = .light
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() ==  .authorizedAlways {
-            guard let locValue: CLLocationCoordinate2D = self.locationManager.location?.coordinate else {
-                print("here")
-                tableView.dataSource = self
-                tableView.delegate = self
-                jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase ///letting it know camel case
-                service.request(.search(lat: 37.3382, long: -121.8863)) { (result) in
-                    switch result {
-                    case .success(let response):
-                        let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
-                        locations = dataDictionary["businesses"] as! [[String:Any]]
-                        for loc in locations {
-                            if self.names[loc["id"] as! String] != nil {
-                                print("dont do anything")
-                            }
-                            else {
-                                print("assign 0")
-                                self.names[loc["id"] as! String] = 0
-                            }
-                        }
-                        for (name, count) in self.names {
-                            FirebaseDBClient.businessesRef.observeSingleEvent(of: .value) { (snapshot) in
-                                if snapshot.hasChild(name) {
-                                    print("exists \(name)")
-                                }
-                                else {
-                                    print("doesnt exist")
-                                    //if doesnt exist add it as child to businesses
-                                    let newLoc = FirebaseDBClient.businessesRef.child(name)
-                                    newLoc.setValue(count)
-                                }
-                            }
-                        }
-                        self.tableView.reloadData()
-                        
-                    case .failure(let error):
-                        print("Error: \(error)")
-                    }
-                }
-                return
-            }
-            tableView.dataSource = self
-            tableView.delegate = self
-            jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase ///letting it know camel case
-            service.request(.search(lat: locValue.latitude, long: locValue.longitude)) { (result) in
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase // letting it know camel case
+        
+        let locationAuthStatus: CLAuthorizationStatus = CLLocationManager.authorizationStatus()
+        if locationAuthStatus == .authorizedWhenInUse || locationAuthStatus ==  .authorizedAlways {
+            let coordinates: CLLocationCoordinate2D =
+            self.locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 37.3382, longitude: -121.8863)
+            service.request(.search(lat: coordinates.latitude, long: coordinates.longitude)) { (result) in
                 switch result {
                 case .success(let response):
                     let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
