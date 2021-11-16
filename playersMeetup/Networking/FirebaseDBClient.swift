@@ -21,7 +21,7 @@ struct FirebaseDBClient {
     // MARK: Enums
     
     enum DBPathNames: String {
-        case userInfo, profileInfo, teamChat, businessesRef
+        case userInfo, profileInfo, teamChat, businesses
     }
     
     enum StoragePathNames: String {
