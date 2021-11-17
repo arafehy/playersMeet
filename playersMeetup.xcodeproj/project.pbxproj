@@ -17,6 +17,7 @@
 		E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */; };
 		E005B3522464A6810034DD7C /* customTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
+		E04350BC2744BEDF000EF6D9 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04350BB2744BEDF000EF6D9 /* APIKeys.swift */; };
 		E0554F47274084A700B602C4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0554F46274084A700B602C4 /* UIColor+Extensions.swift */; };
 		E0554F492740851200B602C4 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0554F482740851200B602C4 /* CGFloat+Extensions.swift */; };
 		E05F02912730C81300DDBE33 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F02902730C81300DDBE33 /* Navigation.swift */; };
@@ -86,6 +87,7 @@
 		E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4414-bouncy-basketball.json"; sourceTree = "<group>"; };
 		E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E04350BB2744BEDF000EF6D9 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		E0554F46274084A700B602C4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		E0554F482740851200B602C4 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		E05F02902730C81300DDBE33 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */,
 				E0799701272D02320000D162 /* FirebaseManager.swift */,
 				FAB9CBA32455899F00C25C92 /* NetworkService.swift */,
+				E04350BB2744BEDF000EF6D9 /* APIKeys.swift */,
 				E08D089627436EE200BCD24C /* LocationManager.swift */,
 			);
 			path = Networking;
@@ -627,6 +630,7 @@
 				E0799702272D02320000D162 /* FirebaseManager.swift in Sources */,
 				FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */,
 				E08D089727436EE200BCD24C /* LocationManager.swift in Sources */,
+				E04350BC2744BEDF000EF6D9 /* APIKeys.swift in Sources */,
 				E0FCC718245E9426000BA717 /* EditProfileViewController.swift in Sources */,
 				E07FF7C5272DB00F00325763 /* UIImage+Extensions.swift in Sources */,
 				E0788C49272E22930089197D /* ImageError.swift in Sources */,
