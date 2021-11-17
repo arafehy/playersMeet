@@ -13,12 +13,12 @@ import CodableFirebase
 
 struct FirebaseDBClient {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     private let dbObject: Database = Database.database()
     private let storageObject: Storage = Storage.storage()
     
-    // MARK: Enums
+    // MARK: - Enums
     
     enum DBPathNames: String {
         case userInfo, profileInfo, teamChat, businesses
@@ -32,7 +32,7 @@ struct FirebaseDBClient {
         case png
     }
     
-    // MARK: Private Helpers
+    // MARK: - Private Helpers
     
     private func getDBReference(pathName: DBPathNames) -> DatabaseReference {
         return dbObject.reference().ref.child(pathName.rawValue)
@@ -41,6 +41,8 @@ struct FirebaseDBClient {
     private func getStorageReference(pathName: StoragePathNames) -> StorageReference {
         return storageObject.reference(withPath: pathName.rawValue)
     }
+    
+    // MARK: - User
     
     /// Adds the user to the list of players
     /// - Parameter user: dictionary of user ID to array of join status and location
