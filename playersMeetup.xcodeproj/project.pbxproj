@@ -194,6 +194,14 @@
 			path = Firebase;
 			sourceTree = "<group>";
 		};
+		E04350C22744E23D000EF6D9 /* Yelp */ = {
+			isa = PBXGroup;
+			children = (
+				FAB9CBA32455899F00C25C92 /* NetworkService.swift */,
+			);
+			path = Yelp;
+			sourceTree = "<group>";
+		};
 		E05F028F2730C80300DDBE33 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,7 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				E04350C12744E1BD000EF6D9 /* Firebase */,
-				FAB9CBA32455899F00C25C92 /* NetworkService.swift */,
+				E04350C22744E23D000EF6D9 /* Yelp */,
 				E04350BB2744BEDF000EF6D9 /* APIKeys.swift */,
 				E08D089627436EE200BCD24C /* LocationManager.swift */,
 			);
