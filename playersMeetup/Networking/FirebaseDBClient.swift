@@ -140,6 +140,24 @@ struct FirebaseDBClient {
         }
     }
     
+    // MARK: - Locations
+    
+    func addNewLocations(locations: [String: Int]) {
+        // make counter var - update counter on click and set ref
+        // FirebaseReferences.businessesRef.setValue(self.names)
+        let locationsRef: DatabaseReference = getDBReference(pathName: .businesses)
+        for (name, count) in locations {
+            locationsRef.observeSingleEvent(of: .value) { snapshot in
+                if !snapshot.hasChild(name) {
+                    // if doesnt exist add it as child to businesses
+                    locationsRef.child(name).setValue(count)
+                }
+            }
+        }
+    }
+    
+    // MARK: - Temporary Refs
+    
     static let userInfoRef = Database.database().reference().ref.child("userInfo")
     static let usersRef = Database.database().reference().ref.child("profileInfo")
     static let imagesRef = Storage.storage().reference(withPath: "images")
