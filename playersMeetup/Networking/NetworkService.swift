@@ -9,8 +9,6 @@
 import Foundation
 import Moya
 
-private let apiKey = "c6U-Y7eT1kS2ksM6uU_OUE5jdbrYU5cPYwpDpzyz5x98MMwHjRNrwr12essjSoYTIqR2VQFzHULybt1AUeHOInWxPGr6CydkHzioRYScXvmte7aaR2Wrs4Z3wiakXnYx"
-
 enum YelpService {
     enum BusinessesProvider: TargetType {
         case search(_ latitute: Double, _ longitude: Double)
@@ -42,7 +40,7 @@ enum YelpService {
             }
         }
         var headers: [String : String]? {
-            return ["Authorization": "Bearer \(apiKey)"]
+            return ["Authorization": "Bearer \(API_Keys.Yelp)"]
         }
     }
 }
