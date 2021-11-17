@@ -76,7 +76,6 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     
     @IBOutlet weak var tableView: UITableView!
     let service = MoyaProvider<YelpService.BusinessesProvider>()
-    let jsonDecoder = JSONDecoder()
     var names: [String: Int] = [:]
     var count = 0
     // reload table view to update indicator of joined location
@@ -90,53 +89,46 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.reloadData()
+        tableView.dataSource = self
+        tableView.delegate = self
         print("view did load \(LocationsViewController.shared.count)")
         
         //        overrideUserInterfaceStyle = .light
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
-        
-        tableView.dataSource = self
-        tableView.delegate = self
+        fetchLocations()
+    }
+    
+    func fetchLocations() {
+        let coordinates: CLLocationCoordinate2D = LocationManager.shared.getCoordinates()
+        service.request(.search(lat: coordinates.latitude, long: coordinates.longitude)) {
+            [unowned self]
+            (result) in
+            switch result {
+            case .success(let response):
+                self.decodeYelpResponse(response)
+                FirebaseManager.dbClient.addNewLocations(locations: self.names)
+                self.tableView.reloadData()
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+    }
+    
+    func decodeYelpResponse(_ response: Response) {
+        let jsonDecoder = JSONDecoder()
         jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase // letting it know camel case
-        
-        let locationAuthStatus: CLAuthorizationStatus = CLLocationManager.authorizationStatus()
-        if locationAuthStatus == .authorizedWhenInUse || locationAuthStatus ==  .authorizedAlways {
-            let coordinates: CLLocationCoordinate2D =
-            self.locationManager.location?.coordinate ?? CLLocationCoordinate2D(latitude: 37.3382, longitude: -121.8863)
-            service.request(.search(lat: coordinates.latitude, long: coordinates.longitude)) { (result) in
-                switch result {
-                case .success(let response):
-                    let dataDictionary = try! JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
-                    locations = dataDictionary["businesses"] as! [[String: Any]]
-                    for loc in locations {
-                        if self.names[loc["id"] as! String] != nil {
-                            print("dont do anything")
-                        } else {
-                            print("assign 0")
-                            self.names[loc["id"] as! String] = 0
-                        }
-                    }
-                    // make counter var - update counter on click and set ref
-                    // FirebaseReferences.businessesRef.setValue(self.names)
-                    for (name, count) in self.names {
-                        FirebaseDBClient.businessesRef.observeSingleEvent(of: .value) { (snapshot) in
-                            if snapshot.hasChild(name) {
-                                print("exists \(name)")
-                            } else {
-                                print("doesnt exist")
-                                // if doesnt exist add it as child to businesses
-                                let newLoc = FirebaseDBClient.businessesRef.child(name)
-                                newLoc.setValue(count)
-                            }
-                        }
-                    }
-                    self.tableView.reloadData()
-                case .failure(let error):
-                    print("Error: \(error)")
+        do {
+            let dataDictionary = try JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
+            locations = dataDictionary["businesses"] as? [[String: Any]] ?? [[:]]
+            for location in locations {
+                guard let locationID = location["id"] as? String else { continue }
+                if self.names[locationID] == nil {
+                    self.names[locationID] = 0
                 }
             }
+        } catch {
+            print(error)
         }
     }
     
