@@ -94,8 +94,6 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         print("view did load \(LocationsViewController.shared.count)")
         
         //        overrideUserInterfaceStyle = .light
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
         fetchLocations()
     }
     
