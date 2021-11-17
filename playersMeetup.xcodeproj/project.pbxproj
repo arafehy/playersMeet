@@ -184,6 +184,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E04350C12744E1BD000EF6D9 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */,
+				E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */,
+				E0799701272D02320000D162 /* FirebaseManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		E05F028F2730C80300DDBE33 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,9 +272,7 @@
 		E0AB2F4D24652F0900F4CE49 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */,
-				E07996F5272CF34D0000D162 /* FirebaseDBClient.swift */,
-				E0799701272D02320000D162 /* FirebaseManager.swift */,
+				E04350C12744E1BD000EF6D9 /* Firebase */,
 				FAB9CBA32455899F00C25C92 /* NetworkService.swift */,
 				E04350BB2744BEDF000EF6D9 /* APIKeys.swift */,
 				E08D089627436EE200BCD24C /* LocationManager.swift */,
