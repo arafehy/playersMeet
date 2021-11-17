@@ -8,33 +8,40 @@
 
 import Foundation
 import Moya
+
 private let apiKey = "c6U-Y7eT1kS2ksM6uU_OUE5jdbrYU5cPYwpDpzyz5x98MMwHjRNrwr12essjSoYTIqR2VQFzHULybt1AUeHOInWxPGr6CydkHzioRYScXvmte7aaR2Wrs4Z3wiakXnYx"
+
 enum YelpService {
-    enum BusinessesProvider: TargetType{
-        case search(lat: Double, long: Double)
-        var baseURL: URL{
+    enum BusinessesProvider: TargetType {
+        case search(_ latitute: Double, _ longitude: Double)
+        var baseURL: URL {
             return URL(string: "https://api.yelp.com/v3/businesses")!
         }
-        var path: String{
+        var path: String {
             switch self {
             case .search:
                 return "/search"
             }
         }
-        var method: Moya.Method{
+        var method: Moya.Method {
             return .get
         }
-        var sampleData: Data{
+        var sampleData: Data {
             return Data()
         }
         
-        var task: Task{
-            switch self{
-            case let .search(lat,long):
-                return .requestParameters(parameters: ["term":"Basketball court" ,"latitude": lat, "longitude": long, "limit": 30 ], encoding: URLEncoding.queryString )
+        var task: Task {
+            switch self {
+            case let .search(latitude, longitude):
+                return .requestParameters(parameters:
+                                            ["term": "Basketball court",
+                                             "latitude": latitude,
+                                             "longitude": longitude,
+                                             "limit": 30],
+                                          encoding: URLEncoding.queryString)
             }
         }
-        var headers: [String : String]?{
+        var headers: [String : String]? {
             return ["Authorization": "Bearer \(apiKey)"]
         }
     }

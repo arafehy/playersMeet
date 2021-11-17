@@ -101,7 +101,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     
     func fetchLocations() {
         let coordinates: CLLocationCoordinate2D = LocationManager.shared.getCoordinates()
-        service.request(.search(lat: coordinates.latitude, long: coordinates.longitude)) {
+        service.request(.search(coordinates.latitude, coordinates.longitude)) {
             [unowned self]
             (result) in
             switch result {

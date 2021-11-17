@@ -15,8 +15,8 @@ import GoogleMaps
 class ViewController: UIViewController, CLLocationManagerDelegate {
 //    CURRENT LOCATION >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
      let locationManager = CLLocationManager()
-    var long: Double = 0.0
-    var lat: Double = 0.0
+    var longitude: Double = 0.0
+    var latitude: Double = 0.0
     @IBAction func getLocation(_ sender: Any) {
           self.locationManager.requestAlwaysAuthorization()
 
@@ -34,8 +34,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
            print("locations = \(locValue.latitude) \(locValue.longitude)")
         print("latitude = \(locValue.latitude)")
         print("longitude = \(locValue.longitude)")
-        long = locValue.longitude
-        lat = locValue.latitude
+        longitude = locValue.longitude
+        latitude = locValue.latitude
         
     }
 //    UPDATE REALTIME DATABASE >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -85,8 +85,9 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     let service = MoyaProvider<YelpService.BusinessesProvider>()
     let jsonDecoder = JSONDecoder()
     @IBAction func testYelp(_ sender: Any) {
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase ///letting it know camel case
-        service.request(.search(lat: lat , long: long)) { (result) in switch result {
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase // letting it know camel case
+        service.request(.search(latitude, longitude)) { (result) in
+        switch result {
         case .success(let response):
             let root = try? self.jsonDecoder.decode(Root.self, from: response.data)
             let viewModels = root?.businesses.compactMap(CourtListViewModel.init)
