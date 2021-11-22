@@ -89,7 +89,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         service.request(.search(latitude, longitude)) { (result) in
         switch result {
         case .success(let response):
-            let root = try? self.jsonDecoder.decode(Root.self, from: response.data)
+            let root = try? self.jsonDecoder.decode(BusinessesResponse.self, from: response.data)
             let viewModels = root?.businesses.compactMap(CourtListViewModel.init)
 ///            print(try? JSONSerialization.jsonObject(with: response.data, options: []))
             print(root)
