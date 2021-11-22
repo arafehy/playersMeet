@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureLoopingAnimation(animationName: .bouncingBall, animationView: animationView, lottieView: lottieView)
+        configureLoopingAnimation(animation: .bouncingBall, animationView: animationView, lottieView: lottieView)
         
         if let teammateID = teammateID {
             loadUserProfile(userID: teammateID)
