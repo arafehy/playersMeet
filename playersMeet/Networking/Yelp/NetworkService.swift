@@ -13,7 +13,11 @@ enum YelpService {
     enum BusinessesProvider: TargetType {
         case search(_ latitute: Double, _ longitude: Double)
         var baseURL: URL {
-            return URL(string: "https://api.yelp.com/v3/businesses")!
+            var components = URLComponents()
+            components.scheme = "https"
+            components.host = "api.yelp.com"
+            components.path = "/v3/businesses"
+            return components.url!
         }
         var path: String {
             switch self {
