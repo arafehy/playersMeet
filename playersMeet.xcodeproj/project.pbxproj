@@ -43,8 +43,8 @@
 		FA75F733245445FD00E681F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F732245445FD00E681F9 /* ViewController.swift */; };
 		FA75F736245445FD00E681F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA75F734245445FD00E681F9 /* Main.storyboard */; };
 		FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA75F7392454460000E681F9 /* LaunchScreen.storyboard */; };
-		FA75F7462454460000E681F9 /* playersMeetupTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7452454460000E681F9 /* playersMeetupTests.swift */; };
-		FA75F7512454460000E681F9 /* playersMeetupUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7502454460000E681F9 /* playersMeetupUITests.swift */; };
+		FA75F7462454460000E681F9 /* playersMeetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7452454460000E681F9 /* playersMeetTests.swift */; };
+		FA75F7512454460000E681F9 /* playersMeetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7502454460000E681F9 /* playersMeetUITests.swift */; };
 		FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBA32455899F00C25C92 /* NetworkService.swift */; };
 		FAB9CBA62455931E00C25C92 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBA52455931E00C25C92 /* Models.swift */; };
 		FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */; };
@@ -91,7 +91,7 @@
 		E0554F482740851200B602C4 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		E05F02902730C81300DDBE33 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E05F0294273110D200DDBE33 /* LottieAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimations.swift; sourceTree = "<group>"; };
-		E0788C48272E22930089197D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageError.swift; path = playersMeetup/Errors/ImageError.swift; sourceTree = SOURCE_ROOT; };
+		E0788C48272E22930089197D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageError.swift; path = ../../../Desktop/playersMeet/playersMeet/Errors/ImageError.swift; sourceTree = SOURCE_ROOT; };
 		E0788C4A272E3F440089197D /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		E0788C4D272E8A440089197D /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
 		E07996F4272CF34D0000D162 /* FirebaseAuthClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthClient.swift; sourceTree = "<group>"; };
@@ -117,10 +117,10 @@
 		FA75F73A2454460000E681F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA75F73C2454460000E681F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA75F7412454460000E681F9 /* playersMeetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = playersMeetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA75F7452454460000E681F9 /* playersMeetupTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playersMeetupTests.swift; sourceTree = "<group>"; };
+		FA75F7452454460000E681F9 /* playersMeetTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playersMeetTests.swift; sourceTree = "<group>"; };
 		FA75F7472454460000E681F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA75F74C2454460000E681F9 /* playersMeetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = playersMeetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA75F7502454460000E681F9 /* playersMeetupUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playersMeetupUITests.swift; sourceTree = "<group>"; };
+		FA75F7502454460000E681F9 /* playersMeetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = playersMeetUITests.swift; sourceTree = "<group>"; };
 		FA75F7522454460000E681F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAB9CBA32455899F00C25C92 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		FAB9CBA52455931E00C25C92 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
@@ -301,9 +301,9 @@
 			isa = PBXGroup;
 			children = (
 				E0116CA5245A580900AF7F39 /* .gitignore */,
-				FA75F72D245445FC00E681F9 /* playersMeetup */,
-				FA75F7442454460000E681F9 /* playersMeetupTests */,
-				FA75F74F2454460000E681F9 /* playersMeetupUITests */,
+				FA75F72D245445FC00E681F9 /* playersMeet */,
+				FA75F7442454460000E681F9 /* playersMeetTests */,
+				FA75F74F2454460000E681F9 /* playersMeetUITests */,
 				FA75F72C245445FC00E681F9 /* Products */,
 				43C439AC45C2A609DC47B2BC /* Pods */,
 				4916EA1490E595B78A30CDD3 /* Frameworks */,
@@ -320,7 +320,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FA75F72D245445FC00E681F9 /* playersMeetup */ = {
+		FA75F72D245445FC00E681F9 /* playersMeet */ = {
 			isa = PBXGroup;
 			children = (
 				E05F028F2730C80300DDBE33 /* Controllers */,
@@ -338,25 +338,25 @@
 				FA18FCB1245BBC930087C1CC /* Assets.xcassets */,
 				E0AB2F4C24652EBB00F4CE49 /* Lottie Animations */,
 			);
-			path = playersMeetup;
+			path = playersMeet;
 			sourceTree = "<group>";
 		};
-		FA75F7442454460000E681F9 /* playersMeetupTests */ = {
+		FA75F7442454460000E681F9 /* playersMeetTests */ = {
 			isa = PBXGroup;
 			children = (
-				FA75F7452454460000E681F9 /* playersMeetupTests.swift */,
+				FA75F7452454460000E681F9 /* playersMeetTests.swift */,
 				FA75F7472454460000E681F9 /* Info.plist */,
 			);
-			path = playersMeetupTests;
+			path = playersMeetTests;
 			sourceTree = "<group>";
 		};
-		FA75F74F2454460000E681F9 /* playersMeetupUITests */ = {
+		FA75F74F2454460000E681F9 /* playersMeetUITests */ = {
 			isa = PBXGroup;
 			children = (
-				FA75F7502454460000E681F9 /* playersMeetupUITests.swift */,
+				FA75F7502454460000E681F9 /* playersMeetUITests.swift */,
 				FA75F7522454460000E681F9 /* Info.plist */,
 			);
-			path = playersMeetupUITests;
+			path = playersMeetUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -677,7 +677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA75F7462454460000E681F9 /* playersMeetupTests.swift in Sources */,
+				FA75F7462454460000E681F9 /* playersMeetTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,7 +685,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA75F7512454460000E681F9 /* playersMeetupUITests.swift in Sources */,
+				FA75F7512454460000E681F9 /* playersMeetUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -847,7 +847,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BZSTQ3T72Y;
-				INFOPLIST_FILE = playersMeetup/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/playersMeet/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -867,7 +867,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BZSTQ3T72Y;
-				INFOPLIST_FILE = playersMeetup/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/playersMeet/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -887,15 +887,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8YJ5XVX3PL;
-				INFOPLIST_FILE = playersMeetupTests/Info.plist;
+				DEVELOPMENT_TEAM = BZSTQ3T72Y;
+				INFOPLIST_FILE = playersMeetTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.NadaZeini.playersMeetupTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YazanArafeh.playersMeetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -910,15 +910,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8YJ5XVX3PL;
-				INFOPLIST_FILE = playersMeetupTests/Info.plist;
+				DEVELOPMENT_TEAM = BZSTQ3T72Y;
+				INFOPLIST_FILE = playersMeetTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.NadaZeini.playersMeetupTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YazanArafeh.playersMeetTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -932,18 +932,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8YJ5XVX3PL;
-				INFOPLIST_FILE = playersMeetupUITests/Info.plist;
+				DEVELOPMENT_TEAM = BZSTQ3T72Y;
+				INFOPLIST_FILE = playersMeetUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.NadaZeini.playersMeetupUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YazanArafeh.playersMeetUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = playersMeetup;
 			};
 			name = Debug;
 		};
@@ -953,18 +952,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8YJ5XVX3PL;
-				INFOPLIST_FILE = playersMeetupUITests/Info.plist;
+				DEVELOPMENT_TEAM = BZSTQ3T72Y;
+				INFOPLIST_FILE = playersMeetUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.NadaZeini.playersMeetupUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.YazanArafeh.playersMeetUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = playersMeetup;
 			};
 			name = Release;
 		};
