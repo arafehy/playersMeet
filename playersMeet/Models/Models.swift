@@ -8,24 +8,32 @@
 
 import Foundation
 
-struct Root: Codable{
-    let businesses: [Business]
+struct BusinessesResponse: Codable {
+    let businesses: [Location]
 }
-struct Business: Codable{
+
+struct Location: Codable {
     let id: String
     let name: String
     let imageUrl: URL
     let distance: Double
+    let coordinates: Coordinate
 }
-//view model for the list of courts
+
+struct Coordinate: Codable {
+    let latitude, longitude: Double
+}
+
+// view model for the list of courts
 struct CourtListViewModel {
-    let name:String
-    let imageUrl:URL
+    let name: String
+    let imageUrl: URL
     let distance: Double
-    let id:String
+    let id: String
 }
-extension CourtListViewModel{
-    init(business: Business) {
+
+extension CourtListViewModel {
+    init(business: Location) {
         self.name = business.name
         self.id = business.id
         self.imageUrl = business.imageUrl
