@@ -63,17 +63,6 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        _ = self.tableView.cellForRow(at: indexPath) as! LocationTableViewCell
-        let selectedLocation = locations[indexPath.row]
-        ///     print("selected:")
-        ///        print(cell.locationLabel.text)
-        LocationsViewController.selectedId = selectedLocation["id"] as! String
-        ///        print(selectedLocation["name"])
-        ///  print("done selected")kti
-        
-    }
-    
     @IBOutlet weak var tableView: UITableView!
     let service = MoyaProvider<YelpService.BusinessesProvider>()
     var names: [String: Int] = [:]
