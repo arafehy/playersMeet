@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>417634473384-m3u99egej90p2hmfebrdtkhq9h36d4p6.apps.googleusercontent.com</string>
+	<string>909786967507-i83fo39qljg26cnu6l7lre48v5s2jgtf.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.417634473384-m3u99egej90p2hmfebrdtkhq9h36d4p6</string>
+	<string>com.googleusercontent.apps.909786967507-i83fo39qljg26cnu6l7lre48v5s2jgtf</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBbmwiWRryQ3EvGK0Y-PL0LtX7VlfiNcAk</string>
+	<string>AIzaSyAbrFzs9_z6jrNjBc383VJt9gzPT-hPwqY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>417634473384</string>
+	<string>909786967507</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.NadaZeini.playersMeetup</string>
+	<string>com.YazanArafeh.playersMeet</string>
 	<key>PROJECT_ID</key>
-	<string>sportsmeet-74528</string>
+	<string>playersmeet</string>
 	<key>STORAGE_BUCKET</key>
-	<string>sportsmeet-74528.appspot.com</string>
+	<string>playersmeet.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:417634473384:ios:5e0a9fd80358641928f99d</string>
+	<string>1:909786967507:ios:4d3eccb4317cd26ce49326</string>
 	<key>DATABASE_URL</key>
-	<string>https://sportsmeet-74528.firebaseio.com</string>
+	<string>https://playersmeet-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>
