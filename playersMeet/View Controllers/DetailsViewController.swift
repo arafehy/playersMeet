@@ -256,4 +256,13 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         googleMapView.delegate = self
         
     }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toChat" {
+            let chatVC = segue.destination as! TeamChatViewController
+            chatVC.teamID = location.id
+        }
+    }
 }
