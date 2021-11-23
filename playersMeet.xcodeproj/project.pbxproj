@@ -22,6 +22,7 @@
 		E0554F492740851200B602C4 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0554F482740851200B602C4 /* CGFloat+Extensions.swift */; };
 		E05F02912730C81300DDBE33 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F02902730C81300DDBE33 /* Navigation.swift */; };
 		E05F0295273110D200DDBE33 /* LottieAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F0294273110D200DDBE33 /* LottieAnimations.swift */; };
+		E0623F23274CD6B300A0555C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E0623F22274CD6B300A0555C /* GoogleService-Info.plist */; };
 		E0788C49272E22930089197D /* ImageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C48272E22930089197D /* ImageError.swift */; };
 		E0788C4B272E3F440089197D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C4A272E3F440089197D /* AuthError.swift */; };
 		E0788C4E272E8A440089197D /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C4D272E8A440089197D /* DatabaseError.swift */; };
@@ -38,7 +39,6 @@
 		E0EC4382274B80A9009CD785 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EC4381274B80A9009CD785 /* YelpClient.swift */; };
 		E0EC4384274B82DE009CD785 /* CurrentSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EC4383274B82DE009CD785 /* CurrentSession.swift */; };
 		E0FCC718245E9426000BA717 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FCC717245E9426000BA717 /* EditProfileViewController.swift */; };
-		FA1116E524598D3C00800C33 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA1116E424598D3C00800C33 /* GoogleService-Info.plist */; };
 		FA18FCB2245BBC940087C1CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA18FCB1245BBC930087C1CC /* Assets.xcassets */; };
 		FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F72E245445FD00E681F9 /* AppDelegate.swift */; };
 		FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F730245445FD00E681F9 /* SceneDelegate.swift */; };
@@ -93,6 +93,7 @@
 		E0554F482740851200B602C4 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		E05F02902730C81300DDBE33 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E05F0294273110D200DDBE33 /* LottieAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimations.swift; sourceTree = "<group>"; };
+		E0623F22274CD6B300A0555C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E0788C48272E22930089197D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageError.swift; path = playersMeet/Errors/ImageError.swift; sourceTree = SOURCE_ROOT; };
 		E0788C4A272E3F440089197D /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		E0788C4D272E8A440089197D /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
@@ -111,7 +112,6 @@
 		E0EC4383274B82DE009CD785 /* CurrentSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSession.swift; sourceTree = "<group>"; };
 		E0FCC717245E9426000BA717 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		E3605C37689D0432C6B68637 /* Pods_playersMeetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playersMeetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA1116E424598D3C00800C33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		FA18FCB1245BBC930087C1CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA75F72B245445FC00E681F9 /* playersMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playersMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA75F72E245445FD00E681F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -307,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				E0116CA5245A580900AF7F39 /* .gitignore */,
+				E0623F22274CD6B300A0555C /* GoogleService-Info.plist */,
 				FA75F72D245445FC00E681F9 /* playersMeet */,
 				FA75F7442454460000E681F9 /* playersMeetTests */,
 				FA75F74F2454460000E681F9 /* playersMeetUITests */,
@@ -340,7 +341,6 @@
 				E0AB2F4D24652F0900F4CE49 /* Networking */,
 				E0788C4C272E402B0089197D /* Errors */,
 				FA75F73C2454460000E681F9 /* Info.plist */,
-				FA1116E424598D3C00800C33 /* GoogleService-Info.plist */,
 				FA18FCB1245BBC930087C1CC /* Assets.xcassets */,
 				E0AB2F4C24652EBB00F4CE49 /* Lottie Animations */,
 			);
@@ -477,11 +477,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E0116CA6245A580900AF7F39 /* .gitignore in Resources */,
+				E0623F23274CD6B300A0555C /* GoogleService-Info.plist in Resources */,
 				FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */,
 				FAFECE3B24619F9A005CD8F7 /* 18709-loading.json in Resources */,
 				FA18FCB2245BBC940087C1CC /* Assets.xcassets in Resources */,
 				E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */,
-				FA1116E524598D3C00800C33 /* GoogleService-Info.plist in Resources */,
 				FA75F736245445FD00E681F9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
