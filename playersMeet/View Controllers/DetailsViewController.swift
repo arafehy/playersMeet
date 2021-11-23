@@ -18,19 +18,19 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var chatButton: UIButton!
     var latSelected: String = ""
     var longSelected: String = ""
-    var location: [String: Any]!
+    var location: Location!
     let user: User? = FirebaseAuthClient.getUser()
     @IBAction func leaveTeamAction(_ sender: Any) {
         leaveTeamOutlet?.isEnabled = false
         joinTeamOutlet?.isEnabled = true
         self.chatButton.isEnabled = false //not in team
         
-        let referenceTeamCount = FirebaseDBClient.businessesRef.child(LocationsViewController.selectedId)
-        FirebaseDBClient.businessesRef.child(LocationsViewController.selectedId).observeSingleEvent(of: .value) { (snapshot) in
+        let referenceTeamCount = FirebaseDBClient.businessesRef.child(location.id)
+        FirebaseDBClient.businessesRef.child(location.id).observeSingleEvent(of: .value) { (snapshot) in
             let countBeforeLeaving = snapshot.value
             LocationsViewController.shared.count = countBeforeLeaving as! Int - 1
             
-            print("leaving this id: \(LocationsViewController.selectedId)")
+            print("leaving this id: \(self.location.id)")
             print("after leaving count is \(LocationsViewController.shared.count)")
             //        LocationsViewController.shared.count = LocationsViewController.shared.count-1
             referenceTeamCount.setValue(LocationsViewController.shared.count)
@@ -74,7 +74,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                     self.usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
                 }
                 //businesses count modification
-                let referenceTeamCount = FirebaseDBClient.businessesRef.child(LocationsViewController.selectedId)
+                let referenceTeamCount = FirebaseDBClient.businessesRef.child(self.location.id)
                 referenceTeamCount.setValue(LocationsViewController.shared.count)
                 //userInfo modification
                 let array: [String] = ["joined",DetailsViewController.selectedLocationId]
@@ -126,7 +126,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         self.joinTeamOutlet?.isEnabled = false //cannot join since already joined
         self.leaveTeamOutlet?.isEnabled = true
         self.chatButton.isEnabled = true // in team
-        let referenceTeamCount = FirebaseDBClient.businessesRef.child(LocationsViewController.selectedId)
+        let referenceTeamCount = FirebaseDBClient.businessesRef.child(location.id)
         LocationsViewController.shared.count = LocationsViewController.shared.count+1
         referenceTeamCount.setValue(LocationsViewController.shared.count)
     }
@@ -174,7 +174,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         chatButton.rounded()
         
         
-        self.navigationItem.title = location["name"] as? String
+        self.navigationItem.title = location.name
         
         
         
@@ -184,7 +184,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         leaveTeamOutlet.isEnabled = false
         self.chatButton.isEnabled = false
         //get value from database
-        let reference = FirebaseDBClient.businessesRef.child(LocationsViewController.selectedId)
+        let reference = FirebaseDBClient.businessesRef.child(location.id)
         print("selected id")
         reference.observeSingleEvent(of: .value){
             (snapshot) in print(snapshot.key)
