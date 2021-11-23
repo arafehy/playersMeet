@@ -78,35 +78,14 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func fetchLocations() {
-        let coordinates: CLLocationCoordinate2D = LocationManager.shared.getCoordinates()
-        service.request(.search(coordinates.latitude, coordinates.longitude)) {
-            [unowned self]
-            (result) in
+        YelpClient.shared.retrieveLocations { result in
             switch result {
-            case .success(let response):
-                self.decodeYelpResponse(response)
-                FirebaseManager.dbClient.addNewLocations(locations: self.names)
+            case .success(let locations):
+                self.locations = locations
                 self.tableView.reloadData()
             case .failure(let error):
                 print("Error: \(error)")
             }
-        }
-    }
-    
-    func decodeYelpResponse(_ response: Response) {
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase // letting it know camel case
-        do {
-            let dataDictionary = try JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
-            locations = dataDictionary["businesses"] as? [[String: Any]] ?? [[:]]
-            for location in locations {
-                guard let locationID = location["id"] as? String else { continue }
-                if self.names[locationID] == nil {
-                    self.names[locationID] = 0
-                }
-            }
-        } catch {
-            print(error)
         }
     }
     
