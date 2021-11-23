@@ -15,7 +15,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
-    var teamId: String = LocationsViewController.selectedId //teamId is the selected location
+    var teamID: String! // teamID is the selected location
     let commentBar = MessageInputBar()
     var showsCommentBar = true
     let ref = Database.database().reference()
@@ -96,7 +96,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func loadMsgs() {
-        let msgsRef = Database.database().reference().child("teamChat/\(teamId)")
+        let msgsRef = Database.database().reference().child("teamChat/\(teamID)")
         
         msgsRef.queryOrdered(byChild: "createdAt")
             .observe(.childAdded)
@@ -114,7 +114,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        let msgsRef = Database.database().reference().child("teamChat/\(teamId)").childByAutoId()
+        let msgsRef = Database.database().reference().child("teamChat/\(teamID)").childByAutoId()
         FirebaseDBClient.usersRef.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
             let userInfo = snapshot.value as? NSDictionary
             let username = userInfo?["username"]
