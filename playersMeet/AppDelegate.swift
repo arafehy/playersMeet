@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        GMSServices.provideAPIKey("AIzaSyBbmwiWRryQ3EvGK0Y-PL0LtX7VlfiNcAk")
-        GMSPlacesClient.provideAPIKey("AIzaSyBbmwiWRryQ3EvGK0Y-PL0LtX7VlfiNcAk")
+        GMSServices.provideAPIKey(API_Keys.GoogleMaps)
+        GMSPlacesClient.provideAPIKey(API_Keys.GoogleMaps)
         return true
     }
     
