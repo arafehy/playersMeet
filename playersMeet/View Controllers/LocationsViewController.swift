@@ -10,7 +10,6 @@ import UIKit
 import Moya
 import AlamofireImage
 import Firebase
-import CoreLocation
 
 var locations = [[String: Any]]()
 class LocationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
@@ -20,8 +19,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     var lat: Double = 0.0
     
     static let shared = LocationsViewController()
-    
-    static var selectedId: String = ""
+    var locations: [Location] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
@@ -29,22 +27,15 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
-        let loc = locations[indexPath.row]
+        let location = locations[indexPath.row]
         let user: User? = Auth.auth().currentUser
-        cell.locationLabel.text = loc["name"] as? String
-        let strURL = loc["image_url"] as! String
-        if let url = URL(string: strURL) {
-            cell.locationImageView.af.setImage(withURL: url)
-        }
-        let dist = String(format: "%.3f", (loc["distance"] as! Double)/1609.344)
+        cell.locationLabel.text = location.name
+        cell.locationImageView.af.setImage(withURL: location.imageUrl)
+        let dist = String(format: "%.3f", location.distance/1609.344)
         cell.distanceLabel.text = "\(dist) mi"
         // is here indication on - off
-        let selectedLocation = locations[indexPath.row]
-        ///     print("selected:")
-        ///        print(cell.locationLabel.text)
-        let sel = selectedLocation["id"] as! String
         FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
-            if (snapshot.value as? [String])?[0] == "joined" && (snapshot.value as? [String])?[1] == sel {
+            if (snapshot.value as? [String])?[0] == "joined" && (snapshot.value as? [String])?[1] == location.id {
                 cell.isHereIndicator.isHidden = false
             } else {
                 cell.isHereIndicator.isHidden = true

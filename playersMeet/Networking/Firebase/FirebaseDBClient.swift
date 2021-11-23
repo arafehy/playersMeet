@@ -142,15 +142,15 @@ struct FirebaseDBClient {
     
     // MARK: - Locations
     
-    func addNewLocations(locations: [String: Int]) {
+    func addNewLocations(locations: [Location]) {
         // make counter var - update counter on click and set ref
         // FirebaseReferences.businessesRef.setValue(self.names)
         let locationsRef: DatabaseReference = getDBReference(pathName: .businesses)
-        for (name, count) in locations {
+        for location in locations {
             locationsRef.observeSingleEvent(of: .value) { snapshot in
-                if !snapshot.hasChild(name) {
+                if !snapshot.hasChild(location.id) {
                     // if doesnt exist add it as child to businesses
-                    locationsRef.child(name).setValue(count)
+                    locationsRef.child(location.id).setValue(0)
                 }
             }
         }
