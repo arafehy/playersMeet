@@ -90,11 +90,10 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! LocationTableViewCell
-        let indexPath = tableView.indexPath(for: cell)
-        let location = locations[indexPath!.row]
-        
-        let detailsVC = segue.destination as! DetailsViewController
-        detailsVC.location = location
+        guard let selectedRow: Int = tableView.indexPathForSelectedRow?.row else { return }
+        if let detailsVC = segue.destination as? DetailsViewController {
+            let location: Location = locations[selectedRow]
+            detailsVC.location = location
+        }
     }
 }
