@@ -143,8 +143,6 @@ struct FirebaseDBClient {
     // MARK: - Locations
     
     func addNewLocations(locations: [Location]) {
-        // make counter var - update counter on click and set ref
-        // FirebaseReferences.businessesRef.setValue(self.names)
         let locationsRef: DatabaseReference = getDBReference(pathName: .businesses)
         for location in locations {
             locationsRef.observeSingleEvent(of: .value) { snapshot in
