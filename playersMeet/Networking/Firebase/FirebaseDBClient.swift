@@ -88,6 +88,17 @@ struct FirebaseDBClient {
         }
     }
     
+    func isUserAtLocation(userID: String, locationID: String, completion: @escaping (Bool?) -> Void) {
+        FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
+            guard let value = snapshot.value as? [String] else {
+                completion(nil)
+                return
+            }
+            let isAtLocation: Bool = (value[0] == "joined" && value[1] == locationID)
+            completion(isAtLocation)
+        }
+    }
+    
     // MARK: Profile Picture
     
     func uploadProfilePicture(userID: String, imageData: Data, imageType: ImageType, completion: @escaping (Result<String, Error>) -> Void) {
