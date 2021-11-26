@@ -19,6 +19,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     var locations: [Location] = []
     let locationProvider: LocationProvider = YelpClient()
     let userLocationProvider: UserLocationProvider = UserLocationService()
+    let user: User? = FirebaseAuthClient.getUser()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
@@ -27,18 +28,16 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
         let location = locations[indexPath.row]
-        let user: User? = Auth.auth().currentUser
         cell.locationLabel.text = location.name
         cell.locationImageView.af.setImage(withURL: location.imageUrl)
         let dist = String(format: "%.3f", location.distance/1609.344)
         cell.distanceLabel.text = "\(dist) mi"
         // is here indication on - off
-        FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
-            if (snapshot.value as? [String])?[0] == "joined" && (snapshot.value as? [String])?[1] == location.id {
-                cell.isHereIndicator.isHidden = false
-            } else {
-                cell.isHereIndicator.isHidden = true
-            }
+        guard let userID = user?.uid else { return cell }
+        FirebaseManager.dbClient.isUserAtLocation(userID: userID, locationID: location.id) {
+            [weak cell] (isAtLocation) in
+            guard let shouldShowIndicator = isAtLocation else { return }
+            cell?.isHereIndicator.isHidden = !shouldShowIndicator
         }
         return cell
     }
