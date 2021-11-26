@@ -10,8 +10,7 @@ import Foundation
 import Moya
 import CoreLocation
 
-struct YelpClient {
-    static let shared = YelpClient()
+struct YelpClient: LocationProvider {
     private let service = MoyaProvider<YelpService.BusinessesProvider>()
     private let decoder = JSONDecoder()
     
@@ -19,42 +18,19 @@ struct YelpClient {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
-    func retrieveLocations(completion: @escaping (Result<[Location], Error>) -> Void) {
-        let coordinates: CLLocationCoordinate2D = LocationManager.shared.getCoordinates()
-        service.request(.search(coordinates.latitude, coordinates.longitude)) { (result) in
+    func retrieveLocations(near location: CLLocation, completion: @escaping (Result<[Location], Error>) -> Void) {
+        service.request(.search(location.coordinate.latitude, location.coordinate.longitude)) { (result) in
             switch result {
             case .success(let response):
                 guard let locations = try? decoder.decode(BusinessesResponse.self, from: response.data).businesses else {
                     print("Could not decode Yelp response")
                     return
                 }
-                // let locations = self.decodeResponse(response)
-                FirebaseManager.dbClient.addNewLocations(locations: locations)
                 completion(.success(locations))
+                FirebaseManager.dbClient.addNewLocations(locations: locations)
             case .failure(let error):
                 completion(.failure(error))
             }
         }
-    }
-    
-    private func decodeResponse(_ response: Response) -> [String: Int] {
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase // letting it know camel case
-        do {
-            let dataDictionary = try JSONSerialization.jsonObject(with: response.data, options: []) as! [String: Any]
-            var locations: [[String: Any]] = [[:]]
-            locations = dataDictionary["businesses"] as? [[String: Any]] ?? [[:]]
-            var names: [String: Int] = [:]
-            for location in locations {
-                guard let locationID = location["id"] as? String else { continue }
-                if names[locationID] == nil {
-                    names[locationID] = 0
-                }
-            }
-            return names
-        } catch {
-            print(error)
-        }
-        return [:]
     }
 }
