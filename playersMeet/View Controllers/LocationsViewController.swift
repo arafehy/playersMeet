@@ -11,15 +11,14 @@ import Moya
 import AlamofireImage
 import Firebase
 
-var locations = [[String: Any]]()
-class LocationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class LocationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let locationManager = CLLocationManager()
-    var long: Double = 0.0
-    var lat: Double = 0.0
+    // MARK: - Properties
     
     static let shared = LocationsViewController()
     var locations: [Location] = []
+    let locationProvider: LocationProvider = YelpClient()
+    let userLocationProvider: UserLocationProvider = UserLocationService()
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
@@ -55,8 +54,6 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     @IBOutlet weak var tableView: UITableView!
-    let service = MoyaProvider<YelpService.BusinessesProvider>()
-    var names: [String: Int] = [:]
     var count = 0
     // reload table view to update indicator of joined location
     override func viewWillAppear(_ animated: Bool) {
@@ -74,20 +71,34 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         print("view did load \(LocationsViewController.shared.count)")
         
         //        overrideUserInterfaceStyle = .light
-        fetchLocations()
+        updateLocations()
     }
     
-    func fetchLocations() {
-        YelpClient.shared.retrieveLocations { result in
+    // MARK: - Locations
+    
+    func updateLocations() {
+        userLocationProvider.findUserLocation { [weak self] (result) in
+            guard let self = self else { return }
             switch result {
-            case .success(let locations):
-                self.locations = locations
-                self.tableView.reloadData()
+            case .success(let userLocation):
+                self.locationProvider.retrieveLocations(near: userLocation, completion: self.loadLocations(result:))
             case .failure(let error):
-                print("Error: \(error)")
+                self.showErrorAlert(with: error)
             }
         }
     }
+    
+    func loadLocations(result: Result<[Location], Error>) {
+        switch result {
+        case .success(let locations):
+            self.locations = locations
+            self.tableView.reloadData()
+        case .failure(let error):
+            self.showErrorAlert(with: error)
+        }
+    }
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let selectedRow: Int = tableView.indexPathForSelectedRow?.row else { return }
