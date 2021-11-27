@@ -20,6 +20,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     let locationProvider: LocationProvider = YelpClient()
     let userLocationProvider: UserLocationProvider = UserLocationService()
     let user: User? = FirebaseAuthClient.getUser()
+    var currentLocationID: String?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
@@ -32,13 +33,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         cell.locationImageView.af.setImage(withURL: location.imageUrl)
         let dist = String(format: "%.3f", location.distance/1609.344)
         cell.distanceLabel.text = "\(dist) mi"
-        // is here indication on - off
-        guard let userID = user?.uid else { return cell }
-        FirebaseManager.dbClient.isUserAtLocation(userID: userID, locationID: location.id) {
-            [weak cell] (isAtLocation) in
-            guard let shouldShowIndicator = isAtLocation else { return }
-            cell?.isHereIndicator.isHidden = !shouldShowIndicator
-        }
+        cell.isHereIndicator.isHidden = location.id != currentLocationID
         return cell
     }
     
@@ -70,10 +65,18 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         print("view did load \(LocationsViewController.shared.count)")
         
         //        overrideUserInterfaceStyle = .light
+        setCurrentLocationID()
         updateLocations()
     }
     
     // MARK: - Locations
+    
+    func setCurrentLocationID() {
+        guard let userID = user?.uid else { return }
+        FirebaseManager.dbClient.getCurrentLocationID(userID: userID) { [weak self] (locationID) in
+            self?.currentLocationID = locationID
+        }
+    }
     
     func updateLocations() {
         userLocationProvider.findUserLocation { [weak self] (result) in
