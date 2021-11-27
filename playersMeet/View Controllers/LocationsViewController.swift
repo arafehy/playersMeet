@@ -30,7 +30,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
         let location = locations[indexPath.row]
         cell.locationLabel.text = location.name
-        cell.locationImageView.af.setImage(withURL: location.imageUrl)
+        cell.locationImageView.af.setImage(withURL: location.imageUrl, cacheKey: location.id)
         let dist = String(format: "%.3f", location.distance/1609.344)
         cell.distanceLabel.text = "\(dist) mi"
         cell.isHereIndicator.isHidden = location.id != currentLocationID
