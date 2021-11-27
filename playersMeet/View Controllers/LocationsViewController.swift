@@ -10,51 +10,23 @@ import UIKit
 import AlamofireImage
 import Firebase
 
-class LocationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class LocationsViewController: UIViewController {
     
     // MARK: - Properties
     
     static let shared = LocationsViewController()
+    
     var locations: [Location] = []
     let locationProvider: LocationProvider = YelpClient()
+    
     let userLocationProvider: UserLocationProvider = UserLocationService()
     let user: User? = FirebaseAuthClient.getUser()
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
-        let location = locations[indexPath.row]
-        cell.locationLabel.text = location.name
-        cell.locationImageView.af.setImage(withURL: location.imageUrl, cacheKey: location.id)
-        let dist = String(format: "%.3f", location.distance/1609.344)
-        cell.distanceLabel.text = "\(dist) mi"
-        cell.isHereIndicator.isHidden = location.id != CurrentSession.currentLocationID
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
-        cell.layer.transform = rotationTransform
-        cell.alpha = 0
-        UIView.animate(withDuration: 1.0) {
-            cell.layer.transform = CATransform3DIdentity
-            cell.alpha = 1.5
-        }
-    }
+    var count = 0
     
     @IBOutlet weak var tableView: UITableView!
-    var count = 0
-    // reload table view to update indicator of joined location
-    override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
-        
-    }
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        tableView.reloadData()
-    //    }
+    
+    // MARK: - VC Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +37,10 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         //        overrideUserInterfaceStyle = .light
         setCurrentLocationID()
         updateLocations()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
     
     // MARK: - Locations
@@ -105,6 +81,36 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         if let detailsVC = segue.destination as? DetailsViewController {
             let location: Location = locations[selectedRow]
             detailsVC.location = location
+        }
+    }
+}
+
+// MARK: - Table View
+
+extension LocationsViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locations.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
+        let location = locations[indexPath.row]
+        cell.locationLabel.text = location.name
+        cell.locationImageView.af.setImage(withURL: location.imageUrl, cacheKey: location.id)
+        let dist = String(format: "%.3f", location.distance/1609.344)
+        cell.distanceLabel.text = "\(dist) mi"
+        cell.isHereIndicator.isHidden = location.id != CurrentSession.currentLocationID
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let rotationTransform = CATransform3DTranslate(CATransform3DIdentity, 0, 50, 0)
+        cell.layer.transform = rotationTransform
+        cell.alpha = 0
+        UIView.animate(withDuration: 1.0) {
+            cell.layer.transform = CATransform3DIdentity
+            cell.alpha = 1.5
         }
     }
 }
