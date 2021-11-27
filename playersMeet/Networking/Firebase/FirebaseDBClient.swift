@@ -88,14 +88,16 @@ struct FirebaseDBClient {
         }
     }
     
-    func isUserAtLocation(userID: String, locationID: String, completion: @escaping (Bool?) -> Void) {
+    func getCurrentLocationID(userID: String, completion: @escaping (String?) -> Void) {
         FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
             guard let value = snapshot.value as? [String] else {
                 completion(nil)
                 return
             }
-            let isAtLocation: Bool = (value[0] == "joined" && value[1] == locationID)
-            completion(isAtLocation)
+            let joinStatus = value[0], locationID = value[1]
+            if joinStatus == "joined" {
+                completion(locationID)
+            }
         }
     }
     
