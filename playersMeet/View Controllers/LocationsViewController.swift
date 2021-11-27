@@ -33,8 +33,6 @@ class LocationsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         print("view did load \(LocationsViewController.shared.count)")
-        
-        //        overrideUserInterfaceStyle = .light
         setCurrentLocationID()
         updateLocations()
     }
