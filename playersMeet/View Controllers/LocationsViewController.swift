@@ -19,7 +19,6 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     let locationProvider: LocationProvider = YelpClient()
     let userLocationProvider: UserLocationProvider = UserLocationService()
     let user: User? = FirebaseAuthClient.getUser()
-    var currentLocationID: String?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return locations.count
@@ -32,7 +31,7 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
         cell.locationImageView.af.setImage(withURL: location.imageUrl, cacheKey: location.id)
         let dist = String(format: "%.3f", location.distance/1609.344)
         cell.distanceLabel.text = "\(dist) mi"
-        cell.isHereIndicator.isHidden = location.id != currentLocationID
+        cell.isHereIndicator.isHidden = location.id != CurrentSession.currentLocationID
         return cell
     }
     
@@ -72,8 +71,8 @@ class LocationsViewController: UIViewController, UITableViewDataSource, UITableV
     
     func setCurrentLocationID() {
         guard let userID = user?.uid else { return }
-        FirebaseManager.dbClient.getCurrentLocationID(userID: userID) { [weak self] (locationID) in
-            self?.currentLocationID = locationID
+        FirebaseManager.dbClient.getCurrentLocationID(userID: userID) { (locationID) in
+            CurrentSession.currentLocationID = locationID
         }
     }
     
