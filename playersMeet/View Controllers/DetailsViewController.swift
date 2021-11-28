@@ -12,8 +12,8 @@ import GooglePlaces
 import GoogleMaps
 
 class DetailsViewController: UIViewController, GMSMapViewDelegate {
-    @IBOutlet weak var leaveTeamOutlet: UIButton!
-    @IBOutlet weak var joinTeamOutlet: UIButton!
+    @IBOutlet weak var leaveTeamButton: UIButton!
+    @IBOutlet weak var joinTeamButton: UIButton!
     @IBOutlet weak var youInTeamLabel: UILabel!
     @IBOutlet weak var googleMapView: GMSMapView!
     @IBOutlet weak var chatButton: UIButton!
@@ -26,8 +26,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     }
     let user: User? = FirebaseAuthClient.getUser()
     @IBAction func leaveTeamAction(_ sender: Any) {
-        leaveTeamOutlet.isEnabled = false
-        joinTeamOutlet.isEnabled = true
+        leaveTeamButton.isEnabled = false
+        joinTeamButton.isEnabled = true
         self.chatButton.isEnabled = false //not in team
         
         let referenceTeamCount = FirebaseDBClient.businessesRef.child(location.id)
@@ -53,8 +53,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
             if (snapshot.value as? [String])?[0] == "not joined"
             {
-                self.joinTeamOutlet.isEnabled = false
-                self.leaveTeamOutlet.isEnabled = true
+                self.joinTeamButton.isEnabled = false
+                self.leaveTeamButton.isEnabled = true
                 self.playerCount += 1
                 LocationsViewController.shared.count += 1
                 //businesses count modification
@@ -67,8 +67,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                 self.chatButton.isEnabled = true
             }
             else {
-                self.joinTeamOutlet.isEnabled = true
-                self.leaveTeamOutlet.isEnabled = false
+                self.joinTeamButton.isEnabled = true
+                self.leaveTeamButton.isEnabled = false
                 self.chatButton.isEnabled = false //not in team
                 self.showSwitchTeamAlert()
             }
@@ -105,8 +105,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         let arrJoined: [String] = ["joined", location.id]
         guard let userID = user?.uid else { return }
         FirebaseDBClient.userInfoRef.child(userID).setValue(arrJoined)
-        joinTeamOutlet.isEnabled = false //cannot join since already joined
-        leaveTeamOutlet.isEnabled = true
+        joinTeamButton.isEnabled = false //cannot join since already joined
+        leaveTeamButton.isEnabled = true
         chatButton.isEnabled = true // in team
         let referenceTeamCount = FirebaseDBClient.businessesRef.child(location.id)
         LocationsViewController.shared.count += 1
@@ -146,13 +146,13 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        joinTeamOutlet.rounded()
-        leaveTeamOutlet.rounded()
+        joinTeamButton.rounded()
+        leaveTeamButton.rounded()
         chatButton.rounded()
         
         navigationItem.title = location.name
         
-        leaveTeamOutlet.isEnabled = false
+        leaveTeamButton.isEnabled = false
         chatButton.isEnabled = false
         
         // Synchronizing datatase count with label text from the location selected
@@ -173,8 +173,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
             if (snapshot.value as? [String])?[0] == "joined" && self.location.id == (snapshot.value as? [String])?[1] {
                 print("Already in that team")
                 //dont allow to join
-                self.joinTeamOutlet.isEnabled = false
-                self.leaveTeamOutlet.isEnabled = true
+                self.joinTeamButton.isEnabled = false
+                self.leaveTeamButton.isEnabled = true
                 self.youInTeamLabel.text = "You are in this team"
                 self.chatButton.isEnabled = true
             } else {
