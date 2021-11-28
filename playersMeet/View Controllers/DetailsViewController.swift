@@ -90,15 +90,14 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     func executeLeavingTeam(locationAlreadyJoinedId: String) {
         //set new count (remove from team) decrement
         
-        print("id of location previous")
-        print(locationAlreadyJoinedId)
+        print("ID of previous location: \(locationAlreadyJoinedId)")
         
         FirebaseDBClient.businessesRef.child(locationAlreadyJoinedId).observeSingleEvent(of: .value) { (snapshot) in
             guard var currentCount = snapshot.value as? Int else { return }
             
             //joining team
             print("count of prev location is  \(currentCount)")
-            currentCount = currentCount - 1
+            currentCount -= 1
             //leaving previous team -1 count in businesses
             FirebaseDBClient.businessesRef.child(locationAlreadyJoinedId).setValue(currentCount)
         }
