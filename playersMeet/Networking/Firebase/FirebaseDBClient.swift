@@ -167,6 +167,18 @@ struct FirebaseDBClient {
         }
     }
     
+    func observePlayerCount(at locationID: String, completion: @escaping (Int?) -> Void)  {
+        getDBReference(pathName: .businesses).child(locationID).observe(.value) { snapshot in
+            // Listen in realtime to whenever it updates
+            guard let playerCount = snapshot.value as? Int else {
+                print("Player count for location with ID \(locationID) unavailable")
+                completion(nil)
+                return
+            }
+            completion(playerCount)
+        }
+    }
+    
     // MARK: - Temporary Refs
     
     static let userInfoRef = Database.database().reference().ref.child("userInfo")

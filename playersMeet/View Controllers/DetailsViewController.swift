@@ -40,17 +40,7 @@ class DetailsViewController: UIViewController {
         leaveTeamButton.isEnabled = false
         chatButton.isEnabled = false
         
-        // Synchronizing database count with label text from the location selected
-        let reference = FirebaseDBClient.businessesRef.child(location.id)
-        reference.observe(.value, with: { (snapshot) in
-            // Listen in realtime to whenever it updates
-            guard let playerCount = snapshot.value as? Int else {
-                print("Player count for location with ID \(self.location.id) unavailable")
-                return
-            }
-            self.playerCount = playerCount
-            LocationsViewController.shared.count = playerCount
-        })
+        startPlayerCountObserver()
         
         //check if user is already in team selected
         guard let userID = user?.uid else { return }
@@ -97,6 +87,18 @@ class DetailsViewController: UIViewController {
 
         googleMapView.delegate = self
         
+    }
+    
+    func startPlayerCountObserver() {
+        FirebaseManager.dbClient.observePlayerCount(at: location.id) { playerCount in
+            // Listen in realtime to whenever it updates
+            guard let playerCount = playerCount else {
+                print("Player count for location with ID \(self.location.id) unavailable")
+                return
+            }
+            self.playerCount = playerCount
+            LocationsViewController.shared.count = playerCount
+        }
     }
     
     @IBAction func leaveTeamAction(_ sender: Any) {
