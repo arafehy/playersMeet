@@ -77,7 +77,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                 let referenceTeamCount = FirebaseDBClient.businessesRef.child(self.location.id)
                 referenceTeamCount.setValue(LocationsViewController.shared.count)
                 //userInfo modification
-                let array: [String] = ["joined",DetailsViewController.selectedLocationId]
+                let array: [String] = ["joined", self.location.id]
                 FirebaseDBClient.userInfoRef.child(self.user!.uid).setValue(array)
                 self.youInTeamLabel.text = "You are in this team"
                 self.chatButton.isEnabled = true
@@ -121,7 +121,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
             FirebaseDBClient.businessesRef.child(locationAlreadyJoinedId).setValue(currentCount)
         }
         //modifiying current team of user
-        let arrJoined: [String] = ["joined",DetailsViewController.selectedLocationId]
+        let arrJoined: [String] = ["joined", location.id]
         FirebaseDBClient.userInfoRef.child(user!.uid).setValue(arrJoined)
         self.joinTeamOutlet?.isEnabled = false //cannot join since already joined
         self.leaveTeamOutlet?.isEnabled = true
@@ -164,7 +164,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
             }
         }
     }
-    static var selectedLocationId: String = ""
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -183,19 +183,16 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         //        overrideUserInterfaceStyle = .light
         leaveTeamOutlet.isEnabled = false
         self.chatButton.isEnabled = false
-        //get value from database
+        
         let reference = FirebaseDBClient.businessesRef.child(location.id)
-        print("selected id")
-        reference.observeSingleEvent(of: .value){
-            (snapshot) in print(snapshot.key)
-            DetailsViewController.selectedLocationId = snapshot.key
-        }
-        //get selected location id from selected row
         //synchronizing datatase count with label text from the location selected
-        reference.observe(DataEventType.value, with: { (snapshot) in
-            ///listen in realtime to whenever it updates
-            //            var snapCount = (snapshot.value as AnyObject).description //this was used when just showing count of players
-            LocationsViewController.shared.count = snapshot.value as! Int
+        reference.observe(.value, with: { (snapshot) in
+            // listen in realtime to whenever it updates
+            guard let value = snapshot.value as? Int else {
+                print("Player count for location with ID \(self.location.id) unavailable")
+                return
+            }
+            LocationsViewController.shared.count = value
             if LocationsViewController.shared.count == 0 {
                 self.usersCounterLabel.text = "No players are available"
             }
@@ -211,7 +208,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         
         //check if user is already in team selected
         FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
-            if (snapshot.value as? [String])?[0] == "joined" && DetailsViewController.selectedLocationId == (snapshot.value as? [String])?[1] {
+            if (snapshot.value as? [String])?[0] == "joined" && self.location.id == (snapshot.value as? [String])?[1] {
                 print("Already in that team")
                 //dont allow to join
                 self.joinTeamOutlet?.isEnabled = false
