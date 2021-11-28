@@ -137,7 +137,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
             playerCountLabel.text = "No players are available"
         case 1:
             playerCountLabel.text = "There is 1 player available"
-        case 1...:
+        case 2...:
             playerCountLabel.text = "There are \(playerCount) players here"
         default:
             playerCountLabel.text = "Can't fetch player count"
