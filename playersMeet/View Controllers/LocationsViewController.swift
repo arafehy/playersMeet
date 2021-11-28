@@ -96,8 +96,7 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate {
         let location = locations[indexPath.row]
         cell.locationLabel.text = location.name
         cell.locationImageView.af.setImage(withURL: location.imageUrl, cacheKey: location.id)
-        let dist = String(format: "%.3f", location.distance/1609.344)
-        cell.distanceLabel.text = "\(dist) mi"
+        cell.distanceLabel.text = Formatter.getReadableString(measurement: location.distance)
         cell.isHereIndicator.isHidden = location.id != CurrentSession.currentLocationID
         return cell
     }

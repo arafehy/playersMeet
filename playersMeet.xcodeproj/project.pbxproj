@@ -20,6 +20,7 @@
 		E01187A4274ECC9800D84768 /* UserLocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01187A3274ECC9800D84768 /* UserLocationProvider.swift */; };
 		E01187AA274EEEEB00D84768 /* UserLocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01187A9274EEEEB00D84768 /* UserLocationError.swift */; };
 		E01187AC274F876200D84768 /* LocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01187AB274F876200D84768 /* LocationProvider.swift */; };
+		E01D6EA22752E660007C2EF6 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01D6EA12752E660007C2EF6 /* Formatter.swift */; };
 		E04350BC2744BEDF000EF6D9 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04350BB2744BEDF000EF6D9 /* APIKeys.swift */; };
 		E0554F47274084A700B602C4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0554F46274084A700B602C4 /* UIColor+Extensions.swift */; };
 		E0554F492740851200B602C4 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0554F482740851200B602C4 /* CGFloat+Extensions.swift */; };
@@ -94,6 +95,7 @@
 		E01187A3274ECC9800D84768 /* UserLocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationProvider.swift; sourceTree = "<group>"; };
 		E01187A9274EEEEB00D84768 /* UserLocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationError.swift; sourceTree = "<group>"; };
 		E01187AB274F876200D84768 /* LocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationProvider.swift; sourceTree = "<group>"; };
+		E01D6EA12752E660007C2EF6 /* Formatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		E04350BB2744BEDF000EF6D9 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		E0554F46274084A700B602C4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		E0554F482740851200B602C4 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
@@ -192,6 +194,14 @@
 				E3605C37689D0432C6B68637 /* Pods_playersMeetTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E01D6EA02752E653007C2EF6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E01D6EA12752E660007C2EF6 /* Formatter.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		E04350C12744E1BD000EF6D9 /* Firebase */ = {
@@ -339,6 +349,7 @@
 		FA75F72D245445FC00E681F9 /* playersMeet */ = {
 			isa = PBXGroup;
 			children = (
+				E01D6EA02752E653007C2EF6 /* Helpers */,
 				E05F028F2730C80300DDBE33 /* Controllers */,
 				FA75F72E245445FD00E681F9 /* AppDelegate.swift */,
 				FA75F730245445FD00E681F9 /* SceneDelegate.swift */,
@@ -653,6 +664,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E01D6EA22752E660007C2EF6 /* Formatter.swift in Sources */,
 				E0C0254B245F8CC200950223 /* User.swift in Sources */,
 				E0554F47274084A700B602C4 /* UIColor+Extensions.swift in Sources */,
 				FA75F733245445FD00E681F9 /* ViewController.swift in Sources */,
