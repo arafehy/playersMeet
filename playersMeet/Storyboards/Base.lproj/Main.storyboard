@@ -454,7 +454,7 @@
                         <outlet property="googleMapView" destination="Q7x-5U-mmW" id="Qvo-ud-e3I"/>
                         <outlet property="joinTeamOutlet" destination="hLA-Lc-gZB" id="V7s-a7-B45"/>
                         <outlet property="leaveTeamOutlet" destination="Wpk-fF-fV3" id="III-tL-MNW"/>
-                        <outlet property="usersCounterLabel" destination="4at-gt-s2e" id="OQh-Jq-yqq"/>
+                        <outlet property="playerCountLabel" destination="4at-gt-s2e" id="OQh-Jq-yqq"/>
                         <outlet property="youInTeamLabel" destination="UAd-WV-Yxf" id="pwd-3g-rc3"/>
                     </connections>
                 </viewController>
