@@ -10,69 +10,53 @@ import UIKit
 import Firebase
 import GooglePlaces
 import GoogleMaps
+
 class DetailsViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var leaveTeamOutlet: UIButton!
     @IBOutlet weak var joinTeamOutlet: UIButton!
     @IBOutlet weak var youInTeamLabel: UILabel!
     @IBOutlet weak var googleMapView: GMSMapView!
     @IBOutlet weak var chatButton: UIButton!
-    var latSelected: String = ""
-    var longSelected: String = ""
     var location: Location!
+    var playerCount: Int = 0 {
+        didSet {
+            print("Set new player count from \(oldValue) to \(playerCount)")
+            setPlayerCountLabel()
+        }
+    }
     let user: User? = FirebaseAuthClient.getUser()
     @IBAction func leaveTeamAction(_ sender: Any) {
-        leaveTeamOutlet?.isEnabled = false
-        joinTeamOutlet?.isEnabled = true
+        leaveTeamOutlet.isEnabled = false
+        joinTeamOutlet.isEnabled = true
         self.chatButton.isEnabled = false //not in team
         
         let referenceTeamCount = FirebaseDBClient.businessesRef.child(location.id)
         FirebaseDBClient.businessesRef.child(location.id).observeSingleEvent(of: .value) { (snapshot) in
-            let countBeforeLeaving = snapshot.value
-            LocationsViewController.shared.count = countBeforeLeaving as! Int - 1
+            guard let playerCountBeforeLeaving = snapshot.value as? Int else { return }
+            LocationsViewController.shared.count = playerCountBeforeLeaving - 1
             
             print("leaving this id: \(self.location.id)")
             print("after leaving count is \(LocationsViewController.shared.count)")
-            //        LocationsViewController.shared.count = LocationsViewController.shared.count-1
             referenceTeamCount.setValue(LocationsViewController.shared.count)
-            if LocationsViewController.shared.count == 0 {
-                self.usersCounterLabel.text = "No players are available at the moment"
-            }
-            else if LocationsViewController.shared.count == 1 {
-                self.usersCounterLabel.text = "There is 1 player available"
-            }
-            else{
-                self.usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
-            }
-            
-            //        String(format: "%d",LocationsViewController.shared.count)
             
             let array: [String] = ["not joined","0"]
-            FirebaseDBClient.userInfoRef.child(self.user!.uid).setValue(array)
+            guard let userID = self.user?.uid else { return }
+            FirebaseDBClient.userInfoRef.child(userID).setValue(array)
             self.youInTeamLabel.text = ""
         }
-        
     }
-    @IBOutlet weak var usersCounterLabel: UILabel!
+    
+    @IBOutlet weak var playerCountLabel: UILabel!
     
     @IBAction func joinTeamAction(_ sender: Any) {
-        //        if ref.child( SignUpViewController.signUpController.userID) as! String == "not joined"
         FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
             print((snapshot.value as? [String])![0])
             if (snapshot.value as? [String])?[0] == "not joined"
             {
-                self.joinTeamOutlet?.isEnabled = false
-                self.leaveTeamOutlet?.isEnabled = true
-                LocationsViewController.shared.count = LocationsViewController.shared.count+1
-                //                    self.usersCounterLabel.text = String(format: "%d",LocationsViewController.shared.count )
-                if LocationsViewController.shared.count == 0 {
-                    self.usersCounterLabel.text = "No players are available at the moment"
-                }
-                else if LocationsViewController.shared.count == 1 {
-                    self.usersCounterLabel.text = "There is 1 player available"
-                }
-                else{
-                    self.usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
-                }
+                self.joinTeamOutlet.isEnabled = false
+                self.leaveTeamOutlet.isEnabled = true
+                self.playerCount += 1
+                LocationsViewController.shared.count += 1
                 //businesses count modification
                 let referenceTeamCount = FirebaseDBClient.businessesRef.child(self.location.id)
                 referenceTeamCount.setValue(LocationsViewController.shared.count)
@@ -82,30 +66,29 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                 self.youInTeamLabel.text = "You are in this team"
                 self.chatButton.isEnabled = true
             }
-            else{
-                
-                self.joinTeamOutlet?.isEnabled = true
-                self.leaveTeamOutlet?.isEnabled = false
+            else {
+                self.joinTeamOutlet.isEnabled = true
+                self.leaveTeamOutlet.isEnabled = false
                 self.chatButton.isEnabled = false //not in team
-                
                 self.showSwitchTeamAlert()
             }
         }
     }
-    func changeLocation(alert: UIAlertAction){
-        
+    func changeLocation(alert: UIAlertAction) {
         //get id of loctaion of the user now then find it in businesses and decrement count
         //ref here is for userInfo
-        self.youInTeamLabel.text = "You are now in this team"
-        self.chatButton.isEnabled = true
-        FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
+        youInTeamLabel.text = "You are now in this team"
+        chatButton.isEnabled = true
+        guard let userID = user?.uid else { return }
+        FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
             //get location id previously joined //getting this from user info
             let  locationAlreadyJoinedId = (snapshot.value as? [String])?[1]
             //            print("Location already joined \(locationAlreadyJoinedId)")
             self.executeLeavingTeam(locationAlreadyJoinedId: locationAlreadyJoinedId!)
         }
     }
-    func executeLeavingTeam(locationAlreadyJoinedId: String){
+    
+    func executeLeavingTeam(locationAlreadyJoinedId: String) {
         //set new count (remove from team) decrement
         
         print("id of location previous")
@@ -123,87 +106,66 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         //modifiying current team of user
         let arrJoined: [String] = ["joined", location.id]
         FirebaseDBClient.userInfoRef.child(user!.uid).setValue(arrJoined)
-        self.joinTeamOutlet?.isEnabled = false //cannot join since already joined
-        self.leaveTeamOutlet?.isEnabled = true
-        self.chatButton.isEnabled = true // in team
+        joinTeamOutlet.isEnabled = false //cannot join since already joined
+        leaveTeamOutlet.isEnabled = true
+        chatButton.isEnabled = true // in team
         let referenceTeamCount = FirebaseDBClient.businessesRef.child(location.id)
-        LocationsViewController.shared.count = LocationsViewController.shared.count+1
+        LocationsViewController.shared.count += 1
         referenceTeamCount.setValue(LocationsViewController.shared.count)
     }
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        print("!map tapped!")
-        if let UrlNavigation = URL.init(string: "comgooglemaps://") {
-            if UIApplication.shared.canOpenURL(UrlNavigation){
-                if !longSelected.isEmpty && !latSelected.isEmpty {
-                    let lat = latSelected
-                    let longi = longSelected
-                    if let urlDestination = URL.init(string: "comgooglemaps://?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
-                        UIApplication.shared.open(urlDestination, options: [:], completionHandler: nil)
-                    }
-                }
-            }
-            else {
-                NSLog("Can't use comgooglemaps://");
-                self.openTrackerInBrowser()
-                
-            }
-        }
-        else
-        {
-            NSLog("Can't use comgooglemaps://");
+        guard let URLNavigation = URL(string: "comgooglemaps://"),
+        UIApplication.shared.canOpenURL(URLNavigation),
+        let URLDestination = URL(string: "comgooglemaps://?saddr=&daddr=\(location.coordinates.latitude),\(location.coordinates.longitude)&directionsmode=driving") else {
+            NSLog("Can't use comgooglemaps://")
             self.openTrackerInBrowser()
+            return
+        }
+        UIApplication.shared.open(URLDestination)
+    }
+    
+    func openTrackerInBrowser() {
+        if let URLDestination = URL(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(location.coordinates.latitude),\(location.coordinates.longitude)&directionsmode=driving") {
+            UIApplication.shared.open(URLDestination)
         }
     }
-    func openTrackerInBrowser(){
-        if !longSelected.isEmpty && !latSelected.isEmpty {
-            let lat = latSelected
-            let longi = longSelected
-            if let urlDestination = URL.init(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(lat),\(longi)&directionsmode=driving") {
-                UIApplication.shared.open(urlDestination, options: [:], completionHandler: nil)
-            }
+    
+    func setPlayerCountLabel() {
+        switch playerCount {
+        case 0:
+            playerCountLabel.text = "No players are available"
+        case 1:
+            playerCountLabel.text = "There is 1 player available"
+        case 1...:
+            playerCountLabel.text = "There are \(playerCount) players here"
+        default:
+            playerCountLabel.text = "Can't fetch player count"
         }
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         joinTeamOutlet.rounded()
         leaveTeamOutlet.rounded()
         chatButton.rounded()
         
+        navigationItem.title = location.name
         
-        self.navigationItem.title = location.name
-        
-        
-        
-        
-        //        getDirectionsButton.layer.zPosition = -1
-        //        overrideUserInterfaceStyle = .light
         leaveTeamOutlet.isEnabled = false
-        self.chatButton.isEnabled = false
+        chatButton.isEnabled = false
         
+        // Synchronizing datatase count with label text from the location selected
         let reference = FirebaseDBClient.businessesRef.child(location.id)
-        //synchronizing datatase count with label text from the location selected
         reference.observe(.value, with: { (snapshot) in
-            // listen in realtime to whenever it updates
-            guard let value = snapshot.value as? Int else {
+            // Listen in realtime to whenever it updates
+            guard let playerCount = snapshot.value as? Int else {
                 print("Player count for location with ID \(self.location.id) unavailable")
                 return
             }
-            LocationsViewController.shared.count = value
-            if LocationsViewController.shared.count == 0 {
-                self.usersCounterLabel.text = "No players are available"
-            }
-            else if LocationsViewController.shared.count == 1 {
-                self.usersCounterLabel.text = "There is 1 player available"
-            }
-            else{
-                self.usersCounterLabel.text = "There are \(LocationsViewController.shared.count) players here"
-            }
-            
-            
+            self.playerCount = playerCount
+            LocationsViewController.shared.count = playerCount
         })
         
         //check if user is already in team selected
@@ -211,14 +173,12 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
             if (snapshot.value as? [String])?[0] == "joined" && self.location.id == (snapshot.value as? [String])?[1] {
                 print("Already in that team")
                 //dont allow to join
-                self.joinTeamOutlet?.isEnabled = false
-                self.leaveTeamOutlet?.isEnabled = true
+                self.joinTeamOutlet.isEnabled = false
+                self.leaveTeamOutlet.isEnabled = true
                 self.youInTeamLabel.text = "You are in this team"
                 self.chatButton.isEnabled = true
-            }
-            else{
+            } else {
                 self.youInTeamLabel.text = ""
-                
             }
         }
         /// increment value in database
