@@ -16,27 +16,45 @@ struct Location: Codable {
     let id: String
     let name: String
     let imageUrl: URL
-    let distance: Double
+    var distance: Measurement<UnitLength>
     let coordinates: Coordinate
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, imageUrl, distance, coordinates
+    }
+    
+    enum CoordinateCodingKeys: String, CodingKey {
+        case latitude, longitude
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(String.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        imageUrl = try container.decode(URL.self, forKey: .imageUrl)
+        coordinates = try container.decode(Coordinate.self, forKey: .coordinates)
+        
+        let distanceAsDouble = try container.decode(Double.self, forKey: .distance)
+        distance = Measurement(value: distanceAsDouble, unit: UnitLength.meters)
+    }
 }
 
 struct Coordinate: Codable {
     let latitude, longitude: Double
 }
 
-// view model for the list of courts
-struct CourtListViewModel {
+struct LocationViewModel {
     let name: String
     let imageUrl: URL
-    let distance: Double
+    let distance: String
     let id: String
 }
 
-extension CourtListViewModel {
-    init(business: Location) {
-        self.name = business.name
-        self.id = business.id
-        self.imageUrl = business.imageUrl
-        self.distance = business.distance
+extension LocationViewModel {
+    init(location: Location) {
+        self.name = location.name
+        self.id = location.id
+        self.imageUrl = location.imageUrl
+        self.distance = Formatter.getReadableString(measurement: location.distance)
     }
 }

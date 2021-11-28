@@ -90,7 +90,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         switch result {
         case .success(let response):
             let root = try? self.jsonDecoder.decode(BusinessesResponse.self, from: response.data)
-            let viewModels = root?.businesses.compactMap(CourtListViewModel.init)
+            let viewModels = root?.businesses.compactMap(LocationViewModel.init)
 ///            print(try? JSONSerialization.jsonObject(with: response.data, options: []))
             print(root)
         case .failure(let error):
