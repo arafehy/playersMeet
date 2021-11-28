@@ -49,8 +49,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
     @IBOutlet weak var playerCountLabel: UILabel!
     
     @IBAction func joinTeamAction(_ sender: Any) {
-        FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
-            print((snapshot.value as? [String])![0])
+        guard let userID = user?.uid else { return }
+        FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
             if (snapshot.value as? [String])?[0] == "not joined"
             {
                 self.joinTeamOutlet.isEnabled = false
@@ -62,7 +62,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
                 referenceTeamCount.setValue(LocationsViewController.shared.count)
                 //userInfo modification
                 let array: [String] = ["joined", self.location.id]
-                FirebaseDBClient.userInfoRef.child(self.user!.uid).setValue(array)
+                FirebaseDBClient.userInfoRef.child(userID).setValue(array)
                 self.youInTeamLabel.text = "You are in this team"
                 self.chatButton.isEnabled = true
             }
@@ -75,16 +75,15 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         }
     }
     func changeLocation(alert: UIAlertAction) {
-        //get id of loctaion of the user now then find it in businesses and decrement count
-        //ref here is for userInfo
+        // get id of loctaion of the user now then find it in businesses and decrement count
+        // ref here is for userInfo
         youInTeamLabel.text = "You are now in this team"
         chatButton.isEnabled = true
         guard let userID = user?.uid else { return }
         FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
-            //get location id previously joined //getting this from user info
-            let  locationAlreadyJoinedId = (snapshot.value as? [String])?[1]
-            //            print("Location already joined \(locationAlreadyJoinedId)")
-            self.executeLeavingTeam(locationAlreadyJoinedId: locationAlreadyJoinedId!)
+            // get location id previously joined // getting this from user info
+            guard let locationAlreadyJoinedId = (snapshot.value as? [String])?[1] else { return }
+            self.executeLeavingTeam(locationAlreadyJoinedId: locationAlreadyJoinedId)
         }
     }
     
@@ -95,7 +94,7 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         print(locationAlreadyJoinedId)
         
         FirebaseDBClient.businessesRef.child(locationAlreadyJoinedId).observeSingleEvent(of: .value) { (snapshot) in
-            var currentCount = snapshot.value as! Int
+            guard var currentCount = snapshot.value as? Int else { return }
             
             //joining team
             print("count of prev location is  \(currentCount)")
@@ -105,7 +104,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         }
         //modifiying current team of user
         let arrJoined: [String] = ["joined", location.id]
-        FirebaseDBClient.userInfoRef.child(user!.uid).setValue(arrJoined)
+        guard let userID = user?.uid else { return }
+        FirebaseDBClient.userInfoRef.child(userID).setValue(arrJoined)
         joinTeamOutlet.isEnabled = false //cannot join since already joined
         leaveTeamOutlet.isEnabled = true
         chatButton.isEnabled = true // in team
@@ -169,7 +169,8 @@ class DetailsViewController: UIViewController, GMSMapViewDelegate {
         })
         
         //check if user is already in team selected
-        FirebaseDBClient.userInfoRef.child(user!.uid).observeSingleEvent(of: .value) { (snapshot) in
+        guard let userID = user?.uid else { return }
+        FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
             if (snapshot.value as? [String])?[0] == "joined" && self.location.id == (snapshot.value as? [String])?[1] {
                 print("Already in that team")
                 //dont allow to join
