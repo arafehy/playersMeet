@@ -39,6 +39,7 @@ class DetailsViewController: UIViewController {
         chatButton.rounded()
         
         navigationItem.title = location.name
+        setButtonsAndLabels()
         
         updateCurrentLocationStatus()
         startPlayerCountObserver()
@@ -117,6 +118,7 @@ class DetailsViewController: UIViewController {
         FirebaseManager.dbClient.leaveLocationWith(ID: location.id, for: userID) { hasLeft in
             guard hasLeft else { return }
             CurrentSession.currentLocationID = nil
+            self.setButtonsAndLabels()
         }
     }
     
