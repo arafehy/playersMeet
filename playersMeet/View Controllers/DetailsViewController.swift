@@ -206,11 +206,11 @@ class DetailsViewController: UIViewController {
     func setPlayerCountLabel() {
         switch playerCount {
         case 0:
-            playerCountLabel.text = "No players are available"
+            playerCountLabel.text = "No players are here."
         case 1:
-            playerCountLabel.text = "There is 1 player available"
+            playerCountLabel.text = "1 player is here."
         case 2...:
-            playerCountLabel.text = "There are \(playerCount) players here"
+            playerCountLabel.text = "\(playerCount) players are here."
         default:
             playerCountLabel.text = "Can't fetch player count"
         }
