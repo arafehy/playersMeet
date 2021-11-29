@@ -35,7 +35,7 @@ extension EditProfileViewController {
 extension DetailsViewController {
     func showSwitchTeamAlert() {
         let alert = UIAlertController(title: "Are you sure you want to join?", message: "You can only join one team at a time. This will remove you from another team.", preferredStyle: .alert) // show what other team - later
-        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: self.changeLocation))
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: self.switchLocation))
         alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
         DispatchQueue.main.async {
             self.present(alert, animated: true)
