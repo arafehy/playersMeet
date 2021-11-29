@@ -41,23 +41,7 @@ class DetailsViewController: UIViewController {
         navigationItem.title = location.name
         setButtonsAndLabels()
         
-        updateCurrentLocationStatus()
         startPlayerCountObserver()
-        
-        //check if user is already in team selected
-        guard let userID = user?.uid else { return }
-        FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
-            if (snapshot.value as? [String])?[0] == "joined" && self.location.id == (snapshot.value as? [String])?[1] {
-                print("Already in that team")
-                //dont allow to join
-                self.joinTeamButton.isEnabled = false
-                self.leaveTeamButton.isEnabled = true
-                self.youInTeamLabel.text = "You are in this team"
-                self.chatButton.isEnabled = true
-            } else {
-                self.youInTeamLabel.text = ""
-            }
-        }
         /// increment value in database
         
         ///make first value stay the same until end game
@@ -100,16 +84,6 @@ class DetailsViewController: UIViewController {
             }
             self.playerCount = playerCount
             LocationsViewController.shared.count = playerCount
-        }
-    }
-    
-    func updateCurrentLocationStatus() {
-        guard let userID = user?.uid else { return }
-        FirebaseManager.dbClient.getCurrentLocationID(userID: userID) { [weak self] (locationID) in
-            guard let locationID = locationID, locationID == CurrentSession.currentLocationID else {
-                return
-            }
-            self?.setButtonsAndLabels()
         }
     }
     
