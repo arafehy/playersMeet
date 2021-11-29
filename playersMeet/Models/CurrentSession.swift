@@ -9,5 +9,5 @@
 import Foundation
 
 struct CurrentSession {
-    static var currentLocationID: String?
+    static var locationID: String?
 }

@@ -31,7 +31,7 @@ class DetailsViewController: UIViewController {
     }
     let user: User? = FirebaseAuthClient.getUser()
     var isAtLocation: Bool {
-        location.id == CurrentSession.currentLocationID
+        location.id == CurrentSession.locationID
     }
     
     // MARK: - VC Life Cycle
@@ -71,7 +71,7 @@ class DetailsViewController: UIViewController {
         guard let userID = user?.uid else { return }
         FirebaseManager.dbClient.leaveLocationWith(ID: location.id, for: userID) { hasLeft in
             guard hasLeft else { return }
-            CurrentSession.currentLocationID = nil
+            CurrentSession.locationID = nil
             self.setButtonsAndLabels()
         }
     }
@@ -79,23 +79,23 @@ class DetailsViewController: UIViewController {
     @IBAction func joinTeamAction(_ sender: Any) {
         guard let userID = user?.uid else { return }
         
-        guard CurrentSession.currentLocationID == nil else {
+        guard CurrentSession.locationID == nil else {
             showSwitchTeamAlert()
             return
         }
         
         FirebaseManager.dbClient.joinLocationWith(ID: location.id, for: userID) { hasJoined in
             guard hasJoined else { return }
-            CurrentSession.currentLocationID = self.location.id
+            CurrentSession.locationID = self.location.id
             self.setButtonsAndLabels()
         }
     }
     
     func switchLocation(alert: UIAlertAction) {
-        guard let userID = user?.uid, let currentLocationID = CurrentSession.currentLocationID else { return }
+        guard let userID = user?.uid, let currentLocationID = CurrentSession.locationID else { return }
         FirebaseManager.dbClient.switchLocation(for: userID, from: currentLocationID, to: location.id) { hasSwitched in
             guard hasSwitched else { return }
-            CurrentSession.currentLocationID = self.location.id
+            CurrentSession.locationID = self.location.id
             self.setButtonsAndLabels()
         }
     }
