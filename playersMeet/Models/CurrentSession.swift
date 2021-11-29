@@ -10,5 +10,4 @@ import Foundation
 
 struct CurrentSession {
     static var currentLocationID: String?
-    static var playerCountAtLocation: Int?
 }
