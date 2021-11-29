@@ -223,7 +223,10 @@ class DetailsViewController: UIViewController {
             chatButton.isEnabled = true
             youInTeamLabel.text = "You are in this team"
         } else {
-            self.youInTeamLabel.text = ""
+            joinTeamButton.isEnabled = true
+            leaveTeamButton.isEnabled = false
+            chatButton.isEnabled = false
+            youInTeamLabel.text = ""
         }
     }
     
