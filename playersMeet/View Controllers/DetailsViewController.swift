@@ -42,37 +42,8 @@ class DetailsViewController: UIViewController {
         setButtonsAndLabels()
         
         startPlayerCountObserver()
-        /// increment value in database
         
-        ///make first value stay the same until end game
-        
-        
-        
-        for loc in locations{
-            if loc["id"] as! String == LocationsViewController.selectedId{
-                let coord = loc["coordinates"] as! NSDictionary
-                print(coord)
-                let lat = coord.value(forKey: "latitude")!
-                let long = coord.value(forKey: "longitude")!
-                latSelected = "\(lat)"
-                longSelected = "\(long)"
-
-
-            }
-        }
-        let latDouble: Double = (latSelected as NSString).doubleValue
-        let longDouble: Double = (longSelected as NSString).doubleValue
-        let camera = GMSCameraPosition.camera(withLatitude: latDouble, longitude: longDouble, zoom: 14)
-        googleMapView.camera = camera
-        googleMapView.animate(to: camera)
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: latDouble, longitude: longDouble)
-        marker.map = googleMapView
-        //        let gesture = UITapGestureRecognizer(target: self, action: Selector(("MapsPressed")))
-        //        googleMapView.addGestureRecognizer(gesture)
-
-        googleMapView.delegate = self
-        
+        initializeMap()
     }
     
     func startPlayerCountObserver() {
@@ -162,6 +133,16 @@ class DetailsViewController: UIViewController {
 // MARK: - Map
 
 extension DetailsViewController: GMSMapViewDelegate {
+    func initializeMap() {
+        googleMapView.delegate = self
+        let coordinates = CLLocationCoordinate2D(latitude: location.coordinates.latitude, longitude: location.coordinates.longitude)
+        let camera = GMSCameraPosition.camera(withTarget: coordinates, zoom: 14)
+        googleMapView.camera = camera
+        googleMapView.animate(to: camera)
+        let marker = GMSMarker(position: coordinates)
+        marker.map = googleMapView
+    }
+    
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         guard let URLNavigation = URL(string: "comgooglemaps://"),
               UIApplication.shared.canOpenURL(URLNavigation),
