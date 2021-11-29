@@ -12,6 +12,9 @@ import GooglePlaces
 import GoogleMaps
 
 class DetailsViewController: UIViewController {
+    
+    // MARK: - Properties
+    
     @IBOutlet weak var leaveTeamButton: UIButton!
     @IBOutlet weak var joinTeamButton: UIButton!
     @IBOutlet weak var youInTeamLabel: UILabel!
@@ -31,6 +34,8 @@ class DetailsViewController: UIViewController {
         location.id == CurrentSession.currentLocationID
     }
     
+    // MARK: - VC Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,6 +51,8 @@ class DetailsViewController: UIViewController {
         initializeMap()
     }
     
+    // MARK: - Initialization
+    
     func startPlayerCountObserver() {
         FirebaseManager.dbClient.observePlayerCount(at: location.id) { playerCount in
             // Listen in realtime to whenever it updates
@@ -57,6 +64,8 @@ class DetailsViewController: UIViewController {
             LocationsViewController.shared.count = playerCount
         }
     }
+    
+    // MARK: - User Actions
     
     @IBAction func leaveTeamAction(_ sender: Any) {
         guard let userID = user?.uid else { return }
