@@ -55,12 +55,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         FirebaseAuthClient.createUser(email: emailField.text!, password: passwordField.text!) { result in
             switch result {
             case .success(let user):
-                guard let user = user else {
-                    print("User does not exist")
-                    return
-                }
+                guard user != nil else { return }
                 self.performSegue(withIdentifier: "toCreateProfile", sender: self)
-                self.addUserToDBAsNotJoined(userID: user.uid)
             case .failure(let error):
                 self.showErrorAlert(with: error)
             }
@@ -71,11 +67,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         FirebaseAuthClient.signIn(email: emailField.text!, password: passwordField.text!) { result in
             switch result {
             case .success(let user):
-                guard let user = user else {
-                    print("User does not exist")
-                    return
-                }
-                self.addUserToDBAsNotJoined(userID: user.uid)
+                guard user != nil else { return }
                 Navigation.goToHome(window: self.view.window)
             case .failure(let error):
                 self.showErrorAlert(with: error)
@@ -83,25 +75,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    // MARK: Helpers
-    
-    func addUserToDBAsNotJoined(userID: String) {
-        // add current user to dictionary as not joined
-        let userInfo: [String: [String]] = [userID: ["not joined", "team location"]]
-        FirebaseManager.dbClient.addUser(user: userInfo) { result in
-            switch result {
-            case .success(let uid):
-                print("Added user with uid \(uid) to database")
-            case .failure(let error):
-                switch error {
-                case DatabaseError.invalidInput:
-                    self.showErrorAlert(with: error)
-                default:
-                    print("Error adding to database: \(error)")
-                }
-            }
-        }
-    }
+    // MARK: Text Fields
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
