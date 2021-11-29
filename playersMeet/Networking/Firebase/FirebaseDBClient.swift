@@ -44,27 +44,6 @@ struct FirebaseDBClient {
     
     // MARK: - User
     
-    /// Adds the user to the list of players
-    /// - Parameter user: dictionary of user ID to array of join status and location
-    func addUser(user: [String: [String]], completion: @escaping (Result<String, Error>) -> Void) {
-        guard let (uid, hasJoined) = user.first else {
-            completion(.failure(DatabaseError.invalidInput))
-            return
-        }
-        let userInfoRef = getDBReference(pathName: .userInfo)
-        userInfoRef.observeSingleEvent(of: .value) { snapshot in
-            if snapshot.hasChild(uid) {
-                print("User is in database")
-            }
-            else {
-                print("Adding user to database")
-                let newUser = userInfoRef.child(uid)
-                newUser.setValue(hasJoined)
-            }
-            completion(.success(uid))
-        }
-    }
-    
     func retrieveUserProfile(userID: String, completion: @escaping (Result<UserInfo, Error>) -> Void) {
         getDBReference(pathName: .profileInfo).child(userID).observeSingleEvent(of: .value) { snapshot in
             guard let value = snapshot.value else { return }
