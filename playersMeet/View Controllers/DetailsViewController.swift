@@ -113,92 +113,35 @@ class DetailsViewController: UIViewController {
     }
     
     @IBAction func leaveTeamAction(_ sender: Any) {
-        leaveTeamButton.isEnabled = false
-        joinTeamButton.isEnabled = true
-        self.chatButton.isEnabled = false //not in team
-        
-        let referenceTeamCount = FirebaseDBClient.businessesRef.child(location.id)
-        FirebaseDBClient.businessesRef.child(location.id).observeSingleEvent(of: .value) { (snapshot) in
-            guard let playerCountBeforeLeaving = snapshot.value as? Int else { return }
-            LocationsViewController.shared.count = playerCountBeforeLeaving - 1
-            
-            print("leaving this id: \(self.location.id)")
-            print("after leaving count is \(LocationsViewController.shared.count)")
-            referenceTeamCount.setValue(LocationsViewController.shared.count)
-            
-            let array: [String] = ["not joined","0"]
-            guard let userID = self.user?.uid else { return }
-            FirebaseDBClient.userInfoRef.child(userID).setValue(array)
-            self.youInTeamLabel.text = ""
-            
+        guard let userID = user?.uid else { return }
+        FirebaseManager.dbClient.leaveLocationWith(ID: location.id, for: userID) { hasLeft in
+            guard hasLeft else { return }
             CurrentSession.currentLocationID = nil
         }
     }
     
     @IBAction func joinTeamAction(_ sender: Any) {
         guard let userID = user?.uid else { return }
-        FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
-            if (snapshot.value as? [String])?[0] == "not joined"
-            {
-                self.joinTeamButton.isEnabled = false
-                self.leaveTeamButton.isEnabled = true
-                self.playerCount += 1
-                LocationsViewController.shared.count += 1
-                //businesses count modification
-                let referenceTeamCount = FirebaseDBClient.businessesRef.child(self.location.id)
-                referenceTeamCount.setValue(LocationsViewController.shared.count)
-                //userInfo modification
-                let array: [String] = ["joined", self.location.id]
-                FirebaseDBClient.userInfoRef.child(userID).setValue(array)
-                self.youInTeamLabel.text = "You are in this team"
-                self.chatButton.isEnabled = true
-            }
-            else {
-                self.joinTeamButton.isEnabled = true
-                self.leaveTeamButton.isEnabled = false
-                self.chatButton.isEnabled = false //not in team
-                self.showSwitchTeamAlert()
-            }
+        
+        guard CurrentSession.currentLocationID == nil else {
+            showSwitchTeamAlert()
+            return
+        }
+        
+        FirebaseManager.dbClient.joinLocationWith(ID: location.id, for: userID) { hasJoined in
+            guard hasJoined else { return }
+            CurrentSession.currentLocationID = self.location.id
+            self.setButtonsAndLabels()
         }
     }
     
-    func changeLocation(alert: UIAlertAction) {
-        // get id of loctaion of the user now then find it in businesses and decrement count
-        // ref here is for userInfo
-        youInTeamLabel.text = "You are now in this team"
-        chatButton.isEnabled = true
-        guard let userID = user?.uid else { return }
-        FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
-            // get location id previously joined // getting this from user info
-            guard let locationAlreadyJoinedId = (snapshot.value as? [String])?[1] else { return }
-            self.executeLeavingTeam(locationAlreadyJoinedId: locationAlreadyJoinedId)
+    func switchLocation(alert: UIAlertAction) {
+        guard let userID = user?.uid, let currentLocationID = CurrentSession.currentLocationID else { return }
+        FirebaseManager.dbClient.switchLocation(for: userID, from: currentLocationID, to: location.id) { hasSwitched in
+            guard hasSwitched else { return }
+            CurrentSession.currentLocationID = self.location.id
+            self.setButtonsAndLabels()
         }
-    }
-    
-    func executeLeavingTeam(locationAlreadyJoinedId: String) {
-        //set new count (remove from team) decrement
-        
-        print("ID of previous location: \(locationAlreadyJoinedId)")
-        
-        FirebaseDBClient.businessesRef.child(locationAlreadyJoinedId).observeSingleEvent(of: .value) { (snapshot) in
-            guard var currentCount = snapshot.value as? Int else { return }
-            
-            //joining team
-            print("count of prev location is  \(currentCount)")
-            currentCount -= 1
-            //leaving previous team -1 count in businesses
-            FirebaseDBClient.businessesRef.child(locationAlreadyJoinedId).setValue(currentCount)
-        }
-        //modifiying current team of user
-        let arrJoined: [String] = ["joined", location.id]
-        guard let userID = user?.uid else { return }
-        FirebaseDBClient.userInfoRef.child(userID).setValue(arrJoined)
-        joinTeamButton.isEnabled = false //cannot join since already joined
-        leaveTeamButton.isEnabled = true
-        chatButton.isEnabled = true // in team
-        let referenceTeamCount = FirebaseDBClient.businessesRef.child(location.id)
-        LocationsViewController.shared.count += 1
-        referenceTeamCount.setValue(LocationsViewController.shared.count)
     }
     
     // MARK: - Views
