@@ -46,7 +46,7 @@ class LocationsViewController: UIViewController {
     func setCurrentLocationID() {
         guard let userID = user?.uid else { return }
         FirebaseManager.dbClient.getCurrentLocationID(userID: userID) { (locationID) in
-            CurrentSession.currentLocationID = locationID
+            CurrentSession.locationID = locationID
         }
     }
     
@@ -97,7 +97,7 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate {
         cell.locationLabel.text = location.name
         cell.locationImageView.af.setImage(withURL: location.imageUrl, cacheKey: location.id)
         cell.distanceLabel.text = Formatter.getReadableString(measurement: location.distance)
-        cell.isHereIndicator.isHidden = location.id != CurrentSession.currentLocationID
+        cell.isHereIndicator.isHidden = location.id != CurrentSession.locationID
         return cell
     }
     
