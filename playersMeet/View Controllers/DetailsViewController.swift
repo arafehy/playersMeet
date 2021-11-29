@@ -27,6 +27,9 @@ class DetailsViewController: UIViewController {
         }
     }
     let user: User? = FirebaseAuthClient.getUser()
+    var isAtLocation: Bool {
+        location.id == CurrentSession.currentLocationID
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +40,7 @@ class DetailsViewController: UIViewController {
         
         navigationItem.title = location.name
         
-        leaveTeamButton.isEnabled = false
-        chatButton.isEnabled = false
-        
+        updateCurrentLocationStatus()
         startPlayerCountObserver()
         
         //check if user is already in team selected
@@ -101,6 +102,16 @@ class DetailsViewController: UIViewController {
         }
     }
     
+    func updateCurrentLocationStatus() {
+        guard let userID = user?.uid else { return }
+        FirebaseManager.dbClient.getCurrentLocationID(userID: userID) { [weak self] (locationID) in
+            guard let locationID = locationID, locationID == CurrentSession.currentLocationID else {
+                return
+            }
+            self?.setButtonsAndLabels()
+        }
+    }
+    
     @IBAction func leaveTeamAction(_ sender: Any) {
         leaveTeamButton.isEnabled = false
         joinTeamButton.isEnabled = true
@@ -119,6 +130,8 @@ class DetailsViewController: UIViewController {
             guard let userID = self.user?.uid else { return }
             FirebaseDBClient.userInfoRef.child(userID).setValue(array)
             self.youInTeamLabel.text = ""
+            
+            CurrentSession.currentLocationID = nil
         }
     }
     
@@ -200,6 +213,17 @@ class DetailsViewController: UIViewController {
             playerCountLabel.text = "There are \(playerCount) players here"
         default:
             playerCountLabel.text = "Can't fetch player count"
+        }
+    }
+    
+    func setButtonsAndLabels() {
+        if isAtLocation {
+            self.joinTeamButton.isEnabled = false
+            self.leaveTeamButton.isEnabled = true
+            self.youInTeamLabel.text = "You are in this team"
+            self.chatButton.isEnabled = true
+        } else {
+            self.youInTeamLabel.text = ""
         }
     }
     
