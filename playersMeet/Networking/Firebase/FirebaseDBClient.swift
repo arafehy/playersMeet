@@ -69,13 +69,67 @@ struct FirebaseDBClient {
     
     func getCurrentLocationID(userID: String, completion: @escaping (String?) -> Void) {
         FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
-            guard let value = snapshot.value as? [String] else {
-                completion(nil)
+            let locationID = snapshot.value as? String
+            completion(locationID)
+        }
+    }
+    
+    func joinLocationWith(ID locationID: String, for userID: String, completion: @escaping (Bool) -> Void) {
+        getCurrentLocationID(userID: userID) { currentLocationID in
+            guard currentLocationID != locationID else {
+                // User is already at this location
+                completion(true)
                 return
             }
-            let joinStatus = value[0], locationID = value[1]
-            if joinStatus == "joined" {
-                completion(locationID)
+            let childUpdates: [String: Any] = [
+                "\(DBPathNames.userInfo.rawValue)/\(userID)": locationID,
+                "\(DBPathNames.businesses.rawValue)/\(locationID)": ServerValue.increment(1)
+            ]
+            dbObject.reference().root.updateChildValues(childUpdates) { error, reference in
+                if let error = error {
+                    print("Data could not be saved: \(error)")
+                    completion(false)
+                } else {
+                    completion(true)
+                }
+            }
+        }
+    }
+    
+    func leaveLocationWith(ID locationID: String, for userID: String, completion: @escaping (Bool) -> Void) {
+        getCurrentLocationID(userID: userID) { currentLocationID in
+            guard currentLocationID == locationID else {
+                // User is not at this location
+                completion(true)
+                return
+            }
+            let childUpdates: [String: Any?] = [
+                "\(DBPathNames.userInfo.rawValue)/\(userID)": nil,
+                "\(DBPathNames.businesses.rawValue)/\(locationID)": ServerValue.increment(-1)
+            ]
+            dbObject.reference().root.updateChildValues(childUpdates as [AnyHashable : Any]) { error, reference in
+                if let error = error {
+                    print("Data could not be saved: \(error)")
+                    completion(false)
+                } else {
+                    completion(true)
+                }
+            }
+        }
+    }
+    
+    func switchLocation(for userID: String, from oldLocationID: String, to newLocationID: String, completion: @escaping (Bool) -> Void) {
+        let childUpdates: [String: Any] = [
+            "userInfo/\(userID)": newLocationID,
+            "businesses/\(oldLocationID)": ServerValue.increment(-1),
+            "businesses/\(newLocationID)": ServerValue.increment(1)
+        ]
+        dbObject.reference().root.updateChildValues(childUpdates) { error, reference in
+            if let error = error {
+                print("Data could not be saved: \(error)")
+                completion(false)
+            } else {
+                completion(true)
             }
         }
     }
