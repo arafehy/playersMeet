@@ -218,10 +218,10 @@ class DetailsViewController: UIViewController {
     
     func setButtonsAndLabels() {
         if isAtLocation {
-            self.joinTeamButton.isEnabled = false
-            self.leaveTeamButton.isEnabled = true
-            self.youInTeamLabel.text = "You are in this team"
-            self.chatButton.isEnabled = true
+            joinTeamButton.isEnabled = false
+            leaveTeamButton.isEnabled = true
+            chatButton.isEnabled = true
+            youInTeamLabel.text = "You are in this team"
         } else {
             self.youInTeamLabel.text = ""
         }
