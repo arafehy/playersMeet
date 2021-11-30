@@ -73,10 +73,8 @@ class DetailsViewController: UIViewController {
     
     @IBAction func leaveTeamAction(_ sender: Any) {
         guard let userID = user?.uid else { return }
-        FirebaseManager.dbClient.leaveLocationWith(ID: location.id, for: userID) { hasLeft in
-            guard hasLeft else { return }
-            CurrentSession.locationID = nil
-            self.setButtonsAndLabels()
+        FirebaseManager.dbClient.leaveLocationWith(ID: location.id, for: userID) { [weak self] (result) in
+            self?.handleLocationChange(result: result)
         }
     }
     
@@ -88,19 +86,25 @@ class DetailsViewController: UIViewController {
             return
         }
         
-        FirebaseManager.dbClient.joinLocationWith(ID: location.id, for: userID) { hasJoined in
-            guard hasJoined else { return }
-            CurrentSession.locationID = self.location.id
-            self.setButtonsAndLabels()
+        FirebaseManager.dbClient.joinLocationWith(ID: location.id, for: userID) { [weak self] (result) in
+            self?.handleLocationChange(result: result)
         }
     }
     
     func switchLocation(alert: UIAlertAction) {
         guard let userID = user?.uid, let currentLocationID = CurrentSession.locationID else { return }
-        FirebaseManager.dbClient.switchLocation(for: userID, from: currentLocationID, to: location.id) { hasSwitched in
-            guard hasSwitched else { return }
-            CurrentSession.locationID = self.location.id
+        FirebaseManager.dbClient.switchLocation(for: userID, from: currentLocationID, to: location.id) { [weak self] (result) in
+            self?.handleLocationChange(result: result)
+        }
+    }
+    
+    func handleLocationChange(result: Result<String?, Error>) {
+        switch result {
+        case .success(let locationID):
+            CurrentSession.locationID = locationID
             self.setButtonsAndLabels()
+        case .failure(let error):
+            self.showErrorAlert(with: error)
         }
     }
     
