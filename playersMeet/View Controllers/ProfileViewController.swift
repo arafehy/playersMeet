@@ -51,11 +51,8 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        FirebaseAuthClient.addLoginStateListener(currentUser: self.user) { [unowned self] isSignedIn in
-            if !isSignedIn {
-                Navigation.goToSignUp(window: self.view.window)
-                return
-            }
+        FirebaseAuthClient.addLoginStateListener(currentUser: self.user) { [weak self] isSignedIn in
+            if !isSignedIn { Navigation.goToSignUp(window: self?.view.window) }
         }
     }
     
@@ -77,7 +74,8 @@ class ProfileViewController: UIViewController {
     // MARK: - Profile Loading
     
     func loadUserProfile(userID: String) {
-        FirebaseManager.dbClient.retrieveUserProfile(userID: userID) { [unowned self] (result) in
+        FirebaseManager.dbClient.retrieveUserProfile(userID: userID) { [weak self] (result) in
+            guard let self = self else { return }
             switch result {
             case .success(let userInfo):
                 self.userInfo = userInfo
@@ -90,13 +88,15 @@ class ProfileViewController: UIViewController {
                 }
                 self.setLabelTexts()
             case .failure(let error):
+                self.showErrorAlert(with: error)
                 print("Could not load profile: \(error)")
             }
         }
     }
     
     func loadProfilePicture(userID: String) {
-        FirebaseManager.dbClient.retrieveProfilePicture(userID: userID) { [unowned self] result in
+        FirebaseManager.dbClient.retrieveProfilePicture(userID: userID) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success(let image):
                 self.profilePicture.image = image
