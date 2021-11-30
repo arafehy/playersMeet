@@ -15,12 +15,19 @@ class FirebaseDBClient {
     
     // MARK: - Properties
     
-    private let dbObject: Database = Database.database()
     private let storageObject: Storage = Storage.storage()
     
     private var playerCountHandles: [String: UInt] = [:]
     
     // MARK: - Enums
+    
+    enum DBPaths {
+        static let root = Database.database().reference().root
+        static let userInfo = root.child(DBPathNames.userInfo.rawValue)
+        static let profileInfo = root.child(DBPathNames.profileInfo.rawValue)
+        static let teamChat = root.child(DBPathNames.teamChat.rawValue)
+        static let businesses = root.child(DBPathNames.businesses.rawValue)
+    }
     
     enum DBPathNames: String {
         case userInfo, profileInfo, teamChat, businesses
@@ -36,10 +43,6 @@ class FirebaseDBClient {
     
     // MARK: - Private Helpers
     
-    private func getDBReference(pathName: DBPathNames) -> DatabaseReference {
-        return dbObject.reference().ref.child(pathName.rawValue)
-    }
-    
     private func getStorageReference(pathName: StoragePathNames) -> StorageReference {
         return storageObject.reference(withPath: pathName.rawValue)
     }
@@ -47,7 +50,7 @@ class FirebaseDBClient {
     // MARK: - User
     
     func retrieveUserProfile(userID: String, completion: @escaping (Result<UserInfo, Error>) -> Void) {
-        getDBReference(pathName: .profileInfo).child(userID).observeSingleEvent(of: .value) { snapshot in
+        DBPaths.profileInfo.child(userID).observeSingleEvent(of: .value) { snapshot in
             guard let value = snapshot.value else { return }
             do {
                 let userInfo = try FirebaseDecoder().decode(UserInfo.self, from: value)
@@ -60,7 +63,7 @@ class FirebaseDBClient {
     
     func updateUserProfile(userID: String, userInfo: UserInfo, completion: @escaping (Result<UserInfo, Error>) -> Void) {
         let profileAsDictionary = userInfo.asDictionary()
-        getDBReference(pathName: .profileInfo).child(userID).updateChildValues(profileAsDictionary) { error, dbRef in
+        DBPaths.profileInfo.child(userID).updateChildValues(profileAsDictionary) { error, dbRef in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -70,14 +73,14 @@ class FirebaseDBClient {
     }
     
     func getCurrentLocationID(userID: String, completion: @escaping (String?) -> Void) {
-        FirebaseDBClient.userInfoRef.child(userID).observeSingleEvent(of: .value) { (snapshot) in
+        DBPaths.userInfo.child(userID).observeSingleEvent(of: .value) { (snapshot) in
             let locationID = snapshot.value as? String
             completion(locationID)
         }
     }
     
     func joinLocationWith(ID locationID: String, for userID: String, completion: @escaping (Bool) -> Void) {
-        getCurrentLocationID(userID: userID) { [weak self] (currentLocationID) in
+        getCurrentLocationID(userID: userID) { (currentLocationID) in
             guard currentLocationID != locationID else {
                 // User is already at this location
                 completion(true)
@@ -87,7 +90,7 @@ class FirebaseDBClient {
                 "\(DBPathNames.userInfo.rawValue)/\(userID)": locationID,
                 "\(DBPathNames.businesses.rawValue)/\(locationID)": ServerValue.increment(1)
             ]
-            self?.dbObject.reference().root.updateChildValues(childUpdates) { error, reference in
+            DBPaths.root.updateChildValues(childUpdates) { error, reference in
                 if let error = error {
                     print("Data could not be saved: \(error)")
                     completion(false)
@@ -99,7 +102,7 @@ class FirebaseDBClient {
     }
     
     func leaveLocationWith(ID locationID: String, for userID: String, completion: @escaping (Bool) -> Void) {
-        getCurrentLocationID(userID: userID) { [weak self] (currentLocationID) in
+        getCurrentLocationID(userID: userID) { (currentLocationID) in
             guard currentLocationID == locationID else {
                 // User is not at this location
                 completion(true)
@@ -109,7 +112,7 @@ class FirebaseDBClient {
                 "\(DBPathNames.userInfo.rawValue)/\(userID)": nil,
                 "\(DBPathNames.businesses.rawValue)/\(locationID)": ServerValue.increment(-1)
             ]
-            self?.dbObject.reference().root.updateChildValues(childUpdates as [AnyHashable : Any]) { error, reference in
+            DBPaths.root.updateChildValues(childUpdates as [AnyHashable : Any]) { error, reference in
                 if let error = error {
                     print("Data could not be saved: \(error)")
                     completion(false)
@@ -122,11 +125,11 @@ class FirebaseDBClient {
     
     func switchLocation(for userID: String, from oldLocationID: String, to newLocationID: String, completion: @escaping (Bool) -> Void) {
         let childUpdates: [String: Any] = [
-            "userInfo/\(userID)": newLocationID,
-            "businesses/\(oldLocationID)": ServerValue.increment(-1),
-            "businesses/\(newLocationID)": ServerValue.increment(1)
+            "\(DBPathNames.userInfo.rawValue)/\(userID)": newLocationID,
+            "\(DBPathNames.businesses.rawValue)/\(oldLocationID)": ServerValue.increment(-1),
+            "\(DBPathNames.businesses.rawValue)/\(newLocationID)": ServerValue.increment(1)
         ]
-        dbObject.reference().root.updateChildValues(childUpdates) { error, reference in
+        DBPaths.root.updateChildValues(childUpdates) { error, reference in
             if let error = error {
                 print("Data could not be saved: \(error)")
                 completion(false)
@@ -153,7 +156,7 @@ class FirebaseDBClient {
                 completion(.failure(ImageError.invalidMetadata))
                 return
             }
-            profileRef.downloadURL { [weak self] (url, error) in
+            profileRef.downloadURL { (url, error) in
                 if let error = error {
                     completion(.failure(error))
                     return
@@ -162,7 +165,7 @@ class FirebaseDBClient {
                     completion(.failure(ImageError.invalidDownloadURL))
                     return
                 }
-                self?.getDBReference(pathName: .profileInfo).child("\(userID)/photoURL").setValue(downloadURL) { (error, userRef) in
+                DBPaths.profileInfo.child("\(userID)/photoURL").setValue(downloadURL) { (error, userRef) in
                     if let error = error {
                         completion(.failure(error))
                         return
@@ -191,12 +194,11 @@ class FirebaseDBClient {
     // MARK: - Locations
     
     func addNewLocations(locations: [Location]) {
-        let locationsRef: DatabaseReference = getDBReference(pathName: .businesses)
         for location in locations {
-            locationsRef.observeSingleEvent(of: .value) { snapshot in
+            DBPaths.businesses.observeSingleEvent(of: .value) { snapshot in
                 if !snapshot.hasChild(location.id) {
                     // if doesnt exist add it as child to businesses
-                    locationsRef.child(location.id).setValue(0)
+                    DBPaths.businesses.child(location.id).setValue(0)
                 }
             }
         }
@@ -206,7 +208,7 @@ class FirebaseDBClient {
     
     func observePlayerCount(at locationID: String, completion: @escaping (Int?) -> Void)  {
         guard playerCountHandles[locationID] == nil else { return } // Return if already observing at that location
-        let observerHandle = getDBReference(pathName: .businesses).child(locationID).observe(.value) { snapshot in
+        let observerHandle = DBPaths.businesses.child(locationID).observe(.value) { snapshot in
             // Listen in realtime to whenever it updates
             guard let playerCount = snapshot.value as? Int else {
                 print("Player count for location with ID \(locationID) unavailable")
@@ -220,7 +222,7 @@ class FirebaseDBClient {
     
     func stopObservingPlayerCount(at locationID: String) {
         guard let handle: UInt = playerCountHandles.removeValue(forKey: locationID) else { return }
-        getDBReference(pathName: .businesses).child(locationID).removeObserver(withHandle: handle)
+        DBPaths.businesses.child(locationID).removeObserver(withHandle: handle)
     }
     
     // MARK: - Temporary Refs
