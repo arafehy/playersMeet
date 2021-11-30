@@ -50,6 +50,11 @@ class DetailsViewController: UIViewController {
         initializeMap()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        FirebaseManager.dbClient.stopObservingPlayerCount(at: location.id)
+    }
+    
     // MARK: - Initialization
     
     func startPlayerCountObserver() {
