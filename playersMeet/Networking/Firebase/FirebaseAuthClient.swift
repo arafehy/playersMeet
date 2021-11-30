@@ -10,7 +10,9 @@ import Foundation
 import FirebaseAuth
 
 struct FirebaseAuthClient {
+    
     private static let authObject = Auth.auth()
+    private static var handle: AuthStateDidChangeListenerHandle?
     
     static func createUser(email: String, password: String, completion: @escaping (Result<User?, Error>) -> Void) {
         authObject.createUser(withEmail: email, password: password){ (result, error) in
@@ -57,16 +59,19 @@ struct FirebaseAuthClient {
         return authObject.currentUser!.uid
     }
     
-    static func addLoginStateListener(currentUser: User?, completion: @escaping (_ isSignedIn: Bool) -> Void) -> AuthStateDidChangeListenerHandle {
-        return authObject.addStateDidChangeListener { auth, user in
+    static func addLoginStateListener(currentUser: User?, completion: @escaping (_ isSignedIn: Bool) -> Void) {
+        let newHandle = authObject.addStateDidChangeListener { auth, user in
             if currentUser != user {
                 completion(false)
             }
             completion(true)
         }
+        if newHandle.isEqual(handle) { removeLoginStateListener() }
+        handle = newHandle
     }
     
-    static func removeLoginStateListener(handle: AuthStateDidChangeListenerHandle) {
+    static func removeLoginStateListener() {
+        guard let handle = handle else { return }
         authObject.removeStateDidChangeListener(handle)
     }
 }
