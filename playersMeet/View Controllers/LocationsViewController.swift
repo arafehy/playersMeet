@@ -66,8 +66,8 @@ class LocationsViewController: UIViewController {
     func loadLocations(result: Result<[Location], Error>) {
         switch result {
         case .success(let locations):
-            self.locations = locations
-            self.tableView.reloadData()
+            self.locations = locations.sorted(by: { $0.distance < $1.distance })
+            tableView.reloadData()
         case .failure(let error):
             self.showErrorAlert(with: error)
         }
