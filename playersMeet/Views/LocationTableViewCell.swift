@@ -23,4 +23,11 @@ class LocationTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
     }
+    
+    func configure(with location: Location) {
+        locationLabel.text = location.name
+        locationImageView.af.setImage(withURL: location.imageUrl, cacheKey: location.id)
+        distanceLabel.text = Formatter.getReadableString(measurement: location.distance)
+        isHereIndicator.isHidden = location.id != CurrentSession.locationID
+    }
 }

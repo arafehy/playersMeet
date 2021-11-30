@@ -93,13 +93,10 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
+        let locationCell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationTableViewCell
         let location = locations[indexPath.row]
-        cell.locationLabel.text = location.name
-        cell.locationImageView.af.setImage(withURL: location.imageUrl, cacheKey: location.id)
-        cell.distanceLabel.text = Formatter.getReadableString(measurement: location.distance)
-        cell.isHereIndicator.isHidden = location.id != CurrentSession.locationID
-        return cell
+        locationCell.configure(with: location)
+        return locationCell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
