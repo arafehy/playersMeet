@@ -25,7 +25,6 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var lottieView: UIView!
     static var assignedStringColor: String = UIColor.toHexString(UIColor.random)()
-    var handle: AuthStateDidChangeListenerHandle?
     let animationView = AnimationView()
     let user: User? =  FirebaseAuthClient.getUser()
     var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "",color: "")
@@ -52,7 +51,7 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        handle = FirebaseAuthClient.addLoginStateListener(currentUser: self.user) { [unowned self] isSignedIn in
+        FirebaseAuthClient.addLoginStateListener(currentUser: self.user) { [unowned self] isSignedIn in
             if !isSignedIn {
                 Navigation.goToSignUp(window: self.view.window)
                 return
@@ -62,9 +61,7 @@ class ProfileViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if let handle = handle {
-            FirebaseAuthClient.removeLoginStateListener(handle: handle)
-        }
+        FirebaseAuthClient.removeLoginStateListener()
     }
     
     // MARK: - Button Actions
