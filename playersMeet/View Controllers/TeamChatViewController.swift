@@ -100,16 +100,16 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         
         msgsRef.queryOrdered(byChild: "createdAt")
             .observe(.childAdded)
-            { (snapshot) in
-                let msg = snapshot.value as? NSDictionary
+        { (snapshot) in
+            let msg = snapshot.value as? NSDictionary
+            
+            if let acutualMsg = msg {
+                self.msgData.append(acutualMsg)
                 
-                if let acutualMsg = msg {
-                    self.msgData.append(acutualMsg)
-                    
-                    
-                    self.scrollToBottom()
-                    self.tableView.reloadData()
-                }
+                
+                self.scrollToBottom()
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -129,7 +129,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
                 "createdAt": NSDate().timeIntervalSince1970,
                 "username" : username!,
                 "color": color as Any
-                ] as [String: Any]
+            ] as [String: Any]
             
             msgsRef.setValue(msgObject) { (error, ref) in
                 if error != nil {
