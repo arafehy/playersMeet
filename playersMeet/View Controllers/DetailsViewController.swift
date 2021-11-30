@@ -65,7 +65,6 @@ class DetailsViewController: UIViewController {
                 return
             }
             self.playerCount = playerCount
-            LocationsViewController.shared.count = playerCount
         }
     }
     
