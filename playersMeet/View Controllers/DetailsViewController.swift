@@ -25,7 +25,6 @@ class DetailsViewController: UIViewController {
     var location: Location!
     var playerCount: Int = 0 {
         didSet {
-            print("Set new player count from \(oldValue) to \(playerCount)")
             setPlayerCountLabel()
         }
     }
