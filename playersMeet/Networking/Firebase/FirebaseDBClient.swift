@@ -11,7 +11,7 @@ import Firebase
 import CodableFirebase
 
 
-struct FirebaseDBClient {
+class FirebaseDBClient {
     
     // MARK: - Properties
     
@@ -75,7 +75,7 @@ struct FirebaseDBClient {
     }
     
     func joinLocationWith(ID locationID: String, for userID: String, completion: @escaping (Bool) -> Void) {
-        getCurrentLocationID(userID: userID) { currentLocationID in
+        getCurrentLocationID(userID: userID) { [weak self] (currentLocationID) in
             guard currentLocationID != locationID else {
                 // User is already at this location
                 completion(true)
@@ -85,7 +85,7 @@ struct FirebaseDBClient {
                 "\(DBPathNames.userInfo.rawValue)/\(userID)": locationID,
                 "\(DBPathNames.businesses.rawValue)/\(locationID)": ServerValue.increment(1)
             ]
-            dbObject.reference().root.updateChildValues(childUpdates) { error, reference in
+            self?.dbObject.reference().root.updateChildValues(childUpdates) { error, reference in
                 if let error = error {
                     print("Data could not be saved: \(error)")
                     completion(false)
@@ -97,7 +97,7 @@ struct FirebaseDBClient {
     }
     
     func leaveLocationWith(ID locationID: String, for userID: String, completion: @escaping (Bool) -> Void) {
-        getCurrentLocationID(userID: userID) { currentLocationID in
+        getCurrentLocationID(userID: userID) { [weak self] (currentLocationID) in
             guard currentLocationID == locationID else {
                 // User is not at this location
                 completion(true)
@@ -107,7 +107,7 @@ struct FirebaseDBClient {
                 "\(DBPathNames.userInfo.rawValue)/\(userID)": nil,
                 "\(DBPathNames.businesses.rawValue)/\(locationID)": ServerValue.increment(-1)
             ]
-            dbObject.reference().root.updateChildValues(childUpdates as [AnyHashable : Any]) { error, reference in
+            self?.dbObject.reference().root.updateChildValues(childUpdates as [AnyHashable : Any]) { error, reference in
                 if let error = error {
                     print("Data could not be saved: \(error)")
                     completion(false)
@@ -151,7 +151,7 @@ struct FirebaseDBClient {
                 completion(.failure(ImageError.invalidMetadata))
                 return
             }
-            profileRef.downloadURL { (url, error) in
+            profileRef.downloadURL { [weak self] (url, error) in
                 if let error = error {
                     completion(.failure(error))
                     return
@@ -160,7 +160,7 @@ struct FirebaseDBClient {
                     completion(.failure(ImageError.invalidDownloadURL))
                     return
                 }
-                getDBReference(pathName: .profileInfo).child("\(userID)/photoURL").setValue(downloadURL) { (error, userRef) in
+                self?.getDBReference(pathName: .profileInfo).child("\(userID)/photoURL").setValue(downloadURL) { (error, userRef) in
                     if let error = error {
                         completion(.failure(error))
                         return
