@@ -22,8 +22,6 @@ class LocationsViewController: UIViewController {
     let userLocationProvider: UserLocationProvider = UserLocationService()
     let user: User? = FirebaseAuthClient.getUser()
     
-    var count = 0
-    
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - VC Life Cycle
@@ -32,7 +30,6 @@ class LocationsViewController: UIViewController {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
-        print("view did load \(LocationsViewController.shared.count)")
         setCurrentLocationID()
         updateLocations()
     }
