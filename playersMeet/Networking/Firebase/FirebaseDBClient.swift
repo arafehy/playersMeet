@@ -15,11 +15,9 @@ class FirebaseDBClient {
     
     // MARK: - Properties
     
-    private let storageObject: Storage = Storage.storage()
-    
     private var playerCountHandles: [String: UInt] = [:]
     
-    // MARK: - Enums
+    // MARK: - Database
     
     enum DBPaths {
         static let root = Database.database().reference().root
@@ -33,18 +31,19 @@ class FirebaseDBClient {
         case userInfo, profileInfo, teamChat, businesses
     }
     
+    // MARK: - Storage
+    
+    enum StoragePaths {
+        static let root = Storage.storage().reference()
+        static let images = root.child(StoragePathNames.images.rawValue)
+    }
+    
     enum StoragePathNames: String {
         case images
     }
     
     enum ImageType: String {
         case png
-    }
-    
-    // MARK: - Private Helpers
-    
-    private func getStorageReference(pathName: StoragePathNames) -> StorageReference {
-        return storageObject.reference(withPath: pathName.rawValue)
     }
     
     // MARK: - User
@@ -142,12 +141,10 @@ class FirebaseDBClient {
     // MARK: Profile Picture
     
     func uploadProfilePicture(userID: String, imageData: Data, imageType: ImageType, completion: @escaping (Result<String, Error>) -> Void) {
-        let profileRef = getStorageReference(pathName: .images)
-        
         let metadata = StorageMetadata()
         metadata.contentType = "image/\(imageType.rawValue)"
         
-        profileRef.putData(imageData, metadata: metadata) { (metadata, error) in
+        StoragePaths.images.putData(imageData, metadata: metadata) { (metadata, error) in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -156,7 +153,7 @@ class FirebaseDBClient {
                 completion(.failure(ImageError.invalidMetadata))
                 return
             }
-            profileRef.downloadURL { (url, error) in
+            StoragePaths.images.downloadURL { (url, error) in
                 if let error = error {
                     completion(.failure(error))
                     return
@@ -178,7 +175,7 @@ class FirebaseDBClient {
     
     func retrieveProfilePicture(userID: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
         let maxImageSize: Int64 = 5 * 1024 * 1024
-        getStorageReference(pathName: .images).child(userID).getData(maxSize: maxImageSize) { (data, error) in
+        StoragePaths.images.child(userID).getData(maxSize: maxImageSize) { (data, error) in
             if let error = error {
                 completion(.failure(error))
                 return
