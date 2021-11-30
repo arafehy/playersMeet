@@ -18,6 +18,8 @@ class FirebaseDBClient {
     private let dbObject: Database = Database.database()
     private let storageObject: Storage = Storage.storage()
     
+    private var playerCountHandles: [String: UInt] = [:]
+    
     // MARK: - Enums
     
     enum DBPathNames: String {
@@ -200,8 +202,11 @@ class FirebaseDBClient {
         }
     }
     
+    // MARK: Observers
+    
     func observePlayerCount(at locationID: String, completion: @escaping (Int?) -> Void)  {
-        getDBReference(pathName: .businesses).child(locationID).observe(.value) { snapshot in
+        guard playerCountHandles[locationID] == nil else { return } // Return if already observing at that location
+        let observerHandle = getDBReference(pathName: .businesses).child(locationID).observe(.value) { snapshot in
             // Listen in realtime to whenever it updates
             guard let playerCount = snapshot.value as? Int else {
                 print("Player count for location with ID \(locationID) unavailable")
@@ -210,6 +215,12 @@ class FirebaseDBClient {
             }
             completion(playerCount)
         }
+        playerCountHandles.updateValue(observerHandle, forKey: locationID)
+    }
+    
+    func stopObservingPlayerCount(at locationID: String) {
+        guard let handle: UInt = playerCountHandles.removeValue(forKey: locationID) else { return }
+        getDBReference(pathName: .businesses).child(locationID).removeObserver(withHandle: handle)
     }
     
     // MARK: - Temporary Refs
