@@ -134,15 +134,7 @@ extension TeamChatViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         cell.msgLabel.text = message.text
-        
-        let date = Date(timeIntervalSince1970: message.createdAt)
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(abbreviation: "PST")
-        formatter.dateFormat = "h:mma, MM/dd/yyyy"
-        
-        cell.createdAtLabel.text = formatter.string(from: date)
+        cell.createdAtLabel.text = Formatter.getReadableDate(timeInterval: message.createdAt)
         cell.tapRecognizer.addTarget(self, action: #selector(showProfile))
         cell.tapRecognizer.userID = message.userID
         cell.nameLabel.gestureRecognizers = []
