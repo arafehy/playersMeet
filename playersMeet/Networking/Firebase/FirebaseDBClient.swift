@@ -251,6 +251,28 @@ class FirebaseDBClient {
         }
     }
     
+    func sendMessage(_ message: String, from userID: String, to locationID: String, completion: @escaping (Result<ChatMessage, Error>) -> Void) {
+        retrieveUserProfile(userID: userID) { [weak self] (result) in
+            switch result {
+            case .success(let userInfo):
+                let message = ChatMessage(userID: userID, username: userInfo.username, text: message, createdAt: Date().timeIntervalSince1970, color: userInfo.color)
+                self?.sendMessage(message, to: locationID, completion: completion)
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    private func sendMessage(_ message: ChatMessage, to locationID: String, completion: @escaping (Result<ChatMessage, Error>) -> Void) {
+        DBPaths.teamChat.child(locationID).childByAutoId().setValue(message.asDictionary()) { (error, reference) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(message))
+            }
+        }
+    }
+    
     // MARK: - Temporary Refs
     
     static let userInfoRef = Database.database().reference().ref.child("userInfo")
