@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import MessageInputBar
 
-class TeamChatViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, MessageInputBarDelegate {
+class TeamChatViewController: UIViewController, MessageInputBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -45,46 +45,6 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     
     override var canBecomeFirstResponder: Bool {
         return showsCommentBar
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
-        let message = messages[indexPath.row]
-        if (Auth.auth().currentUser!.uid == (message.userID)) {
-            cell.nameLabel.text = "\(message.username) (Me)"
-            cell.nameLabel.textColor = UIColor.orange
-        } else {
-            cell.nameLabel.text = message.username
-            let col: String = message.color
-            if col == "#000000"{
-                let uiColor: UIColor = UIColor(hexString: "#808080")
-                cell.nameLabel.textColor = uiColor
-            }
-            else{
-                let uiColor: UIColor = UIColor(hexString: col)
-                cell.nameLabel.textColor = uiColor
-            }
-        }
-        
-        cell.msgLabel.text = message.text
-        
-        let date = Date(timeIntervalSince1970: message.createdAt)
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(abbreviation: "PST")
-        formatter.dateFormat = "h:mma, MM/dd/yyyy"
-        
-        cell.createdAtLabel.text = formatter.string(from: date)
-        cell.tapRecognizer.addTarget(self, action: #selector(showProfile))
-        cell.tapRecognizer.userID = message.userID
-        cell.nameLabel.gestureRecognizers = []
-        cell.nameLabel.gestureRecognizers!.append(cell.tapRecognizer)
-        return cell
     }
     
     func loadMessages() {
@@ -144,5 +104,49 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     @objc func showProfile(sender: customTapGestureRecognizer) {
         commentBar.inputTextView.resignFirstResponder()
         self.performSegue(withIdentifier: "toProfile", sender: sender)
+    }
+}
+
+// MARK: - Table View
+
+extension TeamChatViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
+        let message = messages[indexPath.row]
+        if (Auth.auth().currentUser!.uid == (message.userID)) {
+            cell.nameLabel.text = "\(message.username) (Me)"
+            cell.nameLabel.textColor = UIColor.orange
+        } else {
+            cell.nameLabel.text = message.username
+            let col: String = message.color
+            if col == "#000000"{
+                let uiColor: UIColor = UIColor(hexString: "#808080")
+                cell.nameLabel.textColor = uiColor
+            }
+            else{
+                let uiColor: UIColor = UIColor(hexString: col)
+                cell.nameLabel.textColor = uiColor
+            }
+        }
+        
+        cell.msgLabel.text = message.text
+        
+        let date = Date(timeIntervalSince1970: message.createdAt)
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(abbreviation: "PST")
+        formatter.dateFormat = "h:mma, MM/dd/yyyy"
+        
+        cell.createdAtLabel.text = formatter.string(from: date)
+        cell.tapRecognizer.addTarget(self, action: #selector(showProfile))
+        cell.tapRecognizer.userID = message.userID
+        cell.nameLabel.gestureRecognizers = []
+        cell.nameLabel.gestureRecognizers!.append(cell.tapRecognizer)
+        return cell
     }
 }
