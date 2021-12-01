@@ -236,6 +236,21 @@ class FirebaseDBClient {
         DBPaths.businesses.child(locationID).removeObserver(withHandle: handle)
     }
     
+    // MARK: Chat
+    
+    func retrieveMessages(at locationID: String, completion: @escaping (Result<ChatMessage, Error>) -> Void) {
+        let messagesReference = FirebaseDBClient.DBPaths.teamChat.child(locationID)
+        messagesReference.queryOrdered(byChild: "createdAt").observe(.childAdded) { (snapshot) in
+            guard let value = snapshot.value as? [String: Any] else { return }
+            do {
+                let message = try FirebaseDecoder().decode(ChatMessage.self, from: value)
+                completion(.success(message))
+            } catch {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     // MARK: - Temporary Refs
     
     static let userInfoRef = Database.database().reference().ref.child("userInfo")

@@ -19,12 +19,12 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     let commentBar = MessageInputBar()
     var showsCommentBar = true
     let ref = Database.database().reference()
-    var msgData = [NSDictionary]()
+    var messages: [ChatMessage] = []
     let currentUser: User? = FirebaseAuthClient.getUser()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadMsgs()
+        loadMessages()
         
         commentBar.inputTextView.placeholder = "Type message..."
         commentBar.sendButton.title = "Send"
@@ -56,18 +56,18 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return msgData.count
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
-        let msg = msgData[indexPath.row]
-        if (Auth.auth().currentUser!.uid == (msg["user"] as! String)) {
-            cell.nameLabel.text = "\(msg["username"] as! String) (Me)"
+        let message = messages[indexPath.row]
+        if (Auth.auth().currentUser!.uid == (message.userID)) {
+            cell.nameLabel.text = "\(message.username) (Me)"
             cell.nameLabel.textColor = UIColor.orange
         } else {
-            cell.nameLabel.text = msg["username"] as? String
-            let col: String = msg["color"] as! String
+            cell.nameLabel.text = message.username
+            let col: String = message.color
             if col == "#000000"{
                 let uiColor: UIColor = UIColor(hexString: "#808080")
                 cell.nameLabel.textColor = uiColor
@@ -78,9 +78,9 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
             }
         }
         
-        cell.msgLabel.text = msg["text"] as? String
+        cell.msgLabel.text = message.text
         
-        let date = Date(timeIntervalSince1970: msg["createdAt"] as! TimeInterval)
+        let date = Date(timeIntervalSince1970: message.createdAt)
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .iso8601)
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -89,26 +89,22 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.createdAtLabel.text = formatter.string(from: date)
         cell.tapRecognizer.addTarget(self, action: #selector(showProfile))
-        cell.tapRecognizer.userID = msg["user"] as? String
+        cell.tapRecognizer.userID = message.userID
         cell.nameLabel.gestureRecognizers = []
         cell.nameLabel.gestureRecognizers!.append(cell.tapRecognizer)
         return cell
     }
     
-    func loadMsgs() {
-        let msgsRef = Database.database().reference().child("teamChat/\(teamID)")
-        
-        msgsRef.queryOrdered(byChild: "createdAt")
-            .observe(.childAdded)
-        { (snapshot) in
-            let msg = snapshot.value as? NSDictionary
-            
-            if let acutualMsg = msg {
-                self.msgData.append(acutualMsg)
-                
-                
+    func loadMessages() {
+        FirebaseManager.dbClient.retrieveMessages(at: teamID) { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(let message):
+                self.messages.append(message)
                 self.scrollToBottom()
                 self.tableView.reloadData()
+            case .failure(let error):
+                self.showErrorAlert(with: error)
             }
         }
     }
@@ -141,9 +137,10 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
         becomeFirstResponder()
         commentBar.inputTextView.resignFirstResponder()
     }
+    
     func scrollToBottom(){
         DispatchQueue.main.async {
-            let indexPath = IndexPath(row: self.msgData.count-1, section: 0)
+            let indexPath = IndexPath(row: self.messages.count-1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
     }
