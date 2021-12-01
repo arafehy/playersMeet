@@ -38,6 +38,7 @@
 		E0799702272D02320000D162 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0799701272D02320000D162 /* FirebaseManager.swift */; };
 		E07FF7C5272DB00F00325763 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07FF7C4272DB00F00325763 /* UIImage+Extensions.swift */; };
 		E08D089727436EE200BCD24C /* UserLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08D089627436EE200BCD24C /* UserLocationService.swift */; };
+		E0B472992756CCA100887A96 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B472982756CCA100887A96 /* ChatMessage.swift */; };
 		E0C0254B245F8CC200950223 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C0254A245F8CC200950223 /* User.swift */; };
 		E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4887B245A708F00ED074A /* ProfileViewController.swift */; };
 		E0EC4382274B80A9009CD785 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EC4381274B80A9009CD785 /* YelpClient.swift */; };
@@ -114,6 +115,7 @@
 		E07FF7C4272DB00F00325763 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		E08D089627436EE200BCD24C /* UserLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
 		E0983262B0BA2EA7C2CFBAA5 /* Pods-playersMeetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetTests.debug.xcconfig"; path = "Target Support Files/Pods-playersMeetTests/Pods-playersMeetTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E0B472982756CCA100887A96 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		E0C0254A245F8CC200950223 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0D4887B245A708F00ED074A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E0EC4381274B80A9009CD785 /* YelpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				FAB9CBA52455931E00C25C92 /* Models.swift */,
 				E0C0254A245F8CC200950223 /* User.swift */,
 				E0EC4383274B82DE009CD785 /* CurrentSession.swift */,
+				E0B472982756CCA100887A96 /* ChatMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				6A4B0F472460872F002F0882 /* MessageCell.swift in Sources */,
 				E07996FD272CF44B0000D162 /* UIButton+Extensions.swift in Sources */,
 				FAB9CBA62455931E00C25C92 /* Models.swift in Sources */,
+				E0B472992756CCA100887A96 /* ChatMessage.swift in Sources */,
 				FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */,
 				6A4B0F452460871D002F0882 /* TeamChatViewController.swift in Sources */,
 				E01187AA274EEEEB00D84768 /* UserLocationError.swift in Sources */,
