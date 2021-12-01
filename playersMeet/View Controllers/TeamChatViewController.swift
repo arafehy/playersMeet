@@ -110,32 +110,18 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        let msgsRef = Database.database().reference().child("teamChat/\(teamID)").childByAutoId()
-        FirebaseDBClient.usersRef.child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value) { (snapshot) in
-            let userInfo = snapshot.value as? NSDictionary
-            let username = userInfo?["username"]
-            let color = userInfo?["color"]
-            
-            
-            //        let color:String = myColor.description
-            //        print(color)
-            let msgObject = [
-                "user": Auth.auth().currentUser?.uid as Any,
-                "text": text,
-                "createdAt": NSDate().timeIntervalSince1970,
-                "username" : username!,
-                "color": color as Any
-            ] as [String: Any]
-            
-            msgsRef.setValue(msgObject) { (error, ref) in
-                if error != nil {
-                    print("Error: \(String(describing: error))")
-                }
+        guard let userID = currentUser?.uid else { return }
+        FirebaseManager.dbClient.sendMessage(text, from: userID, to: teamID) { [weak self] (result) in
+            guard let self = self else { return }
+            switch result {
+            case .success(_):
+                self.commentBar.inputTextView.text = nil
+                self.becomeFirstResponder()
+                self.commentBar.inputTextView.resignFirstResponder()
+            case .failure(let error):
+                self.showErrorAlert(with: error)
             }
         }
-        commentBar.inputTextView.text = nil
-        becomeFirstResponder()
-        commentBar.inputTextView.resignFirstResponder()
     }
     
     func scrollToBottom(){
