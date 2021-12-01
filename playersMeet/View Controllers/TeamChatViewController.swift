@@ -25,15 +25,7 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         loadMessages()
-        
-        commentBar.inputTextView.placeholder = "Type message..."
-        commentBar.sendButton.title = "Send"
-        commentBar.sendButton.setTitleColor(.systemOrange, for: .normal)
-        commentBar.backgroundView.backgroundColor = .systemBackground
-        commentBar.inputTextView.font = UIFont(descriptor: .init(name: "Futura", size: 17), size: 17)
-        commentBar.delegate = self
-        
-        commentBar.inputTextView.becomeFirstResponder()
+        setupMessageBar()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -129,6 +121,16 @@ class TeamChatViewController: UIViewController, UITableViewDelegate, UITableView
             let indexPath = IndexPath(row: self.messages.count-1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
+    }
+    
+    func setupMessageBar() {
+        commentBar.delegate = self
+        commentBar.inputTextView.placeholder = "Type message..."
+        commentBar.sendButton.title = "Send"
+        commentBar.sendButton.setTitleColor(.systemOrange, for: .normal)
+        commentBar.backgroundView.backgroundColor = .systemBackground
+        commentBar.inputTextView.font = UIFont(descriptor: .init(name: "Futura", size: 17), size: 17)
+        commentBar.inputTextView.becomeFirstResponder()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
