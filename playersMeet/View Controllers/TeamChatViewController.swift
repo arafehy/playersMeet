@@ -11,7 +11,7 @@ import Firebase
 import FirebaseAuth
 import MessageInputBar
 
-class TeamChatViewController: UIViewController, MessageInputBarDelegate {
+class TeamChatViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,19 +34,6 @@ class TeamChatViewController: UIViewController, MessageInputBarDelegate {
         center.addObserver(self, selector: #selector(keyboardWillBeHidden(note:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc func keyboardWillBeHidden(note: Notification) {
-        commentBar.inputTextView.text = nil
-        becomeFirstResponder()
-    }
-    
-    override var inputAccessoryView: UIView? {
-        return commentBar
-    }
-    
-    override var canBecomeFirstResponder: Bool {
-        return showsCommentBar
-    }
-    
     func loadMessages() {
         FirebaseManager.dbClient.retrieveMessages(at: teamID) { [weak self] (result) in
             guard let self = self else { return }
@@ -61,7 +48,7 @@ class TeamChatViewController: UIViewController, MessageInputBarDelegate {
         }
     }
     
-    func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+    func sendMessage(text: String) {
         guard let userID = currentUser?.uid else { return }
         FirebaseManager.dbClient.sendMessage(text, from: userID, to: teamID) { [weak self] (result) in
             guard let self = self else { return }
@@ -81,16 +68,6 @@ class TeamChatViewController: UIViewController, MessageInputBarDelegate {
             let indexPath = IndexPath(row: self.messages.count-1, section: 0)
             self.tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
         }
-    }
-    
-    func setupMessageBar() {
-        commentBar.delegate = self
-        commentBar.inputTextView.placeholder = "Type message..."
-        commentBar.sendButton.title = "Send"
-        commentBar.sendButton.setTitleColor(.systemOrange, for: .normal)
-        commentBar.backgroundView.backgroundColor = .systemBackground
-        commentBar.inputTextView.font = UIFont(descriptor: .init(name: "Futura", size: 17), size: 17)
-        commentBar.inputTextView.becomeFirstResponder()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -140,5 +117,36 @@ extension TeamChatViewController: UITableViewDataSource, UITableViewDelegate {
         cell.nameLabel.gestureRecognizers = []
         cell.nameLabel.gestureRecognizers!.append(cell.tapRecognizer)
         return cell
+    }
+}
+
+// MARK: Message Input Bar
+
+extension TeamChatViewController: MessageInputBarDelegate {
+    func setupMessageBar() {
+        commentBar.delegate = self
+        commentBar.inputTextView.placeholder = "Type message..."
+        commentBar.sendButton.title = "Send"
+        commentBar.sendButton.setTitleColor(.systemOrange, for: .normal)
+        commentBar.backgroundView.backgroundColor = .systemBackground
+        commentBar.inputTextView.font = UIFont(descriptor: .init(name: "Futura", size: 17), size: 17)
+        commentBar.inputTextView.becomeFirstResponder()
+    }
+    
+    func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
+        sendMessage(text: text)
+    }
+    
+    @objc func keyboardWillBeHidden(note: Notification) {
+        commentBar.inputTextView.text = nil
+        becomeFirstResponder()
+    }
+    
+    override var inputAccessoryView: UIView? {
+        return commentBar
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return showsCommentBar
     }
 }
