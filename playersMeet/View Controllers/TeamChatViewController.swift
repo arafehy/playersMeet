@@ -94,28 +94,7 @@ extension TeamChatViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
         let message = messages[indexPath.row]
-        if (Auth.auth().currentUser!.uid == (message.userID)) {
-            cell.nameLabel.text = "\(message.username) (Me)"
-            cell.nameLabel.textColor = UIColor.orange
-        } else {
-            cell.nameLabel.text = message.username
-            let col: String = message.color
-            if col == "#000000"{
-                let uiColor: UIColor = UIColor(hexString: "#808080")
-                cell.nameLabel.textColor = uiColor
-            }
-            else{
-                let uiColor: UIColor = UIColor(hexString: col)
-                cell.nameLabel.textColor = uiColor
-            }
-        }
-        
-        cell.msgLabel.text = message.text
-        cell.createdAtLabel.text = Formatter.getReadableDate(timeInterval: message.createdAt)
-        cell.tapRecognizer.addTarget(self, action: #selector(showProfile))
-        cell.tapRecognizer.userID = message.userID
-        cell.nameLabel.gestureRecognizers = []
-        cell.nameLabel.gestureRecognizers!.append(cell.tapRecognizer)
+        cell.configure(with: message)
         return cell
     }
 }
