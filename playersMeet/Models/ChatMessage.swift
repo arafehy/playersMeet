@@ -15,6 +15,14 @@ struct ChatMessage: Codable {
     let text: String
     let createdAt: TimeInterval
     let color: String
+    var origin: Origin {
+        return FirebaseAuthClient.getUserID() == userID ? .currentUser : .teammate
+    }
+    
+    enum Origin {
+        case currentUser
+        case teammate
+    }
     
     func asDictionary() -> [String: Any] {
         return ["userID": userID,
