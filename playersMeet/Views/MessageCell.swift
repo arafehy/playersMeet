@@ -28,22 +28,17 @@ class MessageCell: UITableViewCell {
     }
     
     func configure(with message: ChatMessage) {
-        if (Auth.auth().currentUser!.uid == (message.userID)) {
-            self.nameLabel.text = "\(message.username) (Me)"
+        var nameLabelText = message.username
+        switch message.origin {
+        case .currentUser:
+            nameLabelText += " (Me)"
             self.nameLabel.textColor = UIColor.orange
-        } else {
-            self.nameLabel.text = message.username
-            let col: String = message.color
-            if col == "#000000"{
-                let uiColor: UIColor = UIColor(hexString: "#808080")
-                self.nameLabel.textColor = uiColor
-            }
-            else{
-                let uiColor: UIColor = UIColor(hexString: col)
-                self.nameLabel.textColor = uiColor
-            }
+        case .teammate:
+            let hexColor: String = message.color != "#000000" ? message.color : "#808080"
+            self.nameLabel.textColor = UIColor(hexString: hexColor)
         }
         
+        nameLabel.text = nameLabelText
         msgLabel.text = message.text
         createdAtLabel.text = Formatter.getReadableDate(timeInterval: message.createdAt)
         tapRecognizer.addTarget(self, action: #selector(showProfile))
