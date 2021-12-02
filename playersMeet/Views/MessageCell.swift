@@ -28,6 +28,16 @@ class MessageCell: UITableViewCell {
     }
     
     func configure(with message: ChatMessage) {
+        setNameAndTextColor(message)
+        msgLabel.text = message.text
+        createdAtLabel.text = Formatter.getReadableDate(timeInterval: message.createdAt)
+        tapRecognizer.addTarget(self, action: #selector(showProfile))
+        tapRecognizer.userID = message.userID
+        nameLabel.gestureRecognizers = []
+        nameLabel.gestureRecognizers!.append(tapRecognizer)
+    }
+    
+    func setNameAndTextColor(_ message: ChatMessage) {
         var nameLabelText = message.username
         switch message.origin {
         case .currentUser:
@@ -37,13 +47,6 @@ class MessageCell: UITableViewCell {
             let hexColor: String = message.color != "#000000" ? message.color : "#808080"
             self.nameLabel.textColor = UIColor(hexString: hexColor)
         }
-        
         nameLabel.text = nameLabelText
-        msgLabel.text = message.text
-        createdAtLabel.text = Formatter.getReadableDate(timeInterval: message.createdAt)
-        tapRecognizer.addTarget(self, action: #selector(showProfile))
-        tapRecognizer.userID = message.userID
-        nameLabel.gestureRecognizers = []
-        nameLabel.gestureRecognizers!.append(tapRecognizer)
     }
 }
