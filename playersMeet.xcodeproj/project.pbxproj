@@ -287,6 +287,7 @@
 				FAB9CBB12455C27600C25C92 /* LocationCell.swift */,
 				6A4B0F462460872F002F0882 /* MessageCell.swift */,
 				E05F0294273110D200DDBE33 /* LottieAnimations.swift */,
+				E0AB2F4C24652EBB00F4CE49 /* Lottie Animations */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,9 +326,9 @@
 		FA75F722245445FC00E681F9 = {
 			isa = PBXGroup;
 			children = (
+				FA75F72D245445FC00E681F9 /* playersMeet */,
 				E0116CA5245A580900AF7F39 /* .gitignore */,
 				E0623F22274CD6B300A0555C /* GoogleService-Info.plist */,
-				FA75F72D245445FC00E681F9 /* playersMeet */,
 				FA75F7442454460000E681F9 /* playersMeetTests */,
 				FA75F74F2454460000E681F9 /* playersMeetUITests */,
 				FA75F72C245445FC00E681F9 /* Products */,
@@ -349,20 +350,19 @@
 		FA75F72D245445FC00E681F9 /* playersMeet */ = {
 			isa = PBXGroup;
 			children = (
-				E01D6EA02752E653007C2EF6 /* Helpers */,
-				E05F028F2730C80300DDBE33 /* Controllers */,
 				FA75F72E245445FD00E681F9 /* AppDelegate.swift */,
 				FA75F730245445FD00E681F9 /* SceneDelegate.swift */,
-				E0799700272CF45D0000D162 /* Extensions */,
-				E0AB2F4924652E0300F4CE49 /* View Controllers */,
-				E0AB2F4E24652F2600F4CE49 /* Storyboards */,
 				E0AB2F4A24652E2500F4CE49 /* Models */,
-				E0AB2F4B24652E9300F4CE49 /* Views */,
+				E05F028F2730C80300DDBE33 /* Controllers */,
+				E0AB2F4924652E0300F4CE49 /* View Controllers */,
 				E0AB2F4D24652F0900F4CE49 /* Networking */,
+				E0799700272CF45D0000D162 /* Extensions */,
+				E0AB2F4E24652F2600F4CE49 /* Storyboards */,
+				E0AB2F4B24652E9300F4CE49 /* Views */,
+				E01D6EA02752E653007C2EF6 /* Helpers */,
 				E0788C4C272E402B0089197D /* Errors */,
 				FA75F73C2454460000E681F9 /* Info.plist */,
 				FA18FCB1245BBC930087C1CC /* Assets.xcassets */,
-				E0AB2F4C24652EBB00F4CE49 /* Lottie Animations */,
 			);
 			path = playersMeet;
 			sourceTree = "<group>";
