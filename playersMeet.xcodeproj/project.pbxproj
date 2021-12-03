@@ -916,7 +916,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E0983262B0BA2EA7C2CFBAA5 /* Pods-playersMeetTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BZSTQ3T72Y;
@@ -939,7 +938,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0FFAD35305931D2C582B8B69 /* Pods-playersMeetTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BZSTQ3T72Y;
@@ -962,7 +960,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0E364E01E036666DDAFCCC7 /* Pods-playersMeet-playersMeetUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BZSTQ3T72Y;
 				INFOPLIST_FILE = playersMeetUITests/Info.plist;
@@ -982,7 +979,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DD54A7625C4740983B6BA9B5 /* Pods-playersMeet-playersMeetUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BZSTQ3T72Y;
 				INFOPLIST_FILE = playersMeetUITests/Info.plist;
