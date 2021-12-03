@@ -73,14 +73,20 @@ class TeamChatViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toProfile" {
             let profileVC = segue.destination as! ProfileViewController
-            let tapRecognizer = sender as! customTapGestureRecognizer
-            profileVC.teammateID = tapRecognizer.userID
+            let userID = sender as! String
+            profileVC.teammateID = userID
         }
     }
     
-    @objc func showProfile(sender: customTapGestureRecognizer) {
+    func showProfile(for userID: String) {
         commentBar.inputTextView.resignFirstResponder()
-        self.performSegue(withIdentifier: "toProfile", sender: sender)
+        self.performSegue(withIdentifier: "toProfile", sender: userID)
+    }
+}
+
+extension TeamChatViewController: MessageCellDelegate {
+    func didTapNameLabel(userID: String) {
+        showProfile(for: userID)
     }
 }
 
@@ -94,7 +100,8 @@ extension TeamChatViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MessageCell", for: indexPath) as! MessageCell
         let message = messages[indexPath.row]
-        cell.configure(with: message)
+        cell.message = message
+        cell.delegate = self
         return cell
     }
 }
