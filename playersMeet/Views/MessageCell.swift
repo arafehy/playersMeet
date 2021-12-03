@@ -11,7 +11,7 @@ import UIKit
 class MessageCell: UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var msgLabel: UILabel!
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var createdAtLabel: UILabel!
     
     var delegate: MessageCellDelegate?
@@ -33,7 +33,7 @@ class MessageCell: UITableViewCell {
     func configureCell() {
         guard let message = message else { return }
         setNameAndTextColor(message)
-        msgLabel.text = message.text
+        messageLabel.text = message.text
         createdAtLabel.text = Formatter.getReadableDate(timeInterval: message.createdAt)
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MessageCell.tappedNameLabel(sender:)))
         nameLabel.gestureRecognizers = []

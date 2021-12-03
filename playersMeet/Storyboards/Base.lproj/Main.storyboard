@@ -764,7 +764,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="createdAtLabel" destination="FZu-iA-MTD" id="MqU-Ug-YE9"/>
-                                            <outlet property="msgLabel" destination="48Z-li-sVc" id="ogl-y0-7v8"/>
+                                            <outlet property="messageLabel" destination="48Z-li-sVc" id="ygD-kd-Czj"/>
                                             <outlet property="nameLabel" destination="Om7-mQ-dxk" id="SFg-BC-PlL"/>
                                         </connections>
                                     </tableViewCell>
