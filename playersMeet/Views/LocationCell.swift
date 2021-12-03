@@ -1,5 +1,5 @@
 //
-//  LocationTableViewCell.swift
+//  LocationCell.swift
 //  playersMeet
 //
 //  Created by Nada Zeini on 4/26/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocationTableViewCell: UITableViewCell {
+class LocationCell: UITableViewCell {
     
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var locationImageView: UIImageView!
