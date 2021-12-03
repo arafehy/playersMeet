@@ -43,10 +43,10 @@ class MessageCell: UITableViewCell {
         switch message.origin {
         case .currentUser:
             nameLabelText += " (Me)"
-            self.nameLabel.textColor = .systemOrange
+            nameLabel.textColor = .systemOrange
         case .teammate:
             let hexColor: String = message.color != "#000000" ? message.color : "#808080"
-            self.nameLabel.textColor = UIColor(hexString: hexColor)
+            nameLabel.textColor = UIColor(hexString: hexColor)
         }
         nameLabel.text = nameLabelText
     }
