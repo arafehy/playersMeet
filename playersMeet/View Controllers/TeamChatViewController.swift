@@ -15,8 +15,8 @@ class TeamChatViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var teamID: String! // teamID is the selected location
-    let commentBar = MessageInputBar()
-    var showsCommentBar = true
+    let messageBar = MessageInputBar()
+    var showsMessageBar = true
     var messages: [ChatMessage] = []
     let currentUser: User? = FirebaseAuthClient.getUser()
     
@@ -52,9 +52,9 @@ class TeamChatViewController: UIViewController {
             guard let self = self else { return }
             switch result {
             case .success(_):
-                self.commentBar.inputTextView.text = nil
+                self.messageBar.inputTextView.text = nil
                 self.becomeFirstResponder()
-                self.commentBar.inputTextView.resignFirstResponder()
+                self.messageBar.inputTextView.resignFirstResponder()
             case .failure(let error):
                 self.showErrorAlert(with: error)
             }
@@ -77,7 +77,7 @@ class TeamChatViewController: UIViewController {
     }
     
     func showProfile(for userID: String) {
-        commentBar.inputTextView.resignFirstResponder()
+        messageBar.inputTextView.resignFirstResponder()
         self.performSegue(withIdentifier: "toProfile", sender: userID)
     }
 }
@@ -108,13 +108,13 @@ extension TeamChatViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension TeamChatViewController: MessageInputBarDelegate {
     func setupMessageBar() {
-        commentBar.delegate = self
-        commentBar.inputTextView.placeholder = "Type message..."
-        commentBar.sendButton.title = "Send"
-        commentBar.sendButton.setTitleColor(.systemOrange, for: .normal)
-        commentBar.backgroundView.backgroundColor = .systemBackground
-        commentBar.inputTextView.font = UIFont(descriptor: .init(name: "Futura", size: 17), size: 17)
-        commentBar.inputTextView.becomeFirstResponder()
+        messageBar.delegate = self
+        messageBar.inputTextView.placeholder = "Type message..."
+        messageBar.sendButton.title = "Send"
+        messageBar.sendButton.setTitleColor(.systemOrange, for: .normal)
+        messageBar.backgroundView.backgroundColor = .systemBackground
+        messageBar.inputTextView.font = UIFont(descriptor: .init(name: "Futura", size: 17), size: 17)
+        messageBar.inputTextView.becomeFirstResponder()
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
@@ -122,15 +122,15 @@ extension TeamChatViewController: MessageInputBarDelegate {
     }
     
     @objc func keyboardWillBeHidden(note: Notification) {
-        commentBar.inputTextView.text = nil
+        messageBar.inputTextView.text = nil
         becomeFirstResponder()
     }
     
     override var inputAccessoryView: UIView? {
-        return commentBar
+        return messageBar
     }
     
     override var canBecomeFirstResponder: Bool {
-        return showsCommentBar
+        return showsMessageBar
     }
 }
