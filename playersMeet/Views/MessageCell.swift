@@ -35,9 +35,7 @@ class MessageCell: UITableViewCell {
         setNameAndTextColor(message)
         messageLabel.text = message.text
         createdAtLabel.text = Formatter.getReadableDate(timeInterval: message.createdAt)
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MessageCell.tappedNameLabel(sender:)))
-        nameLabel.gestureRecognizers = []
-        nameLabel.gestureRecognizers!.append(tapRecognizer)
+        addTapRecognizerToNameLabel()
     }
     
     func setNameAndTextColor(_ message: ChatMessage) {
@@ -51,6 +49,11 @@ class MessageCell: UITableViewCell {
             self.nameLabel.textColor = UIColor(hexString: hexColor)
         }
         nameLabel.text = nameLabelText
+    }
+    
+    func addTapRecognizerToNameLabel() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MessageCell.tappedNameLabel(sender:)))
+        nameLabel.addGestureRecognizer(tapRecognizer)
     }
     
     @objc func tappedNameLabel(sender: UITapGestureRecognizer) {
