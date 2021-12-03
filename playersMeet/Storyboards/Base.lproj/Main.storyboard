@@ -148,8 +148,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="20" reuseIdentifier="LocationTableViewCell" id="bCk-ts-G6i" customClass="LocationTableViewCell" customModule="playersMeetup" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="160.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="20" reuseIdentifier="LocationTableViewCell" id="bCk-ts-G6i" customClass="LocationCell" customModule="playersMeet" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="600" height="160.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bCk-ts-G6i" id="dgg-wQ-Kv6">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="160.5"/>
