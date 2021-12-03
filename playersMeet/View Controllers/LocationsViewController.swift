@@ -92,7 +92,7 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let locationCell = tableView.dequeueReusableCell(withIdentifier: "LocationTableViewCell") as! LocationCell
         let location = locations[indexPath.row]
-        locationCell.configure(with: location)
+        locationCell.location = location
         return locationCell
     }
     
