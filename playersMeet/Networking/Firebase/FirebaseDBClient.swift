@@ -272,12 +272,4 @@ class FirebaseDBClient {
             }
         }
     }
-    
-    // MARK: - Temporary Refs
-    
-    static let userInfoRef = Database.database().reference().ref.child("userInfo")
-    static let usersRef = Database.database().reference().ref.child("profileInfo")
-    static let imagesRef = Storage.storage().reference(withPath: "images")
-    static let chatRef = Database.database().reference().ref.child("teamChat")
-    static let businessesRef = Database.database().reference().ref.child("businesses")
 }
