@@ -72,8 +72,8 @@ class TeamChatViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toProfile" {
-            let profileVC = segue.destination as! ProfileViewController
-            let userID = sender as! String
+            guard let profileVC = segue.destination as? ProfileViewController,
+                  let userID = sender as? String else { return }
             profileVC.teammateID = userID
         }
     }
