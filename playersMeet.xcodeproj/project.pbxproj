@@ -46,7 +46,6 @@
 		FA18FCB2245BBC940087C1CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA18FCB1245BBC930087C1CC /* Assets.xcassets */; };
 		FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F72E245445FD00E681F9 /* AppDelegate.swift */; };
 		FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F730245445FD00E681F9 /* SceneDelegate.swift */; };
-		FA75F733245445FD00E681F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F732245445FD00E681F9 /* ViewController.swift */; };
 		FA75F736245445FD00E681F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA75F734245445FD00E681F9 /* Main.storyboard */; };
 		FA75F73B2454460000E681F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA75F7392454460000E681F9 /* LaunchScreen.storyboard */; };
 		FA75F7462454460000E681F9 /* playersMeetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75F7452454460000E681F9 /* playersMeetTests.swift */; };
@@ -124,7 +123,6 @@
 		FA75F72B245445FC00E681F9 /* playersMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playersMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA75F72E245445FD00E681F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA75F730245445FD00E681F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FA75F732245445FD00E681F9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FA75F735245445FD00E681F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FA75F73A2454460000E681F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA75F73C2454460000E681F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -258,7 +256,6 @@
 		E0AB2F4924652E0300F4CE49 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA75F732245445FD00E681F9 /* ViewController.swift */,
 				FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */,
 				FAB9CBB32456468800C25C92 /* DetailsViewController.swift */,
 				DB80848D245687B800177175 /* SignUpViewController.swift */,
@@ -667,7 +664,6 @@
 				E01D6EA22752E660007C2EF6 /* Formatter.swift in Sources */,
 				E0C0254B245F8CC200950223 /* User.swift in Sources */,
 				E0554F47274084A700B602C4 /* UIColor+Extensions.swift in Sources */,
-				FA75F733245445FD00E681F9 /* ViewController.swift in Sources */,
 				FAB9CBB22455C27600C25C92 /* LocationCell.swift in Sources */,
 				DB80848E245687B800177175 /* SignUpViewController.swift in Sources */,
 				E0799702272D02320000D162 /* FirebaseManager.swift in Sources */,
