@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 import FirebaseAuth
 import MessageInputBar
 
@@ -18,7 +17,6 @@ class TeamChatViewController: UIViewController {
     var teamID: String! // teamID is the selected location
     let commentBar = MessageInputBar()
     var showsCommentBar = true
-    let ref = Database.database().reference()
     var messages: [ChatMessage] = []
     let currentUser: User? = FirebaseAuthClient.getUser()
     
