@@ -18,10 +18,9 @@ struct Formatter {
     }
     
     static func getReadableDate(timeInterval: TimeInterval) -> String {
-        dateFormatter.calendar = Calendar(identifier: .iso8601)
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.timeZone = TimeZone(abbreviation: "PST")
-        dateFormatter.dateFormat = "h:mma, MM/dd/yyyy"
+        dateFormatter.doesRelativeDateFormatting = true
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
         return dateFormatter.string(from: Date(timeIntervalSince1970: timeInterval))
     }
 }
