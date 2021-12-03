@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
-    <device id="retina6_1" orientation="portrait" appearance="dark"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Profile-->
         <scene sceneID="M24-FU-6LS">
             <objects>
-                <viewController id="sTv-4i-jSU" customClass="ProfileViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="sTv-4i-jSU" customClass="ProfileViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BKj-xe-mcY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -57,8 +59,8 @@
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
                                         <rect key="frame" x="0.0" y="26" width="384" height="113.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -69,7 +71,7 @@
                             </stackView>
                             <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ucm-ne-q6c">
                                 <rect key="frame" x="224" y="567" width="175" height="241"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="241" id="7oV-le-AWD"/>
                                     <constraint firstAttribute="width" constant="175" id="mgT-ym-SVO"/>
@@ -80,7 +82,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                    <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" systemColor="systemOrangeColor"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Profile" id="ouP-Tu-gZH">
@@ -93,7 +95,8 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="wRl-hr-91e"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="dZk-XR-9gU" firstAttribute="centerX" secondItem="BKj-xe-mcY" secondAttribute="centerX" id="6po-g2-Tm2"/>
                             <constraint firstItem="wRl-hr-91e" firstAttribute="trailing" secondItem="hGO-iq-PGK" secondAttribute="trailing" constant="15" id="8ii-1I-oiG"/>
@@ -108,7 +111,6 @@
                             <constraint firstItem="hGO-iq-PGK" firstAttribute="leading" secondItem="wRl-hr-91e" secondAttribute="leading" constant="15" id="vO8-Yv-EAw"/>
                             <constraint firstItem="hGO-iq-PGK" firstAttribute="top" secondItem="teq-h4-lH2" secondAttribute="bottom" constant="30" id="wo6-UD-1XW"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="wRl-hr-91e"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="0Di-07-kM9">
                         <barButtonItem key="leftBarButtonItem" title="Logout" id="mdl-ah-Gjo">
@@ -139,17 +141,17 @@
         <!--Locations-->
         <scene sceneID="HVO-CB-0w0">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" id="WJJ-6o-3C9" customClass="LocationsViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalTransitionStyle="crossDissolve" id="WJJ-6o-3C9" customClass="LocationsViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PlA-gZ-X2v">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ug0-EY-7TY">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="20" reuseIdentifier="LocationTableViewCell" id="bCk-ts-G6i" customClass="LocationCell" customModule="playersMeet" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.5" width="600" height="160.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="160.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bCk-ts-G6i" id="dgg-wQ-Kv6">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="160.5"/>
@@ -181,7 +183,7 @@
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9J0-zi-Asd">
                                                     <rect key="frame" x="182" y="78.5" width="50" height="49"/>
-                                                    <color key="tintColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="tintColor" systemColor="systemGreenColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="E0h-in-Vy2"/>
                                                         <constraint firstAttribute="width" constant="50" id="Q1l-5k-9n4"/>
@@ -211,14 +213,14 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="2yg-Uh-thw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ug0-EY-7TY" firstAttribute="top" secondItem="PlA-gZ-X2v" secondAttribute="top" id="6ac-TW-QS4"/>
                             <constraint firstItem="ug0-EY-7TY" firstAttribute="leading" secondItem="2yg-Uh-thw" secondAttribute="leading" id="SjY-7R-5mG"/>
                             <constraint firstAttribute="bottom" secondItem="ug0-EY-7TY" secondAttribute="bottom" id="jtH-Uo-YfO"/>
                             <constraint firstItem="ug0-EY-7TY" firstAttribute="trailing" secondItem="2yg-Uh-thw" secondAttribute="trailing" id="zJq-mR-OB2"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="2yg-Uh-thw"/>
                     </view>
                     <navigationItem key="navigationItem" title="Locations" id="dNk-uu-O5Y"/>
                     <connections>
@@ -232,7 +234,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="dkS-qE-uw2">
             <objects>
-                <viewController storyboardIdentifier="SignUpViewController" id="ySA-7L-eq0" customClass="SignUpViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="ySA-7L-eq0" customClass="SignUpViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3UT-xE-X8N">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -263,7 +265,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1y-7T-VH0">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1y-7T-VH0">
                                 <rect key="frame" x="20" y="732" width="374" height="59"/>
                                 <color key="backgroundColor" red="0.2239311735" green="0.53213566779999999" blue="0.69854843089999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -288,18 +290,18 @@
                             </label>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NkG-3R-82H">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <accessibility key="accessibilityConfiguration">
                                     <accessibilityTraits key="traits" notEnabled="YES"/>
                                 </accessibility>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxv-q3-7Gv">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxv-q3-7Gv">
                                 <rect key="frame" x="20" y="582" width="374" height="56"/>
+                                <viewLayoutGuide key="safeArea" id="6bt-xx-bUe"/>
                                 <color key="backgroundColor" red="0.1516009176" green="0.68385686530000001" blue="0.1063805902" alpha="0.84705882349999995" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="pEV-lF-yz8"/>
                                 </constraints>
-                                <viewLayoutGuide key="safeArea" id="6bt-xx-bUe"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <state key="normal" title="Sign In">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -315,7 +317,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Vz1-sB-u1w"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="NkG-3R-82H" firstAttribute="leading" secondItem="Vz1-sB-u1w" secondAttribute="leading" id="0AK-hU-OMR"/>
                             <constraint firstItem="pxv-q3-7Gv" firstAttribute="trailing" secondItem="u1y-7T-VH0" secondAttribute="trailing" id="C9k-g9-7bz"/>
@@ -338,7 +341,6 @@
                             <constraint firstItem="NkG-3R-82H" firstAttribute="centerY" secondItem="3UT-xE-X8N" secondAttribute="centerY" id="yft-Op-UZw"/>
                             <constraint firstItem="dbZ-ik-Rln" firstAttribute="trailing" secondItem="pxv-q3-7Gv" secondAttribute="trailing" id="zPH-Pc-0XF"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Vz1-sB-u1w"/>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="jiO-28-e5M" id="uyE-CT-L1O"/>
@@ -358,19 +360,19 @@
         <!--Details View Controller-->
         <scene sceneID="VEu-tn-Tyx">
             <objects>
-                <viewController id="Y7D-ph-ihh" customClass="DetailsViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y7D-ph-ihh" customClass="DetailsViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ECH-Zy-ve8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no players here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4at-gt-s2e">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="There are no players here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4at-gt-s2e">
                                 <rect key="frame" x="54.5" y="348" width="305.5" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are in this team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAd-WV-Yxf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="You are in this team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAd-WV-Yxf">
                                 <rect key="frame" x="72" y="564" width="270" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="270" id="myl-W3-wkP"/>
@@ -379,9 +381,9 @@
                                 <nil key="textColor"/>
                                 <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hR-tW-Dfh">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hR-tW-Dfh">
                                 <rect key="frame" x="57" y="633" width="300" height="57"/>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="PvQ-99-O1K"/>
                                 </constraints>
@@ -392,23 +394,12 @@
                                     <segue destination="g7v-Ld-9AI" kind="show" identifier="toChat" id="vOv-Iy-bhq"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q7x-5U-mmW" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="230"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="230" id="whu-k8-IpB"/>
-                                </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="dRI-Nf-sU1" appends="YES" id="y3r-bQ-I8z"/>
-                                </connections>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IfB-L3-tct">
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IfB-L3-tct">
                                 <rect key="frame" x="57" y="412" width="300" height="122"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLA-Lc-gZB">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLA-Lc-gZB">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="57"/>
-                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="34"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Join Team"/>
@@ -416,9 +407,9 @@
                                             <action selector="joinTeamAction:" destination="Y7D-ph-ihh" eventType="touchUpInside" id="buu-km-L4z"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpk-fF-fV3">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpk-fF-fV3">
                                         <rect key="frame" x="0.0" y="65" width="300" height="57"/>
-                                        <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemRedColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="34"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Leave Team"/>
@@ -432,28 +423,23 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="pJJ-5k-gex"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="IfB-L3-tct" firstAttribute="top" secondItem="4at-gt-s2e" secondAttribute="bottom" constant="30" id="1hQ-hU-7od"/>
-                            <constraint firstItem="Q7x-5U-mmW" firstAttribute="leading" secondItem="pJJ-5k-gex" secondAttribute="leading" id="2a7-HM-n4K"/>
                             <constraint firstItem="4at-gt-s2e" firstAttribute="centerX" secondItem="ECH-Zy-ve8" secondAttribute="centerX" id="3hU-jJ-Ibx"/>
-                            <constraint firstItem="4at-gt-s2e" firstAttribute="top" secondItem="Q7x-5U-mmW" secondAttribute="bottom" constant="30" id="89s-2C-A2U"/>
                             <constraint firstItem="UAd-WV-Yxf" firstAttribute="centerX" secondItem="IfB-L3-tct" secondAttribute="centerX" id="CId-tI-Ek3"/>
                             <constraint firstItem="3hR-tW-Dfh" firstAttribute="top" secondItem="UAd-WV-Yxf" secondAttribute="bottom" constant="30" id="EkH-mU-fyu"/>
-                            <constraint firstItem="Q7x-5U-mmW" firstAttribute="top" secondItem="pJJ-5k-gex" secondAttribute="top" id="GGa-WZ-ItT"/>
-                            <constraint firstItem="pJJ-5k-gex" firstAttribute="trailing" secondItem="Q7x-5U-mmW" secondAttribute="trailing" id="Gxq-AS-lwW"/>
                             <constraint firstItem="3hR-tW-Dfh" firstAttribute="centerX" secondItem="UAd-WV-Yxf" secondAttribute="centerX" id="M8G-6l-DHd"/>
                             <constraint firstItem="UAd-WV-Yxf" firstAttribute="top" secondItem="IfB-L3-tct" secondAttribute="bottom" constant="30" id="Owx-gm-i4w"/>
                             <constraint firstItem="IfB-L3-tct" firstAttribute="centerX" secondItem="4at-gt-s2e" secondAttribute="centerX" id="UEx-h4-GVs"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="pJJ-5k-gex"/>
                     </view>
                     <navigationItem key="navigationItem" id="1WP-YF-BvG"/>
                     <connections>
                         <outlet property="chatButton" destination="3hR-tW-Dfh" id="QuU-YW-AqY"/>
-                        <outlet property="googleMapView" destination="Q7x-5U-mmW" id="Qvo-ud-e3I"/>
-                        <outlet property="joinTeamOutlet" destination="hLA-Lc-gZB" id="V7s-a7-B45"/>
-                        <outlet property="leaveTeamOutlet" destination="Wpk-fF-fV3" id="III-tL-MNW"/>
+                        <outlet property="joinTeamButton" destination="hLA-Lc-gZB" id="V7s-a7-B45"/>
+                        <outlet property="leaveTeamButton" destination="Wpk-fF-fV3" id="III-tL-MNW"/>
                         <outlet property="playerCountLabel" destination="4at-gt-s2e" id="OQh-Jq-yqq"/>
                         <outlet property="youInTeamLabel" destination="UAd-WV-Yxf" id="pwd-3g-rc3"/>
                     </connections>
@@ -472,10 +458,10 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sS4-t1-1ED" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Game" image="location" catalog="system" selectedImage="location.fill" id="VVR-TY-aIX">
-                        <color key="badgeColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="badgeColor" systemColor="systemOrangeColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="value" systemColor="systemOrangeColor"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
@@ -485,7 +471,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
-                            <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="systemOrangeColor"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -506,7 +492,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gmy-sI-Kar">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="selectedImageTintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" systemColor="systemOrangeColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="frn-dA-emD" kind="relationship" relationship="viewControllers" id="8YR-JM-ehi"/>
@@ -520,7 +506,7 @@
         <!--Create Profile-->
         <scene sceneID="20c-mW-MFe">
             <objects>
-                <viewController id="7iw-pW-pbj" customClass="EditProfileViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7iw-pW-pbj" customClass="EditProfileViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dGd-UN-qJW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -541,7 +527,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                    <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" systemColor="systemOrangeColor"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Edit Profile" id="LIa-wR-TOo">
@@ -559,7 +545,7 @@
                                 </items>
                             </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-DZ-z4l" userLabel="Bio Stack">
-                                <rect key="frame" x="15" y="449" width="384" height="351"/>
+                                <rect key="frame" x="15" y="677" width="384" height="123"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hb9-qp-2pm" userLabel="Bio Label">
                                         <rect key="frame" x="0.0" y="0.0" width="29" height="26"/>
@@ -568,9 +554,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter a bio..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Vau-ad-t0F">
-                                        <rect key="frame" x="0.0" y="34" width="384" height="317"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <rect key="frame" x="0.0" y="34" width="384" height="89"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -583,10 +569,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DPE-V0-64G" userLabel="Name Stack">
-                                <rect key="frame" x="50" y="294" width="314" height="147"/>
+                                <rect key="frame" x="50" y="294" width="314" height="375"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-Pk-41X" userLabel="Name Text Field">
-                                        <rect key="frame" x="20" y="0.0" width="274" height="61.5"/>
+                                        <rect key="frame" x="20" y="0.0" width="274" height="289.5"/>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="40"/>
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                         <connections>
@@ -595,7 +581,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-Od-8aZ" userLabel="Username Text Field">
-                                        <rect key="frame" x="20" y="69.5" width="274" height="35.5"/>
+                                        <rect key="frame" x="20" y="297.5" width="274" height="35.5"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" textContentType="username"/>
                                         <connections>
@@ -604,7 +590,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qH4-7N-6DP">
-                                        <rect key="frame" x="129" y="113" width="56.5" height="34"/>
+                                        <rect key="frame" x="129" y="341" width="56.5" height="34"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <connections>
@@ -621,7 +607,8 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="kwN-ut-hTW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kwN-ut-hTW" firstAttribute="trailing" secondItem="DPE-V0-64G" secondAttribute="trailing" constant="50" id="3e1-3k-jgV"/>
                             <constraint firstItem="RN5-dF-cjA" firstAttribute="centerX" secondItem="dGd-UN-qJW" secondAttribute="centerX" id="FQA-JQ-KKK"/>
@@ -633,7 +620,6 @@
                             <constraint firstItem="DPE-V0-64G" firstAttribute="leading" secondItem="kwN-ut-hTW" secondAttribute="leading" constant="50" id="vfh-0S-x36"/>
                             <constraint firstItem="7Z2-DZ-z4l" firstAttribute="top" secondItem="DPE-V0-64G" secondAttribute="bottom" constant="8" symbolic="YES" id="xUA-OP-Jph"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="kwN-ut-hTW"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Profile" id="X4h-HT-4m9">
                         <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="save" id="yaJ-KN-mZw">
@@ -666,7 +652,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="frn-dA-emD" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="h9g-Jy-3KA">
-                        <color key="badgeColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="badgeColor" systemColor="systemOrangeColor"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oGg-jm-Q9r">
@@ -674,7 +660,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
-                            <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="systemOrangeColor"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -696,7 +682,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                            <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" systemColor="systemOrangeColor"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -711,14 +697,14 @@
         <!--Chat-->
         <scene sceneID="4xP-sd-ns5">
             <objects>
-                <viewController id="g7v-Ld-9AI" customClass="TeamChatViewController" customModule="playersMeetup" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="g7v-Ld-9AI" customClass="TeamChatViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E6o-oy-zSo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Qz8-jh-VXg">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MessageCell" id="P00-74-ggT" customClass="MessageCell" customModule="playersMeet" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="80.5"/>
@@ -740,10 +726,10 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="92" height="26"/>
                                                             <gestureRecognizers/>
                                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                                            <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" systemColor="systemGreenColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48Z-li-sVc">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="48Z-li-sVc" userLabel="Message Label">
                                                             <rect key="frame" x="0.0" y="27.5" width="92" height="22.5"/>
                                                             <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                             <nil key="textColor"/>
@@ -771,14 +757,14 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="qM0-r9-OwS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Qz8-jh-VXg" firstAttribute="trailing" secondItem="qM0-r9-OwS" secondAttribute="trailing" id="0Gt-6B-7VJ"/>
                             <constraint firstItem="Qz8-jh-VXg" firstAttribute="leading" secondItem="qM0-r9-OwS" secondAttribute="leading" id="b5N-yP-Bc0"/>
                             <constraint firstAttribute="bottom" secondItem="Qz8-jh-VXg" secondAttribute="bottom" id="qUK-Ao-jVY"/>
                             <constraint firstItem="Qz8-jh-VXg" firstAttribute="top" secondItem="E6o-oy-zSo" secondAttribute="top" id="sj3-B4-SUM"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="qM0-r9-OwS"/>
                     </view>
                     <navigationItem key="navigationItem" title="Chat" id="Lpe-Cs-Svj"/>
                     <connections>
@@ -795,13 +781,28 @@
         <segue reference="vpq-Qr-tfG"/>
         <segue reference="dQP-nd-RGv"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" systemColor="systemOrangeColor"/>
     <resources>
-        <image name="location" catalog="system" width="128" height="115"/>
+        <image name="location" catalog="system" width="128" height="118"/>
         <image name="location.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="location.fill" catalog="system" width="128" height="115"/>
+        <image name="location.fill" catalog="system" width="128" height="121"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.crop.square" catalog="system" width="128" height="114"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
