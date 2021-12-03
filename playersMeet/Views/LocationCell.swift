@@ -15,6 +15,10 @@ class LocationCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var isHereIndicator: UIImageView!
     
+    var location: Location? {
+        didSet { configure() }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -24,7 +28,8 @@ class LocationCell: UITableViewCell {
         
     }
     
-    func configure(with location: Location) {
+    func configure() {
+        guard let location = location else { return }
         locationLabel.text = location.name
         locationImageView.af.setImage(withURL: location.imageUrl, cacheKey: location.id)
         distanceLabel.text = Formatter.getReadableString(measurement: location.distance)
