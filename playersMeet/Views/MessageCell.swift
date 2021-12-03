@@ -14,7 +14,10 @@ class MessageCell: UITableViewCell {
     @IBOutlet weak var msgLabel: UILabel!
     @IBOutlet weak var createdAtLabel: UILabel!
     
-    let tapRecognizer: customTapGestureRecognizer = customTapGestureRecognizer()
+    var delegate: MessageCellDelegate?
+    var message: ChatMessage? {
+        didSet { configureCell() }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,12 +30,12 @@ class MessageCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configure(with message: ChatMessage) {
+    func configureCell() {
+        guard let message = message else { return }
         setNameAndTextColor(message)
         msgLabel.text = message.text
         createdAtLabel.text = Formatter.getReadableDate(timeInterval: message.createdAt)
-        tapRecognizer.addTarget(self, action: #selector(showProfile))
-        tapRecognizer.userID = message.userID
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(MessageCell.tappedNameLabel(sender:)))
         nameLabel.gestureRecognizers = []
         nameLabel.gestureRecognizers!.append(tapRecognizer)
     }
@@ -49,4 +52,13 @@ class MessageCell: UITableViewCell {
         }
         nameLabel.text = nameLabelText
     }
+    
+    @objc func tappedNameLabel(sender: UITapGestureRecognizer) {
+        guard let userID = message?.userID else { return }
+        delegate?.didTapNameLabel(userID: userID)
+    }
+}
+
+protocol MessageCellDelegate {
+    func didTapNameLabel(userID: String)
 }

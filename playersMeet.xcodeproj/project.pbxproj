@@ -15,7 +15,6 @@
 		DB80848E245687B800177175 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848D245687B800177175 /* SignUpViewController.swift */; };
 		DB8084902456A06100177175 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848F2456A06100177175 /* HomeViewController.swift */; };
 		E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */; };
-		E005B3522464A6810034DD7C /* customTapGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
 		E01187A4274ECC9800D84768 /* UserLocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01187A3274ECC9800D84768 /* UserLocationProvider.swift */; };
 		E01187AA274EEEEB00D84768 /* UserLocationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01187A9274EEEEB00D84768 /* UserLocationError.swift */; };
@@ -91,7 +90,6 @@
 		DB80848F2456A06100177175 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DD54A7625C4740983B6BA9B5 /* Pods-playersMeet-playersMeetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeet-playersMeetUITests.release.xcconfig"; path = "Target Support Files/Pods-playersMeet-playersMeetUITests/Pods-playersMeet-playersMeetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4414-bouncy-basketball.json"; sourceTree = "<group>"; };
-		E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTapGestureRecognizer.swift; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		E01187A3274ECC9800D84768 /* UserLocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationProvider.swift; sourceTree = "<group>"; };
 		E01187A9274EEEEB00D84768 /* UserLocationError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationError.swift; sourceTree = "<group>"; };
@@ -288,7 +286,6 @@
 			children = (
 				FAB9CBB12455C27600C25C92 /* LocationTableViewCell.swift */,
 				6A4B0F462460872F002F0882 /* MessageCell.swift */,
-				E005B3512464A6810034DD7C /* customTapGestureRecognizer.swift */,
 				E05F0294273110D200DDBE33 /* LottieAnimations.swift */,
 			);
 			path = Views;
@@ -704,7 +701,6 @@
 				6A4B0F452460871D002F0882 /* TeamChatViewController.swift in Sources */,
 				E01187AA274EEEEB00D84768 /* UserLocationError.swift in Sources */,
 				E05F02912730C81300DDBE33 /* Navigation.swift in Sources */,
-				E005B3522464A6810034DD7C /* customTapGestureRecognizer.swift in Sources */,
 				E0788C4E272E8A440089197D /* DatabaseError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
