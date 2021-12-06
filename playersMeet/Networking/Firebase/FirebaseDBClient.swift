@@ -158,7 +158,7 @@ class FirebaseDBClient {
         let metadata = StorageMetadata()
         metadata.contentType = "image/\(imageType.rawValue)"
         
-        StoragePaths.images.putData(imageData, metadata: metadata) { (metadata, error) in
+        StoragePaths.images.child(userID).putData(imageData, metadata: metadata) { (metadata, error) in
             if let error = error {
                 completion(.failure(error))
                 return
@@ -167,7 +167,7 @@ class FirebaseDBClient {
                 completion(.failure(ImageError.invalidMetadata))
                 return
             }
-            StoragePaths.images.downloadURL { (url, error) in
+            StoragePaths.images.child(userID).downloadURL { (url, error) in
                 if let error = error {
                     completion(.failure(error))
                     return
