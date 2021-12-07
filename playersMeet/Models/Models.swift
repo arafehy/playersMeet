@@ -55,6 +55,6 @@ extension LocationViewModel {
         self.name = location.name
         self.id = location.id
         self.imageUrl = location.imageUrl
-        self.distance = Formatter.getReadableString(measurement: location.distance)
+        self.distance = Formatter.getReadableMeasurement(location.distance)
     }
 }

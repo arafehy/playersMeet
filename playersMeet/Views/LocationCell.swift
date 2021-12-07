@@ -32,7 +32,7 @@ class LocationCell: UITableViewCell {
         guard let location = location else { return }
         locationLabel.text = location.name
         locationImageView.af.setImage(withURL: location.imageUrl, cacheKey: location.id)
-        distanceLabel.text = Formatter.getReadableString(measurement: location.distance)
+        distanceLabel.text = Formatter.getReadableMeasurement(location.distance)
         isHereIndicator.isHidden = location.id != CurrentSession.locationID
     }
 }

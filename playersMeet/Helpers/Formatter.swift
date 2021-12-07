@@ -12,7 +12,7 @@ struct Formatter {
     private static let measurementFormatter = MeasurementFormatter()
     private static let dateFormatter = DateFormatter()
     
-    static func getReadableString(measurement: Measurement<UnitLength>) -> String {
+    static func getReadableMeasurement(_ measurement: Measurement<UnitLength>) -> String {
         measurementFormatter.unitOptions = .naturalScale
         return measurementFormatter.string(from: measurement)
     }
