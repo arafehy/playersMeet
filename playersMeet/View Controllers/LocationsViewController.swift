@@ -14,8 +14,6 @@ class LocationsViewController: UIViewController {
     
     // MARK: - Properties
     
-    static let shared = LocationsViewController()
-    
     var locations: [Location] = []
     let locationProvider: LocationProvider = YelpClient()
     
