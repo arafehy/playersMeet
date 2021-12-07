@@ -1,5 +1,5 @@
 //
-//  Converter.swift
+//  Formatter.swift
 //  playersMeet
 //
 //  Created by Yazan Arafeh on 11/27/21.
