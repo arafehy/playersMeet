@@ -9,12 +9,12 @@
 import Foundation
 
 struct Formatter {
-    private static let formatter = MeasurementFormatter()
+    private static let measurementFormatter = MeasurementFormatter()
     private static let dateFormatter = DateFormatter()
     
     static func getReadableString(measurement: Measurement<UnitLength>) -> String {
-        formatter.unitOptions = .naturalScale
-        return formatter.string(from: measurement)
+        measurementFormatter.unitOptions = .naturalScale
+        return measurementFormatter.string(from: measurement)
     }
     
     static func getReadableDate(timeInterval: TimeInterval) -> String {
