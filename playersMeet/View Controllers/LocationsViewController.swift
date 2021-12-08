@@ -32,9 +32,10 @@ class LocationsViewController: UIViewController {
         updateLocations()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
+    override func viewDidAppear(_ animated: Bool) {
+        if let selectedRow = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedRow, animated: true)
+        }
     }
     
     // MARK: - Locations
@@ -75,6 +76,7 @@ class LocationsViewController: UIViewController {
         if let detailsVC = segue.destination as? DetailsViewController {
             let location: Location = locations[selectedRow]
             detailsVC.location = location
+            detailsVC.delegate = self
         }
     }
 }
@@ -101,6 +103,21 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate {
         UIView.animate(withDuration: 1.0) {
             cell.layer.transform = CATransform3DIdentity
             cell.alpha = 1.5
+        }
+    }
+}
+
+extension LocationsViewController: DetailsViewControllerDelegate {
+    func didChangeLocation(fromID: String?, toID: String?) {
+        guard let cells = tableView.visibleCells as? [LocationCell] else { return }
+        for cell in cells {
+            guard let id = cell.location?.id else { continue }
+            if id == fromID {
+                cell.isHereIndicator.isHidden = true
+            }
+            else if id == toID {
+                cell.isHereIndicator.isHidden = false
+            }
         }
     }
 }

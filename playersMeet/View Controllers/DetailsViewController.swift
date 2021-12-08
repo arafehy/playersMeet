@@ -33,6 +33,8 @@ class DetailsViewController: UIViewController {
         location.id == CurrentSession.locationID
     }
     
+    var delegate: DetailsViewControllerDelegate?
+    
     // MARK: - VC Life Cycle
     
     override func viewDidLoad() {
@@ -100,6 +102,7 @@ class DetailsViewController: UIViewController {
     func handleLocationChange(result: Result<String?, Error>) {
         switch result {
         case .success(let locationID):
+            delegate?.didChangeLocation(fromID: CurrentSession.locationID, toID: locationID)
             CurrentSession.locationID = locationID
             self.setButtonsAndLabels()
         case .failure(let error):
@@ -175,4 +178,9 @@ extension DetailsViewController: GMSMapViewDelegate {
             UIApplication.shared.open(URLDestination)
         }
     }
+}
+
+
+protocol DetailsViewControllerDelegate {
+    func didChangeLocation(fromID: String?, toID: String?)
 }
