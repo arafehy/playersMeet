@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import Firebase
-import FirebaseAuth
 import Lottie
+
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Properties
