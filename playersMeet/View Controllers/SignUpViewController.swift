@@ -26,7 +26,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     // MARK: - VC Life Cycle
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         animationView.play()
     }
     
