@@ -12,19 +12,17 @@ import Lottie
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Properties
+    @IBOutlet weak var playersMeetLabel: UILabel!
+    
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signUpButton: UIButton!
     
     @IBOutlet weak var lottieView: UIView!
     let animationView = AnimationView()
-    @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var signUpButton: UIButton!
-    @IBOutlet weak var passwordField: UITextField!
-    
-    @IBOutlet weak var playersMeetLabel: UILabel!
-    static let signUpController = SignUpViewController()
-    
-    static var userID: String = ""
-    
+
     // MARK: - VC Life Cycle
     
     override func viewDidAppear(_ animated: Bool) {
