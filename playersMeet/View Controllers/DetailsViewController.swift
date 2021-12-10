@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 import Firebase
 
 class DetailsViewController: UIViewController {
