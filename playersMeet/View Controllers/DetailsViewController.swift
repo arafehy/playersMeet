@@ -151,8 +151,9 @@ class DetailsViewController: UIViewController {
 
 // MARK: - Map
 
-extension DetailsViewController {
+extension DetailsViewController: MKMapViewDelegate {
     func initializeMap() {
+        locationMapView.delegate = self
         let coordinates = CLLocationCoordinate2D(latitude: location.coordinates.latitude, longitude: location.coordinates.longitude)
     }
 }
