@@ -20,6 +20,8 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var playerCountLabel: UILabel!
     
+    @IBOutlet weak var locationMapView: MKMapView!
+    
     var location: Location!
     var playerCount: Int = 0 {
         didSet {
