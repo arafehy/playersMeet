@@ -155,6 +155,13 @@ extension DetailsViewController: MKMapViewDelegate {
     func initializeMap() {
         locationMapView.delegate = self
         let coordinates = CLLocationCoordinate2D(latitude: location.coordinates.latitude, longitude: location.coordinates.longitude)
+        let region = MKCoordinateRegion(center: coordinates, latitudinalMeters: 800, longitudinalMeters: 800)
+        let locationPin = MKPointAnnotation()
+        locationPin.coordinate = coordinates
+        locationPin.title = location.name
+        locationPin.subtitle = Formatter.getReadableMeasurement(location.distance)
+        locationMapView.setRegion(region, animated: true)
+        locationMapView.addAnnotation(locationPin)
     }
 }
 
