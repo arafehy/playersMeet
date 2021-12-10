@@ -422,6 +422,10 @@
                                     <constraint firstAttribute="width" constant="300" id="1ph-bd-bBj"/>
                                 </constraints>
                             </stackView>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-a5-FkE">
+                                <rect key="frame" x="0.0" y="88" width="414" height="252"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pJJ-5k-gex"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -440,6 +444,7 @@
                         <outlet property="chatButton" destination="3hR-tW-Dfh" id="QuU-YW-AqY"/>
                         <outlet property="joinTeamButton" destination="hLA-Lc-gZB" id="V7s-a7-B45"/>
                         <outlet property="leaveTeamButton" destination="Wpk-fF-fV3" id="III-tL-MNW"/>
+                        <outlet property="locationMapView" destination="Z6x-a5-FkE" id="uNE-du-n2v"/>
                         <outlet property="playerCountLabel" destination="4at-gt-s2e" id="OQh-Jq-yqq"/>
                         <outlet property="youInTeamLabel" destination="UAd-WV-Yxf" id="pwd-3g-rc3"/>
                     </connections>
@@ -451,7 +456,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2484" y="-179"/>
+            <point key="canvasLocation" x="2482.608695652174" y="-179.46428571428569"/>
         </scene>
         <!--Game-->
         <scene sceneID="VW2-Q7-12N">
