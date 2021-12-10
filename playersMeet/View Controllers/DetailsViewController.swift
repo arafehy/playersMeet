@@ -8,8 +8,6 @@
 
 import UIKit
 import Firebase
-import GooglePlaces
-import GoogleMaps
 
 class DetailsViewController: UIViewController {
     
@@ -18,7 +16,6 @@ class DetailsViewController: UIViewController {
     @IBOutlet weak var leaveTeamButton: UIButton!
     @IBOutlet weak var joinTeamButton: UIButton!
     @IBOutlet weak var youInTeamLabel: UILabel!
-    @IBOutlet weak var googleMapView: GMSMapView!
     @IBOutlet weak var chatButton: UIButton!
     @IBOutlet weak var playerCountLabel: UILabel!
     
@@ -151,35 +148,11 @@ class DetailsViewController: UIViewController {
 
 // MARK: - Map
 
-extension DetailsViewController: GMSMapViewDelegate {
+extension DetailsViewController {
     func initializeMap() {
-        googleMapView.delegate = self
         let coordinates = CLLocationCoordinate2D(latitude: location.coordinates.latitude, longitude: location.coordinates.longitude)
-        let camera = GMSCameraPosition.camera(withTarget: coordinates, zoom: 14)
-        googleMapView.camera = camera
-        googleMapView.animate(to: camera)
-        let marker = GMSMarker(position: coordinates)
-        marker.map = googleMapView
-    }
-    
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        guard let URLNavigation = URL(string: "comgooglemaps://"),
-              UIApplication.shared.canOpenURL(URLNavigation),
-              let URLDestination = URL(string: "comgooglemaps://?saddr=&daddr=\(location.coordinates.latitude),\(location.coordinates.longitude)&directionsmode=driving") else {
-                  NSLog("Can't use comgooglemaps://")
-                  self.openTrackerInBrowser()
-                  return
-              }
-        UIApplication.shared.open(URLDestination)
-    }
-    
-    func openTrackerInBrowser() {
-        if let URLDestination = URL(string: "https://www.google.co.in/maps/dir/?saddr=&daddr=\(location.coordinates.latitude),\(location.coordinates.longitude)&directionsmode=driving") {
-            UIApplication.shared.open(URLDestination)
-        }
     }
 }
-
 
 protocol DetailsViewControllerDelegate {
     func didChangeLocation(fromID: String?, toID: String?)
