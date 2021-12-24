@@ -48,15 +48,14 @@ class TeamChatViewController: UIViewController {
     
     func sendMessage(text: String) {
         guard let userID = currentUser?.uid else { return }
-        FirebaseManager.dbClient.sendMessage(text, from: userID, to: teamID) { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case .success(_):
-                self.messageBar.inputTextView.text = nil
-                self.becomeFirstResponder()
-                self.messageBar.inputTextView.resignFirstResponder()
-            case .failure(let error):
-                self.showErrorAlert(with: error)
+        Task {
+            do {
+                try await FirebaseManager.dbClient.sendMessage(text, from: userID, to: teamID)
+                messageBar.inputTextView.text = nil
+                becomeFirstResponder()
+                messageBar.inputTextView.resignFirstResponder()
+            } catch {
+                showErrorAlert(with: error)
             }
         }
     }

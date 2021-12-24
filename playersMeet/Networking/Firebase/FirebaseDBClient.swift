@@ -61,14 +61,16 @@ class FirebaseDBClient {
     
     // MARK: - User
     
-    func retrieveUserProfile(userID: String, completion: @escaping (Result<UserInfo, Error>) -> Void) {
-        DBPaths.profileInfo.child(userID).observeSingleEvent(of: .value) { snapshot in
-            guard let value = snapshot.value else { return }
-            do {
-                let userInfo = try FirebaseDecoder().decode(UserInfo.self, from: value)
-                completion(.success(userInfo))
-            } catch {
-                completion(.failure(error))
+    func retrieveUserProfile(userID: String) async throws -> UserInfo {
+        return try await withCheckedThrowingContinuation { continuation in
+            DBPaths.profileInfo.child(userID).observeSingleEvent(of: .value) { snapshot in
+                guard let value = snapshot.value else { return }
+                do {
+                    let userInfo = try FirebaseDecoder().decode(UserInfo.self, from: value)
+                    continuation.resume(returning: userInfo)
+                } catch {
+                    continuation.resume(throwing: error)
+                }
             }
         }
     }
@@ -247,25 +249,21 @@ class FirebaseDBClient {
         }
     }
     
-    func sendMessage(_ message: String, from userID: String, to locationID: String, completion: @escaping (Result<ChatMessage, Error>) -> Void) {
-        retrieveUserProfile(userID: userID) { [weak self] (result) in
-            switch result {
-            case .success(let userInfo):
-                let message = ChatMessage(userID: userID, username: userInfo.username, text: message, createdAt: Date().timeIntervalSince1970, color: userInfo.color)
-                self?.sendMessage(message, to: locationID, completion: completion)
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+    func sendMessage(_ message: String, from userID: String, to locationID: String) async throws {
+        let userProfile = try await retrieveUserProfile(userID: userID)
+        let message = ChatMessage(userID: userID, username: userProfile.username, text: message, createdAt: Date().timeIntervalSince1970, color: userProfile.color)
+        try await sendMessage(message, to: locationID)
     }
     
-    private func sendMessage(_ message: ChatMessage, to locationID: String, completion: @escaping (Result<ChatMessage, Error>) -> Void) {
-        DBPaths.teamChat.child(locationID).childByAutoId().setValue(message.asDictionary()) { (error, reference) in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(message))
+    private func sendMessage(_ message: ChatMessage, to locationID: String) async throws {
+        return try await withCheckedThrowingContinuation({ continuation in
+            DBPaths.teamChat.child(locationID).childByAutoId().setValue(message.asDictionary()) { error, _ in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else {
+                    continuation.resume()
+                }
             }
-        }
+        })
     }
 }
