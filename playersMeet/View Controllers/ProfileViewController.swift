@@ -74,21 +74,19 @@ class ProfileViewController: UIViewController {
     // MARK: - Profile Loading
     
     func loadUserProfile(userID: String) {
-        FirebaseManager.dbClient.retrieveUserProfile(userID: userID) { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let userInfo):
-                self.userInfo = userInfo
-                self.userInfo.color = ProfileViewController.self.assignedStringColor
+        Task {
+            do {
+                userInfo = try await FirebaseManager.dbClient.retrieveUserProfile(userID: userID)
+                userInfo.color = ProfileViewController.self.assignedStringColor
                 if let _ = URL(string: self.userInfo.photoURL) {
-                    self.loadProfilePicture(userID: userID)
+                    loadProfilePicture(userID: userID)
                 }
                 else {
-                    self.editButton.isEnabled = true
+                    editButton.isEnabled = true
                 }
-                self.setLabelTexts()
-            case .failure(let error):
-                self.showErrorAlert(with: error)
+                setLabelTexts()
+            } catch {
+                showErrorAlert(with: error)
                 print("Could not load profile: \(error)")
             }
         }
