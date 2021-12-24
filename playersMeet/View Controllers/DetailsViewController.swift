@@ -159,9 +159,17 @@ extension DetailsViewController: MKMapViewDelegate {
         setMapPin(at: coordinates)
     }
     
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        zoomToFitMapPins()
+    }
+    
     func setMapRegion(with center: CLLocationCoordinate2D) {
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 800, longitudinalMeters: 800)
         locationMapView.setRegion(region, animated: true)
+    }
+    
+    func zoomToFitMapPins() {
+        locationMapView.showAnnotations(locationMapView.annotations, animated: true)
     }
     
     func setMapPin(at coordinates: CLLocationCoordinate2D) {
