@@ -424,9 +424,13 @@
                             </stackView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-a5-FkE">
                                 <rect key="frame" x="0.0" y="88" width="414" height="250"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="k9s-f5-aWL"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="XIo-ZM-MUU" appends="YES" id="hSP-yV-jWH"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="pJJ-5k-gex"/>
@@ -456,6 +460,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QNQ-pD-zBa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="XIo-ZM-MUU">
+                    <connections>
+                        <action selector="tappedMap:" destination="Y7D-ph-ihh" id="dno-0L-1BC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2482.608695652174" y="-179.46428571428569"/>
         </scene>

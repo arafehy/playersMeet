@@ -172,6 +172,13 @@ extension DetailsViewController: MKMapViewDelegate {
         locationMapView.addAnnotation(locationPin)
         locationMapView.selectAnnotation(locationPin, animated: true)
     }
+    
+    @IBAction func tappedMap(_ sender: UITapGestureRecognizer) {
+        let coordinates = CLLocationCoordinate2D(latitude: location.coordinates.latitude, longitude: location.coordinates.longitude)
+        let locationItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinates))
+        locationItem.name = location.name
+        locationItem.openInMaps(launchOptions: [MKLaunchOptionsMapCenterKey: coordinates])
+    }
 }
 
 protocol DetailsViewControllerDelegate {
