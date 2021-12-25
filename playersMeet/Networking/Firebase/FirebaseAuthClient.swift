@@ -14,18 +14,8 @@ struct FirebaseAuthClient {
     private static let authObject = Auth.auth()
     private static var handle: AuthStateDidChangeListenerHandle?
     
-    static func createUser(email: String, password: String, completion: @escaping (Result<User?, Error>) -> Void) {
-        authObject.createUser(withEmail: email, password: password){ (result, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            guard let user = result?.user else {
-                completion(.failure(AuthError.userNotFound))
-                return
-            }
-            completion(.success(user))
-        }
+    static func createUser(email: String, password: String) async throws {
+        try await authObject.createUser(withEmail: email, password: password)
     }
     
     static func signIn(email: String, password: String, completion: @escaping (Result<User?, Error>) -> Void) {

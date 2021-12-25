@@ -49,13 +49,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     // MARK: Button Actions
     
     @IBAction func onSignUp(_ sender: Any) {
-        FirebaseAuthClient.createUser(email: emailField.text!, password: passwordField.text!) { result in
-            switch result {
-            case .success(let user):
-                guard user != nil else { return }
-                self.performSegue(withIdentifier: "toCreateProfile", sender: self)
-            case .failure(let error):
-                self.showErrorAlert(with: error)
+        Task {
+            do {
+                try await FirebaseAuthClient.createUser(email: emailField.text!, password: passwordField.text!)
+                performSegue(withIdentifier: "toCreateProfile", sender: self)
+            } catch {
+                showErrorAlert(with: error)
             }
         }
     }
