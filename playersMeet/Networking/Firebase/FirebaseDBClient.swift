@@ -137,18 +137,20 @@ class FirebaseDBClient {
         }
     }
     
-    func retrieveProfilePicture(userID: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    func retrieveProfilePicture(userID: String) async throws -> UIImage {
         let maxImageSize: Int64 = 5 * 1024 * 1024
-        StoragePaths.images.child(userID).getData(maxSize: maxImageSize) { (data, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
+        return try await withCheckedThrowingContinuation { continuation in
+            StoragePaths.images.child(userID).getData(maxSize: maxImageSize) { (data, error) in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                    return
+                }
+                guard let data = data, let image = UIImage(data: data) else {
+                    continuation.resume(throwing: ImageError.invalidData)
+                    return
+                }
+                continuation.resume(returning: image)
             }
-            guard let data = data, let image = UIImage(data: data) else {
-                completion(.failure(ImageError.invalidData))
-                return
-            }
-            completion(.success(image))
         }
     }
     

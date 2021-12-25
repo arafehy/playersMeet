@@ -93,18 +93,14 @@ class ProfileViewController: UIViewController {
     }
     
     func loadProfilePicture(userID: String) {
-        FirebaseManager.dbClient.retrieveProfilePicture(userID: userID) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success(let image):
-                self.profilePicture.image = image
-                self.profilePicture.configureProfilePicture()
-                self.editButton.isEnabled = true
-            case .failure(let error):
-                // TODO: Set placeholder image
-                // self.profilePicture.image = placeholderProfilePicture
-                self.showErrorAlert(with: error)
-                print("Error retrieving image: \(error)")
+        Task {
+            do {
+                let image = try await FirebaseManager.dbClient.retrieveProfilePicture(userID: userID)
+                profilePicture.image = image
+                profilePicture.configureProfilePicture()
+                editButton.isEnabled = true
+            } catch {
+                showErrorAlert(with: error)
             }
         }
     }
