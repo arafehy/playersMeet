@@ -46,19 +46,6 @@ class FirebaseDBClient {
         case png
     }
     
-    // MARK: - Private Helpers
-    
-    private static func sendChildUpdates(_ childUpdates: [AnyHashable: Any?], to reference: DatabaseReference, _ completion: @escaping (Result<DatabaseReference, Error>) -> Void) {
-        reference.updateChildValues(childUpdates as [AnyHashable: Any]) { error, reference in
-            if let error = error {
-                print("Data could not be saved: \(error)")
-                completion(.failure(error))
-            } else {
-                completion(.success(reference))
-            }
-        }
-    }
-    
     // MARK: - User
     
     func retrieveUserProfile(userID: String) async throws -> UserInfo {
@@ -71,71 +58,48 @@ class FirebaseDBClient {
         try await DBPaths.profileInfo.child(userID).updateChildValues(userInfo.asDictionary())
     }
     
-    func getCurrentLocationID(userID: String, completion: @escaping (String?) -> Void) {
-        DBPaths.userInfo.child(userID).observeSingleEvent(of: .value) { (snapshot) in
-            let locationID = snapshot.value as? String
-            completion(locationID)
-        }
+    func getCurrentLocationID(userID: String) async -> String? {
+        let (snapshot, _) = await DBPaths.userInfo.child(userID).observeSingleEventAndPreviousSiblingKey(of: .value)
+        let locationID = snapshot.value as? String
+        return locationID
     }
     
-    func joinLocationWith(ID locationID: String, for userID: String, completion: @escaping (Result<String?, Error>) -> Void) {
-        getCurrentLocationID(userID: userID) { (currentLocationID) in
-            guard currentLocationID != locationID else {
-                // User is already at this location
-                completion(.success(locationID))
-                return
-            }
-            let childUpdates: [String: Any] = [
-                "\(DBPathNames.userInfo.rawValue)/\(userID)": locationID,
-                "\(DBPathNames.businesses.rawValue)/\(locationID)": ServerValue.increment(1)
-            ]
-            FirebaseDBClient.sendChildUpdates(childUpdates, to: DBPaths.root) { result in
-                switch result {
-                case .success(_):
-                    completion(.success(locationID))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
+    func joinLocationWith(ID locationID: String, for userID: String) async throws -> String? {
+        let currentLocationID = await getCurrentLocationID(userID: userID)
+        guard currentLocationID != locationID else {
+            // User is already at this location
+            return currentLocationID
         }
+        let childUpdates: [String: Any] = [
+            "\(DBPathNames.userInfo.rawValue)/\(userID)": locationID,
+            "\(DBPathNames.businesses.rawValue)/\(locationID)": ServerValue.increment(1)
+        ]
+        try await DBPaths.root.updateChildValues(childUpdates)
+        return locationID
     }
     
-    func leaveLocationWith(ID locationID: String, for userID: String, completion: @escaping (Result<String?, Error>) -> Void) {
-        getCurrentLocationID(userID: userID) { (currentLocationID) in
-            guard currentLocationID == locationID else {
-                // User is not at this location
-                completion(.success(currentLocationID))
-                return
-            }
-            let childUpdates: [String: Any?] = [
-                "\(DBPathNames.userInfo.rawValue)/\(userID)": nil,
-                "\(DBPathNames.businesses.rawValue)/\(locationID)": ServerValue.increment(-1)
-            ]
-            FirebaseDBClient.sendChildUpdates(childUpdates, to: DBPaths.root) { result in
-                switch result {
-                case .success(_):
-                    completion(.success(nil))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
+    func leaveLocationWith(ID locationID: String, for userID: String) async throws -> String? {
+        let currentLocationID = await getCurrentLocationID(userID: userID)
+        guard currentLocationID == locationID else {
+            // User is not at this location
+            return currentLocationID
         }
+        let childUpdates: [String: Any?] = [
+            "\(DBPathNames.userInfo.rawValue)/\(userID)": nil,
+            "\(DBPathNames.businesses.rawValue)/\(locationID)": ServerValue.increment(-1)
+        ]
+        try await DBPaths.root.updateChildValues(childUpdates as [AnyHashable : Any])
+        return nil
     }
     
-    func switchLocation(for userID: String, from oldLocationID: String, to newLocationID: String, completion: @escaping (Result<String?, Error>) -> Void) {
+    func switchLocation(for userID: String, from oldLocationID: String, to newLocationID: String) async throws -> String? {
         let childUpdates: [String: Any] = [
             "\(DBPathNames.userInfo.rawValue)/\(userID)": newLocationID,
             "\(DBPathNames.businesses.rawValue)/\(oldLocationID)": ServerValue.increment(-1),
             "\(DBPathNames.businesses.rawValue)/\(newLocationID)": ServerValue.increment(1)
         ]
-        FirebaseDBClient.sendChildUpdates(childUpdates, to: DBPaths.root) { result in
-            switch result {
-            case .success(_):
-                completion(.success(newLocationID))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
+        try await DBPaths.root.updateChildValues(childUpdates)
+        return newLocationID
     }
     
     // MARK: Profile Picture

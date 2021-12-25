@@ -42,7 +42,8 @@ class LocationsViewController: UIViewController {
     
     func setCurrentLocationID() {
         guard let userID = user?.uid else { return }
-        FirebaseManager.dbClient.getCurrentLocationID(userID: userID) { (locationID) in
+        Task {
+            let locationID = await FirebaseManager.dbClient.getCurrentLocationID(userID: userID)
             CurrentSession.locationID = locationID
         }
     }
