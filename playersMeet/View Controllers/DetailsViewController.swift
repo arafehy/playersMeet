@@ -69,8 +69,13 @@ class DetailsViewController: UIViewController {
     
     @IBAction func leaveTeamAction(_ sender: Any) {
         guard let userID = user?.uid else { return }
-        FirebaseManager.dbClient.leaveLocationWith(ID: location.id, for: userID) { [weak self] (result) in
-            self?.handleLocationChange(result: result)
+        Task {
+            do {
+                let locationID = try await FirebaseManager.dbClient.leaveLocationWith(ID: location.id, for: userID)
+                handleLocationChange(locationID)
+            } catch {
+                showErrorAlert(with: error)
+            }
         }
     }
     
@@ -82,27 +87,32 @@ class DetailsViewController: UIViewController {
             return
         }
         
-        FirebaseManager.dbClient.joinLocationWith(ID: location.id, for: userID) { [weak self] (result) in
-            self?.handleLocationChange(result: result)
+        Task {
+            do {
+                let locationID = try await FirebaseManager.dbClient.joinLocationWith(ID: location.id, for: userID)
+                handleLocationChange(locationID)
+            } catch {
+                showErrorAlert(with: error)
+            }
         }
     }
     
     func switchLocation(alert: UIAlertAction) {
         guard let userID = user?.uid, let currentLocationID = CurrentSession.locationID else { return }
-        FirebaseManager.dbClient.switchLocation(for: userID, from: currentLocationID, to: location.id) { [weak self] (result) in
-            self?.handleLocationChange(result: result)
+        Task {
+            do {
+                let locationID = try await FirebaseManager.dbClient.switchLocation(for: userID, from: currentLocationID, to: location.id)
+                handleLocationChange(locationID)
+            } catch {
+                showErrorAlert(with: error)
+            }
         }
     }
     
-    func handleLocationChange(result: Result<String?, Error>) {
-        switch result {
-        case .success(let locationID):
-            delegate?.didChangeLocation(fromID: CurrentSession.locationID, toID: locationID)
-            CurrentSession.locationID = locationID
-            self.setButtonsAndLabels()
-        case .failure(let error):
-            self.showErrorAlert(with: error)
-        }
+    func handleLocationChange(_ locationID: String?) {
+        delegate?.didChangeLocation(fromID: CurrentSession.locationID, toID: locationID)
+        CurrentSession.locationID = locationID
+        self.setButtonsAndLabels()
     }
     
     // MARK: - Views
