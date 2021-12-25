@@ -68,7 +68,7 @@ class FirebaseDBClient {
     }
     
     func updateUserProfile(userID: String, userInfo: UserInfo) async throws {
-        try await DBPaths.root.child(userID).updateChildValues(userInfo.asDictionary())
+        try await DBPaths.profileInfo.child(userID).updateChildValues(userInfo.asDictionary())
     }
     
     func getCurrentLocationID(userID: String, completion: @escaping (String?) -> Void) {
