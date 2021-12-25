@@ -60,13 +60,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onSignIn(_ sender: Any) {
-        FirebaseAuthClient.signIn(email: emailField.text!, password: passwordField.text!) { result in
-            switch result {
-            case .success(let user):
-                guard user != nil else { return }
-                Navigation.goToHome(window: self.view.window)
-            case .failure(let error):
-                self.showErrorAlert(with: error)
+        Task {
+            do {
+                try await FirebaseAuthClient.signIn(email: emailField.text!, password: passwordField.text!)
+                Navigation.goToHome(window: view.window)
+            } catch {
+                showErrorAlert(with: error)
             }
         }
     }
