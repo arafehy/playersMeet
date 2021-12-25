@@ -62,17 +62,9 @@ class FirebaseDBClient {
     // MARK: - User
     
     func retrieveUserProfile(userID: String) async throws -> UserInfo {
-        return try await withCheckedThrowingContinuation { continuation in
-            DBPaths.profileInfo.child(userID).observeSingleEvent(of: .value) { snapshot in
-                guard let value = snapshot.value else { return }
-                do {
-                    let userInfo = try FirebaseDecoder().decode(UserInfo.self, from: value)
-                    continuation.resume(returning: userInfo)
-                } catch {
-                    continuation.resume(throwing: error)
-                }
-            }
-        }
+        let (snapshot, _) = await DBPaths.profileInfo.child(userID).observeSingleEventAndPreviousSiblingKey(of: .value)
+        let userInfo = try FirebaseDecoder().decode(UserInfo.self, from: snapshot.value as Any)
+        return userInfo
     }
     
     func updateUserProfile(userID: String, userInfo: UserInfo, completion: @escaping (Result<UserInfo, Error>) -> Void) {
