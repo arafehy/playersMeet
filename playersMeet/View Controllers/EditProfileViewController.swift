@@ -115,10 +115,9 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             print("Can't update profile: User info is nil")
             return
         }
-        FirebaseManager.dbClient.updateUserProfile(userID: userID, userInfo: userInfo) { result in
-            switch result {
-            case .success(let userInfo):
-                self.userInfo = userInfo
+        Task {
+            do {
+                try await FirebaseManager.dbClient.updateUserProfile(userID: userID, userInfo: userInfo)
                 guard let tabBarController = self.presentingViewController as? UITabBarController,
                       let navigationController = tabBarController.selectedViewController as? UINavigationController,
                       let profileVC = navigationController.viewControllers[0] as? ProfileViewController else {
@@ -129,7 +128,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
                 self.dismiss(animated: true) {
                     profileVC.loadUserProfile(userID: userID)
                 }
-            case .failure(let error): self.showErrorAlert(with: error)
+            } catch {
+                showErrorAlert(with: error)
             }
         }
     }
