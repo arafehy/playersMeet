@@ -13,26 +13,30 @@ class UserLocationService: NSObject, UserLocationProvider {
     // MARK: - Properties
     
     private let locationManager = CLLocationManager()
-    var completion: ((Result<CLLocation, UserLocationError>) -> Void)?
+    private var locationContinuation: CheckedContinuation<CLLocation, Error>?
     
     override init() {
         super.init()
         locationManager.delegate = self
     }
     
-    func findUserLocation(completion: @escaping (Result<CLLocation, UserLocationError>) -> Void) {
-        self.completion = completion
-        switch locationManager.authStatus {
-        case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.requestLocation()
-        case .notDetermined:
-            self.locationManager.requestAlwaysAuthorization()
-            self.locationManager.requestWhenInUseAuthorization()
-        case .restricted, .denied:
-            completion(.failure(.userDenied))
-        @unknown default:
-            print("Unknown location authorization status")
-            completion(.failure(.cannotBeLocated))
+    func findUserLocation() async throws -> CLLocation {
+        return try await withCheckedThrowingContinuation { continuation in
+            locationContinuation = continuation
+            switch locationManager.authStatus {
+            case .authorizedAlways, .authorizedWhenInUse:
+                locationManager.requestLocation()
+            case .notDetermined:
+                locationManager.requestAlwaysAuthorization()
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted, .denied:
+                continuation.resume(throwing: UserLocationError.userDenied)
+                locationContinuation = nil
+            @unknown default:
+                print("Unknown location authorization status")
+                continuation.resume(throwing: UserLocationError.cannotBeLocated)
+                locationContinuation = nil
+            }
         }
     }
 }
@@ -49,13 +53,15 @@ extension UserLocationService: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         manager.stopUpdatingLocation()
         if let location = locations.last {
-            completion?(.success(location))
+            locationContinuation?.resume(returning: location)
         } else {
-            completion?(.failure(.cannotBeLocated))
+            locationContinuation?.resume(throwing: UserLocationError.cannotBeLocated)
         }
+        locationContinuation = nil
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        completion?(.failure(.cannotBeLocated))
+        locationContinuation?.resume(throwing: error)
+        locationContinuation = nil
     }
 }
