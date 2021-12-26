@@ -156,15 +156,11 @@ class FirebaseDBClient {
     
     // MARK: - Locations
     
-    func addNewLocations(locations: [Location]) {
-        for location in locations {
-            DBPaths.businesses.observeSingleEvent(of: .value) { snapshot in
-                if !snapshot.hasChild(location.id) {
-                    // if doesnt exist add it as child to businesses
-                    DBPaths.businesses.child(location.id).setValue(0)
-                }
-            }
-        }
+    func addNewLocations(locations: [Location]) async {
+        let (snapshot, _) = await DBPaths.businesses.observeSingleEventAndPreviousSiblingKey(of: .value)
+        let newLocations = locations.filter({ !snapshot.hasChild($0.id) })
+        let newLocationPairs: [String: Int] = Dictionary(uniqueKeysWithValues: newLocations.map({ ($0.id, 0) }))
+        DBPaths.businesses.setValuesForKeys(newLocationPairs)
     }
     
     // MARK: Observers
