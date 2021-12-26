@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 
 protocol UserLocationProvider {
-    func findUserLocation(completion: @escaping (Result<CLLocation, UserLocationError>) -> Void)
+    func findUserLocation() async throws -> CLLocation
 }
 
 extension CLLocationManager {

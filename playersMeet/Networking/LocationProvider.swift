@@ -10,5 +10,5 @@ import Foundation
 import CoreLocation
 
 protocol LocationProvider {
-    func retrieveLocations(near location: CLLocation, completion: @escaping (Result<[Location], Error>) -> Void)
+    func retrieveLocations(near location: CLLocation) async throws -> [Location]
 }

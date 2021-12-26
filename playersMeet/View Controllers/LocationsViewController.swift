@@ -49,24 +49,15 @@ class LocationsViewController: UIViewController {
     }
     
     func updateLocations() {
-        userLocationProvider.findUserLocation { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let userLocation):
-                self.locationProvider.retrieveLocations(near: userLocation, completion: self.loadLocations(result:))
-            case .failure(let error):
-                self.showErrorAlert(with: error)
+        Task {
+            do {
+                let userLocation = try await userLocationProvider.findUserLocation()
+                locations = try await self.locationProvider.retrieveLocations(near: userLocation)
+                locations.sort(by: { $0.distance < $1.distance })
+                tableView.reloadData()
+            } catch {
+                showErrorAlert(with: error)
             }
-        }
-    }
-    
-    func loadLocations(result: Result<[Location], Error>) {
-        switch result {
-        case .success(let locations):
-            self.locations = locations.sorted(by: { $0.distance < $1.distance })
-            tableView.reloadData()
-        case .failure(let error):
-            self.showErrorAlert(with: error)
         }
     }
     

@@ -18,19 +18,26 @@ struct YelpClient: LocationProvider {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
-    func retrieveLocations(near location: CLLocation, completion: @escaping (Result<[Location], Error>) -> Void) {
-        service.request(.search(location.coordinate.latitude, location.coordinate.longitude)) { (result) in
-            switch result {
-            case .success(let response):
-                guard let locations = try? decoder.decode(BusinessesResponse.self, from: response.data).businesses else {
-                    print("Could not decode Yelp response")
-                    return
+    enum YelpError: Error {
+        case decodingError
+    }
+    
+    func retrieveLocations(near location: CLLocation) async throws -> [Location] {
+        let locations: [Location] = try await withCheckedThrowingContinuation({ continuation in
+            service.request(.search(location.coordinate.latitude, location.coordinate.longitude)) { result in
+                switch result {
+                case .success(let response):
+                    guard let locations = try? decoder.decode(BusinessesResponse.self, from: response.data).businesses else {
+                        continuation.resume(throwing: YelpError.decodingError)
+                        print("Could not decode Yelp response")
+                        return
+                    }
+                    continuation.resume(returning: locations)
+                case .failure(let error):
+                    continuation.resume(throwing: error)
                 }
-                completion(.success(locations))
-                FirebaseManager.dbClient.addNewLocations(locations: locations)
-            case .failure(let error):
-                completion(.failure(error))
             }
-        }
+        })
+        return locations
     }
 }
