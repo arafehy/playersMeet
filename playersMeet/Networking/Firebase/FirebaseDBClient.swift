@@ -169,8 +169,8 @@ class FirebaseDBClient {
     // MARK: Chat
     
     func retrieveMessages(at locationID: String, completion: @escaping (Result<ChatMessage, Error>) -> Void) {
-        let messagesReference = FirebaseDBClient.DBPaths.teamChat.child(locationID)
-        messagesReference.queryOrdered(byChild: "createdAt").observe(.childAdded) { (snapshot) in
+        let messagesReference = DBPaths.teamChat.child(locationID)
+        let observerHandle = messagesReference.queryOrdered(byChild: "createdAt").observe(.childAdded) { (snapshot) in
             guard let value = snapshot.value as? [String: Any] else { return }
             do {
                 let message = try FirebaseDecoder().decode(ChatMessage.self, from: value)
