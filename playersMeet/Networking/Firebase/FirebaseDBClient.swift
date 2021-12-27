@@ -104,35 +104,28 @@ class FirebaseDBClient {
     
     // MARK: Profile Picture
     
-    func uploadProfilePicture(userID: String, imageData: Data, imageType: ImageType, completion: @escaping (Result<String, Error>) -> Void) {
+    func uploadProfilePicture(userID: String, imageData: Data, imageType: ImageType) async throws -> String {
+        let userStorageRef = StoragePaths.images.child(userID)
+        try await uploadPhoto(reference: userStorageRef, imageData: imageData, imageType: imageType)
+        let photoURL = try await userStorageRef.downloadURL().absoluteString
+        try await DBPaths.profileInfo.child("\(userID)/photoURL").setValue(photoURL)
+        return photoURL
+    }
+    
+    private func uploadPhoto(reference: StorageReference, imageData: Data, imageType: ImageType) async throws {
         let metadata = StorageMetadata()
         metadata.contentType = "image/\(imageType.rawValue)"
-        
-        StoragePaths.images.child(userID).putData(imageData, metadata: metadata) { (metadata, error) in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            guard metadata != nil else {
-                completion(.failure(ImageError.invalidMetadata))
-                return
-            }
-            StoragePaths.images.child(userID).downloadURL { (url, error) in
+        return try await withCheckedThrowingContinuation { continuation in
+            reference.putData(imageData, metadata: metadata) { metadata, error in
                 if let error = error {
-                    completion(.failure(error))
+                    continuation.resume(throwing: error)
                     return
                 }
-                guard let downloadURL = url?.absoluteString else {
-                    completion(.failure(ImageError.invalidDownloadURL))
+                guard metadata != nil else {
+                    continuation.resume(throwing: ImageError.invalidMetadata)
                     return
                 }
-                DBPaths.profileInfo.child("\(userID)/photoURL").setValue(downloadURL) { (error, userRef) in
-                    if let error = error {
-                        completion(.failure(error))
-                        return
-                    }
-                    completion(.success(downloadURL))
-                }
+                continuation.resume()
             }
         }
     }

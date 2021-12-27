@@ -156,17 +156,16 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     func uploadProfilePicture(userID: String) {
         guard let newProfilePicture = profilePicture.image?.pngData() else {
-            self.showErrorAlert(with: ImageError.nilImage)
+            showErrorAlert(with: ImageError.nilImage)
             return
         }
-        
-        FirebaseManager.dbClient.uploadProfilePicture(userID: userID, imageData: newProfilePicture, imageType: .png) { result in
-            switch result {
-            case .success(let photoDownloadURL):
-                self.userInfo?.photoURL = photoDownloadURL
-                self.updateProfile(userID: userID)
-            case .failure(let error):
-                self.showErrorAlert(with: error)
+        Task {
+            do {
+                let photoDownloadURL = try await FirebaseManager.dbClient.uploadProfilePicture(userID: userID, imageData: newProfilePicture, imageType: .png)
+                userInfo?.photoURL = photoDownloadURL
+                updateProfile(userID: userID)
+            } catch {
+                showErrorAlert(with: error)
             }
         }
     }
