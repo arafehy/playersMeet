@@ -217,15 +217,11 @@ class FirebaseDBClient {
     
     // MARK: Observers
     
-    func observePlayerCount(at locationID: String, completion: @escaping (Int?) -> Void)  {
+    func observePlayerCount(at locationID: String, completion: @escaping (Int) -> Void)  {
         guard playerCountHandles[locationID] == nil else { return } // Return if already observing at that location
         let observerHandle = DBPaths.businesses.child(locationID).observe(.value) { snapshot in
             // Listen in realtime to whenever it updates
-            guard let playerCount = snapshot.value as? Int else {
-                print("Player count for location with ID \(locationID) unavailable")
-                completion(nil)
-                return
-            }
+            let playerCount = (snapshot.value as? Int) ?? 0
             completion(playerCount)
         }
         playerCountHandles.updateValue(observerHandle, forKey: locationID)
