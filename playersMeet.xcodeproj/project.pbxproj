@@ -394,7 +394,6 @@
 				FA75F728245445FC00E681F9 /* Frameworks */,
 				FA75F729245445FC00E681F9 /* Resources */,
 				C9DFF8E0951C9A76B0DA2224 /* [CP] Embed Pods Frameworks */,
-				370D69615279782BCF11BD86 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -433,7 +432,6 @@
 				FA75F7492454460000E681F9 /* Frameworks */,
 				FA75F74A2454460000E681F9 /* Resources */,
 				0FC25F04F11AEAB4B730A87A /* [CP] Embed Pods Frameworks */,
-				EDCA0ED0302B6C195346E86A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -537,23 +535,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-playersMeet-playersMeetUITests/Pods-playersMeet-playersMeetUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		370D69615279782BCF11BD86 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-playersMeet/Pods-playersMeet-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-playersMeet/Pods-playersMeet-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-playersMeet/Pods-playersMeet-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		51B084BD73F74E1F2767676E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -635,23 +616,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-playersMeet/Pods-playersMeet-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EDCA0ED0302B6C195346E86A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-playersMeet-playersMeetUITests/Pods-playersMeet-playersMeetUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-playersMeet-playersMeetUITests/Pods-playersMeet-playersMeetUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-playersMeet-playersMeetUITests/Pods-playersMeet-playersMeetUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

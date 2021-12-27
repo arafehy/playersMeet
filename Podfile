@@ -12,7 +12,6 @@ target 'playersMeet' do
    pod 'Firebase/Database'
    pod 'Firebase/Storage'
    pod 'CodableFirebase'
-   pod 'YelpAPI'
    pod 'Moya'
    pod 'AlamofireImage'
    pod "MessageInputBar"

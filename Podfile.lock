@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.4.4)
+  - Alamofire (5.5.0)
   - AlamofireImage (4.2.0):
     - Alamofire (~> 5.4)
   - CodableFirebase (0.2.1)
@@ -86,12 +86,6 @@ PODS:
     - GoogleUtilities/Environment (~> 7.2)
     - nanopb (~> 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleMaps (6.0.0):
-    - GoogleMaps/Maps (= 6.0.0)
-  - GoogleMaps/Base (6.0.0)
-  - GoogleMaps/Maps (6.0.0):
-    - GoogleMaps/Base
-  - GooglePlaces (6.0.0)
   - GoogleUtilities/AppDelegateSwizzler (7.6.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -113,7 +107,7 @@ PODS:
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.7.0)
   - leveldb-library (1.22.1)
-  - lottie-ios (3.2.3)
+  - lottie-ios (3.3.0)
   - MessageInputBar (0.4.1):
     - MessageInputBar/Core (= 0.4.1)
   - MessageInputBar/Core (0.4.1)
@@ -127,7 +121,6 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (2.0.0)
-  - YelpAPI (3.0.0)
 
 DEPENDENCIES:
   - AlamofireImage
@@ -136,12 +129,9 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Database
   - Firebase/Storage
-  - GoogleMaps
-  - GooglePlaces
   - lottie-ios
   - MessageInputBar
   - Moya
-  - YelpAPI
 
 SPEC REPOS:
   trunk:
@@ -158,8 +148,6 @@ SPEC REPOS:
     - FirebaseStorage
     - GoogleAppMeasurement
     - GoogleDataTransport
-    - GoogleMaps
-    - GooglePlaces
     - GoogleUtilities
     - GTMSessionFetcher
     - leveldb-library
@@ -168,10 +156,9 @@ SPEC REPOS:
     - Moya
     - nanopb
     - PromisesObjC
-    - YelpAPI
 
 SPEC CHECKSUMS:
-  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
   AlamofireImage: 34a2d90b0e5fe6a5605f85ae4b7b01e784c60192
   CodableFirebase: 0bf201991eeec35eb9fcd987d271ea463cf34a80
   Firebase: 44213362f1dcc52555b935dc925ed35ac55f1b20
@@ -184,18 +171,15 @@ SPEC CHECKSUMS:
   FirebaseStorage: 815410224b548172c578f02554a86bbc8f817f50
   GoogleAppMeasurement: a3311dbcf3ea651e5a070fe8559b57c174ada081
   GoogleDataTransport: 629c20a4d363167143f30ea78320d5a7eb8bd940
-  GoogleMaps: 750f237920fa44dd32de0c0d2004d35cb2c688f3
-  GooglePlaces: c97d96ae68594acb64035c9ca9f26fbfc1d23af1
   GoogleUtilities: 684ee790a24f73ebb2d1d966e9711c203f2a4237
   GTMSessionFetcher: 43748f93435c2aa068b1cbe39655aaf600652e91
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
-  lottie-ios: c058aeafa76daa4cf64d773554bccc8385d0150e
+  lottie-ios: 6ac74dcc09904798f59b18cb3075c089d76be9ae
   MessageInputBar: e81c7535347f1f7b923de7080409a535a004b6e4
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
-  YelpAPI: 9ae0ee45b998d306c1aff9b2d966dc23121f191e
 
-PODFILE CHECKSUM: b2da07831dfa020f1f0ca2cd4c8b569b4a16a8d1
+PODFILE CHECKSUM: 95823dc452222d00ff655d6d9386ef55a11d6783
 
 COCOAPODS: 1.11.2
