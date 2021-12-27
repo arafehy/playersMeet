@@ -16,6 +16,7 @@ class FirebaseDBClient {
     // MARK: - Properties
     
     private var playerCountHandles: [String: UInt] = [:]
+    private var locationChatHandles: [String: UInt] = [:]
     
     // MARK: - Database
     
@@ -179,6 +180,12 @@ class FirebaseDBClient {
                 completion(.failure(error))
             }
         }
+        locationChatHandles.updateValue(observerHandle, forKey: locationID)
+    }
+    
+    func stopObserveringMessages(at locationID: String) {
+        guard let handle: UInt = locationChatHandles.removeValue(forKey: locationID) else { return }
+        DBPaths.teamChat.child(locationID).removeObserver(withHandle: handle)
     }
     
     func sendMessage(_ message: String, from userID: String, to locationID: String) async throws {

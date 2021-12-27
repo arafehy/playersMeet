@@ -32,6 +32,11 @@ class TeamChatViewController: UIViewController {
         center.addObserver(self, selector: #selector(keyboardWillBeHidden(note:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        FirebaseManager.dbClient.stopObserveringMessages(at: teamID)
+    }
+    
     func loadMessages() {
         FirebaseManager.dbClient.retrieveMessages(at: teamID) { [weak self] (result) in
             guard let self = self else { return }
