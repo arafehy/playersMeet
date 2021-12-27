@@ -61,11 +61,6 @@ class DetailsViewController: UIViewController {
     
     func startPlayerCountObserver() {
         FirebaseManager.dbClient.observePlayerCount(at: location.id) { playerCount in
-            // Listen in realtime to whenever it updates
-            guard let playerCount = playerCount else {
-                print("Player count for location with ID \(self.location.id) unavailable")
-                return
-            }
             self.playerCount = playerCount
         }
     }
