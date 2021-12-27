@@ -156,13 +156,6 @@ class FirebaseDBClient {
     
     // MARK: - Locations
     
-    func addNewLocations(locations: [Location]) async {
-        let (snapshot, _) = await DBPaths.businesses.observeSingleEventAndPreviousSiblingKey(of: .value)
-        let newLocations = locations.filter({ !snapshot.hasChild($0.id) })
-        let newLocationPairs: [String: Int] = Dictionary(uniqueKeysWithValues: newLocations.map({ ($0.id, 0) }))
-        DBPaths.businesses.setValuesForKeys(newLocationPairs)
-    }
-    
     // MARK: Observers
     
     func observePlayerCount(at locationID: String, completion: @escaping (Int) -> Void)  {
