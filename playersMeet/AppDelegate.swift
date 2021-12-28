@@ -8,16 +8,12 @@
 
 import UIKit
 import Firebase
-import Moya
-import GoogleMaps
-import GooglePlaces
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     var window: UIWindow?
-    let service = MoyaProvider<YelpService.BusinessesProvider>()
-    let jsonDecoder = JSONDecoder()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
