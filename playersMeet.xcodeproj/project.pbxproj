@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2269DE0AFD01540DC391D9D1 /* Pods_playersMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 014027E00A42437EFB38FF30 /* Pods_playersMeet.framework */; };
-		440E7AA2CF33974541A5D62D /* Pods_playersMeetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3605C37689D0432C6B68637 /* Pods_playersMeetTests.framework */; };
 		6A4B0F452460871D002F0882 /* TeamChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4B0F442460871D002F0882 /* TeamChatViewController.swift */; };
 		6A4B0F472460872F002F0882 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4B0F462460872F002F0882 /* MessageCell.swift */; };
-		B78C387F84DCBAE5BD044074 /* Pods_playersMeet_playersMeetUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B2C1F01B6F2D552645F9B9F /* Pods_playersMeet_playersMeetUITests.framework */; };
 		DB80848E245687B800177175 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848D245687B800177175 /* SignUpViewController.swift */; };
 		DB8084902456A06100177175 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848F2456A06100177175 /* HomeViewController.swift */; };
 		E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */; };
@@ -55,7 +52,6 @@
 		FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */; };
 		FAB9CBB22455C27600C25C92 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBB12455C27600C25C92 /* LocationCell.swift */; };
 		FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB9CBB32456468800C25C92 /* DetailsViewController.swift */; };
-		FAFECE3424619DDD005CD8F7 /* Lottie.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAFECE3324619DDD005CD8F7 /* Lottie.framework */; };
 		FAFECE3B24619F9A005CD8F7 /* 18709-loading.json in Resources */ = {isa = PBXBuildFile; fileRef = FAFECE3A24619F9A005CD8F7 /* 18709-loading.json */; };
 /* End PBXBuildFile section */
 
@@ -77,12 +73,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		014027E00A42437EFB38FF30 /* Pods_playersMeet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playersMeet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FFAD35305931D2C582B8B69 /* Pods-playersMeetTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetTests.release.xcconfig"; path = "Target Support Files/Pods-playersMeetTests/Pods-playersMeetTests.release.xcconfig"; sourceTree = "<group>"; };
 		6A4B0F442460871D002F0882 /* TeamChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamChatViewController.swift; sourceTree = "<group>"; };
 		6A4B0F462460872F002F0882 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		7F048FA5C3F6D496353B6749 /* Pods-playersMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeet.debug.xcconfig"; path = "Target Support Files/Pods-playersMeet/Pods-playersMeet.debug.xcconfig"; sourceTree = "<group>"; };
-		9B2C1F01B6F2D552645F9B9F /* Pods_playersMeet_playersMeetUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playersMeet_playersMeetUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB04665F1B0F41C50BE9EFFA /* Pods-playersMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeet.release.xcconfig"; path = "Target Support Files/Pods-playersMeet/Pods-playersMeet.release.xcconfig"; sourceTree = "<group>"; };
 		D0E364E01E036666DDAFCCC7 /* Pods-playersMeet-playersMeetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeet-playersMeetUITests.debug.xcconfig"; path = "Target Support Files/Pods-playersMeet-playersMeetUITests/Pods-playersMeet-playersMeetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB80848D245687B800177175 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +112,6 @@
 		E0EC4381274B80A9009CD785 /* YelpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
 		E0EC4383274B82DE009CD785 /* CurrentSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentSession.swift; sourceTree = "<group>"; };
 		E0FCC717245E9426000BA717 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
-		E3605C37689D0432C6B68637 /* Pods_playersMeetTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_playersMeetTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA18FCB1245BBC930087C1CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA75F72B245445FC00E681F9 /* playersMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = playersMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA75F72E245445FD00E681F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,7 +130,6 @@
 		FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		FAB9CBB12455C27600C25C92 /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		FAB9CBB32456468800C25C92 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
-		FAFECE3324619DDD005CD8F7 /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Lottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAFECE3A24619F9A005CD8F7 /* 18709-loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "18709-loading.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,8 +138,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAFECE3424619DDD005CD8F7 /* Lottie.framework in Frameworks */,
-				2269DE0AFD01540DC391D9D1 /* Pods_playersMeet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +145,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				440E7AA2CF33974541A5D62D /* Pods_playersMeetTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,7 +152,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B78C387F84DCBAE5BD044074 /* Pods_playersMeet_playersMeetUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,17 +169,6 @@
 				0FFAD35305931D2C582B8B69 /* Pods-playersMeetTests.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		4916EA1490E595B78A30CDD3 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FAFECE3324619DDD005CD8F7 /* Lottie.framework */,
-				014027E00A42437EFB38FF30 /* Pods_playersMeet.framework */,
-				9B2C1F01B6F2D552645F9B9F /* Pods_playersMeet_playersMeetUITests.framework */,
-				E3605C37689D0432C6B68637 /* Pods_playersMeetTests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		E01D6EA02752E653007C2EF6 /* Helpers */ = {
@@ -330,7 +307,6 @@
 				FA75F74F2454460000E681F9 /* playersMeetUITests */,
 				FA75F72C245445FC00E681F9 /* Products */,
 				43C439AC45C2A609DC47B2BC /* Pods */,
-				4916EA1490E595B78A30CDD3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
