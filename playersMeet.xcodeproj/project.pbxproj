@@ -41,6 +41,8 @@
 		E07FF7C5272DB00F00325763 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07FF7C4272DB00F00325763 /* UIImage+Extensions.swift */; };
 		E08D089727436EE200BCD24C /* UserLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08D089627436EE200BCD24C /* UserLocationService.swift */; };
 		E0B472992756CCA100887A96 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B472982756CCA100887A96 /* ChatMessage.swift */; };
+		E0B9C6D52786754600664CD6 /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9C6D42786754600664CD6 /* SignUpCoordinator.swift */; };
+		E0B9C6D72786788C00664CD6 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B9C6D62786788C00664CD6 /* TabBarCoordinator.swift */; };
 		E0C0254B245F8CC200950223 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C0254A245F8CC200950223 /* User.swift */; };
 		E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D4887B245A708F00ED074A /* ProfileViewController.swift */; };
 		E0EC4382274B80A9009CD785 /* YelpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EC4381274B80A9009CD785 /* YelpClient.swift */; };
@@ -118,6 +120,8 @@
 		E08D089627436EE200BCD24C /* UserLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
 		E0983262B0BA2EA7C2CFBAA5 /* Pods-playersMeetTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeetTests.debug.xcconfig"; path = "Target Support Files/Pods-playersMeetTests/Pods-playersMeetTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E0B472982756CCA100887A96 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		E0B9C6D42786754600664CD6 /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
+		E0B9C6D62786788C00664CD6 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		E0C0254A245F8CC200950223 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E0D4887B245A708F00ED074A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E0EC4381274B80A9009CD785 /* YelpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpClient.swift; sourceTree = "<group>"; };
@@ -228,6 +232,9 @@
 			children = (
 				E0648E512782E30D00BA3259 /* Coordinator.swift */,
 				E05F02902730C81300DDBE33 /* Navigation.swift */,
+				E0648E532782E36500BA3259 /* AppCoordinator.swift */,
+				E0B9C6D42786754600664CD6 /* SignUpCoordinator.swift */,
+				E0B9C6D62786788C00664CD6 /* TabBarCoordinator.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -649,6 +656,7 @@
 				E0EC4382274B80A9009CD785 /* YelpClient.swift in Sources */,
 				FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */,
 				E0554F492740851200B602C4 /* CGFloat+Extensions.swift in Sources */,
+				E0B9C6D52786754600664CD6 /* SignUpCoordinator.swift in Sources */,
 				E07996F7272CF34D0000D162 /* FirebaseDBClient.swift in Sources */,
 				E0EC4384274B82DE009CD785 /* CurrentSession.swift in Sources */,
 				E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */,
@@ -665,6 +673,7 @@
 				E0B472992756CCA100887A96 /* ChatMessage.swift in Sources */,
 				FAB9CBB02455B42300C25C92 /* LocationsViewController.swift in Sources */,
 				6A4B0F452460871D002F0882 /* TeamChatViewController.swift in Sources */,
+				E0B9C6D72786788C00664CD6 /* TabBarCoordinator.swift in Sources */,
 				E01187AA274EEEEB00D84768 /* UserLocationError.swift in Sources */,
 				E05F02912730C81300DDBE33 /* Navigation.swift in Sources */,
 				E0788C4E272E8A440089197D /* DatabaseError.swift in Sources */,
