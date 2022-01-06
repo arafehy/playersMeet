@@ -27,6 +27,8 @@
 		E05F02912730C81300DDBE33 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F02902730C81300DDBE33 /* Navigation.swift */; };
 		E05F0295273110D200DDBE33 /* LottieAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F0294273110D200DDBE33 /* LottieAnimations.swift */; };
 		E0623F23274CD6B300A0555C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E0623F22274CD6B300A0555C /* GoogleService-Info.plist */; };
+		E0648E522782E30D00BA3259 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0648E512782E30D00BA3259 /* Coordinator.swift */; };
+		E0648E542782E36500BA3259 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0648E532782E36500BA3259 /* AppCoordinator.swift */; };
 		E0788C49272E22930089197D /* ImageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C48272E22930089197D /* ImageError.swift */; };
 		E0788C4B272E3F440089197D /* AuthError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C4A272E3F440089197D /* AuthError.swift */; };
 		E0788C4E272E8A440089197D /* DatabaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0788C4D272E8A440089197D /* DatabaseError.swift */; };
@@ -101,6 +103,8 @@
 		E05F02902730C81300DDBE33 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E05F0294273110D200DDBE33 /* LottieAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimations.swift; sourceTree = "<group>"; };
 		E0623F22274CD6B300A0555C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E0648E512782E30D00BA3259 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		E0648E532782E36500BA3259 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		E0788C48272E22930089197D /* ImageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageError.swift; path = playersMeet/Errors/ImageError.swift; sourceTree = SOURCE_ROOT; };
 		E0788C4A272E3F440089197D /* AuthError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthError.swift; sourceTree = "<group>"; };
 		E0788C4D272E8A440089197D /* DatabaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseError.swift; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 		E05F028F2730C80300DDBE33 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E0648E512782E30D00BA3259 /* Coordinator.swift */,
 				E05F02902730C81300DDBE33 /* Navigation.swift */,
 			);
 			path = Controllers;
@@ -630,6 +635,7 @@
 				FAB9CBB22455C27600C25C92 /* LocationCell.swift in Sources */,
 				DB80848E245687B800177175 /* SignUpViewController.swift in Sources */,
 				E0799702272D02320000D162 /* FirebaseManager.swift in Sources */,
+				E0648E522782E30D00BA3259 /* Coordinator.swift in Sources */,
 				FA75F72F245445FD00E681F9 /* AppDelegate.swift in Sources */,
 				E08D089727436EE200BCD24C /* UserLocationService.swift in Sources */,
 				E04350BC2744BEDF000EF6D9 /* APIKeys.swift in Sources */,
