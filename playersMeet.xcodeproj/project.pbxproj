@@ -651,6 +651,7 @@
 				E0788C49272E22930089197D /* ImageError.swift in Sources */,
 				E0788C4B272E3F440089197D /* AuthError.swift in Sources */,
 				FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */,
+				E0648E542782E36500BA3259 /* AppCoordinator.swift in Sources */,
 				FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */,
 				DB8084902456A06100177175 /* HomeViewController.swift in Sources */,
 				E0EC4382274B80A9009CD785 /* YelpClient.swift in Sources */,
