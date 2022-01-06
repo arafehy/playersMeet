@@ -25,6 +25,21 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - VC Life Cycle
     
+    static func instantiate(coordinator: SignUpFlow?) -> SignUpViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "SignUpViewController") { coder in
+            SignUpViewController(coder: coder, coordinator: coordinator)
+        }
+    }
+    
+    init?(coder: NSCoder, coordinator: SignUpFlow?) {
+        self.coordinator = coordinator
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         animationView.play()
