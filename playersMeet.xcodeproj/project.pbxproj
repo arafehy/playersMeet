@@ -23,6 +23,7 @@
 		E04350BC2744BEDF000EF6D9 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04350BB2744BEDF000EF6D9 /* APIKeys.swift */; };
 		E0554F47274084A700B602C4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0554F46274084A700B602C4 /* UIColor+Extensions.swift */; };
 		E0554F492740851200B602C4 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0554F482740851200B602C4 /* CGFloat+Extensions.swift */; };
+		E05CDE922785650B001B296E /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05CDE912785650B001B296E /* UserState.swift */; };
 		E05F02912730C81300DDBE33 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F02902730C81300DDBE33 /* Navigation.swift */; };
 		E05F0295273110D200DDBE33 /* LottieAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F0294273110D200DDBE33 /* LottieAnimations.swift */; };
 		E0623F23274CD6B300A0555C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E0623F22274CD6B300A0555C /* GoogleService-Info.plist */; };
@@ -96,6 +97,7 @@
 		E04350BB2744BEDF000EF6D9 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		E0554F46274084A700B602C4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		E0554F482740851200B602C4 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		E05CDE912785650B001B296E /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		E05F02902730C81300DDBE33 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E05F0294273110D200DDBE33 /* LottieAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimations.swift; sourceTree = "<group>"; };
 		E0623F22274CD6B300A0555C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				E0C0254A245F8CC200950223 /* User.swift */,
 				E0EC4383274B82DE009CD785 /* CurrentSession.swift */,
 				E0B472982756CCA100887A96 /* ChatMessage.swift */,
+				E05CDE912785650B001B296E /* UserState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -643,6 +646,7 @@
 				E07996F7272CF34D0000D162 /* FirebaseDBClient.swift in Sources */,
 				E0EC4384274B82DE009CD785 /* CurrentSession.swift in Sources */,
 				E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */,
+				E05CDE922785650B001B296E /* UserState.swift in Sources */,
 				E07996FF272CF44B0000D162 /* UITextField+Extensions.swift in Sources */,
 				E01187A4274ECC9800D84768 /* UserLocationProvider.swift in Sources */,
 				E07996FE272CF44B0000D162 /* UIViewController+Alerts.swift in Sources */,
