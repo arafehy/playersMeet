@@ -115,6 +115,12 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate {
             cell.alpha = 1.5
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedLocation = locations[indexPath.row]
+        let detailsVC = DetailsViewController.instantiate(user: user, location: selectedLocation, delegate: self)
+        navigationController?.pushViewController(detailsVC, animated: true)
+    }
 }
 
 extension LocationsViewController: DetailsViewControllerDelegate {
