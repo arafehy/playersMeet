@@ -14,11 +14,29 @@ class TeamChatViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var teamID: String! // teamID is the selected location
+    let teamID: String // teamID is the selected location
     let messageBar = MessageInputBar()
     var showsMessageBar = true
     var messages: [ChatMessage] = []
-    let currentUser: User? = FirebaseAuthClient.getUser()
+    let user: User
+    
+    static func instantiate(user: User, teamID: String) -> TeamChatViewController {
+        let chatVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TeamChatViewController") { coder in
+            TeamChatViewController(coder: coder, user: user, teamID: teamID)
+        }
+        chatVC.navigationItem.title = "Chat"
+        return chatVC
+    }
+    
+    init?(coder: NSCoder, user: User, teamID: String) {
+        self.user = user
+        self.teamID = teamID
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,17 +90,10 @@ class TeamChatViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toProfile" {
-            guard let profileVC = segue.destination as? ProfileViewController,
-                  let userID = sender as? String else { return }
-            profileVC.teammateID = userID
-        }
-    }
-    
     func showProfile(for userID: String) {
         messageBar.inputTextView.resignFirstResponder()
-        self.performSegue(withIdentifier: "toProfile", sender: userID)
+        let profileVC = ProfileViewController.instantiate(user: user, teammateID: userID)
+        show(UINavigationController(rootViewController: profileVC), sender: nil)
     }
 }
 
