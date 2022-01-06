@@ -15,14 +15,32 @@ class LocationsViewController: UIViewController {
     // MARK: - Properties
     
     var locations: [Location] = []
-    let locationProvider: LocationProvider = YelpClient()
+    let locationProvider: LocationProvider
     
-    let userLocationProvider: UserLocationProvider = UserLocationService()
-    let user: User? = FirebaseAuthClient.getUser()
+    let userLocationProvider: UserLocationProvider
+    let user: User
     
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - VC Life Cycle
+    
+    static func instantiate(user: User, locationProvider: LocationProvider = YelpClient(), userLocationProvider: UserLocationProvider = UserLocationService()) -> LocationsViewController {
+        let locationsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "LocationsViewController") { coder in
+            LocationsViewController(coder: coder, user: user, locationProvider: locationProvider, userLocationProvider: userLocationProvider)
+        }
+        return locationsVC
+    }
+    
+    init?(coder: NSCoder, user: User, locationProvider: LocationProvider = YelpClient(), userLocationProvider: UserLocationProvider = UserLocationService()) {
+        self.user = user
+        self.locationProvider = locationProvider
+        self.userLocationProvider = userLocationProvider
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
