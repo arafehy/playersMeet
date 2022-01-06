@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SignUpFlow {
-    func coordinatoToHome()
+    func coordinateToHome()
 }
 
 struct SignUpCoordinator: Coordinator {
@@ -26,7 +26,7 @@ struct SignUpCoordinator: Coordinator {
 }
 
 extension SignUpCoordinator: SignUpFlow {
-    func coordinatoToHome() {
+    func coordinateToHome() {
         guard let user = FirebaseAuthClient.getUser() else { return }
         let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, user: user)
         coordinate(to: tabBarCoordinator)
