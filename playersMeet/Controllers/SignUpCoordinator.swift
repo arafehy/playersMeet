@@ -9,7 +9,8 @@
 import UIKit
 
 protocol SignUpFlow {
-    func coordinateToHome()
+    func signIn()
+    func signUp()
 }
 
 struct SignUpCoordinator: Coordinator {
@@ -21,12 +22,18 @@ struct SignUpCoordinator: Coordinator {
     
     func start() {
         let signUpVC = SignUpViewController.instantiate(coordinator: self)
-        navigationController.pushViewController(signUpVC, animated: true)
+        navigationController.setViewControllers([signUpVC], animated: false)
     }
 }
 
 extension SignUpCoordinator: SignUpFlow {
-    func coordinateToHome() {
+    func signUp() {
+        guard let user = FirebaseAuthClient.getUser() else { return }
+        let editProfileCoordinator = EditProfileCoordinator(navigationController: navigationController, user: user, userState: .newUser, profileImage: nil)
+        coordinate(to: editProfileCoordinator)
+    }
+    
+    func signIn() {
         guard let user = FirebaseAuthClient.getUser() else { return }
         let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, user: user)
         coordinate(to: tabBarCoordinator)
