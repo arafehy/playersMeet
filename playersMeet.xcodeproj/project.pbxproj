@@ -23,6 +23,7 @@
 		E04350BC2744BEDF000EF6D9 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04350BB2744BEDF000EF6D9 /* APIKeys.swift */; };
 		E0554F47274084A700B602C4 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0554F46274084A700B602C4 /* UIColor+Extensions.swift */; };
 		E0554F492740851200B602C4 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0554F482740851200B602C4 /* CGFloat+Extensions.swift */; };
+		E0566A85278A733A009B84B6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0566A84278A733A009B84B6 /* TabBarController.swift */; };
 		E05CDE922785650B001B296E /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05CDE912785650B001B296E /* UserState.swift */; };
 		E05F02912730C81300DDBE33 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F02902730C81300DDBE33 /* Navigation.swift */; };
 		E05F0295273110D200DDBE33 /* LottieAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F0294273110D200DDBE33 /* LottieAnimations.swift */; };
@@ -101,6 +102,7 @@
 		E04350BB2744BEDF000EF6D9 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		E0554F46274084A700B602C4 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		E0554F482740851200B602C4 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		E0566A84278A733A009B84B6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E05CDE912785650B001B296E /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
 		E05F02902730C81300DDBE33 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E05F0294273110D200DDBE33 /* LottieAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimations.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				E0D4887B245A708F00ED074A /* ProfileViewController.swift */,
 				E0FCC717245E9426000BA717 /* EditProfileViewController.swift */,
 				6A4B0F442460871D002F0882 /* TeamChatViewController.swift */,
+				E0566A84278A733A009B84B6 /* TabBarController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -658,6 +661,8 @@
 				FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */,
 				E0554F492740851200B602C4 /* CGFloat+Extensions.swift in Sources */,
 				E0B9C6D52786754600664CD6 /* SignUpCoordinator.swift in Sources */,
+				E04DCF1427881AFA00E42B7E /* LocationsCoordinator.swift in Sources */,
+				E0566A85278A733A009B84B6 /* TabBarController.swift in Sources */,
 				E07996F7272CF34D0000D162 /* FirebaseDBClient.swift in Sources */,
 				E0EC4384274B82DE009CD785 /* CurrentSession.swift in Sources */,
 				E0D4887C245A708F00ED074A /* ProfileViewController.swift in Sources */,
