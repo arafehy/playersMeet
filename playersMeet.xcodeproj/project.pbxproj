@@ -235,22 +235,6 @@
 			path = Yelp;
 			sourceTree = "<group>";
 		};
-		E05F028F2730C80300DDBE33 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				E0648E512782E30D00BA3259 /* Coordinator.swift */,
-				E0648E532782E36500BA3259 /* AppCoordinator.swift */,
-				E0B9C6D42786754600664CD6 /* SignUpCoordinator.swift */,
-				E0B9C6D62786788C00664CD6 /* TabBarCoordinator.swift */,
-				E0B9C6DA2786CF4300664CD6 /* EditProfileCoordinator.swift */,
-				E04DCF1127880CA800E42B7E /* ProfileCoordinator.swift */,
-				E04DCF1327881AFA00E42B7E /* LocationsCoordinator.swift */,
-				E04DCF152788347800E42B7E /* LocationDetailsCoordinator.swift */,
-				E04DCF17278836D300E42B7E /* ChatCoordinator.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		E0788C4C272E402B0089197D /* Errors */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,20 +257,6 @@
 				E0554F482740851200B602C4 /* CGFloat+Extensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		E0AB2F4924652E0300F4CE49 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */,
-				FAB9CBB32456468800C25C92 /* DetailsViewController.swift */,
-				DB80848D245687B800177175 /* SignUpViewController.swift */,
-				E0D4887B245A708F00ED074A /* ProfileViewController.swift */,
-				E0FCC717245E9426000BA717 /* EditProfileViewController.swift */,
-				6A4B0F442460871D002F0882 /* TeamChatViewController.swift */,
-				E0566A84278A733A009B84B6 /* TabBarController.swift */,
-			);
-			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		E0AB2F4A24652E2500F4CE49 /* Models */ = {
@@ -343,6 +313,94 @@
 			path = Storyboards;
 			sourceTree = "<group>";
 		};
+		E0EDCAEE278ADAA90011254D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				E0648E512782E30D00BA3259 /* Coordinator.swift */,
+				E0EDCAEF278ADAF60011254D /* Sign Up */,
+				E0EDCAF0278ADB1E0011254D /* Tab Bar */,
+				E0EDCAF4278ADBA00011254D /* Create & Edit Profile */,
+				E0EDCAF3278ADB920011254D /* Profile */,
+				E0EDCAF1278ADB580011254D /* Locations */,
+				E0EDCAF2278ADB6E0011254D /* Location Details */,
+				E0EDCAF5278ADD500011254D /* Chat */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		E0EDCAEF278ADAF60011254D /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9C6D42786754600664CD6 /* SignUpCoordinator.swift */,
+				DB80848D245687B800177175 /* SignUpViewController.swift */,
+			);
+			path = "Sign Up";
+			sourceTree = "<group>";
+		};
+		E0EDCAF0278ADB1E0011254D /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9C6D62786788C00664CD6 /* TabBarCoordinator.swift */,
+				E0566A84278A733A009B84B6 /* TabBarController.swift */,
+			);
+			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		E0EDCAF1278ADB580011254D /* Locations */ = {
+			isa = PBXGroup;
+			children = (
+				E04DCF1327881AFA00E42B7E /* LocationsCoordinator.swift */,
+				FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */,
+			);
+			path = Locations;
+			sourceTree = "<group>";
+		};
+		E0EDCAF2278ADB6E0011254D /* Location Details */ = {
+			isa = PBXGroup;
+			children = (
+				E04DCF152788347800E42B7E /* LocationDetailsCoordinator.swift */,
+				FAB9CBB32456468800C25C92 /* DetailsViewController.swift */,
+			);
+			path = "Location Details";
+			sourceTree = "<group>";
+		};
+		E0EDCAF3278ADB920011254D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E04DCF1127880CA800E42B7E /* ProfileCoordinator.swift */,
+				E0D4887B245A708F00ED074A /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E0EDCAF4278ADBA00011254D /* Create & Edit Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E0B9C6DA2786CF4300664CD6 /* EditProfileCoordinator.swift */,
+				E0FCC717245E9426000BA717 /* EditProfileViewController.swift */,
+			);
+			path = "Create & Edit Profile";
+			sourceTree = "<group>";
+		};
+		E0EDCAF5278ADD500011254D /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				E04DCF17278836D300E42B7E /* ChatCoordinator.swift */,
+				6A4B0F442460871D002F0882 /* TeamChatViewController.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		E0EDCAF7278ADDA60011254D /* App */ = {
+			isa = PBXGroup;
+			children = (
+				FA75F72E245445FD00E681F9 /* AppDelegate.swift */,
+				FA75F730245445FD00E681F9 /* SceneDelegate.swift */,
+				E0648E532782E36500BA3259 /* AppCoordinator.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
 		FA75F722245445FC00E681F9 = {
 			isa = PBXGroup;
 			children = (
@@ -370,11 +428,9 @@
 		FA75F72D245445FC00E681F9 /* playersMeet */ = {
 			isa = PBXGroup;
 			children = (
-				FA75F72E245445FD00E681F9 /* AppDelegate.swift */,
-				FA75F730245445FD00E681F9 /* SceneDelegate.swift */,
+				E0EDCAF7278ADDA60011254D /* App */,
 				E0AB2F4A24652E2500F4CE49 /* Models */,
-				E05F028F2730C80300DDBE33 /* Controllers */,
-				E0AB2F4924652E0300F4CE49 /* View Controllers */,
+				E0EDCAEE278ADAA90011254D /* Presentation */,
 				E0AB2F4D24652F0900F4CE49 /* Networking */,
 				E0799700272CF45D0000D162 /* Extensions */,
 				E0AB2F4E24652F2600F4CE49 /* Storyboards */,
@@ -692,7 +748,7 @@
 				6A4B0F452460871D002F0882 /* TeamChatViewController.swift in Sources */,
 				E0B9C6D72786788C00664CD6 /* TabBarCoordinator.swift in Sources */,
 				E01187AA274EEEEB00D84768 /* UserLocationError.swift in Sources */,
-                E04DCF18278836D300E42B7E /* ChatCoordinator.swift in Sources */,
+				E04DCF18278836D300E42B7E /* ChatCoordinator.swift in Sources */,
 				E0788C4E272E8A440089197D /* DatabaseError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
