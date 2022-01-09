@@ -22,7 +22,7 @@ class AppCoordinator: Coordinator {
         window.makeKeyAndVisible()
         
         if let user = FirebaseAuthClient.getUser() {
-            let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, user: user)
+            let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, user: user, selectedTab: .locations)
             coordinate(to: tabBarCoordinator)
         }
         else {

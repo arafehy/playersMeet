@@ -12,10 +12,16 @@ import FirebaseAuth
 struct TabBarCoordinator: Coordinator {
     let navigationController: UINavigationController
     let user: User
+    let initialTabIndex: Int
     
-    init(navigationController: UINavigationController, user: User) {
+    enum Tabs: Int {
+        case locations, profile
+    }
+    
+    init(navigationController: UINavigationController, user: User, selectedTab: Tabs = .locations) {
         self.navigationController = navigationController
         self.user = user
+        self.initialTabIndex = selectedTab.rawValue
     }
     
     func start() {
