@@ -20,17 +20,20 @@ class TeamChatViewController: UIViewController {
     var messages: [ChatMessage] = []
     let user: User
     
-    static func instantiate(user: User, teamID: String) -> TeamChatViewController {
+    let coordinator: ChatFlow?
+    
+    static func instantiate(user: User, teamID: String, coordinator: ChatFlow?) -> TeamChatViewController {
         let chatVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TeamChatViewController") { coder in
-            TeamChatViewController(coder: coder, user: user, teamID: teamID)
+            TeamChatViewController(coder: coder, user: user, teamID: teamID, coordinator: coordinator)
         }
         chatVC.navigationItem.title = "Chat"
         return chatVC
     }
     
-    init?(coder: NSCoder, user: User, teamID: String) {
+    init?(coder: NSCoder, user: User, teamID: String, coordinator: ChatFlow?) {
         self.user = user
         self.teamID = teamID
+        self.coordinator = coordinator
         super.init(coder: coder)
     }
     
@@ -92,8 +95,7 @@ class TeamChatViewController: UIViewController {
     
     func showProfile(for userID: String) {
         messageBar.inputTextView.resignFirstResponder()
-        let profileVC = ProfileViewController.instantiate(user: user, teammateID: userID)
-        show(UINavigationController(rootViewController: profileVC), sender: nil)
+        coordinator?.coordinateToProfile(profileID: userID)
     }
 }
 
