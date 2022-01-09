@@ -19,33 +19,26 @@ struct TabBarCoordinator: Coordinator {
     }
     
     func start() {
-        let locationsNavigationController = createLocationsController()
-        let profileNavigationController = createProfileController()
-        
-        let tabBarController = UITabBarController()
-        tabBarController.viewControllers = [locationsNavigationController,
-                                            profileNavigationController]
-        tabBarController.selectedIndex = 0
-        navigationController.pushViewController(tabBarController, animated: true)
-    }
-    
-    private func createLocationsController() -> UINavigationController {
-        let locationsVC = LocationsViewController.instantiate(user: user)
-        let locationsNavigationController = UINavigationController(rootViewController: locationsVC)
-        locationsNavigationController.navigationItem.title = "Locations"
+        let locationsNavigationController = UINavigationController()
         locationsNavigationController.tabBarItem = UITabBarItem(title: "Locations",
                                                                 image: UIImage(systemName: "location"),
                                                                 selectedImage: UIImage(systemName: "location.fill"))
-        return locationsNavigationController
-    }
-    
-    private func createProfileController() -> UINavigationController {
-        let profileVC = ProfileViewController.instantiate(user: user)
-        let profileNavigationController = UINavigationController(rootViewController: profileVC)
-        profileNavigationController.navigationItem.title = "Profile"
+        let locationsCoordinator = LocationsCoordinator(navigationController: locationsNavigationController, user: user)
+        
+        let profileNavigationController = UINavigationController()
         profileNavigationController.tabBarItem = UITabBarItem(title: "Profile",
                                                               image: UIImage(systemName: "person.crop.circle"),
                                                               selectedImage: UIImage(systemName: "person.crop.circle.fill"))
-        return profileNavigationController
+        let profileCoordinator = ProfileCoordinator(navigationController: profileNavigationController, user: user, profileID: user.uid)
+        
+        let tabBarController = TabBarController(coordinator: self)
+        tabBarController.viewControllers = [locationsNavigationController,
+                                            profileNavigationController]
+        tabBarController.selectedIndex = initialTabIndex
+        navigationController.setViewControllers([tabBarController], animated: true)
+        navigationController.navigationBar.isHidden = true
+        
+        coordinate(to: locationsCoordinator)
+        coordinate(to: profileCoordinator)
     }
 }
