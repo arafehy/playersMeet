@@ -13,7 +13,6 @@
 		788B7239C0150BDFEC028C27 /* Pods_playersMeetTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E29BC9BB90B9BB04C4C1FB /* Pods_playersMeetTests.framework */; };
 		A2FFDA7DE0878E3E946125B5 /* Pods_playersMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235A6C10CBDFBF649BCA34E0 /* Pods_playersMeet.framework */; };
 		DB80848E245687B800177175 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848D245687B800177175 /* SignUpViewController.swift */; };
-		DB8084902456A06100177175 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848F2456A06100177175 /* HomeViewController.swift */; };
 		E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
 		E01187A4274ECC9800D84768 /* UserLocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01187A3274ECC9800D84768 /* UserLocationProvider.swift */; };
@@ -25,7 +24,6 @@
 		E0554F492740851200B602C4 /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0554F482740851200B602C4 /* CGFloat+Extensions.swift */; };
 		E0566A85278A733A009B84B6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0566A84278A733A009B84B6 /* TabBarController.swift */; };
 		E05CDE922785650B001B296E /* UserState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05CDE912785650B001B296E /* UserState.swift */; };
-		E05F02912730C81300DDBE33 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F02902730C81300DDBE33 /* Navigation.swift */; };
 		E05F0295273110D200DDBE33 /* LottieAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05F0294273110D200DDBE33 /* LottieAnimations.swift */; };
 		E0623F23274CD6B300A0555C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E0623F22274CD6B300A0555C /* GoogleService-Info.plist */; };
 		E0648E522782E30D00BA3259 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0648E512782E30D00BA3259 /* Coordinator.swift */; };
@@ -91,7 +89,6 @@
 		AB04665F1B0F41C50BE9EFFA /* Pods-playersMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeet.release.xcconfig"; path = "Target Support Files/Pods-playersMeet/Pods-playersMeet.release.xcconfig"; sourceTree = "<group>"; };
 		D0E364E01E036666DDAFCCC7 /* Pods-playersMeet-playersMeetUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeet-playersMeetUITests.debug.xcconfig"; path = "Target Support Files/Pods-playersMeet-playersMeetUITests/Pods-playersMeet-playersMeetUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DB80848D245687B800177175 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		DB80848F2456A06100177175 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DD54A7625C4740983B6BA9B5 /* Pods-playersMeet-playersMeetUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-playersMeet-playersMeetUITests.release.xcconfig"; path = "Target Support Files/Pods-playersMeet-playersMeetUITests/Pods-playersMeet-playersMeetUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4414-bouncy-basketball.json"; sourceTree = "<group>"; };
 		E0116CA5245A580900AF7F39 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -104,7 +101,6 @@
 		E0554F482740851200B602C4 /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		E0566A84278A733A009B84B6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		E05CDE912785650B001B296E /* UserState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserState.swift; sourceTree = "<group>"; };
-		E05F02902730C81300DDBE33 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		E05F0294273110D200DDBE33 /* LottieAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieAnimations.swift; sourceTree = "<group>"; };
 		E0623F22274CD6B300A0555C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E0648E512782E30D00BA3259 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -233,7 +229,6 @@
 			isa = PBXGroup;
 			children = (
 				E0648E512782E30D00BA3259 /* Coordinator.swift */,
-				E05F02902730C81300DDBE33 /* Navigation.swift */,
 				E0648E532782E36500BA3259 /* AppCoordinator.swift */,
 				E0B9C6D42786754600664CD6 /* SignUpCoordinator.swift */,
 				E0B9C6D62786788C00664CD6 /* TabBarCoordinator.swift */,
@@ -271,7 +266,6 @@
 				FAB9CBAF2455B42300C25C92 /* LocationsViewController.swift */,
 				FAB9CBB32456468800C25C92 /* DetailsViewController.swift */,
 				DB80848D245687B800177175 /* SignUpViewController.swift */,
-				DB80848F2456A06100177175 /* HomeViewController.swift */,
 				E0D4887B245A708F00ED074A /* ProfileViewController.swift */,
 				E0FCC717245E9426000BA717 /* EditProfileViewController.swift */,
 				6A4B0F442460871D002F0882 /* TeamChatViewController.swift */,
@@ -656,7 +650,6 @@
 				FAB9CBB42456468800C25C92 /* DetailsViewController.swift in Sources */,
 				E0648E542782E36500BA3259 /* AppCoordinator.swift in Sources */,
 				FA75F731245445FD00E681F9 /* SceneDelegate.swift in Sources */,
-				DB8084902456A06100177175 /* HomeViewController.swift in Sources */,
 				E0EC4382274B80A9009CD785 /* YelpClient.swift in Sources */,
 				FAB9CBA42455899F00C25C92 /* NetworkService.swift in Sources */,
 				E0554F492740851200B602C4 /* CGFloat+Extensions.swift in Sources */,
@@ -681,7 +674,6 @@
 				6A4B0F452460871D002F0882 /* TeamChatViewController.swift in Sources */,
 				E0B9C6D72786788C00664CD6 /* TabBarCoordinator.swift in Sources */,
 				E01187AA274EEEEB00D84768 /* UserLocationError.swift in Sources */,
-				E05F02912730C81300DDBE33 /* Navigation.swift in Sources */,
 				E0788C4E272E8A440089197D /* DatabaseError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
