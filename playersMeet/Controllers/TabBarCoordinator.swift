@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-struct TabBarCoordinator: Coordinator {
+class TabBarCoordinator: Coordinator {
     let navigationController: UINavigationController
     let user: User
     let initialTabIndex: Int
@@ -22,6 +22,12 @@ struct TabBarCoordinator: Coordinator {
         self.navigationController = navigationController
         self.user = user
         self.initialTabIndex = selectedTab.rawValue
+        FirebaseAuthClient.addLoginStateListener(currentUser: user) { [weak self] (isSignedIn) in
+            if !isSignedIn {
+                let signUpCoordinator = SignUpCoordinator(navigationController: navigationController)
+                self?.coordinate(to: signUpCoordinator)
+            }
+        }
     }
     
     func start() {
