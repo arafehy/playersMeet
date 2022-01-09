@@ -41,10 +41,7 @@ struct FirebaseAuthClient {
     
     static func addLoginStateListener(currentUser: User?, completion: @escaping (_ isSignedIn: Bool) -> Void) {
         let newHandle = authObject.addStateDidChangeListener { auth, user in
-            if currentUser != user {
-                completion(false)
-            }
-            completion(true)
+            currentUser == user ? completion(true) : completion(false)
         }
         if newHandle.isEqual(handle) { removeLoginStateListener() }
         handle = newHandle
