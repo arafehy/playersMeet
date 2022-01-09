@@ -23,6 +23,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lottieView: UIView!
     let animationView = AnimationView()
 
+    let coordinator: SignUpFlow?
+    
     // MARK: - VC Life Cycle
     
     static func instantiate(coordinator: SignUpFlow?) -> SignUpViewController {
@@ -63,22 +65,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: Button Actions
     
-    @IBAction func onSignUp(_ sender: Any) {
+    @IBAction func signIn() {
         Task {
             do {
-                try await FirebaseAuthClient.createUser(email: emailField.text!, password: passwordField.text!)
-                performSegue(withIdentifier: "toCreateProfile", sender: self)
+                try await FirebaseAuthClient.signIn(email: emailField.text!, password: passwordField.text!)
+                coordinator?.signIn()
             } catch {
                 showErrorAlert(with: error)
             }
         }
     }
     
-    @IBAction func onSignIn(_ sender: Any) {
+    @IBAction func signUp() {
         Task {
             do {
-                try await FirebaseAuthClient.signIn(email: emailField.text!, password: passwordField.text!)
-                Navigation.goToHome(window: view.window)
+                try await FirebaseAuthClient.createUser(email: emailField.text!, password: passwordField.text!)
+                coordinator?.signUp()
             } catch {
                 showErrorAlert(with: error)
             }

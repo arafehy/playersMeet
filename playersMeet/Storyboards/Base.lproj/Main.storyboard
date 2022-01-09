@@ -244,7 +244,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="onSignUp:" destination="ySA-7L-eq0" eventType="touchUpInside" id="XYX-Lw-FBG"/>
+                                    <action selector="signUp" destination="ySA-7L-eq0" eventType="touchUpInside" id="cY9-xh-QNM"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlayersMeet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlV-Vo-zzx">
@@ -275,7 +275,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="onSignIn:" destination="ySA-7L-eq0" eventType="touchUpInside" id="f1H-rC-JLG"/>
+                                    <action selector="signIn" destination="ySA-7L-eq0" eventType="touchUpInside" id="Oxa-eG-nvG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meet your next team!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHr-b4-s0H">
@@ -315,8 +315,8 @@
                         <outlet property="lottieView" destination="NkG-3R-82H" id="7IG-Sf-TNY"/>
                         <outlet property="passwordField" destination="dbZ-ik-Rln" id="ft4-ae-YG6"/>
                         <outlet property="playersMeetLabel" destination="MlV-Vo-zzx" id="u8D-4s-x7U"/>
-                        <outlet property="signInButton" destination="pxv-q3-7Gv" id="eoO-Yq-RvP"/>
-                        <outlet property="signUpButton" destination="u1y-7T-VH0" id="4aF-Wc-gNv"/>
+                        <outlet property="signInButton" destination="pxv-q3-7Gv" id="4Cp-Vw-Bpf"/>
+                        <outlet property="signUpButton" destination="u1y-7T-VH0" id="dPx-hF-CcO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yXK-cV-RI9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
