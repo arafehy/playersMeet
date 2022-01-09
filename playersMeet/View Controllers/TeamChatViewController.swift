@@ -73,10 +73,9 @@ class TeamChatViewController: UIViewController {
     }
     
     func sendMessage(text: String) {
-        guard let userID = currentUser?.uid else { return }
         Task {
             do {
-                try await FirebaseManager.dbClient.sendMessage(text, from: userID, to: teamID)
+                try await FirebaseManager.dbClient.sendMessage(text, from: user.uid, to: teamID)
                 messageBar.inputTextView.text = nil
                 becomeFirstResponder()
                 messageBar.inputTextView.resignFirstResponder()
