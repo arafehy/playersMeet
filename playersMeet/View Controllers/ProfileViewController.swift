@@ -28,24 +28,24 @@ class ProfileViewController: UIViewController {
     let animationView = AnimationView()
     let user: User
     var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "",color: "")
-    let teammateID: String?
+    let profileID: String
+    
+    let coordinator: ProfileFlow?
     
     // MARK: - VC Life Cycle
     
-    static func instantiate(user: User, teammateID: String? = nil) -> ProfileViewController {
+    static func instantiate(user: User, profileID: String, coordinator: ProfileFlow?) -> ProfileViewController {
         let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProfileViewController") { coder in
-            ProfileViewController(coder: coder, user: user, teammateID: teammateID)
+            ProfileViewController(coder: coder, user: user, profileID: profileID, coordinator: coordinator)
         }
         profileVC.navigationItem.title = "Profile"
-        profileVC.tabBarItem = UITabBarItem(title: "Profile",
-                                            image: UIImage(systemName: "person.crop.circle"),
-                                            selectedImage: UIImage(systemName: "person.crop.circle.fill"))
         return profileVC
     }
     
-    init?(coder: NSCoder, user: User, teammateID: String?) {
+    init?(coder: NSCoder, user: User, profileID: String, coordinator: ProfileFlow?) {
         self.user = user
-        self.teammateID = teammateID
+        self.profileID = profileID
+        self.coordinator = coordinator
         super.init(coder: coder)
     }
     
@@ -61,27 +61,14 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         configureLoopingAnimation(animation: .bouncingBall, animationView: animationView, lottieView: lottieView)
         
-        if let teammateID = teammateID {
-            loadUserProfile(userID: teammateID)
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
-        }
-        else {
-            loadUserProfile(userID: user.uid)
+        if profileID == user.uid {
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOut))
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editProfile))
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        FirebaseAuthClient.addLoginStateListener(currentUser: self.user) { [weak self] isSignedIn in
-            if !isSignedIn { Navigation.goToSignUp(window: self?.view.window) }
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        FirebaseAuthClient.removeLoginStateListener()
+        loadUserProfile(userID: profileID)
     }
     
     // MARK: - Button Actions
@@ -91,12 +78,11 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func editProfile() {
-        let editProfileVC = EditProfileViewController.instantiate(user: user, userState: .existingUser(userInfo), originalPhoto: profilePicture.image)
-        show(UINavigationController(rootViewController: editProfileVC), sender: nil)
+        coordinator?.editProfile(userInfo: userInfo, profileImage: profilePicture.image)
     }
     
     @objc func doneTapped() {
-        self.dismiss(animated: true, completion: nil)
+        coordinator?.dismissProfile()
     }
     
     // MARK: - Profile Loading
@@ -134,9 +120,9 @@ class ProfileViewController: UIViewController {
     }
     
     func setLabelTexts() {
-        self.nameLabel.text = self.userInfo.name.isEmpty ? "No name" : self.userInfo.name
-        self.usernameLabel.text = self.userInfo.username.isEmpty ? "No username" : self.userInfo.username
-        self.bioTextView.text = self.userInfo.bio.isEmpty ? "No bio" : self.userInfo.bio
-        self.ageLabel.text = self.userInfo.age.isEmpty ? "No age" : "Age: \(self.userInfo.age)"
+        nameLabel.text = userInfo.name.isEmpty ? "No name" : self.userInfo.name
+        usernameLabel.text = userInfo.username.isEmpty ? "No username" : self.userInfo.username
+        bioTextView.text = userInfo.bio.isEmpty ? "No bio" : self.userInfo.bio
+        ageLabel.text = userInfo.age.isEmpty ? "No age" : "Age: \(self.userInfo.age)"
     }
 }
