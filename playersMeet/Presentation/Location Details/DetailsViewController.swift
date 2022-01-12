@@ -22,20 +22,41 @@ class DetailsViewController: UIViewController {
     
     @IBOutlet weak var locationMapView: MKMapView!
     
-    var location: Location!
+    let location: Location
     var playerCount: Int = 0 {
         didSet {
             setPlayerCountLabel()
         }
     }
-    let user: User? = FirebaseAuthClient.getUser()
+    let user: User
     var isAtLocation: Bool {
         location.id == CurrentSession.locationID
     }
     
-    var delegate: DetailsViewControllerDelegate?
+    let delegate: DetailsViewControllerDelegate?
+    let coordinator: LocationDetailsFlow?
     
     // MARK: - VC Life Cycle
+    
+    static func instantiate(user: User, location: Location, delegate: DetailsViewControllerDelegate, coordinator: LocationDetailsFlow?) -> DetailsViewController {
+        let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "DetailsViewController") { coder in
+            DetailsViewController(coder: coder, user: user, location: location, delegate: delegate, coordinator: coordinator)
+        }
+        detailsVC.navigationItem.title = location.name
+        return detailsVC
+    }
+    
+    init?(coder: NSCoder, user: User, location: Location, delegate: DetailsViewControllerDelegate, coordinator: LocationDetailsFlow?) {
+        self.user = user
+        self.location = location
+        self.delegate = delegate
+        self.coordinator = coordinator
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +64,6 @@ class DetailsViewController: UIViewController {
         joinTeamButton.rounded()
         leaveTeamButton.rounded()
         chatButton.rounded()
-        
-        navigationItem.title = location.name
         setButtonsAndLabels()
         
         startPlayerCountObserver()
@@ -68,10 +87,9 @@ class DetailsViewController: UIViewController {
     // MARK: - User Actions
     
     @IBAction func leaveTeamAction(_ sender: Any) {
-        guard let userID = user?.uid else { return }
         Task {
             do {
-                let locationID = try await FirebaseManager.dbClient.leaveLocationWith(ID: location.id, for: userID)
+                let locationID = try await FirebaseManager.dbClient.leaveLocationWith(ID: location.id, for: user.uid)
                 handleLocationChange(locationID)
             } catch {
                 showErrorAlert(with: error)
@@ -80,8 +98,6 @@ class DetailsViewController: UIViewController {
     }
     
     @IBAction func joinTeamAction(_ sender: Any) {
-        guard let userID = user?.uid else { return }
-        
         guard CurrentSession.locationID == nil else {
             showSwitchTeamAlert()
             return
@@ -89,7 +105,7 @@ class DetailsViewController: UIViewController {
         
         Task {
             do {
-                let locationID = try await FirebaseManager.dbClient.joinLocationWith(ID: location.id, for: userID)
+                let locationID = try await FirebaseManager.dbClient.joinLocationWith(ID: location.id, for: user.uid)
                 handleLocationChange(locationID)
             } catch {
                 showErrorAlert(with: error)
@@ -98,10 +114,10 @@ class DetailsViewController: UIViewController {
     }
     
     func switchLocation(alert: UIAlertAction) {
-        guard let userID = user?.uid, let currentLocationID = CurrentSession.locationID else { return }
+        guard let currentLocationID = CurrentSession.locationID else { return }
         Task {
             do {
-                let locationID = try await FirebaseManager.dbClient.switchLocation(for: userID, from: currentLocationID, to: location.id)
+                let locationID = try await FirebaseManager.dbClient.switchLocation(for: user.uid, from: currentLocationID, to: location.id)
                 handleLocationChange(locationID)
             } catch {
                 showErrorAlert(with: error)
@@ -146,11 +162,8 @@ class DetailsViewController: UIViewController {
     
     // MARK: - Navigation
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toChat" {
-            let chatVC = segue.destination as! TeamChatViewController
-            chatVC.teamID = location.id
-        }
+    @IBAction func chatButtonTapped() {
+        coordinator?.coordinateToChat(teamID: location.id)
     }
 }
 

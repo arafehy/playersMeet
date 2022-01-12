@@ -11,6 +11,7 @@ import Firebase
 import AlamofireImage
 import Foundation
 import Lottie
+
 class ProfileViewController: UIViewController {
     
     // MARK: - Properties
@@ -19,18 +20,38 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var bioTextView: UITextView!
-    @IBOutlet weak var editButton: UIBarButtonItem!
     
     @IBOutlet weak var ageLabel: UILabel!
     
     @IBOutlet weak var lottieView: UIView!
     static var assignedStringColor: String = UIColor.toHexString(UIColor.random)()
     let animationView = AnimationView()
-    let user: User? =  FirebaseAuthClient.getUser()
+    let user: User
     var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "",color: "")
-    var teammateID: String?
+    let profileID: String
+    
+    let coordinator: ProfileFlow?
     
     // MARK: - VC Life Cycle
+    
+    static func instantiate(user: User, profileID: String, coordinator: ProfileFlow?) -> ProfileViewController {
+        let profileVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProfileViewController") { coder in
+            ProfileViewController(coder: coder, user: user, profileID: profileID, coordinator: coordinator)
+        }
+        profileVC.navigationItem.title = "Profile"
+        return profileVC
+    }
+    
+    init?(coder: NSCoder, user: User, profileID: String, coordinator: ProfileFlow?) {
+        self.user = user
+        self.profileID = profileID
+        self.coordinator = coordinator
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         animationView.play()
@@ -40,35 +61,28 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         configureLoopingAnimation(animation: .bouncingBall, animationView: animationView, lottieView: lottieView)
         
-        if let teammateID = teammateID {
-            loadUserProfile(userID: teammateID)
+        if profileID == user.uid {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logOut))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editProfile))
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
         }
-        else if let userID = user?.uid {
-            loadUserProfile(userID: userID)
-        }
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        FirebaseAuthClient.addLoginStateListener(currentUser: self.user) { [weak self] isSignedIn in
-            if !isSignedIn { Navigation.goToSignUp(window: self?.view.window) }
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        FirebaseAuthClient.removeLoginStateListener()
+        loadUserProfile(userID: profileID)
     }
     
     // MARK: - Button Actions
     
-    @IBAction func logOut(_ sender: UIBarButtonItem) {
+    @objc func logOut() {
         FirebaseAuthClient.signOut()
     }
     
-    @IBAction func doneButton(_ sender: UIBarButtonItem) {
-        self.dismiss(animated: true, completion: nil)
+    @objc func editProfile() {
+        coordinator?.editProfile(userInfo: userInfo, profileImage: profilePicture.image)
+    }
+    
+    @objc func doneTapped() {
+        coordinator?.dismissProfile()
     }
     
     // MARK: - Profile Loading
@@ -82,7 +96,7 @@ class ProfileViewController: UIViewController {
                     loadProfilePicture(userID: userID)
                 }
                 else {
-                    editButton.isEnabled = true
+                    navigationItem.rightBarButtonItem?.isEnabled = true
                 }
                 setLabelTexts()
             } catch {
@@ -98,7 +112,7 @@ class ProfileViewController: UIViewController {
                 let image = try await FirebaseManager.dbClient.retrieveProfilePicture(userID: userID)
                 profilePicture.image = image
                 profilePicture.configureProfilePicture()
-                editButton.isEnabled = true
+                navigationItem.rightBarButtonItem?.isEnabled = true
             } catch {
                 showErrorAlert(with: error)
             }
@@ -106,19 +120,9 @@ class ProfileViewController: UIViewController {
     }
     
     func setLabelTexts() {
-        self.nameLabel.text = self.userInfo.name.isEmpty ? "No name" : self.userInfo.name
-        self.usernameLabel.text = self.userInfo.username.isEmpty ? "No username" : self.userInfo.username
-        self.bioTextView.text = self.userInfo.bio.isEmpty ? "No bio" : self.userInfo.bio
-        self.ageLabel.text = self.userInfo.age.isEmpty ? "No age" : "Age: \(self.userInfo.age)"
-    }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toEditProfile" {
-            let editProfileVC = segue.destination as! EditProfileViewController
-            editProfileVC.userInfo = self.userInfo
-            editProfileVC.originalPhoto = self.profilePicture.image
-        }
+        nameLabel.text = userInfo.name.isEmpty ? "No name" : self.userInfo.name
+        usernameLabel.text = userInfo.username.isEmpty ? "No username" : self.userInfo.username
+        bioTextView.text = userInfo.bio.isEmpty ? "No bio" : self.userInfo.bio
+        ageLabel.text = userInfo.age.isEmpty ? "No age" : "Age: \(self.userInfo.age)"
     }
 }

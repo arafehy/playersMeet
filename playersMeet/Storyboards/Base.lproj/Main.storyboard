@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Sb-Om-p2r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -10,23 +10,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--Profile View Controller-->
         <scene sceneID="M24-FU-6LS">
             <objects>
-                <viewController id="sTv-4i-jSU" customClass="ProfileViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="sTv-4i-jSU" customClass="ProfileViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BKj-xe-mcY">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dZk-XR-9gU">
-                                <rect key="frame" x="107" y="76" width="200" height="197.5"/>
+                                <rect key="frame" x="107" y="120" width="200" height="197.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="200" id="SQe-bL-z3i"/>
                                     <constraint firstAttribute="width" constant="200" id="wXq-8l-xtT"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="teq-h4-lH2" userLabel="Name Stack">
-                                <rect key="frame" x="142" y="283" width="130.5" height="106.5"/>
+                                <rect key="frame" x="142" y="327" width="130.5" height="106.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZl-Qe-Ejw">
                                         <rect key="frame" x="0.0" y="0.0" width="130.5" height="52"/>
@@ -49,7 +49,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="hGO-iq-PGK" userLabel="Bio Stack">
-                                <rect key="frame" x="15" y="419.5" width="384" height="139.5"/>
+                                <rect key="frame" x="15" y="463.5" width="384" height="149.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t0B-hm-bXq" userLabel="Bio Label">
                                         <rect key="frame" x="0.0" y="0.0" width="29" height="26"/>
@@ -58,7 +58,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="User Bio" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pdC-ni-nmY">
-                                        <rect key="frame" x="0.0" y="26" width="384" height="113.5"/>
+                                        <rect key="frame" x="0.0" y="26" width="384" height="123.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
@@ -70,30 +70,13 @@
                                 </constraints>
                             </stackView>
                             <view userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ucm-ne-q6c">
-                                <rect key="frame" x="224" y="567" width="175" height="241"/>
+                                <rect key="frame" x="224" y="621" width="175" height="241"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="241" id="7oV-le-AWD"/>
                                     <constraint firstAttribute="width" constant="175" id="mgT-ym-SVO"/>
                                 </constraints>
                             </view>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1l-ey-TF5">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                    <color key="textColor" systemColor="systemOrangeColor"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Profile" id="ouP-Tu-gZH">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="K7x-rl-zTK">
-                                            <connections>
-                                                <action selector="doneButton:" destination="sTv-4i-jSU" id="jht-l8-ZTn"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wRl-hr-91e"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -112,22 +95,9 @@
                             <constraint firstItem="hGO-iq-PGK" firstAttribute="top" secondItem="teq-h4-lH2" secondAttribute="bottom" constant="30" id="wo6-UD-1XW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Profile" id="0Di-07-kM9">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="mdl-ah-Gjo">
-                            <connections>
-                                <action selector="logOut:" destination="sTv-4i-jSU" id="HvR-b8-dnm"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="edit" id="Va0-fm-I2D">
-                            <connections>
-                                <segue destination="7iw-pW-pbj" kind="presentation" identifier="toEditProfile" id="vpq-Qr-tfG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="ageLabel" destination="YKT-XF-U65" id="UY1-oR-zD8"/>
                         <outlet property="bioTextView" destination="pdC-ni-nmY" id="3Pb-wd-QOO"/>
-                        <outlet property="editButton" destination="Va0-fm-I2D" id="IFK-kq-jpD"/>
                         <outlet property="lottieView" destination="Ucm-ne-q6c" id="AYs-el-cKC"/>
                         <outlet property="nameLabel" destination="WZl-Qe-Ejw" id="iV0-Bw-wVI"/>
                         <outlet property="profilePicture" destination="dZk-XR-9gU" id="Bdf-2a-fWn"/>
@@ -136,12 +106,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="llL-Tc-tCb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="876.81159420289862" y="549.77678571428567"/>
+            <point key="canvasLocation" x="93" y="548"/>
         </scene>
-        <!--Locations-->
+        <!--Locations View Controller-->
         <scene sceneID="HVO-CB-0w0">
             <objects>
-                <viewController modalTransitionStyle="crossDissolve" id="WJJ-6o-3C9" customClass="LocationsViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationsViewController" modalTransitionStyle="crossDissolve" id="WJJ-6o-3C9" customClass="LocationsViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PlA-gZ-X2v">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,7 +177,6 @@
                                             <outlet property="isHereIndicator" destination="9J0-zi-Asd" id="HOL-rO-aPm"/>
                                             <outlet property="locationImageView" destination="qqb-Mj-zOj" id="uXp-Jy-rG6"/>
                                             <outlet property="locationLabel" destination="EJf-FI-72q" id="4Fi-tE-EaK"/>
-                                            <segue destination="Y7D-ph-ihh" kind="show" id="wcN-Kq-NZu"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -222,14 +191,13 @@
                             <constraint firstItem="ug0-EY-7TY" firstAttribute="trailing" secondItem="2yg-Uh-thw" secondAttribute="trailing" id="zJq-mR-OB2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Locations" id="dNk-uu-O5Y"/>
                     <connections>
                         <outlet property="tableView" destination="ug0-EY-7TY" id="kYp-z3-qXs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3s2-wO-2lq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1677" y="-179"/>
+            <point key="canvasLocation" x="93" y="-179"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="dkS-qE-uw2">
@@ -276,7 +244,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="onSignUp:" destination="ySA-7L-eq0" eventType="touchUpInside" id="XYX-Lw-FBG"/>
+                                    <action selector="signUp" destination="ySA-7L-eq0" eventType="touchUpInside" id="cY9-xh-QNM"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PlayersMeet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MlV-Vo-zzx">
@@ -307,7 +275,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="onSignIn:" destination="ySA-7L-eq0" eventType="touchUpInside" id="f1H-rC-JLG"/>
+                                    <action selector="signIn" destination="ySA-7L-eq0" eventType="touchUpInside" id="Oxa-eG-nvG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meet your next team!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jHr-b4-s0H">
@@ -347,33 +315,31 @@
                         <outlet property="lottieView" destination="NkG-3R-82H" id="7IG-Sf-TNY"/>
                         <outlet property="passwordField" destination="dbZ-ik-Rln" id="ft4-ae-YG6"/>
                         <outlet property="playersMeetLabel" destination="MlV-Vo-zzx" id="u8D-4s-x7U"/>
-                        <outlet property="signInButton" destination="pxv-q3-7Gv" id="eoO-Yq-RvP"/>
-                        <outlet property="signUpButton" destination="u1y-7T-VH0" id="4aF-Wc-gNv"/>
-                        <segue destination="0Sb-Om-p2r" kind="presentation" identifier="loginToHome" modalPresentationStyle="fullScreen" id="KLP-Ne-hUw"/>
-                        <segue destination="Pp5-KI-2ag" kind="presentation" identifier="toCreateProfile" id="vU3-j8-S3s"/>
+                        <outlet property="signInButton" destination="pxv-q3-7Gv" id="4Cp-Vw-Bpf"/>
+                        <outlet property="signUpButton" destination="u1y-7T-VH0" id="dPx-hF-CcO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yXK-cV-RI9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-755.07246376811599" y="-179.46428571428569"/>
+            <point key="canvasLocation" x="-796" y="159"/>
         </scene>
         <!--Details View Controller-->
         <scene sceneID="VEu-tn-Tyx">
             <objects>
-                <viewController id="Y7D-ph-ihh" customClass="DetailsViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailsViewController" id="Y7D-ph-ihh" customClass="DetailsViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ECH-Zy-ve8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no players here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4at-gt-s2e">
-                                <rect key="frame" x="54.5" y="346" width="305.5" height="34"/>
+                                <rect key="frame" x="54.5" y="302" width="305.5" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are in this team" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAd-WV-Yxf">
-                                <rect key="frame" x="72" y="562" width="270" height="39"/>
+                                <rect key="frame" x="72" y="518" width="270" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="270" id="myl-W3-wkP"/>
                                 </constraints>
@@ -382,7 +348,7 @@
                                 <color key="highlightedColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hR-tW-Dfh">
-                                <rect key="frame" x="57" y="631" width="300" height="57"/>
+                                <rect key="frame" x="57" y="587" width="300" height="57"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="PvQ-99-O1K"/>
@@ -391,11 +357,11 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Chat with Team"/>
                                 <connections>
-                                    <segue destination="g7v-Ld-9AI" kind="show" identifier="toChat" id="vOv-Iy-bhq"/>
+                                    <action selector="chatButtonTapped" destination="Y7D-ph-ihh" eventType="touchUpInside" id="mJA-Sw-wEl"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IfB-L3-tct">
-                                <rect key="frame" x="57" y="410" width="300" height="122"/>
+                                <rect key="frame" x="57" y="366" width="300" height="122"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hLA-Lc-gZB">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="57"/>
@@ -423,7 +389,7 @@
                                 </constraints>
                             </stackView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z6x-a5-FkE">
-                                <rect key="frame" x="0.0" y="88" width="414" height="250"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="250"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="250" id="k9s-f5-aWL"/>
@@ -449,7 +415,6 @@
                             <constraint firstItem="Z6x-a5-FkE" firstAttribute="top" secondItem="pJJ-5k-gex" secondAttribute="top" id="sZT-Ga-alm"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1WP-YF-BvG"/>
                     <connections>
                         <outlet property="chatButton" destination="3hR-tW-Dfh" id="QuU-YW-AqY"/>
                         <outlet property="joinTeamButton" destination="hLA-Lc-gZB" id="V7s-a7-B45"/>
@@ -466,64 +431,14 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2482.608695652174" y="-179.46428571428569"/>
+            <point key="canvasLocation" x="899" y="-179"/>
         </scene>
-        <!--Game-->
-        <scene sceneID="VW2-Q7-12N">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sS4-t1-1ED" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Game" image="location" catalog="system" selectedImage="location.fill" id="VVR-TY-aIX">
-                        <color key="badgeColor" systemColor="systemOrangeColor"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" systemColor="systemOrangeColor"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pC0-mn-CMJ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
-                            <color key="textColor" systemColor="systemOrangeColor"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="WJJ-6o-3C9" kind="relationship" relationship="rootViewController" id="EHp-Dr-uik"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aHm-PZ-dcN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="878" y="-179"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="kK9-yo-aq3">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="0Sb-Om-p2r" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="XR3-Dk-Ogo"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gmy-sI-Kar">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="selectedImageTintColor" systemColor="systemOrangeColor"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="frn-dA-emD" kind="relationship" relationship="viewControllers" id="8YR-JM-ehi"/>
-                        <segue destination="sS4-t1-1ED" kind="relationship" relationship="viewControllers" id="p67-8M-8qU"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TIr-1J-CC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="80" y="-179"/>
-        </scene>
-        <!--Create Profile-->
+        <!--Edit Profile View Controller-->
         <scene sceneID="20c-mW-MFe">
             <objects>
-                <viewController id="7iw-pW-pbj" customClass="EditProfileViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditProfileViewController" id="7iw-pW-pbj" customClass="EditProfileViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dGd-UN-qJW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.square" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="RN5-dF-cjA" userLabel="Profile Picture">
@@ -537,30 +452,8 @@
                                     <outletCollection property="gestureRecognizers" destination="oGI-dj-MkR" appends="YES" id="JAe-lj-1OI"/>
                                 </connections>
                             </imageView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zkN-fG-fj0">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                                    <color key="textColor" systemColor="systemOrangeColor"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Edit Profile" id="LIa-wR-TOo">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="vxB-6r-6x2">
-                                            <connections>
-                                                <action selector="cancelProfileUpdate:" destination="7iw-pW-pbj" id="G8G-rE-XU5"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="save" id="oLl-qJ-Zhh">
-                                            <connections>
-                                                <action selector="saveProfile:" destination="7iw-pW-pbj" id="yfz-bx-abz"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Z2-DZ-z4l" userLabel="Bio Stack">
-                                <rect key="frame" x="15" y="677" width="384" height="123"/>
+                                <rect key="frame" x="15" y="731" width="384" height="123"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hb9-qp-2pm" userLabel="Bio Label">
                                         <rect key="frame" x="0.0" y="0.0" width="29" height="26"/>
@@ -584,10 +477,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DPE-V0-64G" userLabel="Name Stack">
-                                <rect key="frame" x="50" y="294" width="314" height="375"/>
+                                <rect key="frame" x="50" y="294" width="314" height="429"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vmA-Pk-41X" userLabel="Name Text Field">
-                                        <rect key="frame" x="20" y="0.0" width="274" height="289.5"/>
+                                        <rect key="frame" x="20" y="0.0" width="274" height="343.5"/>
                                         <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="40"/>
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                         <connections>
@@ -596,7 +489,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pr9-Od-8aZ" userLabel="Username Text Field">
-                                        <rect key="frame" x="20" y="297.5" width="274" height="35.5"/>
+                                        <rect key="frame" x="20" y="351.5" width="274" height="35.5"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" textContentType="username"/>
                                         <connections>
@@ -605,7 +498,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qH4-7N-6DP">
-                                        <rect key="frame" x="129" y="341" width="56.5" height="34"/>
+                                        <rect key="frame" x="129" y="395" width="56.5" height="34"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <connections>
@@ -636,20 +529,11 @@
                             <constraint firstItem="7Z2-DZ-z4l" firstAttribute="top" secondItem="DPE-V0-64G" secondAttribute="bottom" constant="8" symbolic="YES" id="xUA-OP-Jph"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Profile" id="X4h-HT-4m9">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="save" id="yaJ-KN-mZw">
-                            <connections>
-                                <action selector="saveProfile:" destination="7iw-pW-pbj" id="Z6c-5y-wui"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="ageField" destination="qH4-7N-6DP" id="VB3-6T-131"/>
                         <outlet property="bioTextView" destination="Vau-ad-t0F" id="OK9-MW-euB"/>
-                        <outlet property="createProfileButton" destination="yaJ-KN-mZw" id="3x9-0R-UNB"/>
                         <outlet property="nameField" destination="vmA-Pk-41X" id="NMA-b7-h83"/>
                         <outlet property="profilePicture" destination="RN5-dF-cjA" id="ACI-H3-MP7"/>
-                        <outlet property="saveButton" destination="oLl-qJ-Zhh" id="gjX-ke-q93"/>
                         <outlet property="usernameField" destination="pr9-Od-8aZ" id="qAk-aQ-tX7"/>
                     </connections>
                 </viewController>
@@ -660,59 +544,12 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="877" y="1282"/>
+            <point key="canvasLocation" x="-797" y="942"/>
         </scene>
-        <!--Profile-->
-        <scene sceneID="Nv1-pR-Cz2">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="frn-dA-emD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person" catalog="system" selectedImage="person.fill" id="h9g-Jy-3KA">
-                        <color key="badgeColor" systemColor="systemOrangeColor"/>
-                    </tabBarItem>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oGg-jm-Q9r">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="20"/>
-                            <color key="textColor" systemColor="systemOrangeColor"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="sTv-4i-jSU" kind="relationship" relationship="rootViewController" id="F4F-38-OtG"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o1U-n0-bxu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="79.710144927536234" y="549.77678571428567"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="hPm-1Y-3co">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Pp5-KI-2ag" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QmQ-UU-hFQ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
-                            <color key="textColor" systemColor="systemOrangeColor"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="7iw-pW-pbj" kind="relationship" relationship="rootViewController" id="xf1-h4-jRh"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9JT-L3-lXY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-755" y="1282"/>
-        </scene>
-        <!--Chat-->
+        <!--Chat View Controller-->
         <scene sceneID="4xP-sd-ns5">
             <objects>
-                <viewController id="g7v-Ld-9AI" customClass="TeamChatViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TeamChatViewController" id="g7v-Ld-9AI" userLabel="Chat View Controller" customClass="TeamChatViewController" customModule="playersMeet" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="E6o-oy-zSo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -784,26 +621,17 @@
                     <navigationItem key="navigationItem" title="Chat" id="Lpe-Cs-Svj"/>
                     <connections>
                         <outlet property="tableView" destination="Qz8-jh-VXg" id="UZg-jY-uNY"/>
-                        <segue destination="sTv-4i-jSU" kind="presentation" identifier="toProfile" id="dQP-nd-RGv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MVR-u9-Xwm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3246" y="-180"/>
+            <point key="canvasLocation" x="1661" y="-180"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="vpq-Qr-tfG"/>
-        <segue reference="dQP-nd-RGv"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" systemColor="systemOrangeColor"/>
     <resources>
-        <image name="location" catalog="system" width="128" height="118"/>
         <image name="location.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="location.fill" catalog="system" width="128" height="121"/>
-        <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.crop.square" catalog="system" width="128" height="114"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
