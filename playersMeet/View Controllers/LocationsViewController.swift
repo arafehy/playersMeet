@@ -22,19 +22,23 @@ class LocationsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    let coordinator: LocationsFlow?
+    
     // MARK: - VC Life Cycle
     
-    static func instantiate(user: User, locationProvider: LocationProvider = YelpClient(), userLocationProvider: UserLocationProvider = UserLocationService()) -> LocationsViewController {
+    static func instantiate(user: User, locationProvider: LocationProvider = YelpClient(), userLocationProvider: UserLocationProvider = UserLocationService(), coordinator: LocationsFlow?) -> LocationsViewController {
         let locationsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "LocationsViewController") { coder in
-            LocationsViewController(coder: coder, user: user, locationProvider: locationProvider, userLocationProvider: userLocationProvider)
+            LocationsViewController(coder: coder, user: user, locationProvider: locationProvider, userLocationProvider: userLocationProvider, coordinator: coordinator)
         }
+        locationsVC.navigationItem.title = "Locations"
         return locationsVC
     }
     
-    init?(coder: NSCoder, user: User, locationProvider: LocationProvider = YelpClient(), userLocationProvider: UserLocationProvider = UserLocationService()) {
+    init?(coder: NSCoder, user: User, locationProvider: LocationProvider = YelpClient(), userLocationProvider: UserLocationProvider = UserLocationService(), coordinator: LocationsFlow?) {
         self.user = user
         self.locationProvider = locationProvider
         self.userLocationProvider = userLocationProvider
+        self.coordinator = coordinator
         super.init(coder: coder)
     }
     
@@ -59,9 +63,8 @@ class LocationsViewController: UIViewController {
     // MARK: - Locations
     
     func setCurrentLocationID() {
-        guard let userID = user?.uid else { return }
         Task {
-            let locationID = await FirebaseManager.dbClient.getCurrentLocationID(userID: userID)
+            let locationID = await FirebaseManager.dbClient.getCurrentLocationID(userID: user.uid)
             CurrentSession.locationID = locationID
         }
     }
@@ -76,17 +79,6 @@ class LocationsViewController: UIViewController {
             } catch {
                 showErrorAlert(with: error)
             }
-        }
-    }
-    
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let selectedRow: Int = tableView.indexPathForSelectedRow?.row else { return }
-        if let detailsVC = segue.destination as? DetailsViewController {
-            let location: Location = locations[selectedRow]
-            detailsVC.location = location
-            detailsVC.delegate = self
         }
     }
 }
@@ -118,8 +110,7 @@ extension LocationsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedLocation = locations[indexPath.row]
-        let detailsVC = DetailsViewController.instantiate(user: user, location: selectedLocation, delegate: self)
-        navigationController?.pushViewController(detailsVC, animated: true)
+        coordinator?.coordinateToDetail(location: selectedLocation, delegate: self)
     }
 }
 
