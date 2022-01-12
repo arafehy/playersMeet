@@ -23,10 +23,12 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var createProfileButton: UIBarButtonItem!
     
-    var userInfo: UserInfo?
-    let user: User? = FirebaseAuthClient.getUser()
-    var originalUserInfo: UserInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: "")
-    var originalPhoto: UIImage!
+    let user: User
+    let userState: UserState
+    
+    var userInfo: UserInfo
+    let originalUserInfo: UserInfo
+    let originalPhoto: UIImage?
     
     let bioPlaceholder: String = "Enter a bio..."
     
@@ -58,18 +60,38 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     // MARK: - VC Life Cycle
     
+    static func instantiate(user: User, userState: UserState, originalPhoto: UIImage?) -> EditProfileViewController {
+        return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "EditProfileViewController") { coder in
+            EditProfileViewController(coder: coder, user: user, userState: userState, originalPhoto: originalPhoto)
+        }
+    }
+    
+    init?(coder: NSCoder, user: User, userState: UserState, originalPhoto: UIImage?) {
+        self.user = user
+        self.userState = userState
+        switch userState {
+        case .newUser:
+            self.userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: "")
+            self.originalUserInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: "")
+        case .existingUser(let userInfo):
+            self.userInfo = userInfo
+            self.originalUserInfo = userInfo
+        }
+        self.originalPhoto = originalPhoto
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
         bioTextView.configure()
         profilePicture.configureProfilePicture()
         
-        guard let info = userInfo else {    // Creating profile after signup
-            bioTextView.reset(with: bioPlaceholder)
-            userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "", color: ProfileViewController.self.assignedStringColor)
-            return
-        }
-        originalUserInfo = info
+        setNavigationItem()
         setProfileFields()
         profilePicture.image = originalPhoto
     }
@@ -88,36 +110,32 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     // MARK: - Profile Updating
     
-    @IBAction func cancelProfileUpdate(_ sender: UIBarButtonItem) {
-        guard isAnythingDifferent else {
-            self.dismiss(animated: true, completion: nil)
-            return
+    @objc func cancelProfileUpdate() {
+        if isAnythingDifferent {
+            self.showCancelProfileUpdateAlert()
+        } else {
+            self.dismiss(animated: true)
         }
-        self.showCancelProfileUpdateAlert()
     }
     
-    @IBAction func saveProfile(_ sender: UIBarButtonItem) {
-        guard let userID = user?.uid, isAnythingDifferent else {
+    @objc func saveProfile() {
+        guard isAnythingDifferent else {
             return
         }
         saveFormFields()
         
         guard !profilePictureChanged else {
-            uploadProfilePicture(userID: userID)
+            uploadProfilePicture(userID: user.uid)
             return
         }
         
-        updateProfile(userID: userID)
+        updateProfile()
     }
     
-    func updateProfile(userID: String) {
-        guard let userInfo = userInfo else {
-            print("Can't update profile: User info is nil")
-            return
-        }
+    func updateProfile() {
         Task {
             do {
-                try await FirebaseManager.dbClient.updateUserProfile(userID: userID, userInfo: userInfo)
+                try await FirebaseManager.dbClient.updateUserProfile(userID: user.uid, userInfo: userInfo)
                 guard let tabBarController = self.presentingViewController as? UITabBarController,
                       let navigationController = tabBarController.selectedViewController as? UINavigationController,
                       let profileVC = navigationController.viewControllers[0] as? ProfileViewController else {
@@ -125,8 +143,12 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
                           Navigation.goToHome(window: self.view.window)
                           return
                       }
-                self.dismiss(animated: true) {
-                    profileVC.loadUserProfile(userID: userID)
+                self.dismiss(animated: true) { [weak self] in
+                    guard let self = self else {
+                        print("Could not load updated profile. EditProfileVC")
+                        return
+                    }
+                    profileVC.loadUserProfile(userID: self.user.uid)
                 }
             } catch {
                 showErrorAlert(with: error)
@@ -135,12 +157,12 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     func saveFormFields() {
-        userInfo?.name = nameField.text!
-        userInfo?.username = usernameField.text!
-        userInfo?.age = ageField.text!
+        userInfo.name = nameField.text!
+        userInfo.username = usernameField.text!
+        userInfo.age = ageField.text!
         
         let bio = bioTextView.text ?? ""
-        userInfo?.bio = bio != bioPlaceholder ? bio : ""
+        userInfo.bio = bio != bioPlaceholder ? bio : ""
     }
     
     func setProfileFields() {
@@ -162,8 +184,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         Task {
             do {
                 let photoDownloadURL = try await FirebaseManager.dbClient.uploadProfilePicture(userID: userID, imageData: newProfilePicture, imageType: .png)
-                userInfo?.photoURL = photoDownloadURL
-                updateProfile(userID: userID)
+                userInfo.photoURL = photoDownloadURL
+                updateProfile()
             } catch {
                 showErrorAlert(with: error)
             }
@@ -209,7 +231,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         let scaledImage = image.af.imageAspectScaled(toFill: size)
         
         profilePicture.image = scaledImage
-        if let _ = userInfo?.photoURL.isEmpty {
+        if userInfo.photoURL.isEmpty {
             profilePicture.configureProfilePicture()
         }
         profilePictureChanged = true
@@ -273,39 +295,32 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     }
     
     @IBAction func nameChanged(_ sender: UITextField) {
-        saveButton.isEnabled = buttonsEnabled
-        createProfileButton.isEnabled = buttonsEnabled
+        navigationItem.rightBarButtonItem?.isEnabled = buttonsEnabled
     }
     
     @IBAction func usernameChanged(_ sender: UITextField) {
-        saveButton.isEnabled = buttonsEnabled
-        createProfileButton.isEnabled = buttonsEnabled
+        navigationItem.rightBarButtonItem?.isEnabled = buttonsEnabled
     }
     
     func textViewDidChange(_ textView: UITextView) {
         isModalInPresentation = isAnythingDifferent
-        saveButton.isEnabled = buttonsEnabled
-        createProfileButton.isEnabled = buttonsEnabled
+        navigationItem.rightBarButtonItem?.isEnabled = buttonsEnabled
     }
     
     @IBAction func ageChanged(_ sender: UITextField) {
-        saveButton.isEnabled = buttonsEnabled
-        createProfileButton.isEnabled = buttonsEnabled
+        navigationItem.rightBarButtonItem?.isEnabled = buttonsEnabled
     }
     
     @IBAction func nameEndedEdit(_ sender: UITextField) {
-        saveButton.isEnabled = buttonsEnabled
-        createProfileButton.isEnabled = buttonsEnabled
+        navigationItem.rightBarButtonItem?.isEnabled = buttonsEnabled
     }
     
     @IBAction func usernameEndedEdit(_ sender: UITextField) {
-        saveButton.isEnabled = buttonsEnabled
-        createProfileButton.isEnabled = buttonsEnabled
+        navigationItem.rightBarButtonItem?.isEnabled = buttonsEnabled
     }
     
     @IBAction func ageEndedEdit(_ sender: UITextField) {
-        saveButton.isEnabled = buttonsEnabled
-        createProfileButton.isEnabled = buttonsEnabled
+        navigationItem.rightBarButtonItem?.isEnabled = buttonsEnabled
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -314,8 +329,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     func textViewDidEndEditing(_ textView: UITextView) {
         isModalInPresentation = isAnythingDifferent
-        saveButton.isEnabled = buttonsEnabled
-        createProfileButton.isEnabled = buttonsEnabled
+        navigationItem.rightBarButtonItem?.isEnabled = buttonsEnabled
         moveTextView(textView, moveDistance: -100, up: false)
     }
     
@@ -325,6 +339,22 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         UIView.animate(withDuration: moveDuration) {
             self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+        }
+    }
+}
+
+extension EditProfileViewController {
+    func setNavigationItem() {
+        switch userState {
+        case .newUser:
+            navigationItem.title = "Create Profile"
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveProfile))
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        case .existingUser(_):
+            navigationItem.title = "Edit Profile"
+            navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelProfileUpdate))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveProfile))
+            navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
 }
