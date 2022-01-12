@@ -20,9 +20,6 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var bioTextView: UITextView!
     
-    @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var createProfileButton: UIBarButtonItem!
-    
     let coordinator: EditProfileFlow?
     
     let user: User
@@ -231,8 +228,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         }
         profilePictureChanged = true
         
-        saveButton.isEnabled = true
-        createProfileButton.isEnabled = true
+        navigationItem.rightBarButtonItem?.isEnabled = true
         dismiss(animated: true, completion: nil)
     }
     
