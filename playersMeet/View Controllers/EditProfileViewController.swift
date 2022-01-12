@@ -23,6 +23,8 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var createProfileButton: UIBarButtonItem!
     
+    let coordinator: EditProfileFlow?
+    
     let user: User
     let userState: UserState
     
@@ -60,13 +62,13 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
     
     // MARK: - VC Life Cycle
     
-    static func instantiate(user: User, userState: UserState, originalPhoto: UIImage?) -> EditProfileViewController {
+    static func instantiate(user: User, userState: UserState, originalPhoto: UIImage?, coordinator: EditProfileFlow?) -> EditProfileViewController {
         return UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "EditProfileViewController") { coder in
-            EditProfileViewController(coder: coder, user: user, userState: userState, originalPhoto: originalPhoto)
+            EditProfileViewController(coder: coder, user: user, userState: userState, originalPhoto: originalPhoto, coordinator: coordinator)
         }
     }
     
-    init?(coder: NSCoder, user: User, userState: UserState, originalPhoto: UIImage?) {
+    init?(coder: NSCoder, user: User, userState: UserState, originalPhoto: UIImage?, coordinator: EditProfileFlow?) {
         self.user = user
         self.userState = userState
         switch userState {
@@ -78,6 +80,7 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
             self.originalUserInfo = userInfo
         }
         self.originalPhoto = originalPhoto
+        self.coordinator = coordinator
         super.init(coder: coder)
     }
     
@@ -136,19 +139,11 @@ class EditProfileViewController: UIViewController, UITextFieldDelegate, UITextVi
         Task {
             do {
                 try await FirebaseManager.dbClient.updateUserProfile(userID: user.uid, userInfo: userInfo)
-                guard let tabBarController = self.presentingViewController as? UITabBarController,
-                      let navigationController = tabBarController.selectedViewController as? UINavigationController,
-                      let profileVC = navigationController.viewControllers[0] as? ProfileViewController else {
-                          // Creating profile after signup. Need to instantiate profileVC
-                          Navigation.goToHome(window: self.view.window)
-                          return
-                      }
-                self.dismiss(animated: true) { [weak self] in
-                    guard let self = self else {
-                        print("Could not load updated profile. EditProfileVC")
-                        return
-                    }
-                    profileVC.loadUserProfile(userID: self.user.uid)
+                switch userState {
+                case .newUser:
+                    coordinator?.createProfile()
+                case .existingUser(_):
+                    coordinator?.updateProfile()
                 }
             } catch {
                 showErrorAlert(with: error)
