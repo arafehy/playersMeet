@@ -34,21 +34,23 @@ class DetailsViewController: UIViewController {
     }
     
     let delegate: DetailsViewControllerDelegate?
+    let coordinator: LocationDetailsFlow?
     
     // MARK: - VC Life Cycle
     
-    static func instantiate(user: User, location: Location, delegate: DetailsViewControllerDelegate) -> DetailsViewController {
+    static func instantiate(user: User, location: Location, delegate: DetailsViewControllerDelegate, coordinator: LocationDetailsFlow?) -> DetailsViewController {
         let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "DetailsViewController") { coder in
-            DetailsViewController(coder: coder, user: user, location: location, delegate: delegate)
+            DetailsViewController(coder: coder, user: user, location: location, delegate: delegate, coordinator: coordinator)
         }
         detailsVC.navigationItem.title = location.name
         return detailsVC
     }
     
-    init?(coder: NSCoder, user: User, location: Location, delegate: DetailsViewControllerDelegate) {
+    init?(coder: NSCoder, user: User, location: Location, delegate: DetailsViewControllerDelegate, coordinator: LocationDetailsFlow?) {
         self.user = user
         self.location = location
         self.delegate = delegate
+        self.coordinator = coordinator
         super.init(coder: coder)
     }
     
@@ -62,8 +64,6 @@ class DetailsViewController: UIViewController {
         joinTeamButton.rounded()
         leaveTeamButton.rounded()
         chatButton.rounded()
-        
-        navigationItem.title = location.name
         setButtonsAndLabels()
         
         startPlayerCountObserver()
@@ -163,8 +163,7 @@ class DetailsViewController: UIViewController {
     // MARK: - Navigation
     
     @IBAction func chatButtonTapped() {
-        let chatVC = TeamChatViewController.instantiate(user: user, teamID: location.id)
-        navigationController?.pushViewController(chatVC, animated: true)
+        coordinator?.coordinateToChat(teamID: location.id)
     }
 }
 
