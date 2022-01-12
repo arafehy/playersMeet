@@ -51,6 +51,7 @@ extension EditProfileCoordinator: EditProfileFlow {
     }
     
     func createProfile() {
+        navigationController.dismiss(animated: true)
         let tabBarCoordinator = TabBarCoordinator(navigationController: navigationController, user: user, selectedTab: .profile)
         coordinate(to: tabBarCoordinator)
     }
