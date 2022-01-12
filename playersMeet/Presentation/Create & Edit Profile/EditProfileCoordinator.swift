@@ -14,7 +14,7 @@ protocol EditProfileFlow {
     func createProfile()
 }
 
-struct EditProfileCoordinator: Coordinator {
+class EditProfileCoordinator: Coordinator {
     let navigationController: UINavigationController
     let user: User
     let userState: UserState

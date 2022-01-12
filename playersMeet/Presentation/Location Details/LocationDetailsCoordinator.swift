@@ -14,7 +14,7 @@ protocol LocationDetailsFlow {
     func coordinateToChat(teamID: String)
 }
 
-struct LocationDetailsCoordinator: Coordinator {
+class LocationDetailsCoordinator: Coordinator {
     let navigationController: UINavigationController
     let user: User
     let location: Location

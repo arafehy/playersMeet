@@ -13,7 +13,7 @@ protocol LocationsFlow {
     func coordinateToDetail(location: Location, delegate: DetailsViewControllerDelegate)
 }
 
-struct LocationsCoordinator: Coordinator {
+class LocationsCoordinator: Coordinator {
     let navigationController: UINavigationController
     let user: User
     

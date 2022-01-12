@@ -15,7 +15,7 @@ protocol ProfileFlow {
     func signOut()
 }
 
-struct ProfileCoordinator: Coordinator {
+class ProfileCoordinator: Coordinator {
     let navigationController: UINavigationController
     let user: User
     let profileID: String

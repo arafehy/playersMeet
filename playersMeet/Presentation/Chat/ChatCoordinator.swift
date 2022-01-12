@@ -14,7 +14,7 @@ protocol ChatFlow {
     func dismissChat()
 }
 
-struct ChatCoordinator: Coordinator {
+class ChatCoordinator: Coordinator {
     let navigationController: UINavigationController
     let user: User
     let teamID: String

@@ -13,7 +13,7 @@ protocol SignUpFlow {
     func signUp()
 }
 
-struct SignUpCoordinator: Coordinator {
+class SignUpCoordinator: Coordinator {
     let navigationController: UINavigationController
     
     init(navigationController: UINavigationController) {
