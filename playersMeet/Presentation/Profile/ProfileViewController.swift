@@ -120,9 +120,9 @@ class ProfileViewController: UIViewController {
     }
     
     func setLabelTexts() {
-        nameLabel.text = userInfo.name.isEmpty ? "No name" : self.userInfo.name
-        usernameLabel.text = userInfo.username.isEmpty ? "No username" : self.userInfo.username
-        bioTextView.text = userInfo.bio.isEmpty ? "No bio" : self.userInfo.bio
-        ageLabel.text = userInfo.age.isEmpty ? "No age" : "Age: \(self.userInfo.age)"
+        nameLabel.text = userInfo.name.isEmpty ? "No name" : userInfo.name
+        usernameLabel.text = userInfo.username.isEmpty ? "No username" : userInfo.username
+        bioTextView.text = userInfo.bio.isEmpty ? "No bio" : userInfo.bio
+        ageLabel.text = userInfo.age.isEmpty ? "No age" : "Age: \(userInfo.age)"
     }
 }
