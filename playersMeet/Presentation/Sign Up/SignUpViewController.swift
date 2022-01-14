@@ -22,7 +22,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var lottieView: UIView!
     let animationView = AnimationView()
-
+    
     let coordinator: SignUpFlow?
     
     // MARK: - VC Life Cycle

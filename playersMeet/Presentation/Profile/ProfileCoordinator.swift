@@ -25,7 +25,7 @@ class ProfileCoordinator: Coordinator {
         self.user = user
         self.profileID = profileID
     }
-
+    
     func start() {
         let profileVC = ProfileViewController.instantiate(user: user, profileID: profileID, coordinator: self)
         let isFromChat = navigationController.viewControllers.last is TeamChatViewController

@@ -94,8 +94,7 @@ class ProfileViewController: UIViewController {
                 userInfo.color = ProfileViewController.self.assignedStringColor
                 if let _ = URL(string: self.userInfo.photoURL) {
                     loadProfilePicture()
-                }
-                else {
+                } else {
                     navigationItem.rightBarButtonItem?.isEnabled = true
                 }
                 setLabelTexts()
