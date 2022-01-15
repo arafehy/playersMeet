@@ -68,7 +68,7 @@ class ProfileViewController: UIViewController {
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneTapped))
         }
-        loadUserProfile(userID: profileID)
+        loadUserProfile()
     }
     
     // MARK: - Button Actions
@@ -87,13 +87,13 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Profile Loading
     
-    func loadUserProfile(userID: String) {
+    func loadUserProfile() {
         Task {
             do {
-                userInfo = try await FirebaseManager.dbClient.retrieveUserProfile(userID: userID)
+                userInfo = try await FirebaseManager.dbClient.retrieveUserProfile(userID: profileID)
                 userInfo.color = ProfileViewController.self.assignedStringColor
                 if let _ = URL(string: self.userInfo.photoURL) {
-                    loadProfilePicture(userID: userID)
+                    loadProfilePicture()
                 }
                 else {
                     navigationItem.rightBarButtonItem?.isEnabled = true
@@ -106,10 +106,10 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func loadProfilePicture(userID: String) {
+    func loadProfilePicture() {
         Task {
             do {
-                let image = try await FirebaseManager.dbClient.retrieveProfilePicture(userID: userID)
+                let image = try await FirebaseManager.dbClient.retrieveProfilePicture(userID: profileID)
                 profilePicture.image = image
                 profilePicture.configureProfilePicture()
                 navigationItem.rightBarButtonItem?.isEnabled = true

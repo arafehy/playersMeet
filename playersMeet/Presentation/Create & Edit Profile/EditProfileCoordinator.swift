@@ -41,12 +41,8 @@ extension EditProfileCoordinator: EditProfileFlow {
             navigationController.dismiss(animated: true)
             return
         }
-        navigationController.dismiss(animated: true) { [weak self] in
-            guard let self = self else {
-                print("Could not load updated profile")
-                return
-            }
-            profileVC.loadUserProfile(userID: self.user.uid)
+        navigationController.dismiss(animated: true) {
+            profileVC.loadUserProfile()
         }
     }
     
