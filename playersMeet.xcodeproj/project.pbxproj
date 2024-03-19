@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		6A4B0F452460871D002F0882 /* TeamChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4B0F442460871D002F0882 /* TeamChatViewController.swift */; };
 		6A4B0F472460872F002F0882 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4B0F462460872F002F0882 /* MessageCell.swift */; };
+		AC4935A32BAA18A6000F4C86 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = AC4935A22BAA18A6000F4C86 /* FirebaseAuth */; };
+		AC4935A52BAA18A6000F4C86 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = AC4935A42BAA18A6000F4C86 /* FirebaseDatabase */; };
+		AC4935A72BAA18A6000F4C86 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = AC4935A62BAA18A6000F4C86 /* FirebaseStorage */; };
+		ACF2D73B2BAA0DA700F19427 /* MessageInputBar in Frameworks */ = {isa = PBXBuildFile; productRef = ACF2D73A2BAA0DA700F19427 /* MessageInputBar */; };
+		ACF2D73E2BAA0DC300F19427 /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = ACF2D73D2BAA0DC300F19427 /* AlamofireImage */; };
+		ACF2D7412BAA0DE400F19427 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = ACF2D7402BAA0DE400F19427 /* Lottie */; };
+		ACF2D7442BAA0E1800F19427 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = ACF2D7432BAA0E1800F19427 /* Moya */; };
+		ACF2D74C2BAA0EDA00F19427 /* CodableFirebase in Frameworks */ = {isa = PBXBuildFile; productRef = ACF2D74B2BAA0EDA00F19427 /* CodableFirebase */; };
 		DB80848E245687B800177175 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB80848D245687B800177175 /* SignUpViewController.swift */; };
 		E005B35024648AE10034DD7C /* 4414-bouncy-basketball.json in Resources */ = {isa = PBXBuildFile; fileRef = E005B34F24648AE10034DD7C /* 4414-bouncy-basketball.json */; };
 		E0116CA6245A580900AF7F39 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E0116CA5245A580900AF7F39 /* .gitignore */; };
@@ -150,6 +158,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACF2D74C2BAA0EDA00F19427 /* CodableFirebase in Frameworks */,
+				AC4935A32BAA18A6000F4C86 /* FirebaseAuth in Frameworks */,
+				ACF2D73B2BAA0DA700F19427 /* MessageInputBar in Frameworks */,
+				ACF2D73E2BAA0DC300F19427 /* AlamofireImage in Frameworks */,
+				ACF2D7442BAA0E1800F19427 /* Moya in Frameworks */,
+				AC4935A72BAA18A6000F4C86 /* FirebaseStorage in Frameworks */,
+				AC4935A52BAA18A6000F4C86 /* FirebaseDatabase in Frameworks */,
+				ACF2D7412BAA0DE400F19427 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +446,16 @@
 			dependencies = (
 			);
 			name = playersMeet;
+			packageProductDependencies = (
+				ACF2D73A2BAA0DA700F19427 /* MessageInputBar */,
+				ACF2D73D2BAA0DC300F19427 /* AlamofireImage */,
+				ACF2D7402BAA0DE400F19427 /* Lottie */,
+				ACF2D7432BAA0E1800F19427 /* Moya */,
+				ACF2D74B2BAA0EDA00F19427 /* CodableFirebase */,
+				AC4935A22BAA18A6000F4C86 /* FirebaseAuth */,
+				AC4935A42BAA18A6000F4C86 /* FirebaseDatabase */,
+				AC4935A62BAA18A6000F4C86 /* FirebaseStorage */,
+			);
 			productName = playersMeetup;
 			productReference = FA75F72B245445FC00E681F9 /* playersMeet.app */;
 			productType = "com.apple.product-type.application";
@@ -501,6 +527,14 @@
 				Base,
 			);
 			mainGroup = FA75F722245445FC00E681F9;
+			packageReferences = (
+				ACF2D7392BAA0DA700F19427 /* XCRemoteSwiftPackageReference "MessageInputBar" */,
+				ACF2D73C2BAA0DC300F19427 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				ACF2D73F2BAA0DE400F19427 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				ACF2D7422BAA0E1800F19427 /* XCRemoteSwiftPackageReference "Moya" */,
+				ACF2D74A2BAA0EDA00F19427 /* XCRemoteSwiftPackageReference "CodableFirebase" */,
+				AC4935A12BAA18A6000F4C86 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = FA75F72C245445FC00E681F9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -920,6 +954,100 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AC4935A12BAA18A6000F4C86 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.0;
+			};
+		};
+		ACF2D7392BAA0DA700F19427 /* XCRemoteSwiftPackageReference "MessageInputBar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/matsubara-k/MessageInputBar";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		ACF2D73C2BAA0DC300F19427 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
+		ACF2D73F2BAA0DE400F19427 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.4.1;
+			};
+		};
+		ACF2D7422BAA0E1800F19427 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+		ACF2D74A2BAA0EDA00F19427 /* XCRemoteSwiftPackageReference "CodableFirebase" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alickbass/CodableFirebase";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AC4935A22BAA18A6000F4C86 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC4935A12BAA18A6000F4C86 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		AC4935A42BAA18A6000F4C86 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC4935A12BAA18A6000F4C86 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+		AC4935A62BAA18A6000F4C86 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AC4935A12BAA18A6000F4C86 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		ACF2D73A2BAA0DA700F19427 /* MessageInputBar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACF2D7392BAA0DA700F19427 /* XCRemoteSwiftPackageReference "MessageInputBar" */;
+			productName = MessageInputBar;
+		};
+		ACF2D73D2BAA0DC300F19427 /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACF2D73C2BAA0DC300F19427 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
+		ACF2D7402BAA0DE400F19427 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACF2D73F2BAA0DE400F19427 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+		ACF2D7432BAA0E1800F19427 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACF2D7422BAA0E1800F19427 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		ACF2D74B2BAA0EDA00F19427 /* CodableFirebase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACF2D74A2BAA0EDA00F19427 /* XCRemoteSwiftPackageReference "CodableFirebase" */;
+			productName = CodableFirebase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA75F723245445FC00E681F9 /* Project object */;
 }
