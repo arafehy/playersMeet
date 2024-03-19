@@ -6,11 +6,11 @@
 //  Copyright © 2021 Yazan Arafeh. All rights reserved.
 //
 
-import UIKit
-import Firebase
-import AlamofireImage
 import Foundation
+import UIKit
 import Lottie
+import AlamofireImage
+import FirebaseAuth
 
 class ProfileViewController: UIViewController {
     
@@ -25,7 +25,7 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var lottieView: UIView!
     static var assignedStringColor: String = UIColor.toHexString(UIColor.random)()
-    let animationView = AnimationView()
+    let animationView = LottieAnimationView()
     let user: User
     var userInfo = UserInfo(username: "", name: "", bio: "", age: "", photoURL: "",color: "")
     let profileID: String

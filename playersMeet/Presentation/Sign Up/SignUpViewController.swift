@@ -21,7 +21,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signUpButton: UIButton!
     
     @IBOutlet weak var lottieView: UIView!
-    let animationView = AnimationView()
+    let animationView = LottieAnimationView()
     
     let coordinator: SignUpFlow?
     

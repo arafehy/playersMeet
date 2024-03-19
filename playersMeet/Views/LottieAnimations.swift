@@ -11,12 +11,12 @@ import Lottie
 import UIKit
 
 protocol Animations {
-    func configureLoopingAnimation(animation: LottieAnimations.AnimationNames, animationView: AnimationView, lottieView: UIView)
+    func configureLoopingAnimation(animation: LottieAnimations.AnimationNames, animationView: LottieAnimationView, lottieView: UIView)
 }
 
 extension Animations {
-    func configureLoopingAnimation(animation: LottieAnimations.AnimationNames, animationView: AnimationView, lottieView: UIView) {
-        animationView.animation = Animation.named(animation.rawValue)
+    func configureLoopingAnimation(animation: LottieAnimations.AnimationNames, animationView: LottieAnimationView, lottieView: UIView) {
+        animationView.animation = LottieAnimation.named(animation.rawValue)
         animationView.frame.size = lottieView.frame.size
         animationView.contentMode = .scaleAspectFill
         animationView.loopMode = .loop
