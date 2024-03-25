@@ -118,19 +118,7 @@ class FirebaseDBClient {
     private func uploadPhoto(reference: StorageReference, imageData: Data, imageType: ImageType) async throws {
         let metadata = StorageMetadata()
         metadata.contentType = "image/\(imageType.rawValue)"
-        return try await withCheckedThrowingContinuation { continuation in
-            reference.putData(imageData, metadata: metadata) { metadata, error in
-                if let error = error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-                guard metadata != nil else {
-                    continuation.resume(throwing: ImageError.invalidMetadata)
-                    return
-                }
-                continuation.resume()
-            }
-        }
+        let _ = try await reference.putDataAsync(imageData, metadata: metadata)
     }
     
     func retrieveProfilePicture(userID: String) async throws -> UIImage {
